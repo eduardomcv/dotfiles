@@ -34,7 +34,7 @@ set so=10
 " Always show where I am in a buffer
 set ruler
 set cursorline
-set number
+set number relativenumber
 
 " Height of the command bar
 set cmdheight=1
