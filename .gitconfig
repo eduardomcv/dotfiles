@@ -1,13 +1,13 @@
 [user]
-	email = eduardomcv42@gmail.com
+  email = eduardomcv42@gmail.com
   name = Eduardo Vicente
 [core]
-	editor = vim
+  editor = vim
 [color]
   ui = auto
 [alias]
-	cleanup = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $0}' | xargs git branch -d; }; f"
-	ch = checkout
+  cleanup = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
+  ch = checkout
   branches = branch -a
   remotes = remote -v
   # View history graph
