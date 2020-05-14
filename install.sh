@@ -64,7 +64,7 @@ setup_system() {
   #   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
   #   $(lsb_release -cs) \
   #   stable"
-  sudo add-apt-repository \
+  add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
     eoan \
     stable"
@@ -72,6 +72,10 @@ setup_system() {
   ## spotify
   curl -sS https://download.spotify.com/debian/pubkey.gpg | apt-key add - 
   echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.list.d/spotify.list
+
+  # slack
+  curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
+  add-apt-repository "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
 
   # post add-repositories install
   apt update
@@ -92,6 +96,13 @@ setup_system() {
   # setup docker for non-root
   usermod -aG docker $USER
   systemctl enable docker
+
+  # discord
+  if [ ! -f /usr/bin/discord ]; then
+      wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+      apt install -y ./discord.deb
+      rm discord.deb
+  fi
 }
 
 setup_node() {
