@@ -70,7 +70,9 @@ tools() {
   apt install -y \
     docker-ce \
     docker-ce-cli \
-    containerd.io
+    containerd.io \
+    fonts-firacode \
+    exuberant-ctags
   
   # FIXME can not run as sudo, should be moved somewhere else
   # Node Version Manager
