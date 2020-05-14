@@ -104,6 +104,13 @@ setup_system() {
       apt install -y ./discord.deb
       rm discord.deb
   fi
+
+  #vscode
+  if [ ! -f /usr/bin/discord ]; then
+    wget -O code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
+    apt install -y ./code.deb
+    rm code.deb
+  fi
 }
 
 setup_node() {
