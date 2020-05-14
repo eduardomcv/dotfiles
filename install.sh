@@ -1,5 +1,15 @@
+#!/usr/bin/env bash
+# shellcheck disable=SC1090
+
 set -e
 set -o pipefail
+
+check_sudo() {
+  if [ "$(id -u)" -ne 0 ]; then
+    echo "Please run as root."
+    exit
+  fi
+}
 
 dotfiles() {
   rsync --quiet \
@@ -9,7 +19,7 @@ dotfiles() {
     --exclude ".bashrc" \
     -avh --no-perms . ~
 
-  cat .bashrc >> ~/.bashrc
+  # cat .bashrc >> ~/.bashrc
 }
 
 tools() {
@@ -29,6 +39,7 @@ main() {
   if [[ $cmd == "dotfiles" ]]; then
     dotfiles
   elif [[ $cmd == "tools" ]]; then
+    check_sudo
     tools
   else
     echo "please specify"
