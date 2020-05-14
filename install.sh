@@ -87,7 +87,8 @@ setup_system() {
     containerd.io \
     fonts-firacode \
     exuberant-ctags \
-    spotify-client
+    spotify-client \
+    slack-desktop
 
   # docker-compose
   curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
