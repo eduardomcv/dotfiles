@@ -32,6 +32,7 @@ main() {
     tools
   else
     echo "please specify"
+  fi
 }
 
 main "$@"
