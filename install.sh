@@ -30,7 +30,8 @@ main() {
     dotfiles
   elif [[ $cmd == "tools" ]]; then
     tools
-  fi
+  else
+    echo "please specify"
 }
 
 main "$@"
