@@ -11,6 +11,13 @@ check_is_sudo() {
   fi
 }
 
+check_isnt_sudo() {
+  if [ "$(id -u)" -eq 0 ]; then
+    echo "Please run without root."
+    exit
+  fi
+}
+
 dotfiles() {
   rsync --quiet \
     --exclude ".git/" \
