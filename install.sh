@@ -77,7 +77,7 @@ setup_system() {
   curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
   add-apt-repository "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
 
-  # post add-repositories install
+  # main install
   apt update
   apt upgrade -y
 
@@ -87,6 +87,7 @@ setup_system() {
     containerd.io \
     fonts-firacode \
     exuberant-ctags \
+    gnome-tweaks \
     spotify-client \
     slack-desktop
 
