@@ -29,10 +29,26 @@ tools() {
   
   apt install -y \
     curl \
+    wget \
+    make \
     apt-transport-https \
     ca-certificates \
     gnupg-agent \
-    software-properties-common
+    software-properties-common \
+    build-essential \
+    libssl-dev \
+    zlib1g-dev \
+    libbz2-dev \
+    libreadline-dev \
+    libsqlite3-dev \
+    llvm \
+    libncurses5-dev \
+    xz-utils \
+    tk-dev \
+    libxml2-dev \
+    libxmlsec1-dev \
+    libffi-dev \
+    liblzma-dev
   
   # add repositories
   ## docker
@@ -60,6 +76,10 @@ tools() {
   # Node Version Manager
   # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   # nvm install --lts --latest-npm
+
+  # pyenv installer
+  # curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+  # printf "\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n" >> ~/.bashrc
 
   # docker-compose
   curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
