@@ -37,10 +37,18 @@ tools() {
   # add repositories
   
   ## docker
+  ### remove old installation
+  apt remove docker docker-engine docker.io containerd runc
+  
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  ### no repo available for focal fossa yet
+  # sudo add-apt-repository \
+  #   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+  #   $(lsb_release -cs) \
+  #   stable"
   sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
+    eoan \
     stable"
 
   # post adding repositories
