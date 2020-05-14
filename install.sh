@@ -69,11 +69,16 @@ setup_system() {
     eoan \
     stable"
 
+  ## vscode
+  curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
+  install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
+  sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
+
   ## spotify
   curl -sS https://download.spotify.com/debian/pubkey.gpg | apt-key add - 
   echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.list.d/spotify.list
 
-  # slack
+  ## slack
   curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
   add-apt-repository "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
 
@@ -88,6 +93,7 @@ setup_system() {
     fonts-firacode \
     exuberant-ctags \
     gnome-tweaks \
+    code \
     spotify-client \
     slack-desktop \
     gimp
@@ -105,13 +111,6 @@ setup_system() {
       wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
       apt install -y ./discord.deb
       rm discord.deb
-  fi
-
-  # vscode
-  if [ ! -f /usr/bin/discord ]; then
-    wget -O code.deb "https://go.microsoft.com/fwlink/?LinkID=760868"
-    apt install -y ./code.deb
-    rm code.deb
   fi
 
   # setup git bash prompt
