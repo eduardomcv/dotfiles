@@ -56,8 +56,10 @@ tools() {
     docker-ce-cli \
     containerd.io
   
+  # FIXME can not run as sudo, should be moved somewhere else
   # Node Version Manager
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  # nvm install --lts --latest-npm
 
   # docker-compose
   curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
