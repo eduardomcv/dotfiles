@@ -23,13 +23,35 @@ dotfiles() {
 }
 
 tools() {
+  # pre adding repositories requirements
   apt update || true
   apt upgrade -y
   
   apt install -y \
-    curl
-    fonts-firacode
+    curl \
+    apt-transport-https \
+    ca-certificates \
+    gnupg-agent \
+    software-properties-common
   
+  # add repositories
+  
+  ## docker
+  curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
+  sudo add-apt-repository \
+    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
+    $(lsb_release -cs) \
+    stable"
+
+  # post adding repositories
+  apt update || true
+  apt upgrade -y
+
+  apt install -y \
+    docker-ce \
+    docker-ce-cli \
+    containerd.io
+
   # Node Version Manager
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
 }
