@@ -18,7 +18,7 @@ check_isnt_sudo() {
   fi
 }
 
-dotfiles() {
+setup_dotfiles() {
   rsync --quiet \
     --exclude ".git/" \
     --exclude "install" \
@@ -29,7 +29,7 @@ dotfiles() {
   # cat .bashrc >> ~/.bashrc
 }
 
-system() {
+setup_system() {
   # pre adding repositories requirements
   apt update || true
   apt upgrade -y
@@ -95,14 +95,14 @@ system() {
   systemctl enable docker
 }
 
-node() {
+setup_node() {
   # Node Version Manager
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   # install latest lts version
   nvm install --lts --latest-npm
 }
 
-python() {
+setup_python() {
   # pyenv installer
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
   printf "\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n" >> ~/.bashrc
@@ -116,16 +116,16 @@ main() {
 
   if [[ $cmd == "dotfiles" ]]; then
     check_isnt_sudo
-    dotfiles
+    setup_dotfiles
   elif [[ $cmd == "system" ]]; then
     check_is_sudo
-    system
+    setup_system
   elif [[ $cmd == "node" ]]; then
     check_isnt_sudo
-    node
+    setup_python
   elif [[ $cmd == "python" ]]; then
     check_isnt_sudo
-    python
+    setup_python
   else
     echo "please specify what to install"
   fi
