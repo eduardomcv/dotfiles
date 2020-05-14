@@ -63,8 +63,12 @@ tools() {
     eoan \
     stable"
 
+  ## spotify
+  curl -sS https://download.spotify.com/debian/pubkey.gpg | apt-key add - 
+  echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.list.d/spotify.list
+
   # post add-repositories install
-  apt update || true
+  apt update
   apt upgrade -y
 
   apt install -y \
@@ -72,13 +76,15 @@ tools() {
     docker-ce-cli \
     containerd.io \
     fonts-firacode \
-    exuberant-ctags
+    exuberant-ctags \
+    spotify-client
   
   # FIXME can not run as sudo, should be moved somewhere else
   # Node Version Manager
   # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
   # nvm install --lts --latest-npm
 
+  # FIXME should not be run as sudo
   # pyenv installer
   # curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
   # printf "\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n" >> ~/.bashrc
