@@ -35,11 +35,7 @@ tools() {
     software-properties-common
   
   # add repositories
-  
   ## docker
-  ### remove old installation
-  apt remove docker docker-engine docker.io containerd runc
-  
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   ### no repo available for focal fossa yet
   # sudo add-apt-repository \
@@ -51,7 +47,7 @@ tools() {
     eoan \
     stable"
 
-  # post adding repositories
+  # post add-repositories install
   apt update || true
   apt upgrade -y
 
@@ -59,9 +55,12 @@ tools() {
     docker-ce \
     docker-ce-cli \
     containerd.io
-
+  
   # Node Version Manager
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+  # setup docker for non-root
+  usermod -aG docker $USER
 }
 
 main() {
