@@ -89,7 +89,8 @@ setup_system() {
     exuberant-ctags \
     gnome-tweaks \
     spotify-client \
-    slack-desktop
+    slack-desktop \
+    gimp
 
   # docker-compose
   curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
