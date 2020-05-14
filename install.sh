@@ -73,7 +73,7 @@ main() {
     check_sudo
     tools
   else
-    echo "please specify"
+    echo "please specify what to install"
   fi
 }
 
