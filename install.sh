@@ -113,6 +113,9 @@ setup_system() {
     apt install -y ./code.deb
     rm code.deb
   fi
+
+  # setup git bash prompt
+  cat git-prompt.txt >> ~/.bashrc
 }
 
 setup_node() {
