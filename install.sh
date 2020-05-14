@@ -109,6 +109,7 @@ main() {
   local cmd=$1
 
   if [[ $cmd == "dotfiles" ]]; then
+    check_isnt_sudo
     dotfiles
   elif [[ $cmd == "system" ]]; then
     check_is_sudo
