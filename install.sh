@@ -85,16 +85,6 @@ system() {
     fonts-firacode \
     exuberant-ctags \
     spotify-client
-  
-  # FIXME can not run as sudo, should be moved somewhere else
-  # Node Version Manager
-  # curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-  # nvm install --lts --latest-npm
-
-  # FIXME should not be run as sudo
-  # pyenv installer
-  # curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-  # printf "\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n" >> ~/.bashrc
 
   # docker-compose
   curl -L "https://github.com/docker/compose/releases/download/1.25.5/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
@@ -103,6 +93,22 @@ system() {
   # setup docker for non-root
   usermod -aG docker $USER
   systemctl enable docker
+}
+
+node() {
+  # Node Version Manager
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+  # install latest lts version
+  nvm install --lts --latest-npm
+}
+
+python() {
+  # pyenv installer
+  curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
+  printf "\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n" >> ~/.bashrc
+
+  pyenv install 3.6.10
+  pyenv global 3.6.10
 }
 
 main() {
@@ -114,6 +120,12 @@ main() {
   elif [[ $cmd == "system" ]]; then
     check_is_sudo
     system
+  elif [[ $cmd == "node" ]]; then
+    check_isnt_sudo
+    node
+  elif [[ $cmd == "python" ]]; then
+    check_isnt_sudo
+    python
   else
     echo "please specify what to install"
   fi
