@@ -20,7 +20,7 @@ check_isnt_sudo() {
 setup_dotfiles() {
   rsync --quiet \
     --exclude ".git/" \
-    --exclude "install" \
+    --exclude "install.sh" \
     --exclude "README.md" \
     --exclude ".bashrc" \
     -avh --no-perms . ~
