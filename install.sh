@@ -22,7 +22,7 @@ dotfiles() {
   # cat .bashrc >> ~/.bashrc
 }
 
-tools() {
+system() {
   # pre adding repositories requirements
   apt update || true
   apt upgrade -y
@@ -103,9 +103,9 @@ main() {
 
   if [[ $cmd == "dotfiles" ]]; then
     dotfiles
-  elif [[ $cmd == "tools" ]]; then
+  elif [[ $cmd == "system" ]]; then
     check_is_sudo
-    tools
+    system
   else
     echo "please specify what to install"
   fi
