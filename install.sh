@@ -69,6 +69,10 @@ setup_system() {
     eoan \
     stable"
 
+  ## yarn
+  curl -sS https://dl.yarnpkg.com/debian/pubkey.gpg | apt-key add -
+  echo "deb https://dl.yarnpkg.com/debian/ stable main" | tee /etc/apt/sources.list.d/yarn.list
+
   ## vscode
   curl https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
   install -o root -g root -m 644 packages.microsoft.gpg /usr/share/keyrings/
@@ -93,6 +97,7 @@ setup_system() {
     fonts-firacode \
     exuberant-ctags \
     gnome-tweaks \
+    yarn \
     code \
     spotify-client \
     slack-desktop \
