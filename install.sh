@@ -4,7 +4,7 @@
 set -e
 set -o pipefail
 
-check_sudo() {
+check_is_sudo() {
   if [ "$(id -u)" -ne 0 ]; then
     echo "Please run as root."
     exit
@@ -76,7 +76,7 @@ main() {
   if [[ $cmd == "dotfiles" ]]; then
     dotfiles
   elif [[ $cmd == "tools" ]]; then
-    check_sudo
+    check_is_sudo
     tools
   else
     echo "please specify what to install"
