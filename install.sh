@@ -25,8 +25,6 @@ setup_dotfiles() {
     --exclude ".bashrc" \
     -- exclude "git-prompt.txt" \
     -avh --no-perms . ~
-
-  # cat .bashrc >> ~/.bashrc
 }
 
 setup_system() {
