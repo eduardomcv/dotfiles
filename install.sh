@@ -28,7 +28,7 @@ setup_dotfiles() {
 }
 
 setup_system() {
-  # pre adding repositories requirements
+  # requirements
   apt update || true
   apt upgrade -y
   
