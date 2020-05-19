@@ -59,14 +59,9 @@ setup_system() {
   # add repositories
   ## docker
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-  ### no repo available for focal fossa yet
-  # sudo add-apt-repository \
-  #   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  #   $(lsb_release -cs) \
-  #   stable"
-  add-apt-repository \
+  sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    eoan \
+    $(lsb_release -cs) \
     stable"
 
   ## yarn
