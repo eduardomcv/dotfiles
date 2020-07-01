@@ -73,6 +73,10 @@ setup_system() {
   sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
   rm packages.microsoft.gpg
 
+  ## chrome
+  curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
+  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+
   ## spotify
   curl -sS https://download.spotify.com/debian/pubkey.gpg | apt-key add - 
   echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.list.d/spotify.list
@@ -94,6 +98,7 @@ setup_system() {
     gnome-tweaks \
     yarn \
     code \
+    google-chrome-stable \
     spotify-client \
     slack-desktop \
     gimp
