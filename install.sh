@@ -10,9 +10,9 @@ check_is_sudo() {
   fi
 }
 
-check_isnt_sudo() {
+check_is_not_sudo() {
   if [ "$(id -u)" -eq 0 ]; then
-    echo "Please run without root."
+    echo "Please run as non-root."
     exit
   fi
 }
@@ -142,16 +142,16 @@ main() {
   local cmd=$1
 
   if [[ $cmd == "dotfiles" ]]; then
-    check_isnt_sudo
+    check_is_not_sudo
     setup_dotfiles
   elif [[ $cmd == "system" ]]; then
     check_is_sudo
     setup_system
   elif [[ $cmd == "node" ]]; then
-    check_isnt_sudo
+    check_is_not_sudo
     setup_python
   elif [[ $cmd == "python" ]]; then
-    check_isnt_sudo
+    check_is_not_sudo
     setup_python
   else
     echo "please specify what to install"
