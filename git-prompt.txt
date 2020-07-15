@@ -1,3 +1,4 @@
+
 # setup git prompt
 source /usr/lib/git-core/git-sh-prompt
 export GIT_PS1_SHOWDIRTYSTATE=1
