@@ -150,7 +150,7 @@ main() {
     setup_system
   elif [[ $cmd == "node" ]]; then
     check_is_not_sudo
-    setup_python
+    setup_node
   elif [[ $cmd == "python" ]]; then
     check_is_not_sudo
     setup_python
