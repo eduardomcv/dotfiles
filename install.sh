@@ -126,6 +126,8 @@ setup_system() {
 setup_node() {
   # Node Version Manager
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+
+  exec bash
   # install latest lts version
   nvm install --lts --latest-npm
 }
@@ -133,8 +135,12 @@ setup_node() {
 setup_python() {
   # pyenv installer
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
-  printf "\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n" >> ~/.bashrc
 
+  SOURCE_STRING="\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n"
+
+  printf "${SOURCE_STRING~}" >> ~/.bashrc
+
+  exec bash
   pyenv install 3.6.10
   pyenv global 3.6.10
 }
