@@ -139,6 +139,10 @@ setup_python() {
   pyenv global 3.6.10
 }
 
+print_help_message() {
+  printf "system -- setup system\\ndotfiles -- setup dotfiles in home directory\\nnode -- setup node\\npython -- setup python\\nhelp -- print help message\\n"
+}
+
 main() {
   local cmd=$1
 
@@ -154,8 +158,11 @@ main() {
   elif [[ $cmd == "python" ]]; then
     check_is_not_sudo
     setup_python
+  elif [[ $cmd == "help" ]]; then
+    print_help_message
   else
     echo "please specify what to install"
+    print_help_message
   fi
 }
 
