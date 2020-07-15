@@ -23,7 +23,7 @@ setup_dotfiles() {
     --exclude "install.sh" \
     --exclude "README.md" \
     --exclude ".bashrc" \
-    -- exclude "git-prompt.txt" \
+    --exclude "git-prompt.txt" \
     -avh --no-perms . ~
 }
 
