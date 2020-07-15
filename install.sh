@@ -111,6 +111,7 @@ setup_system() {
   # setup docker for non-root
   usermod -aG docker $USER
   systemctl enable docker
+  newgrp docker
 
   # discord
   if [ ! -f /usr/bin/discord ]; then
