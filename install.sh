@@ -130,10 +130,6 @@ apply_group_changes() {
 setup_node() {
   # Node Version Manager
   curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-
-  exec bash
-  # install latest lts version
-  nvm install --lts --latest-npm
 }
 
 setup_python() {
@@ -141,12 +137,7 @@ setup_python() {
   curl -L https://github.com/pyenv/pyenv-installer/raw/master/bin/pyenv-installer | bash
 
   SOURCE_STRING="\\nexport PATH=\"$HOME/.pyenv/bin:$PATH\"\\neval \"\$(pyenv init -)\"\\neval \"\$(pyenv virtualenv-init -)\"\\n"
-
   printf "${SOURCE_STRING~}" >> ~/.bashrc
-
-  exec bash
-  pyenv install 3.6.10
-  pyenv global 3.6.10
 }
 
 print_help_message() {
