@@ -25,6 +25,9 @@ setup_dotfiles() {
     --exclude ".bashrc" \
     --exclude "git-prompt.txt" \
     -avh --no-perms . ~
+
+  # setup git bash prompt
+  cat git-prompt.txt >> ~/.bashrc
 }
 
 setup_system() {
@@ -60,7 +63,7 @@ setup_system() {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
+    focal \
     stable"
 
   ## yarn
@@ -86,7 +89,7 @@ setup_system() {
   add-apt-repository "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
 
   # main install
-  apt update
+  apt update || true
   apt upgrade -y
 
   apt install -y \
@@ -95,7 +98,6 @@ setup_system() {
     containerd.io \
     fonts-firacode \
     exuberant-ctags \
-    gnome-tweaks \
     yarn \
     code \
     google-chrome-stable \
@@ -109,9 +111,9 @@ setup_system() {
   chmod +x /usr/local/bin/docker-compose
 
   # setup docker for non-root
+  groupadd docker || true
   usermod -aG docker $USER
   systemctl enable docker
-  newgrp docker
 
   # discord
   if [ ! -f /usr/bin/discord ]; then
@@ -119,9 +121,10 @@ setup_system() {
       apt install -y ./discord.deb
       rm discord.deb
   fi
+}
 
-  # setup git bash prompt
-  cat git-prompt.txt >> ~/.bashrc
+apply_group_changes() {
+  newgrp docker
 }
 
 setup_node() {
@@ -147,7 +150,12 @@ setup_python() {
 }
 
 print_help_message() {
-  printf "system -- setup system\\ndotfiles -- setup dotfiles in home directory\\nnode -- setup node\\npython -- setup python\\nhelp -- print help message\\n"
+  echo "system -- setup system"
+  echo "dotfiles -- setup dotfiles in home directory"
+  echo "node -- setup node"
+  echo "python -- setup python"
+  echo "apply-group-changes -- applies changes made to groups (so docker can be used as non-root)"
+  echo "help -- print help message"
 }
 
 main() {
@@ -165,10 +173,13 @@ main() {
   elif [[ $cmd == "python" ]]; then
     check_is_not_sudo
     setup_python
+  elif [[ $cmd == "apply-group-changes" ]]; then
+    check_is_not_sudo
+    apply_group_changes
   elif [[ $cmd == "help" ]]; then
     print_help_message
   else
-    echo "please specify what to install"
+    echo -e "please specify what to install"
     print_help_message
   fi
 }
