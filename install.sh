@@ -30,7 +30,7 @@ setup_dotfiles() {
   cat git-prompt.txt >> ~/.bashrc
 }
 
-setup_system() {
+setup_ubuntu() {
   # requirements
   apt update || true
   apt upgrade -y
@@ -123,6 +123,57 @@ setup_system() {
   fi
 }
 
+setup_fedora() {
+  # requirements
+  dnf upgrade -y || true
+
+  # add flathub
+  flatpak remote-add --if-not-exists flathub "https://flathub.org/repo/flathub.flatpakrepo"
+  
+  dnf install -y \
+    dnf-plugins-core
+  
+  # brave browser
+  dnf config-manager --add-repo "https://brave-browser-rpm-release.s3.brave.com/x86_64/"
+  rpm --import "https://brave-browser-rpm-release.s3.brave.com/brave-core.asc"
+
+  # vscode
+  rpm --import "https://packages.microsoft.com/keys/microsoft.asc"
+  sh -c 'echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" > /etc/yum.repos.d/vscode.repo'
+
+  # docker
+  # sudo dnf config-manager --add-repo "https://download.docker.com/linux/fedora/31/x86_64/stable/" # FIXME when docker releases for fedora 32
+
+  # main install
+  dnf check-update
+  
+  dnf install -y \
+    fira-code-fonts \
+    brave-browser \
+    vim-X11 \
+    code \
+    gimp
+    # docker-ce \
+    # docker-ce-cli \
+    # containerd.io
+  
+  flatpak install -y \
+    com.spotify.Client \
+    com.discordapp.Discord \
+    com.slack.Slack
+
+}
+
+setup_system() {
+  if [ -z "$1" ]; then
+    echo "please specify a distro"
+  elif [ "$1" == "ubuntu" ]
+    setup_ubuntu
+  elif [ "$1" == "fedora" ]
+    setup_fedora
+  fi
+}
+
 apply_group_changes() {
   newgrp docker
 }
@@ -157,7 +208,7 @@ main() {
     setup_dotfiles
   elif [[ $cmd == "system" ]]; then
     check_is_sudo
-    setup_system
+    setup_system "$2"
   elif [[ $cmd == "node" ]]; then
     check_is_not_sudo
     setup_node
