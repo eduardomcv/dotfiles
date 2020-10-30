@@ -167,9 +167,9 @@ setup_fedora() {
 setup_system() {
   if [ -z "$1" ]; then
     echo "please specify a distro"
-  elif [ "$1" == "ubuntu" ]
+  elif [ "$1" == "ubuntu" ]; then
     setup_ubuntu
-  elif [ "$1" == "fedora" ]
+  elif [ "$1" == "fedora" ]; then
     setup_fedora
   fi
 }
