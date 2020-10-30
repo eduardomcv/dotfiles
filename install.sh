@@ -41,6 +41,7 @@ setup_ubuntu() {
     make \
     apt-transport-https \
     ca-certificates \
+    gnupg \
     gnupg-agent \
     software-properties-common \
     build-essential \
@@ -76,9 +77,9 @@ setup_ubuntu() {
   sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
   rm packages.microsoft.gpg
 
-  ## chrome
-  curl -fsSL https://dl.google.com/linux/linux_signing_key.pub | apt-key add -
-  echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" > /etc/apt/sources.list.d/google-chrome.list
+  ## brave
+  curl -s https://brave-browser-apt-release.s3.brave.com/brave-core.asc | apt-key --keyring /etc/apt/trusted.gpg.d/brave-browser-release.gpg add -
+  echo "deb [arch=amd64] https://brave-browser-apt-release.s3.brave.com/ stable main" | tee /etc/apt/sources.list.d/brave-browser-release.list
 
   ## spotify
   curl -sS https://download.spotify.com/debian/pubkey.gpg | apt-key add - 
@@ -100,7 +101,7 @@ setup_ubuntu() {
     exuberant-ctags \
     yarn \
     code \
-    google-chrome-stable \
+    brave-browser \
     spotify-client \
     slack-desktop \
     gimp \
