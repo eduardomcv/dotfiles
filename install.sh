@@ -3,6 +3,8 @@
 set -e
 set -o pipefail
 
+UBUNTU_VERSION=focal
+
 check_is_sudo() {
   if [ "$(id -u)" -ne 0 ]; then
     echo "Please run as root."
@@ -64,7 +66,7 @@ setup_ubuntu() {
   curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
   sudo add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    focal \
+    $UBUNTU_VERSION \
     stable"
 
   ## yarn
