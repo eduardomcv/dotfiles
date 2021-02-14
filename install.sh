@@ -26,6 +26,7 @@ setup_dotfiles() {
     --exclude "README.md" \
     --exclude ".bashrc" \
     --exclude "git-prompt.txt" \
+    --exclude "logid.cfg" \
     -avh --no-perms . ~
 
   # setup git bash prompt
