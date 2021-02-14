@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "setting up logitech mouse config..."
+echo setting up logitech mouse config...
 
 sudo cp ./logid.cfg /etc/logid.cfg
 
