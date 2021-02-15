@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -euo pipefail
+
 source ./utils/sudo.sh
 
 check_is_sudo
