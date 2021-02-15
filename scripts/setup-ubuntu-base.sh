@@ -23,28 +23,11 @@ echo Installing dependencies...
 apt install -y \
   curl \
   wget \
-  make \
   apt-transport-https \
   ca-certificates \
   gnupg \
   gnupg-agent \
-  software-properties-common \
-  build-essential \
-  libssl-dev \
-  zlib1g-dev \
-  libbz2-dev \
-  libreadline-dev \
-  libsqlite3-dev \
-  llvm \
-  libncurses5-dev \
-  xz-utils \
-  tk-dev \
-  libxml2-dev \
-  libxmlsec1-dev \
-  libffi-dev \
-  liblzma-dev
-
-echo Done installing dependencies.
+  software-properties-common
 
 ### Add repositories
 echo Adding repositories...
@@ -74,8 +57,6 @@ echo Adding Slack...
 curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
 add-apt-repository "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
 
-echo Done adding repositories.
-
 ### Main install
 echo Installing packages...
 
@@ -94,24 +75,21 @@ apt install -y \
   gimp \
   neovim
 
-echo Done installing packages.
-
+# Setup docker
+echo Setting up docker...
 # docker-compose
-echo Adding docker-compose...
 curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
-
 # Setup docker for non-root
-echo Setting up docker...
 groupadd docker || true
 usermod -aG docker $USER
 # Enable docker start on boot
 systemctl enable docker.service
 systemctl enable containerd.service
+# Apply group changes
 newgrp docker
-echo Done setting up docker.
 
-# discord
+# Discord
 if [ ! -f /usr/bin/discord ]; then
     echo Adding discord...
     wget -O discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
