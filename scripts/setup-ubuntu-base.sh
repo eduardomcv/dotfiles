@@ -16,8 +16,6 @@ echo Updating system...
 apt update || true
 apt upgrade -y
 
-echo Done updating system.
-
 echo Installing dependencies...
 
 apt install -y \
@@ -77,15 +75,19 @@ apt install -y \
 
 # Setup docker
 echo Setting up docker...
+
 # docker-compose
 curl -L "https://github.com/docker/compose/releases/download/1.28.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 chmod +x /usr/local/bin/docker-compose
+
 # Setup docker for non-root
 groupadd docker || true
 usermod -aG docker $USER
+
 # Enable docker start on boot
 systemctl enable docker.service
 systemctl enable containerd.service
+
 # Apply group changes
 newgrp docker
 
