@@ -1,4 +1,4 @@
-#!bin/bash
+#!/bin/bash
 
 set -euo pipefail
 
@@ -71,7 +71,8 @@ apt install -y \
   spotify-client \
   slack-desktop \
   gimp \
-  neovim
+  neovim \
+  tmux
 
 # Setup docker
 echo Setting up docker...
