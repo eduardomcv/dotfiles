@@ -1,21 +1,26 @@
 " Specify a directory for plugins
 call plug#begin(stdpath('data') . '/plugged')
+" File browser
 Plug 'preservim/nerdtree'
 " Theme
-Plug 'morhetz/gruvbox'
+Plug 'gruvbox-community/gruvbox'
 " Completion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language syntax
 Plug 'leafgarland/typescript-vim'
 Plug 'peitalin/vim-jsx-typescript'
-" Language syntax
-Plug 'leafgarland/typescript-vim'
-Plug 'peitalin/vim-jsx-typescript'
+" Git integration
+Plug 'tpope/vim-fugitive'
+" Status bar
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 " Initialize plugin system
 call plug#end()
 
 " Syntax and theme
+set background=dark
 let g:gruvbox_italic=1
+let g:airline_theme='gruvbox'
 colorscheme gruvbox
 syntax enable
 
@@ -25,8 +30,13 @@ endif
 
 " Don't wrap text
 set nowrap
+
 " Don't keep searched terms highlighted
 set nohlsearch
+
+" Ignore case when searching
+set ignorecase
+set smartcase
 
 " Source local configs if available
 set exrc
@@ -34,7 +44,7 @@ set exrc
 " Block cursor
 set guicursor=
 
-" 10 Lines to the cursor
+" Min 10 Lines to the cursor
 set scrolloff=10
 
 " Line numbers 
@@ -58,9 +68,6 @@ set textwidth=500
 set undodir=~/.vim/undodir
 set undofile
 
-" Use system clipboard 
-" set clipboard=unnamedplus
-
 " Set bash as default shell 
 set shell=/bin/bash
 
@@ -71,22 +78,43 @@ set title
 set autoread
 
 " Don't use swap
-noswapfile
+set noswapfile
 
 " Mouse support
 if has('mouse')
 	set mouse=a
 endif
 
-"""Key mappings
-" A better leader key
-let mapleader = ","
-let g:mapleader = ","
+" Show matching brackets
+set showmatch
+set matchtime=2
 
-" remove whitespace
+" No sounds on errors
+set noerrorbells
+set novisualbell
+set tm=500
+
+" File types
+autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+
+" Commit messages should always wrap at 72 chars
+autocmd Filetype gitcommit setlocal spell textwidth=72
+
+" EditorConfig options to deal with fugitive support
+let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
+
+"""Key mappings
+
+" Set leader to spacebar
+let mapleader = " "
+let g:mapleader = " "
+
+" Remove whitespace
 nnoremap <Leader>rws :%s/\s\+$//e<CR>
 
-"Clipboard - uncomment if the default clipboard isn't the system clipboard
+" Make splitting vertical by default for new files
+noremap <C-w>n <esc>:vnew<cr>
+
 "Copy to clipboard 
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
@@ -99,12 +127,6 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" Map <Space> to / (search)
-map <Space> /
-
-" jj to throw you into normal mode from insert mode
-inoremap jj <esc>
-
 " jk to throw you into normal mode from insert mode
 inoremap jk <esc>
 
@@ -112,8 +134,8 @@ inoremap jk <esc>
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>tm :tabmove<cr>
+map <leader>t<leader> :tabnext<cr>
 
 " ctrl-backspace should delete words
 noremap! <C-BS> <C-w>
@@ -122,15 +144,11 @@ noremap! <C-h> <C-w>
 ":W to do the same as :w
 command! W  write
 
-" better buffer cicle (Tab and Shift+Tab)
+"Buffer cicle (Tab and Shift+Tab)
 nnoremap <S-Tab> :bprevious<CR>
 nnoremap <Tab> :bnext<CR>
 
-" Toggle paste on and off
-map <leader>pp :setlocal paste!<cr>
-
 """ CoC recommended
-
 " TextEdit might fail if hidden is not set.
 set hidden
 
@@ -293,67 +311,3 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
-" Stolen from gmcabrita: https://github.com/gmcabrita/dotfiles/blob/master/.vimrc
-
-" Backspace
-set backspace=indent,eol,start
-
-" Hide a buffer when it is abandoned
-set hid
-
-" Ignore case when searching
-set ignorecase
-set smartcase
-
-" Show matching brackets
-set showmatch
-set mat=2
-
-" No sounds on errors
-set noerrorbells
-set novisualbell
-set tm=500
-
-" Colors, fonts
-" set t_Co=256
-set background=dark
-
-" Vim-airline configuration
-let g:airline_powerline_fonts = 1
-let g:airline_theme='tomorrow'
-let g:airline_left_sep = ''
-let g:airline_right_sep = ''
-
-""" Tabs and indentation
-
-" Always show the status line
-set laststatus=2
-
-" File types
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
-" Commit messages should always wrap at 72 chars
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
-" EditorConfig options to deal with fugitive support
-let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
-
-" FZF configuration
-" let g:fzf_action = {
-"   \ 'ctrl-t': 'tab split',
-"   \ 'ctrl-x': 'split',
-"   \ 'ctrl-v': 'vsplit' }
-" let g:fzf_layout = { 'down': '~40%' }
-" let g:fzf_colors =
-" \ { 'fg':      ['fg', 'Normal'],
-"   \ 'bg':      ['bg', 'Normal'],
-"   \ 'hl':      ['fg', 'Comment'],
-"   \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-"   \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-"   \ 'hl+':     ['fg', 'Statement'],
-"   \ 'info':    ['fg', 'PreProc'],
-"   \ 'prompt':  ['fg', 'Conditional'],
-"   \ 'pointer': ['fg', 'Exception'],
-"   \ 'marker':  ['fg', 'Keyword'],
-"   \ 'spinner': ['fg', 'Label'],
-"   \ 'header':  ['fg', 'Comment'] }
-" let g:fzf_history_dir = '~/.local/share/fzf-history'
