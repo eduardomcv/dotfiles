@@ -1,0 +1,12 @@
+{
+    "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.15.4/bin/npm",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "typescript",
+        "javascriptreact",
+        "typescriptreact",
+        "json",
+        "typescript.tsx",
+        "graphql"
+    ]
+}
