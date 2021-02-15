@@ -1,3 +1,7 @@
+#!/bin/bash
+
+set -euo pipefail
+
 echo Setting up prompt...
 
 echo "# setup git prompt" >> ~/.bashrc
