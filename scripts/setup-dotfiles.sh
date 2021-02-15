@@ -7,6 +7,6 @@ source ./utils/sudo.sh
 check_is_not_sudo
 
 echo Synching...
-rsync --quiet -avh --no-perms ../sync ~
+rsync -a ../sync/ ~/
 echo Done.
 
