@@ -127,7 +127,7 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" jk to throw you into normal mode from insert mode
+" jk back to normal mode
 inoremap jk <esc>
 
 " Tab management
@@ -137,9 +137,12 @@ map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove<cr>
 map <leader>t<leader> :tabnext<cr>
 
-" ctrl-backspace should delete words
+" ctrl-backspace to delete words
 noremap! <C-BS> <C-w>
 noremap! <C-h> <C-w>
+
+" Toggle NERDTree
+map <C-n> :NERDTreeToggle<CR>
 
 ":W to do the same as :w
 command! W  write
