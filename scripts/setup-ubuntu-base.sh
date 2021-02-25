@@ -99,6 +99,5 @@ if [ ! -f /usr/bin/discord ]; then
     apt install -y ./discord.deb
     rm discord.deb
 fi
-echo 
 
 echo Done
