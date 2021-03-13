@@ -14,6 +14,16 @@ Plug 'tpope/vim-fugitive'
 " Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Fuzzy find
+Plug 'kien/ctrlp.vim'
+" Undo tree
+Plug 'mbbill/undotree'
+" Icons
+Plug 'ryanoasis/vim-devicons'
+" Syntax for NERDTree
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+" EditorConfig support
+Plug 'editorconfig/editorconfig-vim'
 " Initialize plugin system
 call plug#end()
 
@@ -40,6 +50,7 @@ set smartcase
 
 " Source local configs if available
 set exrc
+set secure
 
 " Block cursor
 set guicursor=
@@ -47,7 +58,7 @@ set guicursor=
 " Min 10 Lines to the cursor
 set scrolloff=10
 
-" Line numbers 
+" Line numbers
 set ruler
 set cursorline
 set number relativenumber
@@ -68,7 +79,7 @@ set textwidth=500
 set undodir=~/.vim/undodir
 set undofile
 
-" Set bash as default shell 
+" Set bash as default shell
 set shell=/bin/bash
 
 " Set the terminal title at will
@@ -100,22 +111,60 @@ autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 " Commit messages should always wrap at 72 chars
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
-" EditorConfig options to deal with fugitive support
+" Ignore files
+set wildignore+=*/.git,*/.vscode,*/node_modules,*.o,*.DS_Store
+
+" Function for trimming whitespace
+fun! TrimWhitespace()
+    let l:save = winsaveview()
+    keeppatterns %s/\s\+$//e
+    call winrestview(l:save)
+endfun
+
+" Trim whitespace before writing buffer
+augroup TRIM_WHITESPACE_BEFORE_WRITING
+    autocmd!
+    autocmd BufWritePre * :call TrimWhitespace()
+augroup END
+
+" Make EditorConfig ignore vim-fugitive and remote files
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-"""Key mappings
+" Invoke CtrlP
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
+
+" CtrlP is fast enough, don't need cache
+let g:ctrlp_use_caching = 0
+
+" Use version control search for CtrlP when appropriate
+let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files . -co --exclude-standard']
+
+" Enable NERDTree line numbers
+let NERDTreeShowLineNumbers=1
+
+" Use relative line numbers in NERDTree
+autocmd FileType nerdtree setlocal relativenumber
+
+" Start NERDTree when Vim is started without file arguments.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+
+" Show hidden files by default in NERDTree
+let NERDTreeShowHidden=1
+
+" Make NERDTree respect wildignore
+let NERDTreeRespectWildIgnore=1
 
 " Set leader to spacebar
 let mapleader = " "
 let g:mapleader = " "
 
-" Remove whitespace
-nnoremap <Leader>rws :%s/\s\+$//e<CR>
-
+"""Key mappings
 " Make splitting vertical by default for new files
-noremap <C-w>n <esc>:vnew<cr>
+noremap <c-w>n <esc>:vnew<cr>
 
-"Copy to clipboard 
+"Copy to clipboard
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
 nnoremap  <leader>y  "+y
@@ -127,29 +176,56 @@ nnoremap <leader>P "+P
 vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
-" jk back to normal mode
-inoremap jk <esc>
+" Faster window change
+nnoremap <leader>h :wincmd h<cr>
+nnoremap <leader>j :wincmd j<cr>
+nnoremap <leader>k :wincmd k<cr>
+nnoremap <leader>l :wincmd l<cr>
 
 " Tab management
-map <leader>tn :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove<cr>
-map <leader>t<leader> :tabnext<cr>
+nnoremap <leader>tn :tabnew<cr>
+nnoremap <leader>to :tabonly<cr>
+nnoremap <leader>tc :tabclose<cr>
+nnoremap <leader>tm :tabmove<cr>
+nnoremap <leader>t<leader> :tabnext<cr>
 
-" ctrl-backspace to delete words
-noremap! <C-BS> <C-w>
-noremap! <C-h> <C-w>
-
-" Toggle NERDTree
-map <C-n> :NERDTreeToggle<CR>
-
-":W to do the same as :w
+" :W and :Q to do the same as :w and :q
 command! W  write
+command! Q quit
+
+" Faster saving and quitting
+nnoremap <leader>w :w<cr>
+nnoremap <leader>q :q<cr>
 
 "Buffer cicle (Tab and Shift+Tab)
-nnoremap <S-Tab> :bprevious<CR>
-nnoremap <Tab> :bnext<CR>
+nnoremap <s-tab> :bprevious<cr>
+nnoremap <tab> :bnext<cr>
+
+" Toggle NERDTree
+nnoremap <c-n> :NERDTreeToggle<cr>
+nnoremap <leader>n :NERDTreeFocus<cr>
+
+" Toggle undotree
+nnoremap <leader>u :UndotreeToggle<cr>
+
+" alt-j and alt-k to move lines down and up in normal mode
+nnoremap <a-j> :m+1<cr>
+nnoremap <a-k> :m-2<cr>
+
+" shift-j and shift-k to move selection down and up in visual mode
+vnoremap J :m '>+1<cr>gv=gv
+vnoremap K :m '<-2<cr>gv=gv
+
+" Easy config sourcing
+nnoremap <leader><cr> :source ~/.config/nvim/init.vim<cr>
+
+" Open terminal split
+nnoremap <leader>ç :below new +resize18<cr>:terminal<cr>
+
+" Better mappings for terminal
+tnoremap <esc> <c-\><c-n>
+tnoremap <m-[> <esc>
+tnoremap <c-v><esc> <esc>
 
 """ CoC recommended
 " TextEdit might fail if hidden is not set.
@@ -298,19 +374,19 @@ set statusline^=%{coc#status()}%{get(b:,'coc_current_function','')}
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <space>ca  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <space>ce  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <space>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <space>co  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <space>cs  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <space>cj  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <space>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <space>cp  :<C-u>CocListResume<CR>
 
