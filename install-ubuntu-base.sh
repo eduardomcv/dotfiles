@@ -71,7 +71,8 @@ apt install -y \
   gimp \
   neovim \
   tmux \
-  fish
+  fish \
+  stow
 
 # Setup docker
 echo Setting up docker...
