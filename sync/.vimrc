@@ -66,9 +66,6 @@ set tabstop=2
 set lbr
 set tw=500
 
-" jk to throw you into normal mode from insert mode
-inoremap jk <esc>
-
 " Tab management
 map <leader>tn :tabnew<cr>
 map <leader>to :tabonly<cr>
@@ -88,4 +85,3 @@ nnoremap <Leader>rws :%s/\s\+$//e<CR>
 
 " Commit messages should always wrap at 72 chars
 autocmd Filetype gitcommit setlocal spell textwidth=72
-
