@@ -32,13 +32,12 @@ call plug#end()
 """"" Sets
 
 " Syntax and theme
-set background=dark
-let g:gruvbox_italic=1
-let g:airline_theme='gruvbox'
 colorscheme gruvbox
 syntax enable
-set termguicolors
 set background=dark
+set termguicolors
+let g:gruvbox_italic=1
+let g:airline_theme='gruvbox'
 
 " Don't wrap text
 set nowrap
@@ -59,6 +58,9 @@ set guicursor=
 
 " Min 10 Lines to the cursor
 set scrolloff=10
+
+" Vertical line at 120
+set colorcolumn=120
 
 " More space for displaying commands
 set cmdheight=2
