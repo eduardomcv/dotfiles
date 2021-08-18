@@ -6,10 +6,6 @@ source ./utils/sudo.sh
 
 check_is_sudo
 
-# "lsb_release" prints distro-specific info.
-# Because of that, we need to specify which release we're using as a base.
-RELEASE_NAME=focal
-
 ### Requirements
 echo Updating system...
 
@@ -24,26 +20,25 @@ apt install -y \
   apt-transport-https \
   ca-certificates \
   gnupg \
-  gnupg-agent \
-  software-properties-common
+  software-properties-common \
+  lsb-release
 
 ### Add repositories
 echo Adding repositories...
 
 # Docker
 echo Adding Docker...
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-sudo add-apt-repository \
-  "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-  $RELEASE_NAME \
-  stable"
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+echo \
+  "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
 # vscode
 echo Adding vscode...
 wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
 install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
-sh -c 'echo "deb [arch=amd64 signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/vscode stable main" > /etc/apt/sources.list.d/vscode.list'
-rm packages.microsoft.gpg
+sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
+rm -f packages.microsoft.gpg
 
 # Spotify
 echo Adding Spotify...
@@ -52,8 +47,11 @@ echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.
 
 # Slack
 echo Adding Slack...
-curl -fsSL https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
-add-apt-repository "deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main"
+curl -L https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
+cat << EOF > /etc/apt/sources.list.d/slacktechnologies_slack.list
+deb https://packagecloud.io/slacktechnologies/slack/ubuntu/ trusty main
+deb-src https://packagecloud.io/slacktechnologies/slack/ubuntu/ trusty main
+EOF
 
 ### Main install
 echo Installing packages...
@@ -88,9 +86,6 @@ usermod -aG docker $USER
 # Enable docker start on boot
 systemctl enable docker.service
 systemctl enable containerd.service
-
-# Apply group changes
-newgrp docker
 
 # Discord
 if [ ! -f /usr/bin/discord ]; then
