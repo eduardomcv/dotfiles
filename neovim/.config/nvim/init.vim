@@ -38,6 +38,7 @@ set background=dark
 set termguicolors
 let g:gruvbox_italic=1
 let g:airline_theme='gruvbox'
+highlight normal guibg=NONE
 
 " Don't wrap text
 set nowrap
@@ -64,6 +65,9 @@ set colorcolumn=120
 
 " More space for displaying commands
 set cmdheight=2
+
+" don't show mode on last line
+set noshowmode
 
 " Line numbers
 set ruler
@@ -238,13 +242,11 @@ nnoremap <a-k> :m-2<cr>
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 
-" Easy config sourcing
-nnoremap <leader><cr> :source ~/.config/nvim/init.vim<cr>
-
 " Telescope
 nnoremap <c-p> :Telescope find_files<cr>
 
-
+" Fugitive
+nnoremap <leader>g :vertical Git<cr> :vertical resize 60<cr>
 
 
 """"" CoC setup

@@ -49,8 +49,8 @@ echo "deb http://repository.spotify.com stable non-free" | tee /etc/apt/sources.
 echo Adding Slack...
 curl -L https://packagecloud.io/slacktechnologies/slack/gpgkey | apt-key add -
 cat << EOF > /etc/apt/sources.list.d/slacktechnologies_slack.list
-deb https://packagecloud.io/slacktechnologies/slack/ubuntu/ trusty main
-deb-src https://packagecloud.io/slacktechnologies/slack/ubuntu/ trusty main
+deb https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
+deb-src https://packagecloud.io/slacktechnologies/slack/debian/ jessie main
 EOF
 
 ### Main install
