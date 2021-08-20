@@ -2,7 +2,7 @@
 
 set -euo pipefail
 
-source ./utils/sudo.sh
+source ../utils/sudo.sh
 
 check_is_not_sudo
 
