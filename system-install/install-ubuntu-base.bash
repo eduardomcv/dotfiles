@@ -72,7 +72,8 @@ apt install -y \
   neovim \
   tmux \
   fish \
-  stow
+  stow \
+  ripgrep
 
 # Setup docker
 echo Setting up docker...

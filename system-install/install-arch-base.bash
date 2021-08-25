@@ -19,5 +19,6 @@ pacman -Syu --needed --noconfirm \
   tmux \
   fish \
   stow \
-  discord
+  discord \
+  ripgrep
 
