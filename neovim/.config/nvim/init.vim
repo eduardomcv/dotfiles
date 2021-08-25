@@ -20,16 +20,33 @@ Plug 'vim-airline/vim-airline-themes'
 " Fuzzy find
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
+Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Undo tree
 Plug 'mbbill/undotree'
 " EditorConfig support
 Plug 'editorconfig/editorconfig-vim'
+" QoL
+Plug 'tpope/vim-surround'
 " Initialize plugin system
 call plug#end()
 
 
 
 """"" Sets
+
+" Path
+set path+=**
+
+" Nice menu for :find
+set wildmode=longest,list,full
+set wildmenu
+
+" Ignore files
+set wildignore+=**/.git/*
+set wildignore+=**/.vscode/*
+set wildignore+=**/node_modules/*
+set wildignore+=*.o
+set wildignore+=*.DS_Store
 
 " Syntax and theme
 colorscheme gruvbox
@@ -134,13 +151,6 @@ set updatetime=300
 " Always show the signcolumn
 set signcolumn=number
 
-" Ignore files
-set wildignore+=**/*/.git
-set wildignore+=**/*/.vscode
-set wildignore+=**/*/node_modules
-set wildignore+=*.o
-set wildignore+=*.DS_Store
-
 
 
 """"" Configs
@@ -148,13 +158,26 @@ set wildignore+=*.DS_Store
 " Make EditorConfig ignore vim-fugitive and remote files
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
-" netrw
-let g:netrw_banner = 0
-let g:netrw_browse_split = 4
-let g:netrw_liststyle = 3
-let g:netrw_altv = 1
-let g:netrw_winsize = 20
+" Telescope
 
+lua << EOF
+require('telescope').setup {
+    extensions = {
+        fzy_native = {
+            override_generic_sorter = false,
+            override_file_sorter = true,
+        }
+    }
+}
+require('telescope').load_extension('fzy_native')
+EOF
+
+" netrw
+" let g:netrw_banner = 0
+" let g:netrw_browse_split = 4
+" let g:netrw_liststyle = 3
+" let g:netrw_altv = 1
+" let g:netrw_winsize = 20
 
 
 
@@ -180,6 +203,7 @@ autocmd Filetype gitcommit setlocal spell textwidth=72
 autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
 " set filetypes as typescript
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
+
 
 
 """"" Keymaps
@@ -243,10 +267,15 @@ vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
 
 " Telescope
-nnoremap <c-p> :Telescope find_files<cr>
+nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<cr>
+nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>pt <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Fugitive
 nnoremap <leader>g :vertical Git<cr> :vertical resize 60<cr>
+
 
 
 """"" CoC setup
