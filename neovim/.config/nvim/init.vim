@@ -12,8 +12,8 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'maxmellon/vim-jsx-pretty'
 " Git integration
 Plug 'tpope/vim-fugitive'
-" Improve netrw
-Plug 'tpope/vim-vinegar'
+" File browser
+Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 " Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -172,13 +172,10 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 EOF
 
-" netrw
-" let g:netrw_banner = 0
-" let g:netrw_browse_split = 4
-" let g:netrw_liststyle = 3
-" let g:netrw_altv = 1
-" let g:netrw_winsize = 20
-
+" CHAD tree
+let g:chadtree_settings = {
+\ "view.width": 50,
+\ }
 
 
 """"" Autocmds
@@ -200,7 +197,8 @@ augroup END
 " Commit messages should always wrap at 72 chars
 autocmd Filetype gitcommit setlocal spell textwidth=72
 " set filetypes as typescriptreact
-autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
+autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
 " set filetypes as typescript
 autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
@@ -274,7 +272,10 @@ nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>pt <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Fugitive
-nnoremap <leader>g :vertical Git<cr> :vertical resize 60<cr>
+nnoremap <leader>g :vertical Git<cr> :vertical resize 100<cr>
+
+" CHAD Tree
+nnoremap <leader>b <cmd>CHADopen<cr>
 
 
 
