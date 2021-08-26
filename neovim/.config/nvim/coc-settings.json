@@ -1,3 +1,4 @@
 {
-    "eslint.autoFixOnSave": true
+    "eslint.autoFixOnSave": true,
+    "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.17.5/bin/npm"
 }
