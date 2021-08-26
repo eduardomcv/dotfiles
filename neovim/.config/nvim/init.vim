@@ -25,6 +25,8 @@ Plug 'nvim-telescope/telescope-fzy-native.nvim'
 Plug 'mbbill/undotree'
 " EditorConfig support
 Plug 'editorconfig/editorconfig-vim'
+" Highlight keywords
+Plug 'folke/todo-comments.nvim'
 " QoL
 Plug 'tpope/vim-surround'
 " Initialize plugin system
@@ -37,16 +39,16 @@ call plug#end()
 " Path
 set path+=**
 
-" Nice menu for :find
-set wildmode=longest,list,full
-set wildmenu
-
 " Ignore files
 set wildignore+=**/.git/*
 set wildignore+=**/.vscode/*
 set wildignore+=**/node_modules/*
 set wildignore+=*.o
 set wildignore+=*.DS_Store
+
+" Nice menu for :find
+set wildmode=longest,list,full
+set wildmenu
 
 " Syntax and theme
 colorscheme gruvbox
@@ -89,7 +91,7 @@ set noshowmode
 " Line numbers
 set ruler
 set cursorline
-set relativenumber
+set number relativenumber
 
 " Indentation
 set expandtab
@@ -159,7 +161,6 @@ set signcolumn=number
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
 
 " Telescope
-
 lua << EOF
 require('telescope').setup {
     extensions = {
@@ -177,6 +178,45 @@ let g:chadtree_settings = {
 \ "view.width": 50,
 \ }
 
+" Todo comments
+lua << EOF
+local match_pattern = [[.*<(KEYWORDS)\s*]]
+require("todo-comments").setup {
+    -- keywords recognized as todo comments
+    keywords = {
+        DELETEME = {
+            icon = "",
+            color = "#ff0000",
+        },
+        FIXME = {
+            icon = "",
+            color = "#fff400",
+        },
+        HACK = {
+            icon = "",
+            color = "#00f9ff",
+        },
+        TODO = {
+            icon = "",
+            color = "#ed00ff",
+        },
+        WIP = {
+            icon = "",
+            color = "#ff7C00",
+        }
+    },
+    merge_keywords = false,
+    highlight = {
+        before = "",
+        keyword = "wide",
+        after = "fg",
+        pattern = match_pattern,
+    },
+    search = {
+        pattern = match_pattern,
+    }
+}
+EOF
 
 """"" Autocmds
 
