@@ -323,14 +323,15 @@ vnoremap K :m '<-2<cr>gv=gv
 nnoremap <leader>s :%s//g<left><left>
 
 " Telescope
-nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<cr>
-nnoremap <leader>pf <cmd>lua require('telescope.builtin').find_files()<cr>
-nnoremap <leader>pg <cmd>lua require('telescope.builtin').live_grep()<cr>
-nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
-nnoremap <leader>pt <cmd>lua require('telescope.builtin').help_tags()<cr>
+nnoremap <C-p> :lua require('telescope.builtin').git_files()<cr>
+nnoremap <leader>pf :lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
+nnoremap <leader>pb :lua require('telescope.builtin').buffers()<cr>
+nnoremap <leader>pt :lua require('telescope.builtin').help_tags()<cr>
 
 " Fugitive
-nnoremap <leader>gs :G<cr>
+nnoremap <leader>gs :Git<cr>
+nnoremap <leader>gc :Git commit<cr>
 nnoremap <leader>gh :diffget //2<cr>
 nnoremap <leader>gl :diffget //3<cr>
 
