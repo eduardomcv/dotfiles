@@ -71,7 +71,6 @@ apt install -y \
   gimp \
   neovim \
   tmux \
-  fish \
   stow \
   ripgrep
 

@@ -17,7 +17,6 @@ pacman -Syu --needed --noconfirm \
   gimp \
   neovim \
   tmux \
-  fish \
   stow \
   discord \
   ripgrep
