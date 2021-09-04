@@ -2,16 +2,19 @@
 
 call plug#begin(stdpath('data') . '/plugged')
 " Theme
-Plug 'gruvbox-community/gruvbox'
+" Plug 'gruvbox-community/gruvbox'
+" Plug 'tomasiser/vim-code-dark'
+Plug 'glepnir/oceanic-material'
 " LSP and autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language syntax
 Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'maxmellon/vim-jsx-pretty'
+"Plug 'HerringtonDarkholme/yats.vim'
+"Plug 'maxmellon/vim-jsx-pretty'
 " Git integration
 Plug 'tpope/vim-fugitive'
+Plug 'APZelos/blamer.nvim'
 " File browser
 Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
 " Status bar
@@ -29,6 +32,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'folke/todo-comments.nvim'
 " QoL
 Plug 'tpope/vim-surround'
+Plug 'qpkorr/vim-bufkill'
 " Initialize plugin system
 call plug#end()
 
@@ -48,15 +52,15 @@ set wildignore+=*.DS_Store
 
 " Nice menu for :find
 set wildmode=longest,list,full
-set wildmenu
 
 " Syntax and theme
-colorscheme gruvbox
+colorscheme oceanic_material
 syntax enable
 set background=dark
 set termguicolors
-let g:gruvbox_italic=1
-let g:airline_theme='gruvbox'
+" let g:gruvbox_italic=1
+let g:oceanic_material_allow_italic = 1
+let g:airline_theme='base16_oceanicnext'
 highlight normal guibg=NONE
 
 " Don't wrap text
@@ -153,9 +157,17 @@ set updatetime=300
 " Always show the signcolumn
 set signcolumn=number
 
+" old regexp engine incurs performance issues
+set re=0
+
 
 
 """"" Configs
+
+" Set leader to spacebar
+let mapleader = " "
+let g:mapleader = " "
+
 
 " Make EditorConfig ignore vim-fugitive and remote files
 let g:EditorConfig_exclude_patterns = ['fugitive://.*', 'scp://.*']
@@ -175,8 +187,15 @@ EOF
 
 " CHAD tree
 let g:chadtree_settings = {
-\ "view.width": 50,
-\ }
+\ "theme.text_colour_set": "nord",
+\ "view": {
+\   "width": 50,
+\   "window_options": {
+\       "number": v:true,
+\       "relativenumber": v:true,
+\   }
+\ },
+\}
 
 " Todo comments
 lua << EOF
@@ -218,6 +237,11 @@ require("todo-comments").setup {
 }
 EOF
 
+" Enable git blame
+let g:blamer_enabled = 1
+
+
+
 """"" Autocmds
 
 " Function for trimming whitespace
@@ -237,29 +261,22 @@ augroup END
 " Commit messages should always wrap at 72 chars
 autocmd Filetype gitcommit setlocal spell textwidth=72
 " set filetypes as typescriptreact
-autocmd BufNewFile,BufRead *.tsx set filetype=typescriptreact
-autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
+" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
+" autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
 " set filetypes as typescript
-autocmd BufNewFile,BufRead *.ts set filetype=typescript
+" autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
 
 
 """"" Keymaps
 
-" Set leader to spacebar
-let mapleader = " "
-let g:mapleader = " "
-
 " Make splitting vertical by default for new files
 noremap <c-w>n <esc>:vnew<cr>
 
-" Open netrw vertically
-nnoremap <c-n> :Vex<cr>
-
 "Copy to clipboard
+nnoremap  <leader>y  "+y
 vnoremap  <leader>y  "+y
 nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>y  "+y
 nnoremap  <leader>yy  "+yy
 
 "Paste from clipboard
@@ -279,7 +296,8 @@ nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>to :tabonly<cr>
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove<cr>
-nnoremap <leader>t<leader> :tabnext<cr>
+nnoremap <leader>tl :tabnext<cr>
+nnoremap <leader>th :tabprev<cr>
 
 " :W and :Q to do the same as :w and :q
 command! W  write
@@ -293,9 +311,6 @@ nnoremap <leader>q :q<cr>
 nnoremap <s-tab> :bprevious<cr>
 nnoremap <tab> :bnext<cr>
 
-" Toggle undotree
-nnoremap <leader>u :UndotreeToggle<cr>
-
 " alt-j and alt-k to move lines down and up in normal mode
 nnoremap <a-j> :m+1<cr>
 nnoremap <a-k> :m-2<cr>
@@ -303,6 +318,9 @@ nnoremap <a-k> :m-2<cr>
 " shift-j and shift-k to move selection down and up in visual mode
 vnoremap J :m '>+1<cr>gv=gv
 vnoremap K :m '<-2<cr>gv=gv
+
+" search and replace
+nnoremap <leader>s :%s//g<left><left>
 
 " Telescope
 nnoremap <C-p> <cmd>lua require('telescope.builtin').git_files()<cr>
@@ -312,10 +330,18 @@ nnoremap <leader>pb <cmd>lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>pt <cmd>lua require('telescope.builtin').help_tags()<cr>
 
 " Fugitive
-nnoremap <leader>g :vertical Git<cr> :vertical resize 100<cr>
+nnoremap <leader>gs :G<cr>
+nnoremap <leader>gh :diffget //2<cr>
+nnoremap <leader>gl :diffget //3<cr>
+
+" Toggle git blame
+nnoremap <leader>gb :BlamerToggle<cr>
 
 " CHAD Tree
-nnoremap <leader>b <cmd>CHADopen<cr>
+nnoremap <leader>b :CHADopen<cr>
+
+" Toggle undotree
+nnoremap <leader>u :UndotreeToggle<cr>
 
 
 
@@ -428,18 +454,18 @@ command! -nargs=0 OR   :call     CocAction('runCommand', 'editor.action.organize
 
 " Mappings for CoCList
 " Show all diagnostics.
-nnoremap <silent><nowait> <space>a  :<C-u>CocList diagnostics<cr>
+nnoremap <silent><nowait> <leader>ca  :<C-u>CocList diagnostics<cr>
 " Manage extensions.
-nnoremap <silent><nowait> <space>e  :<C-u>CocList extensions<cr>
+nnoremap <silent><nowait> <leader>ce  :<C-u>CocList extensions<cr>
 " Show commands.
-nnoremap <silent><nowait> <space>c  :<C-u>CocList commands<cr>
+nnoremap <silent><nowait> <leader>cc  :<C-u>CocList commands<cr>
 " Find symbol of current document.
-nnoremap <silent><nowait> <space>o  :<C-u>CocList outline<cr>
+nnoremap <silent><nowait> <leader>co  :<C-u>CocList outline<cr>
 " Search workspace symbols.
-nnoremap <silent><nowait> <space>s  :<C-u>CocList -I symbols<cr>
+nnoremap <silent><nowait> <leader>cs  :<C-u>CocList -I symbols<cr>
 " Do default action for next item.
-nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
+nnoremap <silent><nowait> <leader>cj  :<C-u>CocNext<CR>
 " Do default action for previous item.
-nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
+nnoremap <silent><nowait> <leader>ck  :<C-u>CocPrev<CR>
 " Resume latest coc list.
-nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+nnoremap <silent><nowait> <leader>cp  :<C-u>CocListResume<CR>
