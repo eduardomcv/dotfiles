@@ -9,15 +9,17 @@ check_is_sudo
 echo Installing packages...
 pacman -Syu --needed --noconfirm \
   base-devel \
+  zsh \
+  zsh-syntax-highlighting \
   git \
-  docker \
-  docker-compose \
-  ttf-fira-code \
-  ctags \
-  gimp \
+  stow \
+  ripgrep \
   neovim \
   tmux \
-  stow \
+  gimp \
+  ctags \
+  ttf-fira-code \
   discord \
-  ripgrep
+  docker \
+  docker-compose
 

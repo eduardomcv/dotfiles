@@ -72,7 +72,9 @@ apt install -y \
   neovim \
   tmux \
   stow \
-  ripgrep
+  ripgrep \
+  zsh \
+  zsh-syntax-highlighting
 
 # Setup docker
 echo Setting up docker...
