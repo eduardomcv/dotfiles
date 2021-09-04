@@ -7,7 +7,6 @@ source ./utils/sudo.sh
 check_is_not_sudo
 
 THINGS_TO_STOW=( \
-    fish \
     git \
     neovim \
     tmux \
