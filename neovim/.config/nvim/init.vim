@@ -328,6 +328,7 @@ nnoremap <leader>pt :lua require('telescope.builtin').help_tags()<cr>
 " Fugitive
 nnoremap <leader>gs :Git<cr>
 nnoremap <leader>gc :Git commit<cr>
+nnoremap <leader>gp :Git push<cr>
 nnoremap <leader>gh :diffget //2<cr>
 nnoremap <leader>gl :diffget //3<cr>
 
