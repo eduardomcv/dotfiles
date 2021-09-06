@@ -3,7 +3,7 @@
 #
 # Includes:
 #   - aliases
-#   - prompt with version control
+#   - a simple prompt with version control
 #   - syntax highlighting
 #   - vi mode and vi keys
 #   - completions
@@ -36,8 +36,8 @@ autoload -U colors && colors
 
 # version control
 autoload -Uz vcs_info
-zstyle ':vcs_info:git*' formats "%F{yellow}(%b)%f %m%u%c"
-zstyle ':vcs_info:git*' actionformats "%F{yellow}(%b%F{blue}|%F{red}%a%F{yellow})%f %u%c"
+zstyle ':vcs_info:git*' formats "%F{yellow}(%b)%f %m%u%c"                                   # format vcs prompt
+zstyle ':vcs_info:git*' actionformats "%F{yellow}(%b%F{blue}|%F{red}%a%F{yellow})%f %u%c"   # change vsc formatting to show certain actions i.e. merge
 precmd() { vcs_info }
 
 # change prompt
@@ -48,11 +48,11 @@ PROMPT='%F{green}%n%f@%F{magenta}%m%f:%F{blue}%B%~%b%f ${vcs_info_msg_0_}% # '
 autoload -U edit-command-line
 zle -N edit-command-line
 
-# enable vi mode
-bindkey -v
-
 # Edit line in vi editor with ctrl+e:
 bindkey '^e' edit-command-line
+
+# enable vi mode
+bindkey -v
 
 # enable vi keys in completion menu by using ctrl
 bindkey -M menuselect '^h' vi-backward-char
