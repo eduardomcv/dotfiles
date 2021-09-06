@@ -2,21 +2,18 @@
 
 call plug#begin(stdpath('data') . '/plugged')
 " Theme
-" Plug 'gruvbox-community/gruvbox'
-" Plug 'tomasiser/vim-code-dark'
-Plug 'glepnir/oceanic-material'
+Plug 'arcticicestudio/nord-vim'
 " LSP and autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language syntax
 Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-"Plug 'HerringtonDarkholme/yats.vim'
-"Plug 'maxmellon/vim-jsx-pretty'
 " Git integration
 Plug 'tpope/vim-fugitive'
 Plug 'APZelos/blamer.nvim'
 " File browser
-Plug 'ms-jpq/chadtree', {'branch': 'chad', 'do': 'python3 -m chadtree deps'}
+Plug 'preservim/nerdtree'
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Status bar
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -54,13 +51,11 @@ set wildignore+=*.DS_Store
 set wildmode=longest,list,full
 
 " Syntax and theme
-colorscheme oceanic_material
+colorscheme nord
+let g:nord_cursor_line_number_background = 1
 syntax enable
 set background=dark
 set termguicolors
-" let g:gruvbox_italic=1
-let g:oceanic_material_allow_italic = 1
-let g:airline_theme='base16_oceanicnext'
 highlight normal guibg=NONE
 
 " Don't wrap text
@@ -185,18 +180,6 @@ require('telescope').setup {
 require('telescope').load_extension('fzy_native')
 EOF
 
-" CHAD tree
-let g:chadtree_settings = {
-\ "theme.text_colour_set": "nord",
-\ "view": {
-\   "width": 50,
-\   "window_options": {
-\       "number": v:true,
-\       "relativenumber": v:true,
-\   }
-\ },
-\}
-
 " Todo comments
 lua << EOF
 local match_pattern = [[.*<(KEYWORDS)\s*]]
@@ -240,6 +223,11 @@ EOF
 " Enable git blame
 let g:blamer_enabled = 1
 
+" NERDTree
+let NERDTreeShowLineNumbers=1
+let NERDTreeMinimalUI=1
+let NERDTreeShowHidden=1
+
 
 
 """"" Autocmds
@@ -257,14 +245,22 @@ augroup TRIM_WHITESPACE_BEFORE_WRITING
     autocmd BufWritePre * :call TrimWhitespace()
 augroup END
 
-""" File Types
-" Commit messages should always wrap at 72 chars
+" make sure relative line numbers are used in NERDTree
+autocmd FileType nerdtree setlocal relativenumber
+" start NERDTree when vim starts with a directory argument.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
+    \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+" Exit Vim if NERDTree is the only window remaining in the only tab.
+autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" Close the tab if NERDTree is the only window remaining in it.
+autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
+autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
+" commit messages should always wrap at 72 chars
 autocmd Filetype gitcommit setlocal spell textwidth=72
-" set filetypes as typescriptreact
-" autocmd BufNewFile,BufRead *.tsx,*.jsx set filetype=typescriptreact
-" autocmd BufNewFile,BufRead *.jsx set filetype=javascriptreact
-" set filetypes as typescript
-" autocmd BufNewFile,BufRead *.ts set filetype=typescript
 
 
 
@@ -338,8 +334,8 @@ nnoremap <leader>gl :diffget //3<cr>
 " Toggle git blame
 nnoremap <leader>gb :BlamerToggle<cr>
 
-" CHAD Tree
-nnoremap <leader>b :CHADopen<cr>
+" NERD tree
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " Toggle undotree
 nnoremap <leader>u :UndotreeToggle<cr>
