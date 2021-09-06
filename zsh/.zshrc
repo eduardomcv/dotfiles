@@ -1,17 +1,25 @@
+#
+# Simple config for zshell.
+#
+# Includes:
+#   - aliases
+#   - prompt with version control
+#   - syntax highlighting
+#   - vi mode and vi keys
+#   - completions
+#   - suggestions
+#
+
+
 # aliases
-# alias ls="ls --color=auto -F"             # on linux, show colors with --color=auto
-alias ls="ls -GF"                           # on macOS, show colors with -G
+alias ls="ls --color=auto -F"       # if GNU based, show colors with --color
+# alias ls="ls -GF"                 # if BSD based, show colors with -G
+alias l=ls
 alias ll="ls -l"
 alias la="ls -la"
 alias vi=nvim
 
-# exports
-export VIMRC=~/.config/nvim/init.vim        # easy vim config access
-
-# enable colors
-autoload -U colors && colors
-
-# setup history
+# history
 HISTSIZE=10000
 SAVEHIST=10000
 HISTFILE=~/.cache/zsh/history
@@ -20,15 +28,46 @@ HISTFILE=~/.cache/zsh/history
 autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
-compinit
-_comp_options+=(globdots)   # Include hidden files.
+compinit -d ~/.cache/zsh/compdump
+_comp_options+=(globdots)           # Include hidden files
+
+# enable colors
+autoload -U colors && colors
+
+# version control
+autoload -Uz vcs_info
+zstyle ':vcs_info:git*' formats "%F{yellow}(%b)%f %m%u%c"
+zstyle ':vcs_info:git*' actionformats "%F{yellow}(%b%F{blue}|%F{red}%a%F{yellow})%f %u%c"
+precmd() { vcs_info }
+
+# change prompt
+setopt prompt_subst
+PROMPT='%F{green}%n%f@%F{magenta}%m%f:%F{blue}%B%~%b%f ${vcs_info_msg_0_}% # '
+
+# enable editing command with vi editor
+autoload -U edit-command-line
+zle -N edit-command-line
 
 # enable vi mode
 bindkey -v
 
+# Edit line in vi editor with ctrl+e:
+bindkey '^e' edit-command-line
+
+# enable vi keys in completion menu by using ctrl
+bindkey -M menuselect '^h' vi-backward-char
+bindkey -M menuselect '^k' vi-up-line-or-history
+bindkey -M menuselect '^l' vi-forward-char
+bindkey -M menuselect '^j' vi-down-line-or-history
+
 # shift+tab to select previous suggestion
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
-# syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# auto suggestions
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh   # source plugin (path may vary per OS)
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)                               # try to find a suggestion from history. if no match is found, try from completion engine
+bindkey '^ ' autosuggest-accept                                             # accept suggestion with ctrl+space
+
+# syntax highlighting (must be loaded last)
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh   # path may vary per OS
 
