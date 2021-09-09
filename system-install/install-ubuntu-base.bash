@@ -1,8 +1,8 @@
-#!/bin/sh
+#!/bin/bash
 
 set -euo pipefail
 
-source ./utils/sudo.sh
+source ../utils/sudo.sh
 
 check_is_sudo
 
@@ -69,27 +69,28 @@ apt install -y \
   spotify-client \
   slack-desktop \
   gimp \
-  neovim \
   tmux \
   stow \
   ripgrep \
   zsh \
-  zsh-syntax-highlighting
+  zsh-syntax-highlighting \
+  zsh-autosuggestions
+
+# neovim \	neovim version is too old in the ubuntu repos. install an alternative manually
 
 # Setup docker
-echo Setting up docker...
-
+# DO THIS WHOLE PROCESS MANUALLY. VERSION MIGHT BE DIFFERENT
+#
 # docker-compose
-curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-chmod +x /usr/local/bin/docker-compose
-
-# Setup docker for non-root
-groupadd docker || true
-usermod -aG docker $USER
-
-# Enable docker start on boot
-systemctl enable docker.service
-systemctl enable containerd.service
+# curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+# chmod +x /usr/local/bin/docker-compose
+# 
+# don't forget to setup docker for non-root and enable the docker service when systemd starts
+#
+# groupadd docker || true
+# usermod -aG docker $USER
+# systemctl enable docker.service
+# systemctl enable containerd.service
 
 # Discord
 if [ ! -f /usr/bin/discord ]; then
@@ -100,3 +101,6 @@ if [ ! -f /usr/bin/discord ]; then
 fi
 
 echo Done
+echo Setup docker and install docker-compose following these steps:
+echo https://docs.docker.com/compose/install/
+echo https://docs.docker.com/engine/install/linux-postinstall/ 
