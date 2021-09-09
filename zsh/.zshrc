@@ -10,14 +10,24 @@
 #   - suggestions
 #
 
-
 # aliases
-alias ls="ls --color=auto -F"       # if GNU based, show colors with --color
-# alias ls="ls -GF"                 # if BSD based, show colors with -G
+alias ls="ls --color=auto -CF"      # if GNU based, show colors with --color
+# alias ls="ls -GCF"                # if BSD based, show colors with -G
+alias grep='grep --color=auto'
 alias l=ls
-alias ll="ls -l"
-alias la="ls -la"
+alias ll="ls -alF"
+alias la="ls -A"
 alias vi=nvim
+
+# exports
+export EDITOR=nvim
+export VISUAL=nvim
+export VIMRC=~/.config/nvim/init.vim
+
+# set PATH so it includes user's private bin if it exists
+if [ -d "$HOME/.local/bin" ] ; then
+    PATH="$HOME/.local/bin:$PATH"
+fi
 
 # history
 HISTSIZE=10000
@@ -37,7 +47,7 @@ autoload -U colors && colors
 # version control
 autoload -Uz vcs_info
 zstyle ':vcs_info:git*' formats "%F{yellow}(%b)%f %m%u%c"                                   # format vcs prompt
-zstyle ':vcs_info:git*' actionformats "%F{yellow}(%b%F{blue}|%F{red}%a%F{yellow})%f %u%c"   # change vsc formatting to show certain actions i.e. merge
+zstyle ':vcs_info:git*' actionformats "%F{yellow}(%b%F{blue}|%F{red}%a%F{yellow})%f %u%c"   # change vcs formatting to show certain actions i.e. merge
 precmd() { vcs_info }
 
 # change prompt
