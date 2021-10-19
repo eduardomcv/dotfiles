@@ -1,8 +1,11 @@
 """"" Plugins
 
 call plug#begin(stdpath('data') . '/plugged')
+" Dependencies
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Theme
-Plug 'arcticicestudio/nord-vim'
+Plug 'gruvbox-community/gruvbox'
 " LSP and autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language syntax
@@ -18,7 +21,6 @@ Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Fuzzy find
-Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 Plug 'nvim-telescope/telescope-fzy-native.nvim'
 " Undo tree
@@ -51,12 +53,15 @@ set wildignore+=*.DS_Store
 set wildmode=longest,list,full
 
 " Syntax and theme
-colorscheme nord
-let g:nord_cursor_line_number_background = 1
+let g:gruvbox_italic=1
+let g:airline_theme='gruvbox'
+colorscheme gruvbox
 syntax enable
 set background=dark
 set termguicolors
 highlight normal guibg=NONE
+
+set pyxversion=3
 
 " Don't wrap text
 set nowrap
