@@ -13,6 +13,7 @@ THINGS_TO_STOW=( \
     tmux \
     vscode \
     wallpapers \
+    kitty \
 )
 
 for thing in ${THINGS_TO_STOW[@]}; do
