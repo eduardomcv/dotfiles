@@ -113,9 +113,6 @@ set textwidth=500
 set undodir=~/.vim/undodir
 set undofile
 
-" Set bash as default shell
-set shell=/bin/bash
-
 " Set the terminal title at will
 set title
 

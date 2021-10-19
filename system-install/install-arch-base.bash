@@ -11,6 +11,7 @@ pacman -Syu --needed --noconfirm \
   base-devel \
   zsh \
   zsh-syntax-highlighting \
+  zsh-autosuggestions \
   git \
   stow \
   ripgrep \
@@ -18,7 +19,6 @@ pacman -Syu --needed --noconfirm \
   tmux \
   gimp \
   ctags \
-  ttf-fira-code \
   discord \
   docker \
   docker-compose

@@ -15,5 +15,6 @@ echo Installing AUR packages...
 yay -Sa --needed --noconfirm \
   spotify \
   visual-studio-code-bin \
-  slack-desktop
+  slack-desktop \
+  nerd-fonts-fira-code
 
