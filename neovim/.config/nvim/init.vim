@@ -252,14 +252,18 @@ augroup END
 
 " make sure relative line numbers are used in NERDTree
 autocmd FileType nerdtree setlocal relativenumber
+
 " start NERDTree when vim starts with a directory argument.
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists('s:std_in') |
     \ execute 'NERDTree' argv()[0] | wincmd p | enew | execute 'cd '.argv()[0] | endif
+
 " Exit Vim if NERDTree is the only window remaining in the only tab.
 autocmd BufEnter * if tabpagenr('$') == 1 && winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 " Close the tab if NERDTree is the only window remaining in it.
 autocmd BufEnter * if winnr('$') == 1 && exists('b:NERDTree') && b:NERDTree.isTabTree() | quit | endif
+
 " If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
 autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
@@ -349,6 +353,9 @@ nnoremap <leader>u :UndotreeToggle<cr>
 
 
 """"" CoC setup
+
+" CoC extensions
+let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-pairs', 'coc-tsserver', 'coc-eslint', 'coc-styled-components']
 
 " Use tab for trigger completion with characters ahead and navigate.
 function! s:check_back_space() abort
