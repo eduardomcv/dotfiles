@@ -14,7 +14,7 @@
     "diffEditor.ignoreTrimWhitespace": true,
     "javascript.updateImportsOnFileMove.enabled": "always",
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "telemetry.enableTelemetry": false,
+    "telemetry.telemetryLevel": "off",
     "files.exclude": {
         "**/.git": true,
         "**/.svn": true,

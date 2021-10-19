@@ -1,6 +1,6 @@
 {
     "eslint.autoFixOnSave": true,
-    "tsserver.npm": "/home/eduardo/.nvm/versions/node/v14.17.6/bin/npm",
+    "tsserver.npm": "/home/eduardo/.nvm/versions/node/14.18.1/bin/npm",
     "languageserver": {
          "graphql": {
              "command": "graphql-lsp",
