@@ -268,6 +268,9 @@ autocmd BufEnter * if bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_
 " commit messages should always wrap at 72 chars
 autocmd Filetype gitcommit setlocal spell textwidth=72
 
+" sometimes syntax highlighting can get out of sync
+autocmd BufEnter *.{js,jsx,ts,tsx} :syntax sync fromstart
+autocmd BufLeave *.{js,jsx,ts,tsx} :syntax sync clear
 
 
 """"" Keymaps
@@ -352,7 +355,16 @@ nnoremap <leader>u :UndotreeToggle<cr>
 """"" CoC setup
 
 " CoC extensions
-let g:coc_global_extensions = ['coc-json', 'coc-yaml', 'coc-pairs', 'coc-tsserver', 'coc-eslint', 'coc-styled-components']
+let g:coc_global_extensions = [
+    \'coc-tsserver',
+    \'coc-eslint',
+    \'coc-css',
+    \'coc-json',
+    \'coc-yaml',
+    \'coc-pairs',
+    \'coc-styled-components',
+    \'coc-html',
+\]
 
 " Use tab for trigger completion with characters ahead and navigate.
 function! s:check_back_space() abort

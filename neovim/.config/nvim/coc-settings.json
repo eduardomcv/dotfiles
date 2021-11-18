@@ -1,6 +1,12 @@
 {
     "eslint.autoFixOnSave": true,
-    "tsserver.npm": "/home/eduardo/.nvm/versions/node/14.18.1/bin/npm",
+    "tsserver.npm": "/home/eduardo/.nvm/versions/node/v16.13.0/bin/npm",
+    "coc.preferences.formatOnSaveFiletypes": [
+        "javascript",
+        "javascriptreact",
+        "typescript",
+        "typescriptreact"
+    ],
     "languageserver": {
          "graphql": {
              "command": "graphql-lsp",
