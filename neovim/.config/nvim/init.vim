@@ -9,6 +9,9 @@ Plug 'gruvbox-community/gruvbox'
 " LSP and autocompletion
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Language syntax
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'MaxMEllon/vim-jsx-pretty'
 Plug 'jparise/vim-graphql'
 Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
 " Git integration
@@ -229,6 +232,7 @@ let g:blamer_enabled = 1
 let NERDTreeShowLineNumbers=1
 let NERDTreeMinimalUI=1
 let NERDTreeShowHidden=1
+let NERDTreeWinSize=40
 
 
 
