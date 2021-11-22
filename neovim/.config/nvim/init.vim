@@ -62,7 +62,6 @@ colorscheme gruvbox
 syntax enable
 set background=dark
 set termguicolors
-highlight normal guibg=NONE
 
 set pyxversion=3
 
