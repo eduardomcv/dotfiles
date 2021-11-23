@@ -35,6 +35,7 @@ Plug 'folke/todo-comments.nvim'
 " QoL
 Plug 'tpope/vim-surround'
 Plug 'qpkorr/vim-bufkill'
+Plug 'Yggdroot/indentLine'
 " Initialize plugin system
 call plug#end()
 
