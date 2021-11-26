@@ -8,6 +8,7 @@
     "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "editor.multiCursorModifier": "alt",
+    "editor.lineNumbers": "relative",
     "editor.renderWhitespace": "boundary",
     "explorer.confirmDragAndDrop": true,
     "extensions.ignoreRecommendations": true,
