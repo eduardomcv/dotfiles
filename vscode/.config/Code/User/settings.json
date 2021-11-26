@@ -1,6 +1,7 @@
 {
     "workbench.statusBar.visible": true,
     "workbench.activityBar.visible": true,
+    "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
     "workbench.sideBar.location": "left",
     "window.titleBarStyle": "custom",
@@ -9,11 +10,10 @@
     "editor.multiCursorModifier": "alt",
     "editor.renderWhitespace": "boundary",
     "explorer.confirmDragAndDrop": true,
+    "extensions.ignoreRecommendations": true,
     "git.confirmSync": false,
     "git.autofetch": true,
     "diffEditor.ignoreTrimWhitespace": true,
-    "javascript.updateImportsOnFileMove.enabled": "always",
-    "typescript.updateImportsOnFileMove.enabled": "always",
     "telemetry.telemetryLevel": "off",
     "files.exclude": {
         "**/.git": true,
