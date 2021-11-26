@@ -7,21 +7,10 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 " Theme
 Plug 'gruvbox-community/gruvbox'
 
-" Language syntax
-Plug 'pangloss/vim-javascript'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'MaxMEllon/vim-jsx-pretty'
-Plug 'jparise/vim-graphql'
-Plug 'styled-components/vim-styled-components', { 'branch': 'main' }
-
 " Git
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'APZelos/blamer.nvim'
-
-" File browser
-Plug 'preservim/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
 
 " Status bar
 Plug 'vim-airline/vim-airline'
