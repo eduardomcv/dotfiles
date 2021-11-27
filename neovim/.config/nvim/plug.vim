@@ -2,16 +2,18 @@ call plug#begin(stdpath('data') . '/plugged')
 
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
+" LSP
 Plug 'neovim/nvim-lspconfig'
+
+" Completion and snippets
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'L3MON4D3/LuaSnip'
 Plug 'onsails/lspkind-nvim'
-
 Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51' }
 
-" Theme
+" Theme and colors
 Plug 'gruvbox-community/gruvbox'
 Plug 'folke/lsp-colors.nvim'
 
@@ -37,8 +39,7 @@ Plug 'folke/todo-comments.nvim'
 
 " QoL
 Plug 'tpope/vim-surround'
-Plug 'qpkorr/vim-bufkill'
-Plug 'Yggdroot/indentLine'
 Plug 'mbbill/undotree'
+Plug 'lukas-reineke/indent-blankline.nvim'
 
 call plug#end()
