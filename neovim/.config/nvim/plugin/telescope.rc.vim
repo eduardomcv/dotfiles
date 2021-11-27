@@ -1,5 +1,6 @@
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<cr>
-nnoremap <leader>pf :lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pp :lua require('telescope.builtin').find_files()<cr>
+nnoremap <leader>pf :lua require('telescope.builtin').grep_string()<cr>
 nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
 nnoremap <leader>pb :lua require('telescope.builtin').buffers()<cr>
 nnoremap <leader>ph :lua require('telescope.builtin').help_tags()<cr>
