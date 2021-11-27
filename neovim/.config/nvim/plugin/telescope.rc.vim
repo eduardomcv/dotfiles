@@ -1,5 +1,3 @@
-if !exists('g:loaded_telescope') | finish | endif
-
 nnoremap <C-p> :lua require('telescope.builtin').git_files()<cr>
 nnoremap <leader>pf :lua require('telescope.builtin').find_files()<cr>
 nnoremap <leader>pg :lua require('telescope.builtin').live_grep()<cr>
