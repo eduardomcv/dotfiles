@@ -5,13 +5,14 @@ set completeopt=menuone,noinsert,noselect
 set shortmess+=c
 
 lua <<EOF
-  local cmp = require'cmp'
-  local lspkind = require'lspkind'
+  local cmp = require('cmp')
+  local lspkind = require('lspkind')
+  local luasnip = require('luasnip')
 
   cmp.setup({
     snippet = {
       expand = function(args)
-        require('luasnip').lsp_expand(args.body)
+        luasnip.lsp_expand(args.body)
       end,
     },
     mapping = {
@@ -48,7 +49,10 @@ lua <<EOF
       { name = 'buffer' },
     }),
     formatting = {
-      format = lspkind.cmp_format({with_text = false, maxwidth = 50})
+      format = lspkind.cmp_format({
+        with_text = false,
+        maxwidth = 50,
+      })
     }
   })
 
