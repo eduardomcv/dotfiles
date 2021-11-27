@@ -37,9 +37,12 @@ Plug 'editorconfig/editorconfig-vim'
 " Highlight keywords
 Plug 'folke/todo-comments.nvim'
 
+" Undotree
+Plug 'mbbill/undotree'
+
 " QoL
 Plug 'tpope/vim-surround'
-Plug 'mbbill/undotree'
 Plug 'lukas-reineke/indent-blankline.nvim'
+Plug 'windwp/nvim-autopairs'
 
 call plug#end()
