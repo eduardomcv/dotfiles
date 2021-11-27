@@ -14,10 +14,10 @@ set wildmode=longest,list,full
 " Syntax and theme
 set background=dark
 set termguicolors
-syntax enable
-colorscheme gruvbox
 let g:gruvbox_italic=1
 let g:airline_theme='gruvbox'
+colorscheme gruvbox
+syntax enable
 
 " Don't wrap text
 set nowrap
@@ -56,9 +56,9 @@ set number relativenumber
 " Indentation
 set expandtab
 set smarttab
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set smartindent
 
 " setup undo file
@@ -111,3 +111,6 @@ set re=0
 
 " Add asterisks in block comments
 set formatoptions+=r
+
+" Don't redraw while executing macros
+set lazyredraw
