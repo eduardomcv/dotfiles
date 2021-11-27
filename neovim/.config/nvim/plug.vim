@@ -24,8 +24,7 @@ Plug 'tpope/vim-rhubarb'
 Plug 'APZelos/blamer.nvim'
 
 " Status bar
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'nvim-lualine/lualine.nvim'
 
 " Fuzzy finder
 Plug 'nvim-lua/plenary.nvim'
