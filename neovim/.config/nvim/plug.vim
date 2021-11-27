@@ -1,5 +1,6 @@
 call plug#begin(stdpath('data') . '/plugged')
 
+" Tree sitter
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 
 " LSP
@@ -44,5 +45,6 @@ Plug 'mbbill/undotree'
 Plug 'tpope/vim-surround'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'windwp/nvim-autopairs'
+Plug 'kyazdani42/nvim-web-devicons'
 
 call plug#end()
