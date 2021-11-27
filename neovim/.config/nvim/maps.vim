@@ -60,11 +60,7 @@ vnoremap <silent> # :<C-U>
 command! W  write
 command! Q quit
 
-" Faster saving and quitting
-nnoremap <leader>w :w<cr>
-nnoremap <leader>q :q<cr>
-
-" Buffer cicle (Tab and Shift+Tab in normal mode)
+" Tab cicle (Tab and Shift+Tab in normal mode)
 nnoremap <s-tab> :tabprevious<cr>
 nnoremap <tab> :tabnext<cr>
 
@@ -79,3 +75,6 @@ vnoremap K :m '<-2<cr>gv=gv
 " Search and replace
 nnoremap <leader>s :%s//g<left><left>
 
+" Increment/decrement
+nnoremap + <C-a>
+nnoremap - <C-x>
