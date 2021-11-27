@@ -1,4 +1,3 @@
-lua << EOF
 local nvim_lsp = require('lspconfig')
 local protocol = require('vim.lsp.protocol')
 
@@ -41,9 +40,14 @@ local on_attach = function(client, bufnr)
   end
 end
 
+-- Set up completion using nvim_cmp with LSP source
+local capabilities = require('cmp_nvim_lsp').update_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
 
 nvim_lsp.tsserver.setup{
   on_attach = on_attach,
+  capabilities = capabilities,
   filetypes = {
     "javascript",
     "javascriptreact",
@@ -53,4 +57,3 @@ nvim_lsp.tsserver.setup{
     "typescript.tsx"
   },
 }
-EOF
