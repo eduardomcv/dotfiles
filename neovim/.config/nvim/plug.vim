@@ -1,11 +1,13 @@
 call plug#begin(stdpath('data') . '/plugged')
 
-" Dependencies
 Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'neovim/nvim-lspconfig'
+Plug 'tami5/lspsaga.nvim', { 'branch': 'nvim51' }
 
 " Theme
 Plug 'gruvbox-community/gruvbox'
+Plug 'folke/lsp-colors.nvim'
 
 " Git
 Plug 'tpope/vim-fugitive'
