@@ -1,21 +1,20 @@
 " Set leader to spacebar
 let mapleader = " "
-let g:mapleader = " "
 
 " Vertical split on new buffer
 noremap <c-w>n <esc>:vnew<cr>
 
 " Copy to clipboard
-nnoremap  <leader>y  "+y
-vnoremap  <leader>y  "+y
-nnoremap  <leader>Y  "+yg_
-nnoremap  <leader>yy  "+yy
+nnoremap <leader>cy "+y
+vnoremap <leader>cy "+y
+nnoremap <leader>cY "+yg_
+nnoremap <leader>cyy "+yy
 
 " Paste from clipboard
-nnoremap <leader>p "+p
-nnoremap <leader>P "+P
-vnoremap <leader>p "+p
-vnoremap <leader>P "+P
+nnoremap <leader>cp "+p
+nnoremap <leader>cP "+P
+vnoremap <leader>cp "+p
+vnoremap <leader>cP "+P
 
 " Delete without yank
 nnoremap <leader>d "_d
@@ -41,8 +40,6 @@ nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>to :tabonly<cr>
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove<cr>
-nnoremap <leader>tl :tabnext<cr>
-nnoremap <leader>th :tabprev<cr>
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
