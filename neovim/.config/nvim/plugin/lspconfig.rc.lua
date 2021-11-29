@@ -97,6 +97,12 @@ lspconfig.tsserver.setup{
       {
         name = 'typescript-styled-plugin'
       },
+      -- WIP: not working properly
+      -- {
+      --   name = 'ts-graphql-plugin',
+      --   tag = 'gql',
+      --   schema = 'schema.json'
+      -- },
     }
   },
   filetypes = {
