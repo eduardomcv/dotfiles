@@ -2,9 +2,14 @@ local lspconfig = require('lspconfig')
 local protocol = require('vim.lsp.protocol')
 local cmp = require('cmp_nvim_lsp')
 
+-- Debug
+-- vim.lsp.set_log_level("debug")
+
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
+  -- print("Attaching to:", client.name)
+
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -36,7 +41,7 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.lsp.diagnostic.set_loclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  -- let diagnosticls handle the formatting instead of tsserver
+  -- HACK: let diagnostics language server handle formatting
   if client.name == 'tsserver' then
     client.resolved_capabilities.document_formatting = false
   end
@@ -48,6 +53,7 @@ local on_attach = function(client, bufnr)
     vim.api.nvim_command [[augroup END]]
   end
 
+  -- Completion icons
   protocol.CompletionItemKind = {
     '', -- Text
     '', -- Method
@@ -87,12 +93,12 @@ lspconfig.tsserver.setup{
   on_attach = on_attach,
   capabilities = capabilities,
   filetypes = {
-    "javascript",
-    "javascriptreact",
-    "javascript.jsx",
-    "typescript",
-    "typescriptreact",
-    "typescript.tsx"
+    'javascript',
+    'javascriptreact',
+    'javascript.jsx',
+    'typescript',
+    'typescriptreact',
+    'typescript.tsx'
   },
 }
 
@@ -102,18 +108,15 @@ lspconfig.diagnosticls.setup{
   filetypes = {
     'javascript',
     'javascriptreact',
+    'javascript.jsx',
     'typescript',
     'typescriptreact',
+    'typescript.tsx'
   },
   init_options = {
     linters = {
       eslint = {
         command = 'eslint_d',
-        rootPatterns = {
-          'package.json',
-          '.git',
-        },
-        debounce = 100,
         args = {
           '--stdin',
           '--stdin-filename',
@@ -121,6 +124,11 @@ lspconfig.diagnosticls.setup{
           '--format',
           'json'
         },
+        rootPatterns = {
+          'package.json',
+          '.git',
+        },
+        debounce = 100,
         sourceName = 'eslint_d',
         parseJson = {
           errorsRoot = '[0].messages',
@@ -146,29 +154,29 @@ lspconfig.diagnosticls.setup{
     formatters = {
       eslint = {
         command = 'eslint_d',
+        args = {
+          '--fix-to-stdout',
+          '--stdin',
+          '--stdin-filename',
+          '%filepath',
+        },
         rootPatterns = {
           'package.json',
           '.git',
         },
-        args = {
-          '--stdin',
-          '--fix-to-stdout',
-          '--stdin-filename',
-          '%filename',
-        },
       },
       prettier = {
         command = 'prettier_d_slim',
+        args = {
+          '--stdin',
+          '--stdin-filepath',
+          '%filename'
+        },
         rootPatterns = {
           'package.json',
           '.git',
         },
         requiredFiles = { 'prettier.config.js' },
-        args = {
-          '--stdin',
-          '--stdin-filepath',
-          '%filename'
-        }
       }
     },
     formatFiletypes = {
@@ -181,7 +189,7 @@ lspconfig.diagnosticls.setup{
 }
 
 -- icon for diagnistics
-vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
   vim.lsp.diagnostic.on_publish_diagnostics, {
     underline = true,
     virtual_text = {
