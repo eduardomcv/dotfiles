@@ -92,6 +92,13 @@ local capabilities = cmp.update_capabilities(
 lspconfig.tsserver.setup{
   on_attach = on_attach,
   capabilities = capabilities,
+  init_options = {
+    plugins = {
+      {
+        name = 'typescript-styled-plugin'
+      },
+    }
+  },
   filetypes = {
     'javascript',
     'javascriptreact',
