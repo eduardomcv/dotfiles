@@ -40,6 +40,8 @@ nnoremap <leader>tn :tabnew<cr>
 nnoremap <leader>to :tabonly<cr>
 nnoremap <leader>tc :tabclose<cr>
 nnoremap <leader>tm :tabmove<cr>
+nnoremap <leader>th :tabprevious<cr>
+nnoremap <leader>tl :tabnext<cr>
 
 " Search for selected text, forwards or backwards.
 vnoremap <silent> * :<C-U>
@@ -52,14 +54,6 @@ vnoremap <silent> # :<C-U>
   \gvy?<C-R><C-R>=substitute(
   \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
   \gV:call setreg('"', old_reg, old_regtype)<CR>
-
-" :W and :Q to do the same as :w and :q
-command! W  write
-command! Q quit
-
-" Tab cicle (Tab and Shift+Tab in normal mode)
-nnoremap <s-tab> :tabprevious<cr>
-nnoremap <tab> :tabnext<cr>
 
 " alt-j and alt-k to move lines down and up in normal mode
 nnoremap <a-j> :m+1<cr>
