@@ -1,13 +1,3 @@
-" Finding files - Search down into subfolders
-set path+=**
-
-" Ignore files
-set wildignore+=**/.git/*
-set wildignore+=**/.vscode/*
-set wildignore+=**/node_modules/*
-set wildignore+=*.o
-set wildignore+=*.DS_Store
-
 " Nice menu for :find
 set wildmode=longest,list,full
 
