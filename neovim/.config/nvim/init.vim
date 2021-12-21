@@ -1,8 +1,8 @@
 " init autocmd
 autocmd!
 
-runtime ./plug.vim
-runtime ./sets.vim
-runtime ./maps.vim
-runtime ./autocmds.vim
+source ./plug.vim
+source ./sets.vim
+source ./maps.vim
+source ./autocmds.vim
 
