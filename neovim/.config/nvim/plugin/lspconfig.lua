@@ -1,6 +1,5 @@
-local lspconfig = require('lspconfig')
-local protocol = require('vim.lsp.protocol')
 local cmp = require('cmp_nvim_lsp')
+local lspconfig = require('lspconfig')
 
 -- Debug
 -- vim.lsp.set_log_level("debug")
@@ -8,8 +7,6 @@ local cmp = require('cmp_nvim_lsp')
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- print("Attaching to:", client.name)
-
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
 
@@ -46,6 +43,7 @@ local on_attach = function(client, bufnr)
     client.resolved_capabilities.document_formatting = false
   end
 
+  -- Format on save
   if client.resolved_capabilities.document_formatting then
     vim.api.nvim_command [[augroup Format]]
     vim.api.nvim_command [[autocmd! * <buffer>]]
@@ -54,7 +52,7 @@ local on_attach = function(client, bufnr)
   end
 
   -- Completion icons
-  protocol.CompletionItemKind = {
+  vim.lsp.protocol.CompletionItemKind = {
     '', -- Text
     '', -- Method
     '', -- Function
@@ -85,26 +83,13 @@ end
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = cmp.update_capabilities(
-  protocol.make_client_capabilities()
+  vim.lsp.protocol.make_client_capabilities()
 )
 
 -- Typescript language server
 lspconfig.tsserver.setup{
   on_attach = on_attach,
   capabilities = capabilities,
-  init_options = {
-    plugins = {
-      {
-        name = 'typescript-styled-plugin',
-      },
-      -- WIP: not working properly
-      -- {
-      --   name = 'ts-graphql-plugin',
-      --   tag = 'gql',
-      --   schema = 'schema.json'
-      -- },
-    }
-  },
   filetypes = {
     'javascript',
     'javascriptreact',
