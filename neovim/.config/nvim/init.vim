@@ -18,6 +18,8 @@ Plug 'nvim-lua/plenary.nvim'                                  " Dependencies
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}   " Tree sitter
 Plug 'neovim/nvim-lspconfig'                                  " LSP
 
+Plug 'jose-elias-alvarez/null-ls.nvim'
+
 """ Completion and snippets
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/nvim-cmp'

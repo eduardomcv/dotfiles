@@ -1,8 +1,58 @@
 local cmp = require('cmp_nvim_lsp')
 local lspconfig = require('lspconfig')
+local null_ls = require('null-ls')
 
 -- Debug
--- vim.lsp.set_log_level("debug")
+local debug = false
+
+if debug then
+  vim.lsp.set_log_level('debug')
+end
+
+-- Set up completion using nvim_cmp with LSP source
+local capabilities = cmp.update_capabilities(
+  vim.lsp.protocol.make_client_capabilities()
+)
+
+-- Completion icons
+vim.lsp.protocol.CompletionItemKind = {
+  '', -- Text
+  '', -- Method
+  '', -- Function
+  '', -- Constructor
+  '', -- Field
+  '', -- Variable
+  '', -- Class
+  'ﰮ', -- Interface
+  '', -- Module
+  '', -- Property
+  '', -- Unit
+  '', -- Value
+  '', -- Enum
+  '', -- Keyword
+  '﬌', -- Snippet
+  '', -- Color
+  '', -- File
+  '', -- Reference
+  '', -- Folder
+  '', -- EnumMember
+  '', -- Constant
+  '', -- Struct
+  '', -- Event
+  'ﬦ', -- Operator
+  '', -- TypeParameter
+}
+
+-- icon for diagnostics
+vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
+  vim.lsp.diagnostic.on_publish_diagnostics, {
+    underline = true,
+    virtual_text = {
+      spacing = 4,
+      prefix = ''
+    }
+  }
+)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
@@ -38,153 +88,58 @@ local on_attach = function(client, bufnr)
   buf_set_keymap('n', '<space>q', '<cmd>lua vim.diagnostic.setloclist()<CR>', opts)
   buf_set_keymap('n', '<space>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
 
-  -- HACK: let diagnostics language server handle formatting
-  if client.name == 'tsserver' then
-    client.resolved_capabilities.document_formatting = false
-  end
-
   -- Format on save
   if client.resolved_capabilities.document_formatting then
-    vim.api.nvim_command [[augroup Format]]
-    vim.api.nvim_command [[autocmd! * <buffer>]]
-    vim.api.nvim_command [[autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_seq_sync()]]
-    vim.api.nvim_command [[augroup END]]
+    vim.cmd([[
+      augroup LspFormatting
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync(nil, 2000)
+      augroup END
+    ]])
   end
-
-  -- Completion icons
-  vim.lsp.protocol.CompletionItemKind = {
-    '', -- Text
-    '', -- Method
-    '', -- Function
-    '', -- Constructor
-    '', -- Field
-    '', -- Variable
-    '', -- Class
-    'ﰮ', -- Interface
-    '', -- Module
-    '', -- Property
-    '', -- Unit
-    '', -- Value
-    '', -- Enum
-    '', -- Keyword
-    '﬌', -- Snippet
-    '', -- Color
-    '', -- File
-    '', -- Reference
-    '', -- Folder
-    '', -- EnumMember
-    '', -- Constant
-    '', -- Struct
-    '', -- Event
-    'ﬦ', -- Operator
-    '', -- TypeParameter
-  }
 end
-
--- Set up completion using nvim_cmp with LSP source
-local capabilities = cmp.update_capabilities(
-  vim.lsp.protocol.make_client_capabilities()
-)
 
 -- Typescript language server
 lspconfig.tsserver.setup{
-  on_attach = on_attach,
   capabilities = capabilities,
+  on_attach = function(client, bufnr)
+    -- disable tsserver formatting
+    client.resolved_capabilities.document_formatting = false
+    client.resolved_capabilities.document_range_formatting = false
+    on_attach(client, bufnr)
+  end,
 }
 
--- Diagnostics language server
-lspconfig.diagnosticls.setup{
+-- null-ls
+local has_eslint_config = function(utils)
+  return utils.root_has_file({
+    '.eslintrc.js',
+    '.eslintrc.json',
+    'app/.eslintrc.js'
+  })
+end
+
+local has_prettier_config = function(utils)
+  return utils.root_has_file({
+    'prettier.config.js',
+  })
+end
+
+null_ls.setup({
   on_attach = on_attach,
-  filetypes = {
-    'javascript',
-    'javascriptreact',
-    'javascript.jsx',
-    'typescript',
-    'typescriptreact',
-    'typescript.tsx'
-  },
-  init_options = {
-    linters = {
-      eslint = {
-        command = 'eslint_d',
-        args = {
-          '--stdin',
-          '--stdin-filename',
-          '%filepath',
-          '--format',
-          'json'
-        },
-        rootPatterns = {
-          'package.json',
-          '.git',
-        },
-        debounce = 100,
-        sourceName = 'eslint_d',
-        parseJson = {
-          errorsRoot = '[0].messages',
-          line = 'line',
-          column = 'column',
-          endLine = 'endLine',
-          endColumn = 'endColumn',
-          message = '[eslint] ${message} [${ruleId}]',
-          security = 'severity'
-        },
-        securities = {
-          [2] = 'error',
-          [1] = 'warning'
-        }
-      },
-    },
-    filetypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    },
-    formatters = {
-      eslint = {
-        command = 'eslint_d',
-        args = {
-          '--fix-to-stdout',
-          '--stdin',
-          '--stdin-filename',
-          '%filepath',
-        },
-        rootPatterns = {
-          'package.json',
-          '.git',
-        },
-      },
-      prettier = {
-        command = 'prettier_d_slim',
-        args = {
-          '--stdin',
-          '--stdin-filepath',
-          '%filename'
-        },
-        rootPatterns = {
-          'package.json',
-          '.git',
-        },
-        requiredFiles = { 'prettier.config.js' },
-      }
-    },
-    formatFiletypes = {
-      javascript = 'eslint',
-      javascriptreact = 'eslint',
-      typescript = 'eslint',
-      typescriptreact = 'eslint',
-    }
+  debug = true,
+  sources = {
+    null_ls.builtins.formatting.prettierd.with({
+      condition = has_prettier_config,
+    }),
+    null_ls.builtins.formatting.eslint_d.with({
+      condition = function(utils)
+        return has_eslint_config(utils) and not has_prettier_config(utils)
+      end,
+    }),
+    null_ls.builtins.diagnostics.eslint_d.with({
+      condition = has_eslint_config,
+    }),
   }
-}
+})
 
--- icon for diagnostics
-vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-    underline = true,
-    virtual_text = {
-      spacing = 4,
-      prefix = ''
-    }
-  }
-)
