@@ -34,7 +34,6 @@ Plug 'folke/lsp-colors.nvim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-rhubarb'
 Plug 'APZelos/blamer.nvim'
-Plug 'lewis6991/gitsigns.nvim'
 
 """ Fuzzy finder
 Plug 'nvim-telescope/telescope.nvim'
