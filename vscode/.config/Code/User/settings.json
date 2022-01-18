@@ -1,17 +1,12 @@
 {
-    "workbench.statusBar.visible": true,
-    "workbench.activityBar.visible": true,
     "workbench.colorTheme": "Gruvbox Dark Hard",
     "workbench.iconTheme": "material-icon-theme",
-    "workbench.sideBar.location": "left",
     "window.titleBarStyle": "custom",
-    "editor.fontFamily": "'Fira Code', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "editor.fontFamily": "'FiraCode Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
     "editor.fontLigatures": true,
     "editor.multiCursorModifier": "alt",
-    "editor.lineNumbers": "relative",
     "editor.renderWhitespace": "boundary",
     "explorer.confirmDragAndDrop": true,
-    "extensions.ignoreRecommendations": true,
     "git.confirmSync": false,
     "git.autofetch": true,
     "diffEditor.ignoreTrimWhitespace": true,
@@ -81,4 +76,63 @@
             "gutterIcon": true,
         },
     },
+    // Vim
+    "editor.cursorSurroundingLines": 10,
+    "editor.lineNumbers": "relative",
+    "vim.leader": "<space>",
+    "vim.handleKeys": {
+        "<C-d>": true,
+        "<C-a>": true,
+        "<C-x>": false,
+    },
+    "vim.normalModeKeyBindingsNonRecursive": [
+        {
+            "before": ["[", "d"],
+            "commands": [
+                "editor.action.marker.prev"
+            ]
+        },
+        {
+            "before": ["]", "d"],
+            "commands": [
+                "editor.action.marker.next"
+            ]
+        },
+        {
+            "before": ["+"],
+            "after": ["<C-a>"],
+        },
+        {
+            "before": ["-"],
+            "after": ["<C-x>"],
+        },
+        {
+            "before": ["<C-a>"],
+            "commands": [
+                "editor.action.selectAll"
+            ]
+        },
+        {
+            "before": ["<leader>", "h"],
+            "after": ["<C-w>", "h"]
+        },
+        {
+            "before": ["<leader>", "j"],
+            "after": ["<C-w>", "j"]
+        },
+        {
+            "before": ["<leader>", "k"],
+            "after": ["<C-w>", "k"]
+        },
+        {
+            "before": ["<leader>", "l"],
+            "after": ["<C-w>", "l"]
+        },
+        {
+            "before": ["<leader>", "g", "s"],
+            "commands": [
+                "workbench.view.scm"
+            ]
+        },
+    ]
 }
