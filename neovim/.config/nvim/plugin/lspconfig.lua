@@ -122,6 +122,7 @@ end
 local has_prettier_config = function(utils)
   return utils.root_has_file({
     'prettier.config.js',
+    '.prettierc.json',
   })
 end
 
