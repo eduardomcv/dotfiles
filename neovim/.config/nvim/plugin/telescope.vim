@@ -12,9 +12,20 @@ end
 
 local telescope = require('telescope')
 local actions = require('telescope.actions')
+local builtin = require('telescope.builtin')
 
 telescope.setup {
     defaults = {
+        vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--hidden",
+        },
         mappings = {
             n = {
                 ["q"] = actions.close,
