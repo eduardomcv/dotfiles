@@ -12,6 +12,7 @@ end
 local function find_project_files()
   local opts = {}
   local ok = pcall(builtin.git_files, opts)
+  print("ok: ", ok)
   if not ok then
     builtin.find_files(opts)
   end
@@ -70,7 +71,7 @@ vim.keymap.set('n', '<leader>pf', builtin.grep_string, {})
 vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
 vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
 vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
-vim.keymap.set('n', '<leader>n', function()
+vim.keymap.set('n', '<leader>b', function()
   file_browser.file_browser({
     path = "%:p:h",
     cwd = telescope_buffer_dir(),
