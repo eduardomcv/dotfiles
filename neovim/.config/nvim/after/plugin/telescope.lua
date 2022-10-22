@@ -11,9 +11,11 @@ end
 
 local function find_project_files()
   local opts = {}
-  local ok = pcall(builtin.git_files, opts)
-  print("ok: ", ok)
-  if not ok then
+  local in_git_repo = vim.fn.systemlist "git rev-parse --is-inside-work-tree"[1] == 'true'
+
+  if in_git_repo then
+    builtin.git_files(opts)
+  else
     builtin.find_files(opts)
   end
 end
