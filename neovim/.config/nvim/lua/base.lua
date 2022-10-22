@@ -87,9 +87,6 @@ vim.opt.shell = 'zsh'
 vim.opt.inccommand = 'split'
 vim.opt.backspace = { 'start', 'eol', 'indent' }
 
--- External clipboard support
-vim.opt.clipboard:append { 'unnamedplus' }
-
 -- Finding files - Search down into subfolders
 vim.opt.path:append { '**' }
 
