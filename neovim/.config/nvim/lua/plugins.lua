@@ -39,7 +39,7 @@ packer.startup(function(use)
 
   use 'nvim-lualine/lualine.nvim' -- Status line
   use 'Mofiqul/vscode.nvim' -- VSCode theme
-  use 'kyazdani42/nvim-web-devicons' -- File icons
+  use 'nvim-tree/nvim-web-devicons' -- File icons
   use 'akinsho/nvim-bufferline.lua' -- Buffer line for tabs
   use 'norcalli/nvim-colorizer.lua' -- Color highlighter
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
