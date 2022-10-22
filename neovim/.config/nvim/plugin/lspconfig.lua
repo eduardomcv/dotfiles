@@ -103,8 +103,6 @@ vim.diagnostic.config({
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  filetypes = { "typescript", "typescriptreact", "typescript.tsx" },
-  cmd = { "typescript-language-server", "--stdio" }
 }
 
 lspconfig.sumneko_lua.setup {
@@ -126,4 +124,19 @@ lspconfig.sumneko_lua.setup {
       },
     },
   },
+}
+
+lspconfig.cssls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+lspconfig.html.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
+lspconfig.jsonls.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
