@@ -1,6 +1,9 @@
-local lspkind = require('lspkind')
+require('lspkind').init({
+  -- DEPRECATED (use mode instead): enables text annotations
+  --
+  -- default: true
+  -- with_text = true,
 
-lspkind.init({
   -- defines how annotations are shown
   -- default: symbol
   -- options: 'text', 'text_symbol', 'symbol_text', 'symbol'
@@ -27,9 +30,9 @@ lspkind.init({
     Interface = "",
     Module = "",
     Property = "ﰠ",
-    Unit = "塞",
+    Unit = "塞",
     Value = "",
-    Enum = "",
+    Enum = "",
     Keyword = "",
     Snippet = "",
     Color = "",
@@ -38,9 +41,10 @@ lspkind.init({
     Folder = "",
     EnumMember = "",
     Constant = "",
-    Struct = "פּ",
+    Struct = "פּ",
     Event = "",
     Operator = "",
-    TypeParameter = ""
+    TypeParameter = ""
   },
 })
+
