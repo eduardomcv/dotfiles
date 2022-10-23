@@ -1,6 +1,12 @@
 local status, lspconfig = pcall(require, "lspconfig")
 if (not status) then return end
 
+-- Mason must be loaded before
+require('mason').setup {}
+require('mason-lspconfig').setup {
+  automatic_installation = true
+}
+
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 
 local enable_format_on_save = function(_, bufnr)

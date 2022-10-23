@@ -44,3 +44,8 @@ vim.api.nvim_create_user_command(
   end,
   { nargs = 0 }
 )
+
+-- Mason null-ls plugin must be loaded after
+require('mason-null-ls').setup {
+  automatic_installation = true
+}
