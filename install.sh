@@ -9,10 +9,10 @@ check_is_not_sudo
 THINGS_TO_STOW=( \
     git \
     zsh \
-    neovim \
+    wezterm \
     tmux \
+    neovim \
     vscode \
-    kitty \
 )
 
 for thing in ${THINGS_TO_STOW[@]}; do
