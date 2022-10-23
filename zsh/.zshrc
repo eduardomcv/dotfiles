@@ -17,7 +17,7 @@ alias grep='grep --color=auto'
 alias l=ls
 alias ll="ls -alF"
 alias la="ls -A"
-alias vi=nvim
+alias vi="env TERM=wezterm nvim"
 
 # exports
 export EDITOR=nvim
