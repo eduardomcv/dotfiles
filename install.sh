@@ -10,7 +10,6 @@ THINGS_TO_STOW=( \
     git \
     zsh \
     wezterm \
-    tmux \
     neovim \
     vscode \
 )
