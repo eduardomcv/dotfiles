@@ -20,9 +20,6 @@ keymap.set('v', '<leader>d', '"_d')
 keymap.set('n', '+', '<C-a>')
 keymap.set('n', '-', '<C-x>')
 
--- " Vertical split on new buffer
-keymap.set('n', '<c-w>n', '<esc>:vnew<cr>')
-
 -- Select all
 keymap.set('n', '<C-a>', 'gg<S-v>G')
 
@@ -50,8 +47,6 @@ keymap.set('n', '<leader>tn', ':tabnew<cr>')
 keymap.set('n', '<leader>to', ':tabonly<cr>')
 keymap.set('n', '<leader>tc', ':tabclose<cr>')
 keymap.set('n', '<leader>tm', ':tabmove<cr>')
-keymap.set('n', '<leader>th', ':tabprevious<cr>')
-keymap.set('n', '<leader>tl', ':tabnext<cr>')
 
 -- alt-j and alt-k to move lines down and up in normal mode
 keymap.set('n', '<a-j>', ':m+1<cr>')
@@ -63,4 +58,3 @@ keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
 
 -- Search and replace
 keymap.set('n', '<leader-s>', ':%s//g<left><left>')
-
