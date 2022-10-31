@@ -48,4 +48,7 @@ packer.startup(function(use)
   use 'numToStr/Comment.nvim' -- Commenting functionality
   use 'mbbill/undotree' -- Undo tree
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
+
+  use 'David-Kunz/jester' -- Run jest tests easily
+  use 'mfussenegger/nvim-dap' -- Debugging
 end)
