@@ -20,6 +20,19 @@ local function find_project_files()
   end
 end
 
+local function getVisualSelection()
+  vim.cmd('noau normal! "vy"')
+  local text = vim.fn.getreg('v')
+  vim.fn.setreg('v', {})
+
+  text = string.gsub(text, "\n", "")
+  if #text > 0 then
+    return text
+  else
+    return ''
+  end
+end
+
 telescope.setup {
   defaults = {
     vimgrep_arguments = {
@@ -68,11 +81,22 @@ telescope.setup {
 telescope.load_extension('fzy_native')
 telescope.load_extension('file_browser')
 
-vim.keymap.set('n', '<C-p>', find_project_files, {})
-vim.keymap.set('n', '<leader>pf', builtin.grep_string, {})
-vim.keymap.set('n', '<leader>pg', builtin.live_grep, {})
-vim.keymap.set('n', '<leader>pb', builtin.buffers, {})
-vim.keymap.set('n', '<leader>ph', builtin.help_tags, {})
+local opts = { noremap = true, silent = true }
+
+vim.keymap.set('n', '<C-p>', find_project_files, opts)
+vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, opts)
+vim.keymap.set('v', '<C-f>', function()
+  local text = getVisualSelection()
+  builtin.current_buffer_fuzzy_find({ default_text = text })
+end, opts)
+vim.keymap.set('n', '<leader>fw', builtin.grep_string, opts)
+vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
+vim.keymap.set('v', '<leader>fg', function()
+  local text = getVisualSelection()
+  builtin.live_grep({ default_text = text })
+end, opts)
+vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
+vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
 vim.keymap.set('n', '<leader>b', function()
   file_browser.file_browser({
     path = "%:p:h",
@@ -84,4 +108,4 @@ vim.keymap.set('n', '<leader>b', function()
     initial_mode = "normal",
     layout_config = { height = 40 }
   })
-end)
+end, opts)
