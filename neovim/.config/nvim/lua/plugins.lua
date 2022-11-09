@@ -44,8 +44,12 @@ packer.startup(function(use)
   use 'norcalli/nvim-colorizer.lua' -- Color highlighter
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
   use 'folke/todo-comments.nvim' -- Highlight keywords
-  use 'kylechui/nvim-surround' -- Surround functionality
+  use 'tpope/vim-surround' -- Surround functionality
   use 'numToStr/Comment.nvim' -- Commenting functionality
   use 'mbbill/undotree' -- Undo tree
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
+  use "numToStr/FTerm.nvim" -- Floating terminal
+
+  use 'David-Kunz/jester' -- Run jest tests easily
+  use 'mfussenegger/nvim-dap' -- Debugging
 end)
