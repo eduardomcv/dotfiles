@@ -3,15 +3,6 @@ local keymap = vim.keymap
 -- Set leader to spacebar
 vim.g.mapleader = ' '
 
--- " Copy to clipboard
-keymap.set({ 'n', 'v' }, '<leader>cy', '"+y')
-keymap.set('n', '<leader>cY', '"+yg_')
-keymap.set('n', '<leader>cyy', '"+yy')
-
--- " Paste from clipboard
-keymap.set({ 'n', 'v' }, '<leader>cp', '"+p')
-keymap.set({ 'n', 'v' }, '<leader>cP', '"+P')
-
 -- Delete without yank
 keymap.set('n', 'x', '"_x')
 keymap.set('v', '<leader>d', '"_d')
