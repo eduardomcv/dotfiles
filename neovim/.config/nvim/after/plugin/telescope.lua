@@ -80,9 +80,11 @@ telescope.setup {
 
 telescope.load_extension('fzy_native')
 telescope.load_extension('file_browser')
+telescope.load_extension('aerial')
 
 local opts = { noremap = true, silent = true }
 
+-- Builtin maps
 vim.keymap.set('n', '<C-p>', find_project_files, opts)
 vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, opts)
 vim.keymap.set('v', '<C-f>', function()
@@ -97,6 +99,8 @@ vim.keymap.set('v', '<leader>fg', function()
 end, opts)
 vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
 vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
+
+-- File browser maps
 vim.keymap.set('n', '<leader>b', function()
   file_browser.file_browser({
     path = "%:p:h",
@@ -109,3 +113,6 @@ vim.keymap.set('n', '<leader>b', function()
     layout_config = { height = 40 }
   })
 end, opts)
+
+-- Aerial maps
+vim.keymap.set('n', '<leader>o', ':Telescope aerial<CR>', opts)

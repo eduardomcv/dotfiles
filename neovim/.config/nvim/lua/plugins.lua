@@ -49,6 +49,7 @@ packer.startup(function(use)
   use 'mbbill/undotree' -- Undo tree
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
   use "numToStr/FTerm.nvim" -- Floating terminal
+  use "stevearc/aerial.nvim" -- Buffer outline
 
   use 'David-Kunz/jester' -- Run jest tests easily
   use 'mfussenegger/nvim-dap' -- Debugging
