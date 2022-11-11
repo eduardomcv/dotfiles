@@ -41,7 +41,7 @@ packer.startup(function(use)
   use 'Mofiqul/vscode.nvim' -- VSCode theme
   use 'nvim-tree/nvim-web-devicons' -- File icons
   use 'akinsho/nvim-bufferline.lua' -- Buffer line for tabs
-  use 'norcalli/nvim-colorizer.lua' -- Color highlighter
+  use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
   use 'folke/todo-comments.nvim' -- Highlight keywords
   use 'tpope/vim-surround' -- Surround functionality
