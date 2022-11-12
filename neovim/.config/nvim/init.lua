@@ -1,4 +1,4 @@
-require('base')
-require('keymaps')
-require('plugins')
-require('clipboard')
+require('eduardomcv.base')
+require('eduardomcv.keymaps')
+require('eduardomcv.plugins')
+require('eduardomcv.clipboard')
