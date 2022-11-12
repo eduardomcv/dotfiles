@@ -43,6 +43,7 @@ telescope.setup {
       "--line-number",
       "--column",
       "--smart-case",
+      "--trim",
       "--hidden",
     },
     mappings = {
@@ -91,6 +92,7 @@ vim.keymap.set('v', '<C-f>', function()
   local text = getVisualSelection()
   builtin.current_buffer_fuzzy_find({ default_text = text })
 end, opts)
+vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
 vim.keymap.set('n', '<leader>fw', builtin.grep_string, opts)
 vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
 vim.keymap.set('v', '<leader>fg', function()
