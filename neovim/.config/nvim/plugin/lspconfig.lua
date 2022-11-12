@@ -48,6 +48,7 @@ end
 
 -- Set up completion using nvim_cmp with LSP source
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
 
 -- Completion icons
 vim.lsp.protocol.CompletionItemKind = {
@@ -109,6 +110,14 @@ vim.diagnostic.config({
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
+  init_options = {
+    plugins = {
+      {
+        name = 'typescript-styled-plugin',
+        location = '/Users/eduardo/.nvm/versions/node/v16.14.2/lib'
+      },
+    },
+  },
 }
 
 lspconfig.sumneko_lua.setup {
@@ -149,4 +158,9 @@ lspconfig.jsonls.setup {
 
 lspconfig.emmet_ls.setup {
   capabilities = capabilities,
+}
+
+lspconfig.clangd.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
 }
