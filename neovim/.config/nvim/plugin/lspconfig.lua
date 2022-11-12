@@ -114,7 +114,7 @@ lspconfig.tsserver.setup {
     plugins = {
       {
         name = 'typescript-styled-plugin',
-        location = '/Users/eduardo/.nvm/versions/node/v16.14.2/lib'
+        location = '/Users/eduardo/.nvm/versions/node/v16.14.2/lib' -- Path to global node modules install location
       },
     },
   },
