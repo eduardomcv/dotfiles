@@ -11,6 +11,7 @@ treesitter.setup {
     disable = {},
   },
   ensure_installed = {
+    "c",
     "lua",
     "typescript",
     "tsx",
@@ -20,6 +21,7 @@ treesitter.setup {
     "html",
     "scss",
     "css",
+    "graphql"
   },
   autotag = {
     enable = true
