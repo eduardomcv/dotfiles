@@ -64,6 +64,9 @@ vim.opt.cmdheight = 2
 -- Don't show mode on last line
 vim.opt.showmode = false
 
+-- Always show sign column
+vim.opt.signcolumn = 'yes'
+
 -- Set the terminal title at will
 vim.opt.title = true
 
