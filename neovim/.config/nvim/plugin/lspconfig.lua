@@ -156,6 +156,11 @@ lspconfig.jsonls.setup {
   on_attach = on_attach,
 }
 
+lspconfig.graphql.setup {
+  capabilities = capabilities,
+  on_attach = on_attach,
+}
+
 lspconfig.emmet_ls.setup {
   capabilities = capabilities,
 }
