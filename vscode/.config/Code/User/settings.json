@@ -118,6 +118,22 @@
       "after": ["<C-w>", "l"]
     },
     {
+      "before": ["<leader>", "t", "n"],
+      "commands": [":tabnew"]
+    },
+    {
+      "before": ["<leader>", "t", "c"],
+      "commands": [":tabclose"]
+    },
+    {
+      "before": ["<leader>", "t", "k"],
+      "commands": [":tabnext"]
+    },
+    {
+      "before": ["<leader>", "t", "j"],
+      "commands": [":tabprev"]
+    },
+    {
       "before": ["<leader>", "g", "s"],
       "commands": ["workbench.view.scm"]
     }
