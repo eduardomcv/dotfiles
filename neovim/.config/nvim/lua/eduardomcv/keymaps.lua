@@ -1,51 +1,43 @@
-local keymap = vim.keymap
+local set = vim.keymap.set
 
 -- Set leader to spacebar
 vim.g.mapleader = ' '
 
 -- Delete without yank
-keymap.set('n', 'x', '"_x')
-keymap.set('v', '<leader>d', '"_d')
+set('n', 'x', '"_x')
+set('v', '<leader>d', '"_d')
 
 -- Increment/decrement
-keymap.set('n', '+', '<C-a>')
-keymap.set('n', '-', '<C-x>')
+set('n', '+', '<C-a>')
+set('n', '-', '<C-x>')
 
 -- Select all
-keymap.set('n', '<C-a>', 'gg<S-v>G')
-
--- New tab
-keymap.set('n', 'te', ':tabedit')
-
--- Split window
-keymap.set('n', '<leader>ss', ':split<Return><C-w>w')
-keymap.set('n', '<leader>sv', ':vsplit<Return><C-w>w')
+set('n', '<C-a>', 'gg<S-v>G')
 
 -- Move window
-keymap.set('n', '<leader>h', '<C-w>h')
-keymap.set('n', '<leader>k', '<C-w>k')
-keymap.set('n', '<leader>j', '<C-w>j')
-keymap.set('n', '<leader>l', '<C-w>l')
+set('n', '<leader>h', '<C-w>h')
+set('n', '<leader>k', '<C-w>k')
+set('n', '<leader>j', '<C-w>j')
+set('n', '<leader>l', '<C-w>l')
 
 -- Resize window
-keymap.set('n', '<C-w><left>', '<C-w><')
-keymap.set('n', '<C-w><right>', '<C-w>>')
-keymap.set('n', '<C-w><up>', '<C-w>+')
-keymap.set('n', '<C-w><down>', '<C-w>-')
+set('n', '<C-w><left>', '<C-w><')
+set('n', '<C-w><right>', '<C-w>>')
+set('n', '<C-w><up>', '<C-w>+')
+set('n', '<C-w><down>', '<C-w>-')
 
 -- " Tab management
-keymap.set('n', '<leader>tn', ':tabnew<cr>')
-keymap.set('n', '<leader>to', ':tabonly<cr>')
-keymap.set('n', '<leader>tc', ':tabclose<cr>')
-keymap.set('n', '<leader>tm', ':tabmove<cr>')
+set('n', '<leader>tn', ':tabnew<cr>')
+set('n', '<leader>to', ':tabonly<cr>')
+set('n', '<leader>tc', ':tabclose<cr>')
+set('n', '<leader>tm', ':tabmove<cr>')
+set('n', 'gj', ':tabnext<cr>')
+set('n', 'gk', ':tabprev<cr>')
 
 -- alt-j and alt-k to move lines down and up in normal mode
-keymap.set('n', '<a-j>', ':m+1<cr>')
-keymap.set('n', '<a-k>', ':m-2<cr>')
+set('n', '<a-j>', ':m+1<cr>')
+set('n', '<a-k>', ':m-2<cr>')
 
 -- shift-j and shift-k to move selection down and up in visual mode
-keymap.set('v', 'J', ":m '>+1<cr>gv=gv")
-keymap.set('v', 'K', ":m '<-2<cr>gv=gv")
-
--- Search and replace
-keymap.set('n', '<leader-s>', ':%s//g<left><left>')
+set('v', 'J', ":m '>+1<cr>gv=gv")
+set('v', 'K', ":m '<-2<cr>gv=gv")
