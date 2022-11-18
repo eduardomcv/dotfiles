@@ -13,7 +13,7 @@ packer.startup(function(use)
   use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
   use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
   use 'hrsh7th/nvim-cmp' -- Completion
-  use 'onsails/lspkind-nvim' -- vscode-like pictograms
+  use 'onsails/lspkind.nvim' -- vscode-like pictograms
   use 'L3MON4D3/LuaSnip' -- Snippet engine
   use 'saadparwaiz1/cmp_luasnip' -- Luasnip completion source for nvim-cmp
   use 'glepnir/lspsaga.nvim' -- LSP UI
