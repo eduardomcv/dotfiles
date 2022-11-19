@@ -34,10 +34,8 @@ set('n', '<leader>tm', ':tabmove<cr>')
 set('n', 'gj', ':tabnext<cr>')
 set('n', 'gk', ':tabprev<cr>')
 
--- alt-j and alt-k to move lines down and up in normal mode
+-- alt-j and alt-k to move lines down and up
 set('n', '<a-j>', ':m+1<cr>')
 set('n', '<a-k>', ':m-2<cr>')
-
--- shift-j and shift-k to move selection down and up in visual mode
-set('v', 'J', ":m '>+1<cr>gv=gv")
-set('v', 'K', ":m '<-2<cr>gv=gv")
+set('v', '<a-j>', ":m '>+1<cr>gv=gv")
+set('v', '<a-k>', ":m '<-2<cr>gv=gv")
