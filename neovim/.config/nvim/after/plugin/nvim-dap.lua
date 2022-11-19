@@ -3,11 +3,11 @@ if not status then return end
 
 local set = vim.keymap.set
 
-set('n', '<leader>bp', dap.toggle_breakpoint)
-set('n', '<leader>si', dap.step_into)
-set('n', '<leader>so', dap.step_over)
-set('n', '<leader>sb', dap.step_out)
-set('n', '<leader>ss', dap.continue)
+set('n', 'gbp', dap.toggle_breakpoint)
+set('n', 'gsi', dap.step_into)
+set('n', 'gso', dap.step_over)
+set('n', 'gsb', dap.step_out)
+set('n', 'gss', dap.continue)
 
 vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
 vim.fn.sign_define('DapStopped', { text = '🟩', texthl = '', linehl = '', numhl = '' })
