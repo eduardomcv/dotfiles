@@ -116,6 +116,22 @@ vim.diagnostic.config({
   },
 })
 
+-- Server configurations
+local servers = {
+  'cssls',
+  'html',
+  'jsonls',
+  'emmet_ls',
+  'clangd',
+}
+
+for _, lsp in ipairs(servers) do
+  lspconfig[lsp].setup {
+    capabilities = capabilities,
+    on_attach = on_attach,
+  }
+end
+
 lspconfig.tsserver.setup {
   on_attach = on_attach,
   capabilities = capabilities,
@@ -150,35 +166,10 @@ lspconfig.sumneko_lua.setup {
   },
 }
 
-lspconfig.cssls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
-lspconfig.html.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
-lspconfig.jsonls.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
-}
-
 lspconfig.graphql.setup {
   capabilities = capabilities,
   on_attach = function(client, bufnr)
     client.server_capabilities.hoverProvider = false
     on_attach(client, bufnr)
   end
-
-}
-
-lspconfig.emmet_ls.setup {
-  capabilities = capabilities,
-}
-
-lspconfig.clangd.setup {
-  capabilities = capabilities,
-  on_attach = on_attach,
 }
