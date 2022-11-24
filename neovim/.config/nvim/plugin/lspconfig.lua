@@ -10,7 +10,11 @@ require('mason-lspconfig').setup {
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 
 local enable_format_on_save = function(_, bufnr)
-  vim.api.nvim_clear_autocmds({ group = augroup_format, buffer = bufnr })
+  vim.api.nvim_clear_autocmds({
+    group = augroup_format,
+    buffer = bufnr
+  })
+
   vim.api.nvim_create_autocmd("BufWritePre", {
     group = augroup_format,
     buffer = bufnr,
@@ -132,17 +136,19 @@ for _, lsp in ipairs(servers) do
   }
 end
 
-lspconfig.tsserver.setup {
-  on_attach = on_attach,
-  capabilities = capabilities,
-  init_options = {
-    plugins = {
-      {
-        name = 'typescript-styled-plugin',
-        location = '/Users/eduardo/.nvm/versions/node/v16.14.2/lib' -- Path to global node modules install location
+require('typescript').setup {
+  server = {
+    on_attach = on_attach,
+    capabilities = capabilities,
+    init_options = {
+      plugins = {
+        {
+          name = 'typescript-styled-plugin',
+          location = '/Users/eduardo/.nvm/versions/node/v16.14.2/lib' -- Path to global node modules install location
+        },
       },
     },
-  },
+  }
 }
 
 lspconfig.sumneko_lua.setup {
