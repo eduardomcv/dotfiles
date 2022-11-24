@@ -45,10 +45,6 @@ vim.opt.hlsearch = false
 vim.opt.ignorecase = true
 vim.opt.smartcase = true
 
--- Source local configs if available
-vim.opt.exrc = true
-vim.opt.secure = true
-
 -- Min 10 Lines to the cursor
 vim.opt.scrolloff = 10
 
