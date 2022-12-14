@@ -127,6 +127,7 @@ local servers = {
   'jsonls',
   'emmet_ls',
   'clangd',
+  'rust_analyzer',
 }
 
 for _, lsp in ipairs(servers) do
