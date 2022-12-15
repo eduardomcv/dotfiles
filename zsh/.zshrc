@@ -17,6 +17,7 @@ alias grep='grep --color=auto'
 alias l=ls
 alias ll="ls -alF"
 alias la="ls -A"
+alias lg="lazygit"
 alias vi="env TERM=wezterm nvim"
 
 # exports
