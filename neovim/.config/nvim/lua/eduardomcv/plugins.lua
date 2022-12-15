@@ -36,6 +36,7 @@ packer.startup(function(use)
 
   use 'lewis6991/gitsigns.nvim' -- Git decorations
   use 'dinhhuy258/git.nvim' -- Git blamer, browser, commands, etc in nvim
+  use 'kdheepak/lazygit.nvim' -- lazygit
 
   use 'nvim-lualine/lualine.nvim' -- Status line
   use 'Mofiqul/vscode.nvim' -- VSCode theme
@@ -48,7 +49,6 @@ packer.startup(function(use)
   use 'numToStr/Comment.nvim' -- Commenting functionality
   use 'mbbill/undotree' -- Undo tree
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
-  use "numToStr/FTerm.nvim" -- Floating terminal
   use "stevearc/aerial.nvim" -- Buffer outline
 
   use 'David-Kunz/jester' -- Run jest tests easily
