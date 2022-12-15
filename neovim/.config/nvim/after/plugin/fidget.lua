@@ -1,4 +1,4 @@
-local status, fidget = pcall(require, 'fidget')
-if not status then return end
+local ok, fidget = pcall(require, 'fidget')
+if not ok then return end
 
 fidget.setup {}

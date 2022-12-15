@@ -1,5 +1,5 @@
-local status, dap = pcall(require, 'dap')
-if not status then return end
+local ok, dap = pcall(require, 'dap')
+if not ok then return end
 
 local set = vim.keymap.set
 

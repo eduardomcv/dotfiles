@@ -1,4 +1,4 @@
-local status, surround = pcall(require, 'nvim-surround')
-if not status then return end
+local ok, surround = pcall(require, 'nvim-surround')
+if not ok then return end
 
 surround.setup {}
