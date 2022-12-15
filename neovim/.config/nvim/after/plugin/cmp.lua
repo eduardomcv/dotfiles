@@ -1,5 +1,5 @@
-local status, cmp = pcall(require, "cmp")
-if (not status or not cmp) then return end
+local ok, cmp = pcall(require, "cmp")
+if (not ok or not cmp) then return end
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }

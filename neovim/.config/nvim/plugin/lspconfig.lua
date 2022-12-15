@@ -1,5 +1,5 @@
-local status, lspconfig = pcall(require, "lspconfig")
-if (not status) then return end
+local ok, lspconfig = pcall(require, "lspconfig")
+if not ok then return end
 
 -- Mason must be loaded before
 require('mason').setup {}
@@ -127,6 +127,7 @@ local servers = {
   'jsonls',
   'emmet_ls',
   'clangd',
+  'rust_analyzer',
 }
 
 for _, lsp in ipairs(servers) do

@@ -1,12 +1,26 @@
-local status, packer = pcall(require, "packer")
-if (not status) then
+-- ensure packer is installed
+local ensure_packer = function()
+  local fn = vim.fn
+  local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
+  if fn.empty(fn.glob(install_path)) > 0 then
+    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
+    vim.cmd [[packadd packer.nvim]]
+    return true
+  end
+  return false
+end
+
+local packer_bootstrap = ensure_packer()
+
+local ok, packer = pcall(require, "packer")
+if not ok then
   print("Packer is not installed")
   return
 end
 
 vim.cmd [[packadd packer.nvim]]
 
-packer.startup(function(use)
+return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Plugin manager
 
   use 'neovim/nvim-lspconfig' -- LSP
@@ -21,6 +35,7 @@ packer.startup(function(use)
   use 'williamboman/mason.nvim' -- Manage LSPs, linters, formatters
   use 'williamboman/mason-lspconfig.nvim' -- Make it easier to use lspconfig with mason
   use 'jayp0521/mason-null-ls.nvim' -- Make it easier to use null-ls with mason
+  use 'j-hui/fidget.nvim' -- UI for LSP progress
 
   use {
     'nvim-treesitter/nvim-treesitter', -- Treesitter
@@ -36,6 +51,7 @@ packer.startup(function(use)
 
   use 'lewis6991/gitsigns.nvim' -- Git decorations
   use 'dinhhuy258/git.nvim' -- Git blamer, browser, commands, etc in nvim
+  use 'kdheepak/lazygit.nvim' -- lazygit
 
   use 'nvim-lualine/lualine.nvim' -- Status line
   use 'Mofiqul/vscode.nvim' -- VSCode theme
@@ -48,10 +64,13 @@ packer.startup(function(use)
   use 'numToStr/Comment.nvim' -- Commenting functionality
   use 'mbbill/undotree' -- Undo tree
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
-  use "numToStr/FTerm.nvim" -- Floating terminal
   use "stevearc/aerial.nvim" -- Buffer outline
 
   use 'David-Kunz/jester' -- Run jest tests easily
   use 'mfussenegger/nvim-dap' -- Debugging
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
+
+  if packer_bootstrap then
+    packer.sync()
+  end
 end)
