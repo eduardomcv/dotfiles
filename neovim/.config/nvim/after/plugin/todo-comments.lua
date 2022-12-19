@@ -1,6 +1,9 @@
+local ok, todo_comments = pcall(require, 'todo-comments')
+if not ok then return end
+
 local match_pattern = [[.*<(KEYWORDS)\s*]]
 
-require("todo-comments").setup {
+todo_comments.setup {
   -- keywords recognized as todo comments
   keywords = {
     DELETEME = {
