@@ -4,8 +4,24 @@ local set = vim.keymap.set
 vim.g.mapleader = ' '
 
 -- Delete without yank
-set('n', 'x', '"_x')
-set('v', '<leader>d', '"_d')
+set('n', 'x', [["_x]])
+set({ 'n', 'v' }, '<leader>d', [["_d]])
+
+-- Paste without yank
+set('x', '<leader>p', [["_dP]])
+
+-- Keep cursor in place when joining lines
+set('n', 'J', 'mzJ`z')
+
+-- Keep cursor in the middle when navigating
+set('n', '<C-d>', '<C-d>zz')
+set('n', '<C-u>', '<C-u>zz')
+
+-- Keep cursor in the middle when repeating searches
+set('n', 'n', 'nzzzv')
+set('n', 'N', 'Nzzzv')
+
+set('n', 'Q', '<nop>')
 
 -- Increment/decrement
 set('n', '+', '<C-a>')
@@ -26,7 +42,7 @@ set('n', '<C-w><right>', '<C-w>>')
 set('n', '<C-w><up>', '<C-w>+')
 set('n', '<C-w><down>', '<C-w>-')
 
--- " Tab management
+-- Tab management
 set('n', '<leader>tn', ':tabnew<cr>')
 set('n', '<leader>to', ':tabonly<cr>')
 set('n', '<leader>tc', ':tabclose<cr>')
