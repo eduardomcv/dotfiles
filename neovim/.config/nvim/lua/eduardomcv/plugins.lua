@@ -36,6 +36,7 @@ return packer.startup(function(use)
   use 'williamboman/mason-lspconfig.nvim' -- Make it easier to use lspconfig with mason
   use 'jayp0521/mason-null-ls.nvim' -- Make it easier to use null-ls with mason
   use 'j-hui/fidget.nvim' -- UI for LSP progress
+  use 'rafamadriz/friendly-snippets' -- vscode-like snippets
 
   use {
     'nvim-treesitter/nvim-treesitter', -- Treesitter
