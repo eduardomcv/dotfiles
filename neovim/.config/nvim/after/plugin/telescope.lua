@@ -33,6 +33,16 @@ local function getVisualSelection()
   end
 end
 
+local opts = { noremap = true, silent = true }
+
+local function nmap(lhs, rhs)
+  vim.keymap.set('n', lhs, rhs, opts)
+end
+
+local function vmap(lhs, rhs)
+  vim.keymap.set('v', lhs, rhs, opts)
+end
+
 telescope.setup {
   defaults = {
     vimgrep_arguments = {
@@ -83,27 +93,25 @@ telescope.load_extension('fzy_native')
 telescope.load_extension('file_browser')
 telescope.load_extension('aerial')
 
-local opts = { noremap = true, silent = true }
-
 -- Builtin maps
-vim.keymap.set('n', '<C-p>', find_project_files, opts)
-vim.keymap.set('n', '<C-f>', builtin.current_buffer_fuzzy_find, opts)
-vim.keymap.set('v', '<C-f>', function()
+nmap('<C-p>', find_project_files)
+nmap('<C-f>', builtin.current_buffer_fuzzy_find)
+vmap('<C-f>', function()
   local text = getVisualSelection()
   builtin.current_buffer_fuzzy_find({ default_text = text })
-end, opts)
-vim.keymap.set('n', '<leader>ff', builtin.find_files, opts)
-vim.keymap.set('n', '<leader>fw', builtin.grep_string, opts)
-vim.keymap.set('n', '<leader>fg', builtin.live_grep, opts)
-vim.keymap.set('v', '<leader>fg', function()
+end)
+nmap('<leader>sf', builtin.find_files)
+nmap('<leader>sw', builtin.grep_string)
+nmap('<leader>sg', builtin.live_grep)
+vmap('<leader>sg', function()
   local text = getVisualSelection()
   builtin.live_grep({ default_text = text })
-end, opts)
-vim.keymap.set('n', '<leader>fb', builtin.buffers, opts)
-vim.keymap.set('n', '<leader>fh', builtin.help_tags, opts)
+end)
+nmap('<leader>sb', builtin.buffers)
+nmap('<leader>sh', builtin.help_tags)
 
 -- File browser maps
-vim.keymap.set('n', '<leader>b', function()
+nmap('<leader>b', function()
   file_browser.file_browser({
     path = "%:p:h",
     cwd = telescope_buffer_dir(),
@@ -114,7 +122,7 @@ vim.keymap.set('n', '<leader>b', function()
     initial_mode = "normal",
     layout_config = { height = 40 }
   })
-end, opts)
+end)
 
 -- Aerial maps
-vim.keymap.set('n', '<leader>o', ':Telescope aerial<CR>', opts)
+nmap('<leader>o', ':Telescope aerial<CR>')
