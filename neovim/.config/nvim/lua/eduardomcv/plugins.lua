@@ -23,52 +23,72 @@ vim.cmd [[packadd packer.nvim]]
 return packer.startup(function(use)
   use 'wbthomason/packer.nvim' -- Plugin manager
 
-  use 'neovim/nvim-lspconfig' -- LSP
-  use 'hrsh7th/cmp-buffer' -- nvim-cmp source for buffer words
-  use 'hrsh7th/cmp-nvim-lsp' -- nvim-cmp source for neovim's built-in LSP
-  use 'hrsh7th/nvim-cmp' -- Completion
-  use 'onsails/lspkind.nvim' -- vscode-like pictograms
-  use 'L3MON4D3/LuaSnip' -- Snippet engine
-  use 'saadparwaiz1/cmp_luasnip' -- Luasnip completion source for nvim-cmp
-  use 'glepnir/lspsaga.nvim' -- LSP UI
+  use 'neovim/nvim-lspconfig' -- LSP configurations
   use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
+  use {
+    'glepnir/lspsaga.nvim', -- LSP UI
+    branch = 'main'
+  }
+  use 'j-hui/fidget.nvim' -- UI for LSP progress
+  use 'onsails/lspkind.nvim' -- vscode-like pictograms
+  use 'rafamadriz/friendly-snippets' -- vscode-like snippets
+
   use 'williamboman/mason.nvim' -- Manage LSPs, linters, formatters
   use 'williamboman/mason-lspconfig.nvim' -- Make it easier to use lspconfig with mason
   use 'jayp0521/mason-null-ls.nvim' -- Make it easier to use null-ls with mason
-  use 'j-hui/fidget.nvim' -- UI for LSP progress
-  use 'rafamadriz/friendly-snippets' -- vscode-like snippets
+
+  use {
+    'hrsh7th/nvim-cmp', -- Completion
+    requires = {
+      'hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim's built-in LSP
+      'hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words
+      'L3MON4D3/LuaSnip', -- Snippet engine
+      'saadparwaiz1/cmp_luasnip', -- Luasnip completion source for nvim-cmp
+    }
+  }
 
   use {
     'nvim-treesitter/nvim-treesitter', -- Treesitter
     run = ':TSUpdate'
   }
-  use 'windwp/nvim-autopairs' -- Handle brackets, quotes, etc. in pairs
   use 'windwp/nvim-ts-autotag' -- Use treesitter to auto close html tags
+  use 'windwp/nvim-autopairs' -- Handle brackets, quotes, etc. in pairs
 
-  use 'nvim-lua/plenary.nvim' -- Common utilities
-  use 'nvim-telescope/telescope.nvim' -- Fuzzy finder
+  use {
+    'nvim-telescope/telescope.nvim', -- Fuzzy finder
+    branch = '0.1.x',
+    requires = {
+      'nvim-lua/plenary.nvim' -- Common utilities
+    }
+  }
   use 'nvim-telescope/telescope-fzy-native.nvim' -- Compiled FZY style sorter
   use 'nvim-telescope/telescope-file-browser.nvim' -- File browser
+
 
   use 'lewis6991/gitsigns.nvim' -- Git decorations
   use 'dinhhuy258/git.nvim' -- Git blamer, browser, commands, etc in nvim
   use 'kdheepak/lazygit.nvim' -- lazygit
 
-  use 'nvim-lualine/lualine.nvim' -- Status line
+  use {
+    'nvim-lualine/lualine.nvim', -- Status line
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- File icons
+      opt = true,
+    }
+  }
   use 'Mofiqul/vscode.nvim' -- VSCode theme
-  use 'nvim-tree/nvim-web-devicons' -- File icons
   use 'akinsho/nvim-bufferline.lua' -- Buffer line for tabs
-  use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
-  use 'folke/todo-comments.nvim' -- Highlight keywords
+
+  use 'mfussenegger/nvim-dap' -- Debugging
+  use 'mbbill/undotree' -- Undo tree
   use 'tpope/vim-surround' -- Surround functionality
   use 'numToStr/Comment.nvim' -- Commenting functionality
-  use 'mbbill/undotree' -- Undo tree
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
+  use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
+  use 'folke/todo-comments.nvim' -- Highlight keywords
   use "stevearc/aerial.nvim" -- Buffer outline
-
   use 'David-Kunz/jester' -- Run jest tests easily
-  use 'mfussenegger/nvim-dap' -- Debugging
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
   use 'folke/neodev.nvim' -- Support for init.lua docs and completion
 
