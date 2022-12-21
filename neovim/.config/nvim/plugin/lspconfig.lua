@@ -1,11 +1,14 @@
 local ok, lspconfig = pcall(require, "lspconfig")
 if not ok then return end
 
--- Mason must be loaded before
+-- Mason must be loaded before lspconfig
 require('mason').setup {}
 require('mason-lspconfig').setup {
   automatic_installation = true
 }
+
+-- neodev must be loaded before lspconfig
+require('neodev').setup()
 
 local augroup_format = vim.api.nvim_create_augroup("Format", { clear = true })
 
@@ -172,6 +175,8 @@ lspconfig.sumneko_lua.setup {
     },
   },
 }
+
+
 
 lspconfig.graphql.setup {
   capabilities = capabilities,

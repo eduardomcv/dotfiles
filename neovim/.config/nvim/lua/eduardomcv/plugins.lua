@@ -70,6 +70,7 @@ return packer.startup(function(use)
   use 'David-Kunz/jester' -- Run jest tests easily
   use 'mfussenegger/nvim-dap' -- Debugging
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
+  use 'folke/neodev.nvim' -- Support for init.lua docs and completion
 
   if packer_bootstrap then
     packer.sync()
