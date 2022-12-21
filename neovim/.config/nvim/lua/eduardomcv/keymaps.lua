@@ -29,6 +29,7 @@ nmap('<C-u>', '<C-u>zz')
 nmap('n', 'nzzzv')
 nmap('N', 'Nzzzv')
 
+-- Disable Q
 nmap('Q', '<nop>')
 
 -- Increment/decrement
