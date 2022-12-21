@@ -1,10 +1,9 @@
 local ok, lspconfig = pcall(require, "lspconfig")
 if not ok then return end
 
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -63,13 +62,14 @@ vim.lsp.protocol.CompletionItemKind = {
 
 -- icon for diagnostics
 vim.lsp.handlers['textDocument/publishDiagnostics'] = vim.lsp.with(
-  vim.lsp.diagnostic.on_publish_diagnostics, {
-  underline = true,
-  virtual_text = {
-    spacing = 4,
-    prefix = '●',
+  vim.lsp.diagnostic.on_publish_diagnostics,
+  {
+    underline = true,
+    virtual_text = {
+      spacing = 4,
+      prefix = '●',
+    }
   }
-}
 )
 
 -- Diagnostic symbols in the sign column (gutter)
