@@ -3,7 +3,7 @@ if not ok then return end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
-local lsp_formatting = function(bufnr)
+local function lsp_formatting(bufnr)
   vim.lsp.buf.format({
     filter = function(client)
       return client.name == "null-ls"
@@ -20,6 +20,7 @@ null_ls.setup {
     null_ls.builtins.code_actions.eslint_d,
     null_ls.builtins.formatting.eslint_d,
     null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then
@@ -38,7 +39,11 @@ null_ls.setup {
   end
 }
 
+
 -- Mason null-ls plugin must be loaded after
 require('mason-null-ls').setup {
-  automatic_installation = true
+  automatic_installation = true,
+  automatic_setup = true,
 }
+
+require('mason-null-ls').setup_handlers {}
