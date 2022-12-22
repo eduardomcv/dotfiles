@@ -62,8 +62,6 @@ return packer.startup(function(use)
     }
   }
   use 'nvim-telescope/telescope-fzy-native.nvim' -- Compiled FZY style sorter
-  use 'nvim-telescope/telescope-file-browser.nvim' -- File browser
-
 
   use 'lewis6991/gitsigns.nvim' -- Git decorations
   use 'dinhhuy258/git.nvim' -- Git blamer, browser, commands, etc in nvim
@@ -72,14 +70,19 @@ return packer.startup(function(use)
   use {
     'nvim-lualine/lualine.nvim', -- Status line
     requires = {
-      'nvim-tree/nvim-web-devicons', -- File icons
-      opt = true,
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
     }
   }
   use 'Mofiqul/vscode.nvim' -- VSCode theme
   use 'akinsho/nvim-bufferline.lua' -- Buffer line for tabs
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
 
+  use {
+    'nvim-tree/nvim-tree.lua', -- File tree
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional, for file icons
+    },
+  }
   use 'mfussenegger/nvim-dap' -- Debugging
   use 'mbbill/undotree' -- Undo tree
   use 'tpope/vim-surround' -- Surround functionality

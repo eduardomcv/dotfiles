@@ -3,11 +3,6 @@ if not ok then return end
 
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
-local file_browser = telescope.extensions.file_browser
-
-local function telescope_buffer_dir()
-  return vim.fn.expand('%:p:h')
-end
 
 local function find_project_files()
   local opts = {}
@@ -67,30 +62,10 @@ telescope.setup {
       override_generic_sorter = false,
       override_file_sorter = true,
     },
-    file_browser = {
-      theme = "dropdown",
-      -- disables netrw and use telescope-file-browser in its place
-      hijack_netrw = true,
-      mappings = {
-        -- your custom insert mode mappings
-        ["i"] = {
-          ["<C-w>"] = function() vim.cmd('normal vbd') end,
-        },
-        -- your custom normal mode mappings
-        ["n"] = {
-          ["N"] = file_browser.actions.create,
-          ["h"] = file_browser.actions.goto_parent_dir,
-          ["/"] = function()
-            vim.cmd('startinsert')
-          end
-        },
-      },
-    },
   },
 }
 
 telescope.load_extension('fzy_native')
-telescope.load_extension('file_browser')
 telescope.load_extension('aerial')
 
 -- Builtin maps
@@ -109,20 +84,6 @@ vmap('<leader>sg', function()
 end)
 nmap('<leader>sb', builtin.buffers)
 nmap('<leader>sh', builtin.help_tags)
-
--- File browser maps
-nmap('<leader>b', function()
-  file_browser.file_browser({
-    path = "%:p:h",
-    cwd = telescope_buffer_dir(),
-    respect_gitignore = false,
-    hidden = true,
-    grouped = true,
-    previewer = false,
-    initial_mode = "normal",
-    layout_config = { height = 40 }
-  })
-end)
 
 -- Aerial maps
 nmap('<leader>o', ':Telescope aerial<CR>')
