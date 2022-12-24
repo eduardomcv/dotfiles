@@ -94,6 +94,10 @@ return packer.startup(function(use)
   use 'David-Kunz/jester' -- Run jest tests easily
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
   use 'folke/neodev.nvim' -- Support for init.lua docs and completion
+  use {
+    "folke/trouble.nvim", -- Pretty diagnostics
+    requires = "nvim-tree/nvim-web-devicons",
+  }
 
   if packer_bootstrap then
     packer.sync()
