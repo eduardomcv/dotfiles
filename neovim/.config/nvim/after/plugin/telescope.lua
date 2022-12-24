@@ -1,6 +1,8 @@
 local ok, telescope = pcall(require, 'telescope')
 if not ok then return end
 
+local utils = require('eduardomcv.utils')
+
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
 
@@ -26,16 +28,6 @@ local function getVisualSelection()
   else
     return ''
   end
-end
-
-local opts = { noremap = true, silent = true }
-
-local function nmap(lhs, rhs)
-  vim.keymap.set('n', lhs, rhs, opts)
-end
-
-local function vmap(lhs, rhs)
-  vim.keymap.set('v', lhs, rhs, opts)
 end
 
 telescope.setup {
@@ -69,21 +61,21 @@ telescope.load_extension('fzy_native')
 telescope.load_extension('aerial')
 
 -- Builtin maps
-nmap('<C-p>', find_project_files)
-nmap('<C-f>', builtin.current_buffer_fuzzy_find)
-vmap('<C-f>', function()
+utils.nmap('<C-p>', find_project_files)
+utils.nmap('<C-f>', builtin.current_buffer_fuzzy_find)
+utils.nmap('<C-f>', function()
   local text = getVisualSelection()
   builtin.current_buffer_fuzzy_find({ default_text = text })
 end)
-nmap('<leader>sf', builtin.find_files)
-nmap('<leader>sw', builtin.grep_string)
-nmap('<leader>sg', builtin.live_grep)
-vmap('<leader>sg', function()
+utils.nmap('<leader>sf', builtin.find_files)
+utils.nmap('<leader>sw', builtin.grep_string)
+utils.nmap('<leader>sg', builtin.live_grep)
+utils.nmap('<leader>sg', function()
   local text = getVisualSelection()
   builtin.live_grep({ default_text = text })
 end)
-nmap('<leader>sb', builtin.buffers)
-nmap('<leader>sh', builtin.help_tags)
+utils.nmap('<leader>sb', builtin.buffers)
+utils.nmap('<leader>sh', builtin.help_tags)
 
 -- Aerial maps
-nmap('<leader>o', ':Telescope aerial<CR>')
+utils.nmap('<leader>o', ':Telescope aerial<CR>')
