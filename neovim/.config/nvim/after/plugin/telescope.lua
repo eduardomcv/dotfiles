@@ -5,6 +5,7 @@ local utils = require('eduardomcv.utils')
 
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')
+local trouble = require("trouble.providers.telescope")
 
 local function find_project_files()
   local opts = {}
@@ -46,6 +47,10 @@ telescope.setup {
     mappings = {
       n = {
         ["q"] = actions.close,
+        ["<c-t>"] = trouble.open_with_trouble,
+      },
+      i = {
+        ["<c-t>"] = trouble.open_with_trouble,
       },
     },
   },
