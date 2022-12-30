@@ -1,18 +1,26 @@
-local ok, cmp = pcall(require, "cmp")
-if (not ok or not cmp) then return end
+local ok_cmp, cmp = pcall(require, 'cmp')
+if not ok_cmp then return end
+
+local ok_lspkind, lspkind = pcall(require, 'lspkind')
+if not ok_lspkind then return end
+
+local ok_luasnip, luasnip = pcall(require, 'luasnip')
+if not ok_luasnip then return end
+
+local ok_cmp_npm, cmp_npm = pcall(require, 'cmp-npm')
+if not ok_cmp_npm then return end
+
+-- Load vscode snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
-
 -- Avoid showing message extra message when using completion
 vim.opt.shortmess:append('c')
 
-local lspkind = require('lspkind')
-local luasnip = require('luasnip')
-
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
+  return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
 end
 
 local function tab(fallback)
@@ -37,6 +45,13 @@ local function shift_tab(fallback)
   end
 end
 
+luasnip.config.set_config {
+  region_check_events = 'InsertEnter',
+  delete_check_events = 'InsertLeave',
+}
+
+cmp_npm.setup {}
+
 cmp.setup({
   snippet = {
     expand = function(args)
@@ -58,12 +73,14 @@ cmp.setup({
     }),
     ['<Down>'] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
     ['<Up>'] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { 'i' }),
-    ["<Tab>"] = cmp.mapping(tab, { "i", "s" }),
-    ["<S-Tab>"] = cmp.mapping(shift_tab, { "i", "s" }),
+    ['<Tab>'] = cmp.mapping(tab, { 'i', 's' }),
+    ['<S-Tab>'] = cmp.mapping(shift_tab, { 'i', 's' }),
   },
   sources = cmp.config.sources({
-    { name = 'nvim_lsp' },
     { name = 'luasnip' },
+    { name = 'nvim_lsp' },
+  }, {
+    { name = 'npm' },
   }, {
     { name = 'buffer' },
   }),
