@@ -1,7 +1,7 @@
 local ok, trouble = pcall(require, 'trouble')
 if not ok then return end
 
-local utils = require('eduardomcv.utils')
+local utils = require('user.utils')
 
 trouble.setup {}
 

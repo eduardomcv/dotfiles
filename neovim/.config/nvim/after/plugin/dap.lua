@@ -7,7 +7,7 @@ if not ok_dapui then return end
 local ok_dap_vscode_js, dap_vscode_js = pcall(require, 'dap-vscode-js')
 if not ok_dap_vscode_js then return end
 
-local utils = require('eduardomcv.utils')
+local utils = require('user.utils')
 local mason_path = vim.fn.stdpath('data') .. '/mason'
 
 dap_vscode_js.setup({
@@ -77,7 +77,7 @@ dapui.setup()
 -- We need to wait for execution to stop at the first breakpoint before showing the UI to give the source maps time to generate.
 -- If we don't, the UI will close because the source maps haven't generated in time.
 dap.listeners.after.event_breakpoint["dapui_config"] = function()
-	dapui.open()
+  dapui.open()
 end
 dap.listeners.before.event_terminated["dapui_config"] = function()
   dapui.close {}

@@ -1,4 +1,4 @@
-local utils = require('eduardomcv.utils')
+local utils = require('user.utils')
 
 local set = vim.keymap.set
 
