@@ -88,7 +88,21 @@ return packer.startup(function(use)
       'mfussenegger/nvim-dap' -- Debugging
     }
   }
-  use 'David-Kunz/jester' -- Run and debug jest tests easily
+  use {
+    "mxsdev/nvim-dap-vscode-js", -- DAP support for vscode-js-debug
+    requires = {
+      "mfussenegger/nvim-dap"
+    }
+  }
+  use {
+    'nvim-neotest/neotest', -- Test runner framework
+    requires = {
+      'nvim-lua/plenary.nvim',
+      'nvim-treesitter/nvim-treesitter',
+      'antoinemadec/FixCursorHold.nvim',
+      'haydenmeade/neotest-jest', -- Jest support
+    }
+  }
 
   use {
     'nvim-tree/nvim-tree.lua', -- File tree
