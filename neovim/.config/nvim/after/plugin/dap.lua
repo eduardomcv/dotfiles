@@ -88,7 +88,7 @@ end
 
 -- Breakpoint signs
 vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
-vim.fn.sign_define('DapStopped', { text = '🟩', texthl = '', linehl = '', numhl = '' })
+vim.fn.sign_define('DapStopped', { text = '🟨', texthl = '', linehl = '', numhl = '' })
 
 -- Keymaps
 utils.nmap('gbp', dap.toggle_breakpoint)
