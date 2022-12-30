@@ -12,9 +12,9 @@ end
 
 local packer_bootstrap = ensure_packer()
 
-local ok, packer = pcall(require, "packer")
+local ok, packer = pcall(require, 'packer')
 if not ok then
-  print("Packer is not installed")
+  print('Packer is not installed')
   return
 end
 
@@ -90,13 +90,13 @@ return packer.startup(function(use)
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
   use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
   use 'folke/todo-comments.nvim' -- Highlight keywords
-  use "stevearc/aerial.nvim" -- Buffer outline
   use 'David-Kunz/jester' -- Run jest tests easily
+  use 'stevearc/aerial.nvim' -- Buffer outline
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
   use 'folke/neodev.nvim' -- Support for init.lua docs and completion
   use {
-    "folke/trouble.nvim", -- Pretty diagnostics
-    requires = "nvim-tree/nvim-web-devicons",
+    'folke/trouble.nvim', -- Pretty diagnostics
+    requires = 'nvim-tree/nvim-web-devicons',
   }
 
   if packer_bootstrap then
