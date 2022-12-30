@@ -118,7 +118,14 @@ local servers = {
 }
 
 -- neodev must be loaded before lspconfig
-require('neodev').setup {}
+require('neodev').setup {
+  library = {
+    plugins = {
+      'neotest',
+    },
+    types = true,
+  },
+}
 
 -- Mason must be loaded before lspconfig
 require('mason').setup {}
