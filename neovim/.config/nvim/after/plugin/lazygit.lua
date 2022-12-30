@@ -1,3 +1,3 @@
-local opts = { noremap = true, silent = true }
+local utils = require('user.utils')
 
-vim.keymap.set('n', '<leader>gg', ':LazyGit<cr>', opts)
+utils.nmap('<leader>gg', ':LazyGit<cr>')
