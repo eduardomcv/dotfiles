@@ -1,2 +1,4 @@
+local utils = require('user.utils')
+
 -- Toggle undotree
-vim.keymap.set('n', '<leader>u', ':UndotreeToggle<CR>:UndotreeFocus<CR>')
+utils.nmap('<leader>u', ':UndotreeToggle<CR>:UndotreeFocus<CR>')

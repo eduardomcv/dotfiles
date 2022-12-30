@@ -1,4 +1,7 @@
-require('lspkind').init({
+local ok, lspkind = pcall(require, 'lspkind')
+if not ok then return end
+
+lspkind.init({
   -- DEPRECATED (use mode instead): enables text annotations
   --
   -- default: true
@@ -47,4 +50,3 @@ require('lspkind').init({
     TypeParameter = ""
   },
 })
-

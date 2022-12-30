@@ -1,5 +1,8 @@
-local ok, null_ls = pcall(require, 'null-ls')
-if not ok then return end
+local null_ls_ok, null_ls = pcall(require, 'null-ls')
+if not null_ls_ok then return end
+
+local mason_null_ls_ok, mason_null_ls = pcall(require, 'mason-null-ls')
+if not mason_null_ls_ok then return end
 
 local augroup = vim.api.nvim_create_augroup("LspFormatting", {})
 
@@ -41,9 +44,9 @@ null_ls.setup {
 
 
 -- Mason null-ls plugin must be loaded after
-require('mason-null-ls').setup {
+mason_null_ls.setup {
   automatic_installation = true,
   automatic_setup = true,
 }
 
-require('mason-null-ls').setup_handlers {}
+mason_null_ls.setup_handlers {}
