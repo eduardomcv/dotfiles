@@ -1,7 +1,7 @@
 local ok, jester = pcall(require, 'jester')
 if not ok then return end
 
-local utils = require('eduardomcv.utils')
+local utils = require('user.utils')
 
 jester.setup {
   path_to_jest_run = './node_modules/.bin/jest',
