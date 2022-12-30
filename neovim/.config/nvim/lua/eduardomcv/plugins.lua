@@ -44,6 +44,12 @@ return packer.startup(function(use)
       'hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words
       'L3MON4D3/LuaSnip', -- Snippet engine
       'saadparwaiz1/cmp_luasnip', -- Luasnip completion source for nvim-cmp
+      {
+        'David-Kunz/cmp-npm', -- nvim-cmp source for npm
+        requires = {
+          'nvim-lua/plenary.nvim'
+        }
+      }
     }
   }
 
