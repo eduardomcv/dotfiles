@@ -1,10 +1,12 @@
 local ok, jester = pcall(require, 'jester')
 if not ok then return end
 
+local utils = require('eduardomcv.utils')
+
 jester.setup {
   path_to_jest_run = './node_modules/.bin/jest',
 }
 
-vim.keymap.set('n', '<leader>tr', jester.run, {})
-vim.keymap.set('n', '<leader>tf', jester.run_file, {})
-vim.keymap.set('n', '<leader>td', jester.debug, {})
+utils.nmap('<leader>tr', jester.run)
+utils.nmap('<leader>tf', jester.run_file)
+utils.nmap('<leader>td', jester.debug)
