@@ -70,7 +70,6 @@ return packer.startup(function(use)
   use 'nvim-telescope/telescope-fzy-native.nvim' -- Compiled FZY style sorter
 
   use 'lewis6991/gitsigns.nvim' -- Git decorations
-  use 'dinhhuy258/git.nvim' -- Git blamer, browser, commands, etc in nvim
   use 'kdheepak/lazygit.nvim' -- lazygit
 
   use {
