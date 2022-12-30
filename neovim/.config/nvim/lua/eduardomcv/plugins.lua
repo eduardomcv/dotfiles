@@ -84,19 +84,25 @@ return packer.startup(function(use)
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
 
   use {
+    'rcarriga/nvim-dap-ui', -- UI for debugger
+    requires = {
+      'mfussenegger/nvim-dap' -- Debugging
+    }
+  }
+  use 'David-Kunz/jester' -- Run and debug jest tests easily
+
+  use {
     'nvim-tree/nvim-tree.lua', -- File tree
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   }
-  use 'mfussenegger/nvim-dap' -- Debugging
   use 'mbbill/undotree' -- Undo tree
   use 'tpope/vim-surround' -- Surround functionality
   use 'numToStr/Comment.nvim' -- Commenting functionality
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
   use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
   use 'folke/todo-comments.nvim' -- Highlight keywords
-  use 'David-Kunz/jester' -- Run jest tests easily
   use 'stevearc/aerial.nvim' -- Buffer outline
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
   use 'folke/neodev.nvim' -- Support for init.lua docs and completion
