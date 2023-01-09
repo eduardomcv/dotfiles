@@ -81,6 +81,7 @@ utils.nmap('<leader>sg', function()
 end)
 utils.nmap('<leader>sb', builtin.buffers)
 utils.nmap('<leader>sh', builtin.help_tags)
+utils.nmap('<leader>sr', builtin.oldfiles)
 
 -- Aerial maps
 utils.nmap('<leader>o', ':Telescope aerial<CR>')
