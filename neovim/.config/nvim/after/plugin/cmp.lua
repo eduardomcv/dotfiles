@@ -26,7 +26,7 @@ end
 local function tab(fallback)
   if cmp.visible() then
     cmp.select_next_item()
-  elseif luasnip.expand_or_jumpable() then
+  elseif luasnip.expand_or_locally_jumpable() then
     luasnip.expand_or_jump()
   elseif has_words_before() then
     cmp.complete()
@@ -44,11 +44,6 @@ local function shift_tab(fallback)
     fallback()
   end
 end
-
-luasnip.config.set_config {
-  region_check_events = 'InsertEnter',
-  delete_check_events = 'InsertLeave',
-}
 
 cmp_npm.setup {}
 
