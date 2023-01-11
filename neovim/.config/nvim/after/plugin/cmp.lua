@@ -81,10 +81,11 @@ cmp.setup({
   }),
   formatting = {
     format = lspkind.cmp_format({
-      with_text = false,
-      maxwidth = 50,
-    })
-  }
+      mode = 'symbol_text',
+      maxwidth = 40,
+      ellipsis_char = '...',
+    }),
+  },
 })
 
 vim.cmd [[highlight! default link CmpItemKind CmpItemMenuDefault]]
