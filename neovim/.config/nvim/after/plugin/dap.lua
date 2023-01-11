@@ -91,10 +91,10 @@ vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', n
 vim.fn.sign_define('DapStopped', { text = '🟨', texthl = '', linehl = '', numhl = '' })
 
 -- Keymaps
-utils.nmap('gbp', dap.toggle_breakpoint)
-utils.nmap('gsi', dap.step_into)
-utils.nmap('gso', dap.step_over)
-utils.nmap('gsb', dap.step_out)
-utils.nmap('gss', dap.continue)
-utils.nmap('gst', dap.terminate)
-vim.keymap.set({ 'n', 'v' }, 'gee', dapui.eval)
+utils.nmap('<leader>bp', dap.toggle_breakpoint)
+utils.nmap('<F5>', dap.continue)
+utils.nmap('<F10>', dap.step_over)
+utils.nmap('<F11>', dap.step_into)
+utils.nmap('<S-F11>', dap.step_out)
+utils.nmap('<S-F5>', dap.terminate)
+vim.keymap.set({ 'n', 'v' }, '<leader>db', dapui.eval)
