@@ -23,7 +23,6 @@ alias vi="env TERM=wezterm nvim"
 # exports
 export EDITOR=nvim
 export VISUAL=nvim
-export VIMRC=~/.config/nvim/init.lua
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
