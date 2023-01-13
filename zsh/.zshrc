@@ -52,7 +52,7 @@ precmd() { vcs_info }
 
 # change prompt
 setopt prompt_subst
-PROMPT='%F{blue}%B%~%b%f ${vcs_info_msg_0_}% > '
+PROMPT=$'%F{blue}%B%~%b%f ${vcs_info_msg_0_}% \n> '
 
 # enable editing command with vi editor
 autoload -U edit-command-line
