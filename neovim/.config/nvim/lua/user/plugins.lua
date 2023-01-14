@@ -116,7 +116,6 @@ return packer.startup(function(use)
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
   use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
   use 'folke/todo-comments.nvim' -- Highlight keywords
-  use 'stevearc/aerial.nvim' -- Buffer outline
   use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
   use 'folke/neodev.nvim' -- Support for init.lua docs and completion
   use {
