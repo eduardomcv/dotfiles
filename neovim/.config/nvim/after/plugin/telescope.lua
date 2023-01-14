@@ -63,7 +63,6 @@ telescope.setup {
 }
 
 telescope.load_extension('fzy_native')
-telescope.load_extension('aerial')
 
 -- Builtin maps
 utils.nmap('<C-p>', find_project_files)
@@ -82,6 +81,4 @@ end)
 utils.nmap('<leader>sb', builtin.buffers)
 utils.nmap('<leader>sh', builtin.help_tags)
 utils.nmap('<leader>sr', builtin.oldfiles)
-
--- Aerial maps
-utils.nmap('<leader>so', ':Telescope aerial<CR>')
+utils.nmap('<leader>st', builtin.tags)
