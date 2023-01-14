@@ -84,4 +84,4 @@ utils.nmap('<leader>sh', builtin.help_tags)
 utils.nmap('<leader>sr', builtin.oldfiles)
 
 -- Aerial maps
-utils.nmap('<leader>o', ':Telescope aerial<CR>')
+utils.nmap('<leader>so', ':Telescope aerial<CR>')
