@@ -10,13 +10,16 @@ if not ok_luasnip then return end
 local ok_cmp_npm, cmp_npm = pcall(require, 'cmp-npm')
 if not ok_cmp_npm then return end
 
--- Load vscode snippets
-require("luasnip.loaders.from_vscode").lazy_load()
+local ok_ts_utils, ts_utils = pcall(require, 'nvim-treesitter.ts_utils')
+if not ok_ts_utils then return end
 
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 -- Avoid showing message extra message when using completion
 vim.opt.shortmess:append('c')
+
+-- Load vscode snippets
+require("luasnip.loaders.from_vscode").lazy_load()
 
 local function has_words_before()
   local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -73,7 +76,19 @@ cmp.setup({
   },
   sources = cmp.config.sources({
     { name = 'luasnip' },
-    { name = 'nvim_lsp' },
+    {
+      name = 'nvim_lsp',
+      entry_filter = function(entry)
+        local kind = entry:get_kind()
+        local node_at_cursor = ts_utils.get_node_at_cursor()
+
+        if node_at_cursor:type() == 'arguments' then
+          return kind == 6
+        end
+
+        return true
+      end
+    },
   }, {
     { name = 'npm' },
   }, {
