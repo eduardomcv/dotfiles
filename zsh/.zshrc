@@ -1,3 +1,16 @@
+antidote_dir=${ZDOTDIR:-~}/.antidote
+
+# Automatically install antidote
+if [[ ! -e $antidote_dir ]] then
+  git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
+fi
+
+# source antidote
+source $antidote_dir/antidote.zsh
+
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
+
 # aliases
 alias ls="ls --color=auto -CF"      # if GNU based, show colors with --color
 # alias ls="ls -GCF"                # if BSD based, show colors with -G
@@ -58,12 +71,6 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 # auto suggestions
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)           # try to find a suggestion from history. if no match is found, try from completion engine
 bindkey '^ ' autosuggest-accept                         # accept suggestion with ctrl+space
-
-# source antidote
-source ${ZDOTDIR:-~}/.antidote/antidote.zsh
-
-# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
-antidote load
 
 # starship prompt
 eval "$(starship init zsh)"
