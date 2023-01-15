@@ -3,3 +3,6 @@ zsh-users/zsh-autosuggestions
 
 # Syntax highlighting
 zsh-users/zsh-syntax-highlighting
+
+# Jump to recent directories with z
+agkozak/zsh-z
