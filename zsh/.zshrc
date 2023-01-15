@@ -5,8 +5,12 @@ alias grep='grep --color=auto'
 alias l=ls
 alias ll="ls -alF"
 alias la="ls -A"
+alias cat=bat
 alias lg="lazygit"
 alias vi="env TERM=wezterm nvim"
+alias ff="fd -H -t f -E .git"
+alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias fz="ff | fzf"
 
 # exports
 export EDITOR=nvim
