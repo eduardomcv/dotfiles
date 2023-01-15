@@ -78,7 +78,7 @@ cmp.setup({
     end,
   },
   window = {
-    completion = cmp.config.window.bordered(),
+    completion = cmp.config.window.bordered({ side_padding = 0 }),
     documentation = cmp.config.window.bordered(),
   },
   mapping = {
