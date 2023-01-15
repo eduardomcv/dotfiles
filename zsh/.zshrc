@@ -22,8 +22,12 @@ alias cat=bat
 alias lg="lazygit"
 alias vi="env TERM=wezterm nvim"
 alias ff="fd -H -t f -E .git"
-alias fzf="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
-alias fz="ff | fzf"
+alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+
+# use fzf to search command history
+fh() {
+  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+}
 
 # exports
 export EDITOR=nvim
