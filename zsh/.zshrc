@@ -1,15 +1,3 @@
-#
-# Simple config for zshell.
-#
-# Includes:
-#   - aliases
-#   - a simple prompt with version control
-#   - syntax highlighting
-#   - vi mode and vi keys
-#   - completions
-#   - suggestions
-#
-
 # aliases
 alias ls="ls --color=auto -CF"      # if GNU based, show colors with --color
 # alias ls="ls -GCF"                # if BSD based, show colors with -G
@@ -44,16 +32,6 @@ _comp_options+=(globdots)           # Include hidden files
 # enable colors
 autoload -U colors && colors
 
-# version control
-autoload -Uz vcs_info
-zstyle ':vcs_info:git*' formats "%F{yellow}(%b)%f %m%u%c"                                   # format vcs prompt
-zstyle ':vcs_info:git*' actionformats "%F{yellow}(%b%F{blue}|%F{red}%a%F{yellow})%f %u%c"   # change vcs formatting to show certain actions i.e. merge
-precmd() { vcs_info }
-
-# change prompt
-setopt prompt_subst
-PROMPT=$'%F{blue}%B%~%b%f ${vcs_info_msg_0_}% \n> '
-
 # enable editing command with vi editor
 autoload -U edit-command-line
 zle -N edit-command-line
@@ -74,10 +52,14 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # auto suggestions
-source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh   # source plugin (path may vary per OS)
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)                               # try to find a suggestion from history. if no match is found, try from completion engine
-bindkey '^ ' autosuggest-accept                                             # accept suggestion with ctrl+space
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)           # try to find a suggestion from history. if no match is found, try from completion engine
+bindkey '^ ' autosuggest-accept                         # accept suggestion with ctrl+space
 
-# syntax highlighting (must be loaded last)
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh   # path may vary per OS
+# source antidote
+source ${ZDOTDIR:-~}/.antidote/antidote.zsh
 
+# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
+antidote load
+
+# starship prompt
+eval "$(starship init zsh)"
