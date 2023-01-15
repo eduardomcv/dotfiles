@@ -2,10 +2,10 @@
 zsh-users/zsh-autosuggestions
 
 # Syntax highlighting
-zdharma-continuum/fast-syntax-highlighting
+zdharma-continuum/fast-syntax-highlighting kind:defer
 
 # Additional completion definitions
 zsh-users/zsh-completions
 
 # Jump to recent directories with z
-agkozak/zsh-z
+rupa/z
