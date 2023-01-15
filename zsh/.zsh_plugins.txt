@@ -2,7 +2,10 @@
 zsh-users/zsh-autosuggestions
 
 # Syntax highlighting
-zsh-users/zsh-syntax-highlighting
+zdharma-continuum/fast-syntax-highlighting
+
+# Additional completion definitions
+zsh-users/zsh-completions
 
 # Jump to recent directories with z
 agkozak/zsh-z
