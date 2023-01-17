@@ -114,5 +114,3 @@ cmp.setup({
     }),
   },
 })
-
-vim.cmd [[highlight! default link CmpItemKind CmpItemMenuDefault]]
