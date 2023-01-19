@@ -12,12 +12,11 @@ source $antidote_dir/antidote.zsh
 antidote load
 
 # aliases
-alias ls="ls --color=auto -CF"      # if GNU based, show colors with --color
-# alias ls="ls -GCF"                # if BSD based, show colors with -G
-alias grep='grep --color=auto'
+alias grep="grep --color=auto"
+alias ls="exa -F"
 alias l=ls
-alias ll="ls -alF"
-alias la="ls -A"
+alias la="ls -a"
+alias ll="la -l"
 alias cat=bat
 alias lg="lazygit"
 alias vi="env TERM=wezterm nvim"
