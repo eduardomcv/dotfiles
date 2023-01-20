@@ -52,10 +52,6 @@ local function lsp_entry_filter(entry, context)
   local kind = entry:get_kind()
   local node_at_cursor = ts_utils.get_node_at_cursor()
 
-  if node_at_cursor:type() == 'arguments' then
-    return kind == 6
-  end
-
   local line = context.cursor_line
   local col = context.cursor.col
   local char_before_cursor = string.sub(line, col - 1, col - 1)
@@ -96,11 +92,11 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(shift_tab, { 'i', 's' }),
   },
   sources = cmp.config.sources({
-    { name = 'luasnip' },
     {
       name = 'nvim_lsp',
       entry_filter = lsp_entry_filter,
     },
+    { name = 'luasnip' },
   }, {
     { name = 'npm' },
   }, {
