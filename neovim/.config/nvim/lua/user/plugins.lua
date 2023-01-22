@@ -111,7 +111,7 @@ return packer.startup(function(use)
     },
   }
   use 'mbbill/undotree' -- Undo tree
-  use 'tpope/vim-surround' -- Surround functionality
+  use { 'kylechui/nvim-surround', tag = '*' } -- Surround functionality
   use 'numToStr/Comment.nvim' -- Commenting functionality
   use 'gpanders/editorconfig.nvim' -- EditorConfig support
   use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
