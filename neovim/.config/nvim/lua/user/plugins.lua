@@ -122,7 +122,6 @@ return packer.startup(function(use)
     'folke/trouble.nvim', -- Pretty diagnostics
     requires = 'nvim-tree/nvim-web-devicons',
   }
-  use 'vimwiki/vimwiki' -- Vimwiki
 
   if packer_bootstrap then
     packer.sync()
