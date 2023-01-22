@@ -48,23 +48,6 @@ local function shift_tab(fallback)
   end
 end
 
-local function lsp_entry_filter(entry, context)
-  local kind = entry:get_kind()
-  local node_at_cursor = ts_utils.get_node_at_cursor()
-
-  local line = context.cursor_line
-  local col = context.cursor.col
-  local char_before_cursor = string.sub(line, col - 1, col - 1)
-
-  if char_before_cursor == '.' then
-    return kind == 2 or kind == 5
-  elseif string.match(line, '^%s*%w*$') then
-    return kind == 3 or kind == 6
-  end
-
-  return true
-end
-
 cmp_npm.setup {}
 
 cmp.setup({
@@ -92,10 +75,7 @@ cmp.setup({
     ['<S-Tab>'] = cmp.mapping(shift_tab, { 'i', 's' }),
   },
   sources = cmp.config.sources({
-    {
-      name = 'nvim_lsp',
-      entry_filter = lsp_entry_filter,
-    },
+    { name = 'nvim_lsp' },
     { name = 'luasnip' },
   }, {
     { name = 'npm' },
