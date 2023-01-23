@@ -55,9 +55,6 @@ vim.opt.linebreak = true
 -- Nice menu for :find
 vim.opt.wildmode = { 'longest', 'list', 'full' }
 
--- More space for displaying commands
-vim.opt.cmdheight = 2
-
 -- Don't show mode on last line
 vim.opt.showmode = false
 
