@@ -7,6 +7,7 @@ tokyonight.setup {
     comments = { italic = false },
     keywords = { italic = false },
   },
+  sidebars = { 'qf', 'help', 'undotree', 'packer' },
 }
 
 vim.cmd [[colorscheme tokyonight]]
