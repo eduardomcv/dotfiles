@@ -3,7 +3,7 @@ local act = wezterm.action
 
 return {
   font = wezterm.font 'FiraCode Nerd Font',
-  color_scheme = 'VSCodeDark+ (Gogh)',
+  color_scheme = 'tokyonight',
   hide_tab_bar_if_only_one_tab = true,
   window_background_opacity = 0.9,
   use_fancy_tab_bar = false,

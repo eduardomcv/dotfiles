@@ -78,7 +78,7 @@ return packer.startup(function(use)
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     }
   }
-  use 'Mofiqul/vscode.nvim' -- VSCode theme
+  use 'folke/tokyonight.nvim' -- Tokyonight theme
   use 'akinsho/nvim-bufferline.lua' -- Buffer line for tabs
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
 
