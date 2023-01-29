@@ -18,11 +18,54 @@ end
 null_ls.setup {
   sources = {
     null_ls.builtins.diagnostics.eslint_d.with({
-      diagnostics_format = '[eslint] #{m}\n(#{c})'
+      diagnostics_format = '[eslint] #{m}\n(#{c})',
+      condition = function(utils)
+        return utils.root_has_file({
+          '.eslintrc',
+          '.eslintrc.json',
+          '.eslintrc.js',
+          '.eslintrc.cjs',
+          '.eslintrc.yml',
+          '.eslintrc.yaml',
+        })
+      end
     }),
-    null_ls.builtins.code_actions.eslint_d,
-    null_ls.builtins.formatting.eslint_d,
-    null_ls.builtins.formatting.prettierd,
+    null_ls.builtins.code_actions.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          '.eslintrc',
+          '.eslintrc.json',
+          '.eslintrc.js',
+          '.eslintrc.cjs',
+          '.eslintrc.yml',
+          '.eslintrc.yaml',
+        })
+      end
+    }),
+    null_ls.builtins.formatting.eslint_d.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          '.eslintrc',
+          '.eslintrc.json',
+          '.eslintrc.js',
+          '.eslintrc.cjs',
+          '.eslintrc.yml',
+          '.eslintrc.yaml',
+        })
+      end
+    }),
+    null_ls.builtins.formatting.prettierd.with({
+      condition = function(utils)
+        return utils.root_has_file({
+          '.prettierrc',
+          '.prettierrc.json',
+          '.prettierrc.js',
+          '.prettierrc.yml',
+          '.prettierrc.yaml',
+          '.prettierrc.toml',
+        })
+      end
+    }),
     null_ls.builtins.formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
@@ -46,7 +89,4 @@ null_ls.setup {
 -- Mason null-ls plugin must be loaded after
 mason_null_ls.setup {
   automatic_installation = true,
-  automatic_setup = true,
 }
-
-mason_null_ls.setup_handlers {}
