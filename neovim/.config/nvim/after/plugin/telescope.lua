@@ -54,6 +54,12 @@ telescope.setup {
       },
     },
   },
+  pickers = {
+    find_files = {
+      hidden = true,
+      file_ignore_patterns = { '^.git/' }
+    },
+  },
   extensions = {
     fzy_native = {
       override_generic_sorter = false,
