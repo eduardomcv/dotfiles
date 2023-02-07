@@ -118,5 +118,7 @@ null_ls.setup {
     end
 }
 
-
 -- Mason null-ls plugin must be loaded after
+mason_null_ls.setup {
+    automatic_installation = true,
+}
