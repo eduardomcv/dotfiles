@@ -35,8 +35,6 @@ vim.opt.wildoptions = 'pum'
 vim.opt.pumblend = 5
 vim.opt.background = 'dark'
 
--- Don't wrap text
-vim.opt.wrap = false
 
 -- Don't keep searched terms highlighted
 vim.opt.hlsearch = false
@@ -50,6 +48,9 @@ vim.opt.scrolloff = 10
 
 -- Vertical line at 120 chars
 vim.opt.colorcolumn = '120'
+
+-- Don't break in the middle of a word
+vim.opt.linebreak = true
 
 -- Nice menu for :find
 vim.opt.wildmode = { 'longest', 'list', 'full' }
