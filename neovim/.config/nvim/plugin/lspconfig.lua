@@ -109,7 +109,7 @@ local servers = {
   rust_analyzer = {},
   graphql = {},
   tsserver = {},
-  sumneko_lua = {
+  lua_ls = {
     Lua = {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
@@ -170,8 +170,8 @@ require('mason-lspconfig').setup_handlers {
       }
     }
   end,
-  sumneko_lua = function()
-    lspconfig.sumneko_lua.setup {
+  lua_ls = function()
+    lspconfig.lua_ls.setup {
       on_attach = function(client, bufnr)
         on_attach(client, bufnr)
 
@@ -192,7 +192,7 @@ require('mason-lspconfig').setup_handlers {
         })
       end,
       capabilities = capabilities,
-      settings = servers.sumneko_lua,
+      settings = servers.lua_ls,
     }
   end
 }
