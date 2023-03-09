@@ -12,6 +12,7 @@ THINGS_TO_STOW=( \
     wezterm \
     neovim \
     vscode \
+    i3
 )
 
 for thing in ${THINGS_TO_STOW[@]}; do
