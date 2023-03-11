@@ -108,7 +108,7 @@ bindsym $mod+a focus parent
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
 set $ws1 "1: Terminal "
-set $ws2 "2: Editor "
+set $ws2 "2: Work 󱌣"
 set $ws3 "3: Browser 󰈹"
 set $ws4 "4: Chat 󰭹"
 set $ws5 "5: Gaming "
@@ -187,7 +187,11 @@ bindsym $mod+shift+x exec i3lock
 # Start blueman applet
 exec --no-startup-id blueman-applet
 
+# Set keyboard layouts
 exec --no-startup-id "setxkbmap -layout us,pt -option 'grp:alt_space_toggle'"
+
+# Start notification manager
+exec --no-startup-id dunst
 
 # Use pactl to adjust volume in PulseAudio. Update i3blocks.
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
@@ -211,4 +215,6 @@ bindsym $mod+Shift+p exec --no-startup-id maim --format=png | xclip -selection c
 assign [class="firefox"] $ws3
 assign [class="discord"] $ws4
 assign [class="Steam"] $ws5
+assign [class="Lutris"] $ws5
+assign [class="heroic"] $ws5
 assign [class="Spotify"] $ws6
