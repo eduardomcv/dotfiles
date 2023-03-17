@@ -182,7 +182,6 @@ bar {
         position top
 }
 
-bindsym $mod+shift+x exec i3lock
 
 # Start blueman applet
 exec --no-startup-id blueman-applet
@@ -221,3 +220,24 @@ assign [class="Steam"] $ws5
 assign [class="Lutris"] $ws5
 assign [class="heroic"] $ws5
 assign [class="Spotify"] $ws6
+
+# Power/session management
+set $Locker i3lock && sleep 1
+
+bindsym $mod+shift+x exec --no-startup-id $Locker
+
+set $mode_system System (l) lock, (e) logout, (s) shutdown, (h) hibernate, (r) reboot, (Shift+s) suspend
+mode "$mode_system" {
+    bindsym l exec --no-startup-id $Locker, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym Shift+s exec --no-startup-id $Locker && systemctl suspend, mode "default"
+    bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym s exec --no-startup-id systemctl poweroff -i, mode "default"  
+
+    # back to normal: Enter or Escape
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+Shift+Delete mode "$mode_system"
