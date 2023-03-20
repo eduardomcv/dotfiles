@@ -8,6 +8,7 @@ return {
   window_background_opacity = 0.9,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
+  audible_bell = 'Disabled',
   window_padding = {
     left = 0,
     right = 0,
