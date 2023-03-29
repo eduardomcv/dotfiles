@@ -21,31 +21,31 @@ end
 vim.cmd [[packadd packer.nvim]]
 
 return packer.startup(function(use)
-  use 'wbthomason/packer.nvim' -- Plugin manager
+  use 'wbthomason/packer.nvim'          -- Plugin manager
 
-  use 'neovim/nvim-lspconfig' -- LSP configurations
+  use 'neovim/nvim-lspconfig'           -- LSP configurations
   use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
   use {
     'glepnir/lspsaga.nvim', -- LSP UI
     branch = 'main'
   }
-  use 'j-hui/fidget.nvim' -- UI for LSP progress
-  use 'onsails/lspkind.nvim' -- vscode-like pictograms
-  use 'rafamadriz/friendly-snippets' -- vscode-like snippets
+  use 'j-hui/fidget.nvim'                 -- UI for LSP progress
+  use 'onsails/lspkind.nvim'              -- vscode-like pictograms
+  use 'rafamadriz/friendly-snippets'      -- vscode-like snippets
 
-  use 'williamboman/mason.nvim' -- Manage LSPs, linters, formatters
+  use 'williamboman/mason.nvim'           -- Manage LSPs, linters, formatters
   use 'williamboman/mason-lspconfig.nvim' -- Make it easier to use lspconfig with mason
-  use 'jayp0521/mason-null-ls.nvim' -- Make it easier to use null-ls with mason
+  use 'jayp0521/mason-null-ls.nvim'       -- Make it easier to use null-ls with mason
 
   use {
-    'hrsh7th/nvim-cmp', -- Completion
+    'hrsh7th/nvim-cmp',           -- Completion
     requires = {
-      'hrsh7th/cmp-nvim-lsp', -- nvim-cmp source for neovim's built-in LSP
-      'hrsh7th/cmp-buffer', -- nvim-cmp source for buffer words
-      'L3MON4D3/LuaSnip', -- Snippet engine
+      'hrsh7th/cmp-nvim-lsp',     -- nvim-cmp source for neovim's built-in LSP
+      'hrsh7th/cmp-buffer',       -- nvim-cmp source for buffer words
+      'L3MON4D3/LuaSnip',         -- Snippet engine
       'saadparwaiz1/cmp_luasnip', -- Luasnip completion source for nvim-cmp
       {
-        'David-Kunz/cmp-npm', -- nvim-cmp source for npm
+        'David-Kunz/cmp-npm',     -- nvim-cmp source for npm
         requires = {
           'nvim-lua/plenary.nvim'
         }
@@ -58,7 +58,7 @@ return packer.startup(function(use)
     run = ':TSUpdate'
   }
   use 'windwp/nvim-ts-autotag' -- Use treesitter to auto close html tags
-  use 'windwp/nvim-autopairs' -- Handle brackets, quotes, etc. in pairs
+  use 'windwp/nvim-autopairs'  -- Handle brackets, quotes, etc. in pairs
 
   use {
     'nvim-telescope/telescope.nvim', -- Fuzzy finder
@@ -69,21 +69,21 @@ return packer.startup(function(use)
   }
   use 'nvim-telescope/telescope-fzy-native.nvim' -- Compiled FZY style sorter
 
-  use 'lewis6991/gitsigns.nvim' -- Git decorations
-  use 'kdheepak/lazygit.nvim' -- lazygit
+  use 'lewis6991/gitsigns.nvim'                  -- Git decorations
+  use 'kdheepak/lazygit.nvim'                    -- lazygit
 
   use {
-    'nvim-lualine/lualine.nvim', -- Status line
+    'nvim-lualine/lualine.nvim',     -- Status line
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     }
   }
-  use 'folke/tokyonight.nvim' -- Tokyonight theme
-  use 'akinsho/nvim-bufferline.lua' -- Buffer line for tabs
+  use 'folke/tokyonight.nvim'               -- Tokyonight theme
+  use 'akinsho/nvim-bufferline.lua'         -- Buffer line for tabs
   use 'lukas-reineke/indent-blankline.nvim' -- Indentation guides
 
   use {
-    'rcarriga/nvim-dap-ui', -- UI for debugger
+    'rcarriga/nvim-dap-ui',   -- UI for debugger
     requires = {
       'mfussenegger/nvim-dap' -- Debugging
     }
@@ -105,21 +105,21 @@ return packer.startup(function(use)
   }
 
   use {
-    'nvim-tree/nvim-tree.lua', -- File tree
+    'nvim-tree/nvim-tree.lua',       -- File tree
     requires = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   }
-  use 'mbbill/undotree' -- Undo tree
+  use 'mbbill/undotree'                       -- Undo tree
   use { 'kylechui/nvim-surround', tag = '*' } -- Surround functionality
-  use 'numToStr/Comment.nvim' -- Commenting functionality
-  use 'gpanders/editorconfig.nvim' -- EditorConfig support
-  use 'uga-rosa/ccc.nvim' -- Color picker and highlighter
-  use 'folke/todo-comments.nvim' -- Highlight keywords
-  use 'jose-elias-alvarez/typescript.nvim' -- Better Typescript support
-  use 'folke/neodev.nvim' -- Support for init.lua docs and completion
+  use 'numToStr/Comment.nvim'                 -- Commenting functionality
+  use 'gpanders/editorconfig.nvim'            -- EditorConfig support
+  use 'uga-rosa/ccc.nvim'                     -- Color picker and highlighter
+  use 'folke/todo-comments.nvim'              -- Highlight keywords
+  use 'jose-elias-alvarez/typescript.nvim'    -- Better Typescript support
+  use 'folke/neodev.nvim'                     -- Support for init.lua docs and completion
   use {
-    'folke/trouble.nvim', -- Pretty diagnostics
+    'folke/trouble.nvim',                     -- Pretty diagnostics
     requires = 'nvim-tree/nvim-web-devicons',
   }
 
