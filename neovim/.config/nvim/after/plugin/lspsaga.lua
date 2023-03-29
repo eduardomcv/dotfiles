@@ -4,7 +4,7 @@ if not ok_lspsaga then return end
 local ok_colors, colors = pcall(require, 'tokyonight.colors')
 if not ok_colors then return end
 
-local utils = require('user.utils')
+local u = require('user.utils')
 local c = colors.setup({ style = 'night' })
 
 lspsaga.setup({
@@ -23,14 +23,19 @@ lspsaga.setup({
       white = '#d1d4cf',
       black = '#1c1c19',
     }
-  }
+  },
+  finder = {
+    keys = {
+      expand_or_jump = '<CR>',
+    },
+  },
 })
 
-utils.nmap('<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>')
-utils.nmap('<C-k>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>')
-utils.nmap('K', '<Cmd>Lspsaga hover_doc<CR>')
-utils.nmap('gd', '<Cmd>Lspsaga lsp_finder<CR>')
-utils.nmap('gp', '<Cmd>Lspsaga peek_definition<CR>')
-utils.nmap('<leader>rn', '<Cmd>Lspsaga rename<CR>')
-utils.nmap('<leader>ca', '<Cmd>Lspsaga code_action<CR>')
-utils.nmap("<leader>o", "<cmd>Lspsaga outline<CR>")
+u.nmap('<C-j>', '<Cmd>Lspsaga diagnostic_jump_next<CR>')
+u.nmap('<C-k>', '<Cmd>Lspsaga diagnostic_jump_prev<CR>')
+u.nmap('K', '<Cmd>Lspsaga hover_doc<CR>')
+u.nmap('gd', '<Cmd>Lspsaga lsp_finder<CR>')
+u.nmap('gp', '<Cmd>Lspsaga peek_definition<CR>')
+u.nmap('<leader>rn', '<Cmd>Lspsaga rename<CR>')
+u.nmap('<leader>ca', '<Cmd>Lspsaga code_action<CR>')
+u.nmap("<leader>o", "<cmd>Lspsaga outline<CR>")
