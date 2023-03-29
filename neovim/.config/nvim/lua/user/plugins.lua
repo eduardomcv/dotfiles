@@ -26,8 +26,12 @@ return packer.startup(function(use)
   use 'neovim/nvim-lspconfig'           -- LSP configurations
   use 'jose-elias-alvarez/null-ls.nvim' -- Inject LSP diagnostics
   use {
-    'glepnir/lspsaga.nvim', -- LSP UI
-    branch = 'main'
+    'glepnir/lspsaga.nvim',             -- LSP UI
+    branch = 'main',
+    requires = {
+      { "nvim-tree/nvim-web-devicons" },
+      { "nvim-treesitter/nvim-treesitter" }
+    }
   }
   use 'j-hui/fidget.nvim'                 -- UI for LSP progress
   use 'onsails/lspkind.nvim'              -- vscode-like pictograms
