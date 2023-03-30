@@ -187,7 +187,7 @@ bar {
 exec --no-startup-id blueman-applet
 
 # Set keyboard layouts
-exec --no-startup-id "setxkbmap -layout us,pt -option 'grp:alt_space_toggle'"
+exec_always --no-startup-id "setxkbmap -layout us,pt -option 'grp:alt_space_toggle'"
 
 # Start notification manager
 exec --no-startup-id dunst
