@@ -196,6 +196,9 @@ exec --no-startup-id lxpolkit
 # Start picom compositor
 exec --no-startup-id "picom -b --fade-in-step=1 --fade-out-step=1 --fade-delta=0"
 
+# Set screen layout
+exec --no-startup-id "xrandr --output DisplayPort-0 --off --output DisplayPort-1 --off --output DisplayPort-2 --primary --mode 2560x1440 --pos 0x0 --rotate normal --rate 144 --output HDMI-A-0 --off"
+
 # Use pactl to adjust volume in PulseAudio. Update i3blocks.
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle
 bindsym XF86AudioMute --release exec pkill -RTMIN+1 i3blocks
