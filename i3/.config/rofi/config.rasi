@@ -78,3 +78,5 @@ prompt {
   text-color: @fg;
 }
 
+
+// vim:ft=scss
