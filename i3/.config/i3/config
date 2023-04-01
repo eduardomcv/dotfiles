@@ -22,8 +22,13 @@ floating_modifier $mod
 # or left-clicking anywhere into the window while holding the floating modifier.
 tiling_drag modifier titlebar
 
-# hide borders
+# borders
+default_border none
 hide_edge_borders both
+smart_borders on
+
+# window gaps
+gaps inner 8
 
 ##### Colors #####
 
