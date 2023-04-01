@@ -12,6 +12,7 @@ configuration {
   bg-selected: #24283b;
   fg: #c0caf5;
   fg-alt: #545c7e;
+  primary: #e0af68;
 
   border: 0;
   margin: 0;
@@ -22,6 +23,9 @@ configuration {
 window {
   width: 40%;
   background-color: @bg;
+  border: 2px;
+  border-color: @primary;
+  border-radius: 6px;
 }
 
 element {
