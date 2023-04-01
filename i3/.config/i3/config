@@ -198,7 +198,7 @@ bindsym $mod+r mode "resize"
 
 
 ##### Power/session management #####
-set $Locker i3lock && sleep 1
+set $Locker $HOME/.config/i3/lock.sh && sleep 1
 
 bindsym $mod+shift+x exec --no-startup-id $Locker
 
