@@ -33,6 +33,10 @@ end
 
 telescope.setup {
   defaults = {
+    path_display = { "truncate" },
+    layout_strategy = "center",
+    file_ignore_patterns = { '^.git/', '^node_modules/' },
+    preview = false,
     vimgrep_arguments = {
       "rg",
       "--color=never",
@@ -57,8 +61,10 @@ telescope.setup {
   pickers = {
     find_files = {
       hidden = true,
-      file_ignore_patterns = { '^.git/' }
     },
+    git_files = {
+      show_untracked = true
+    }
   },
   extensions = {
     fzy_native = {
