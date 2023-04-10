@@ -35,14 +35,15 @@ telescope.setup {
   defaults = {
     path_display = { "truncate" },
     sorting_strategy = "ascending",
-    layout_strategy = "vertical",
+    layout_strategy = "horizontal",
     layout_config = {
-      vertical = {
+      horizontal = {
         prompt_position = "top",
-        preview_height = 0.35,
+        preview_cutoff = 200,
+        preview_width = 0.55,
+        height = 0.7,
         width = {
-          0.5,
-          max = 200,
+          0.7,
           min = 80
         }
       }
