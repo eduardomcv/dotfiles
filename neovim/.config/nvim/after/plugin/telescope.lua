@@ -34,9 +34,20 @@ end
 telescope.setup {
   defaults = {
     path_display = { "truncate" },
-    layout_strategy = "center",
+    sorting_strategy = "ascending",
+    layout_strategy = "vertical",
+    layout_config = {
+      vertical = {
+        prompt_position = "top",
+        preview_height = 0.35,
+        width = {
+          0.5,
+          max = 200,
+          min = 80
+        }
+      }
+    },
     file_ignore_patterns = { '^.git/', '^node_modules/' },
-    preview = false,
     vimgrep_arguments = {
       "rg",
       "--color=never",
