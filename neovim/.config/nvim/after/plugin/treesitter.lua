@@ -12,7 +12,6 @@ treesitter.setup {
     enable = true
   },
   ensure_installed = {
-    'help',
     'lua',
     'javascript',
     'typescript',
@@ -25,5 +24,7 @@ treesitter.setup {
     'yaml',
     'markdown',
     'markdown_inline',
+    'vim',
+    'vimdoc'
   },
 }
