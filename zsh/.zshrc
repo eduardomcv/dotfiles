@@ -18,8 +18,10 @@ alias l=ls
 alias la="ls -a"
 alias ll="la -l"
 alias cat=bat
-alias lg="lazygit"
-alias v="env TERM=wezterm nvim"
+alias lg=lazygit
+alias v=nvim
+alias vi=nvim
+alias vim=nvim
 alias ff="fd -H -t f -E .git"
 alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
