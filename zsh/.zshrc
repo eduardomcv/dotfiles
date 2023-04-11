@@ -1,14 +1,13 @@
+# exports
+export EDITOR=nvim
+export VISUAL=nvim
 antidote_dir=${ZDOTDIR:-~}/.antidote
 
-# Automatically install antidote
 if [[ ! -e $antidote_dir ]] then
   git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
 fi
 
-# source antidote
 source $antidote_dir/antidote.zsh
-
-# initialize plugins statically with ${ZDOTDIR:-~}/.zsh_plugins.txt
 antidote load
 
 # aliases
@@ -29,10 +28,6 @@ alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:5
 fh() {
   print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
-
-# exports
-export EDITOR=nvim
-export VISUAL=nvim
 
 # set PATH so it includes user's private bin if it exists
 if [ -d "$HOME/.local/bin" ] ; then
