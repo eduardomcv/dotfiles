@@ -1,6 +1,10 @@
 # exports
 export EDITOR=nvim
 export VISUAL=nvim
+export NVM_LAZY_LOAD=true
+export NVM_LAZY_LOAD_EXTRA_COMMANDS=('nvim')
+
+# Plugin manager
 antidote_dir=${ZDOTDIR:-~}/.antidote
 
 if [[ ! -e $antidote_dir ]] then
