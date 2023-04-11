@@ -3,7 +3,10 @@ if not ok then return end
 
 local utils = require('user.utils')
 
-trouble.setup {}
+trouble.setup {
+  auto_open = true,
+  auto_close = true,
+}
 
 utils.nmap('<leader>xx', '<cmd>TroubleToggle<cr>')
 utils.nmap('<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>')
