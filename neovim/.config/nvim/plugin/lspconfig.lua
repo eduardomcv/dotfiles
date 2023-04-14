@@ -105,7 +105,6 @@ local servers = {
   html = {},
   jsonls = {},
   emmet_ls = {},
-  clangd = {},
   eslint = {},
   rust_analyzer = {},
   graphql = {},
