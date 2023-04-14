@@ -6,6 +6,7 @@ local utils = require('user.utils')
 trouble.setup {
   auto_open = true,
   auto_close = true,
+  mode = "document_diagnostics",
 }
 
 utils.nmap('<leader>xx', '<cmd>TroubleToggle<cr>')
