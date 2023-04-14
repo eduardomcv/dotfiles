@@ -75,7 +75,10 @@ telescope.setup {
       hidden = true,
     },
     git_files = {
-      show_untracked = true
+      show_untracked = true,
+    },
+    current_buffer_fuzzy_find = {
+      previewer = false,
     }
   },
   extensions = {
@@ -95,7 +98,6 @@ utils.nmap('<C-f>', function()
   local text = getVisualSelection()
   builtin.current_buffer_fuzzy_find({ default_text = text })
 end)
-utils.nmap('<leader>sf', builtin.find_files)
 utils.nmap('<leader>sw', builtin.grep_string)
 utils.nmap('<leader>sg', builtin.live_grep)
 utils.nmap('<leader>sg', function()
