@@ -106,6 +106,7 @@ local servers = {
   jsonls = {},
   emmet_ls = {},
   clangd = {},
+  eslint = {},
   rust_analyzer = {},
   graphql = {},
   tsserver = {},
@@ -168,6 +169,20 @@ require('mason-lspconfig').setup_handlers {
           },
         },
       }
+    }
+  end,
+  eslint = function()
+    lspconfig.eslint.setup {
+      capabilities = capabilities,
+      settings = servers.eslint,
+      on_attach = function(client, bufnr)
+        on_attach(client, bufnr)
+        -- Fix on save
+        vim.api.nvim_create_autocmd("BufWritePre", {
+          buffer = bufnr,
+          command = "EslintFixAll",
+        })
+      end
     }
   end,
   lua_ls = function()
