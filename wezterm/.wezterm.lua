@@ -5,7 +5,6 @@ return {
   font = wezterm.font 'FiraCode Nerd Font',
   color_scheme = 'tokyonight',
   hide_tab_bar_if_only_one_tab = true,
-  window_background_opacity = 0.9,
   use_fancy_tab_bar = false,
   tab_bar_at_bottom = true,
   audible_bell = 'Disabled',
