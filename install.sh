@@ -11,8 +11,8 @@ THINGS_TO_STOW=( \
     zsh \
     wezterm \
     neovim \
-    vscode \
-    i3
+    i3 \
+    tmux
 )
 
 for thing in ${THINGS_TO_STOW[@]}; do
