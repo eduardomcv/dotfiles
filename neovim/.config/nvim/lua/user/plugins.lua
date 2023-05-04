@@ -127,9 +127,10 @@ return packer.startup(function(use)
     'folke/trouble.nvim',                     -- Pretty diagnostics
     requires = 'nvim-tree/nvim-web-devicons',
   }
-  use 'yorickpeterse/nvim-pqf' -- Pretty quickfix list
+  use 'yorickpeterse/nvim-pqf'         -- Pretty quickfix list
+  use 'christoomey/vim-tmux-navigator' -- tmux navigation
 
-  use 'github/copilot.vim'     -- Copilot
+  use 'github/copilot.vim'             -- Copilot
 
   if packer_bootstrap then
     packer.sync()
