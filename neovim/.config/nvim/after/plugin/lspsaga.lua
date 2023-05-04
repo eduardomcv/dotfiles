@@ -31,8 +31,8 @@ lspsaga.setup({
   },
 })
 
-u.nmap('<C-j>', ':Lspsaga diagnostic_jump_next<CR>')
-u.nmap('<C-k>', ':Lspsaga diagnostic_jump_prev<CR>')
+u.nmap('g]', ':Lspsaga diagnostic_jump_next<CR>')
+u.nmap('g[', ':Lspsaga diagnostic_jump_prev<CR>')
 u.nmap('K', ':Lspsaga hover_doc<CR>')
 u.nmap('gd', ':Lspsaga goto_definition<CR>')
 u.nmap('gt', ':Lspsaga peek_type_definition<CR>')
