@@ -53,3 +53,4 @@ colors:
 
 window:
   option_as_alt: Both
+  dynamic_title: true
