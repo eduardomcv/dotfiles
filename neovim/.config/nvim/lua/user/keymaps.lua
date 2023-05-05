@@ -33,12 +33,6 @@ utils.nmap('-', '<C-x>')
 -- Select all
 utils.nmap('<C-a>', 'gg<S-v>G')
 
--- Move window
-utils.nmap('<leader>h', '<C-w>h')
-utils.nmap('<leader>k', '<C-w>k')
-utils.nmap('<leader>j', '<C-w>j')
-utils.nmap('<leader>l', '<C-w>l')
-
 -- Resize window
 utils.nmap('<C-w><left>', '<C-w><')
 utils.nmap('<C-w><right>', '<C-w>>')
