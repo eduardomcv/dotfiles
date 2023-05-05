@@ -9,7 +9,6 @@ check_is_not_sudo
 THINGS_TO_STOW=( \
     git \
     zsh \
-    wezterm \
     alacritty \
     neovim \
     i3 \

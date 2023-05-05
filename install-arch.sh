@@ -42,7 +42,7 @@ pacman -Syu --noconfirm \
   neovim \
   xclip \
   firefox \
-  wezterm \
+  alacritty \
   thunar \
   thunar-archive-plugin \
   thunar-media-tags-plugin \
