@@ -10,6 +10,7 @@ THINGS_TO_STOW=( \
     git \
     zsh \
     wezterm \
+    alacritty \
     neovim \
     i3 \
     tmux
