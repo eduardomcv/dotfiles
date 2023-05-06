@@ -87,8 +87,11 @@ dap.listeners.before.event_exited["dapui_config"] = function()
 end
 
 -- Breakpoint signs
-vim.fn.sign_define('DapBreakpoint', { text = '🔴', texthl = '', linehl = '', numhl = '' })
-vim.fn.sign_define('DapStopped', { text = '🟨', texthl = '', linehl = '', numhl = '' })
+local sign = vim.fn.sign_define
+
+sign("DapBreakpoint", { text = "●", texthl = "DapBreakpoint", linehl = "", numhl = "" })
+sign("DapBreakpointCondition", { text = "●", texthl = "DapBreakpointCondition", linehl = "", numhl = "" })
+sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
 -- Keymaps
 utils.nmap('gbp', dap.toggle_breakpoint)

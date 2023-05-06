@@ -1,28 +1,12 @@
 local ok_lspsaga, lspsaga = pcall(require, "lspsaga")
 if not ok_lspsaga then return end
 
-local ok_colors, colors = pcall(require, 'tokyonight.colors')
-if not ok_colors then return end
-
 local u = require('user.utils')
-local c = colors.setup({ style = 'night' })
 
 lspsaga.setup({
   ui = {
     border = 'rounded',
-    colors = {
-      normal_bg = c.bg_dark,
-      red = c.red,
-      magenta = c.magenta,
-      orange = c.orange,
-      yellow = c.yellow,
-      green = c.green,
-      cyan = c.cyan,
-      blue = c.blue,
-      purple = c.purple,
-      white = '#d1d4cf',
-      black = '#1c1c19',
-    }
+    kind = require("catppuccin.groups.integrations.lsp_saga").custom_kind(),
   },
   finder = {
     keys = {

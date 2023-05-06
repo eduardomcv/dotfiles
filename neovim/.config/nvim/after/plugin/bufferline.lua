@@ -3,6 +3,7 @@ if not ok then return end
 
 bufferline.setup({
   options = {
+    highlights = require("catppuccin.groups.integrations.bufferline").get(),
     mode = "tabs",
     always_show_bufferline = false,
     show_buffer_close_icons = false,
