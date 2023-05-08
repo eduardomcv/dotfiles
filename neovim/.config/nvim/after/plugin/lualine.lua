@@ -3,18 +3,9 @@ if not ok then return end
 
 lualine.setup {
   options = {
-    icons_enabled = true,
     theme = 'catppuccin',
-    component_separators = {
-      left = '',
-      right = '',
-    },
-    section_separators = {
-      left = '',
-      right = '',
-    },
-    disabled_filetypes = {},
-    always_divide_middle = true,
+    component_separators = { left = '|', right = '|' },
+    section_separators = { left = '', right = '' },
   },
   sections = {
     lualine_a = { 'mode' },
@@ -59,6 +50,10 @@ lualine.setup {
     lualine_y = {},
     lualine_z = {}
   },
-  tabline = {},
-  extensions = { 'fugitive' }
+  extensions = {
+    'nvim-tree',
+    'trouble',
+    'lazy',
+    'nvim-dap-ui',
+  },
 }
