@@ -30,9 +30,6 @@ utils.nmap('Q', '<nop>')
 utils.nmap('+', '<C-a>')
 utils.nmap('-', '<C-x>')
 
--- Select all
-utils.nmap('<C-a>', 'gg<S-v>G')
-
 -- Resize window
 utils.nmap('<C-w><left>', '<C-w><')
 utils.nmap('<C-w><right>', '<C-w>>')
