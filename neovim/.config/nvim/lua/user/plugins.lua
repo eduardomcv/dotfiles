@@ -14,17 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'neovim/nvim-lspconfig',           -- LSP configurations
-  'jose-elias-alvarez/null-ls.nvim', -- Inject LSP diagnostics
-  'j-hui/fidget.nvim',               -- UI for LSP progress
-  {
-    'glepnir/lspsaga.nvim',          -- LSP UI
-    event = 'LspAttach',
-    dependencies = {
-      { "nvim-tree/nvim-web-devicons" },
-      { "nvim-treesitter/nvim-treesitter" },
-    },
-  },
+  'neovim/nvim-lspconfig',             -- LSP configurations
+  'jose-elias-alvarez/null-ls.nvim',   -- Inject LSP diagnostics
+  'j-hui/fidget.nvim',                 -- UI for LSP progress
   'onsails/lspkind.nvim',              -- vscode-like pictograms
   'rafamadriz/friendly-snippets',      -- vscode-like snippets
   'williamboman/mason.nvim',           -- Manage LSPs, linters, formatters
