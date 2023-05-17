@@ -13,5 +13,5 @@ bufferline.setup({
   },
 })
 
-vim.keymap.set('n', 'L', ':BufferLineCycleNext<CR>')
-vim.keymap.set('n', 'H', ':BufferLineCyclePrev<CR>')
+vim.keymap.set('n', '<leader>tn', ':BufferLineCycleNext<CR>')
+vim.keymap.set('n', '<leader>tp', ':BufferLineCyclePrev<CR>')
