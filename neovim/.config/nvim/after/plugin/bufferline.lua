@@ -1,6 +1,8 @@
 local ok, bufferline = pcall(require, "bufferline")
 if not ok then return end
 
+local u = require('user.utils')
+
 bufferline.setup({
   options = {
     highlights = require("catppuccin.groups.integrations.bufferline").get(),
@@ -13,5 +15,11 @@ bufferline.setup({
   },
 })
 
-vim.keymap.set('n', '<leader>tn', ':BufferLineCycleNext<CR>')
-vim.keymap.set('n', '<leader>tp', ':BufferLineCyclePrev<CR>')
+-- Tab management
+u.nmap('<leader>l', ':BufferLineCycleNext<CR>')
+u.nmap('<leader>h', ':BufferLineCyclePrev<CR>')
+u.nmap('<leader>tn', ':tabnew<CR>')
+u.nmap('<leader>to', ':tabonly<CR>')
+u.nmap('<leader>tc', ':tabclose<CR>')
+u.nmap('<leader>tm', ':tabmove<CR>')
+
