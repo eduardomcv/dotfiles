@@ -118,8 +118,8 @@ vim.diagnostic.config({
   },
   update_in_insert = true,
   float = {
-    source = "always",  -- Or "if_many"
-    border = 'rounded', -- Rounded border
+    source = "always",
+    border = 'rounded',
   },
 })
 
@@ -179,6 +179,18 @@ require('mason-lspconfig').setup_handlers {
     }
   end,
   tsserver = function()
+    local function get_global_node_modules()
+      local nvm_bin = os.getenv('NVM_BIN')
+
+      if nvm_bin == nil then
+        -- nvm is not on the environment
+        return ''
+      end
+
+      local path = nvm_bin .. '/../lib'
+      return path
+    end
+
     require('typescript').setup {
       server = {
         capabilities = capabilities,
@@ -187,7 +199,7 @@ require('mason-lspconfig').setup_handlers {
           plugins = {
             {
               name = 'typescript-styled-plugin',
-              location = '/Users/eduardo/.nvm/versions/node/v16.19.1/lib' -- Path to global node modules install location
+              location = get_global_node_modules()
             },
           },
         },
