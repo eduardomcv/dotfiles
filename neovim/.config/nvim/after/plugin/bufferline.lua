@@ -3,7 +3,7 @@ if not ok then return end
 
 local u = require('user.utils')
 
-bufferline.setup({
+bufferline.setup {
   options = {
     highlights = require("catppuccin.groups.integrations.bufferline").get(),
     mode = "tabs",
@@ -13,7 +13,7 @@ bufferline.setup({
     color_icons = true,
     diagnostics = 'nvim_lsp',
   },
-})
+}
 
 -- Tab management
 u.nmap('<leader>l', ':BufferLineCycleNext<CR>')
@@ -22,4 +22,3 @@ u.nmap('<leader>tn', ':tabnew<CR>')
 u.nmap('<leader>to', ':tabonly<CR>')
 u.nmap('<leader>tc', ':tabclose<CR>')
 u.nmap('<leader>tm', ':tabmove<CR>')
-
