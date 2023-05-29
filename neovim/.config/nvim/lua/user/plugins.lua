@@ -114,7 +114,6 @@ local plugins = {
       'nvim-tree/nvim-web-devicons',
     },
   },
-  'yorickpeterse/nvim-pqf',         -- Pretty quickfix list
   'christoomey/vim-tmux-navigator', -- tmux navigation
 
   'github/copilot.vim',             -- Copilot
