@@ -79,6 +79,13 @@ telescope.setup {
     },
     current_buffer_fuzzy_find = {
       previewer = false,
+    },
+    buffers = {
+      mappings = {
+        n = {
+          ['x'] = 'delete_buffer'
+        }
+      }
     }
   },
   extensions = {
