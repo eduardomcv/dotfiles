@@ -14,14 +14,14 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'neovim/nvim-lspconfig',             -- LSP configurations
-  'jose-elias-alvarez/null-ls.nvim',   -- Inject LSP diagnostics
-  'j-hui/fidget.nvim',                 -- UI for LSP progress
-  'onsails/lspkind.nvim',              -- vscode-like pictograms
-  'rafamadriz/friendly-snippets',      -- vscode-like snippets
-  'williamboman/mason.nvim',           -- Manage LSPs, linters, formatters
-  'williamboman/mason-lspconfig.nvim', -- Make it easier to use lspconfig with mason
-  'jayp0521/mason-null-ls.nvim',       -- Make it easier to use null-ls with mason
+  'neovim/nvim-lspconfig',                         -- LSP configurations
+  'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
+  { 'j-hui/fidget.nvim',         tag = 'legacy' }, -- UI for LSP progress
+  'onsails/lspkind.nvim',                          -- vscode-like pictograms
+  'rafamadriz/friendly-snippets',                  -- vscode-like snippets
+  'williamboman/mason.nvim',                       -- Manage LSPs, linters, formatters
+  'williamboman/mason-lspconfig.nvim',             -- Make it easier to use lspconfig with mason
+  'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
 
   {
     'hrsh7th/nvim-cmp',           -- Completion
@@ -87,13 +87,13 @@ local plugins = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   },
-  { "catppuccin/nvim",           name = "catppuccin" }, -- Catppuccin theme
-  'akinsho/nvim-bufferline.lua',                        -- Buffer line for tabs
-  'lukas-reineke/indent-blankline.nvim',                -- Indentation guides
+  { "catppuccin/nvim", name = "catppuccin" }, -- Catppuccin theme
+  'akinsho/nvim-bufferline.lua',              -- Buffer line for tabs
+  'lukas-reineke/indent-blankline.nvim',      -- Indentation guides
   {
-    'nvim-tree/nvim-tree.lua',                          -- File tree
+    'nvim-tree/nvim-tree.lua',                -- File tree
     dependencies = {
-      'nvim-tree/nvim-web-devicons',                    -- optional, for file icons
+      'nvim-tree/nvim-web-devicons',          -- optional, for file icons
     },
   },
   'mbbill/undotree',          -- Undo tree
