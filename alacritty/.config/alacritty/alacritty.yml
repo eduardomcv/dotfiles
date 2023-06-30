@@ -15,7 +15,7 @@ shell:
 
 # Fonts
 font:
-  size: 13
+  size: 16
   normal:
     family: FiraCode Nerd Font
     style: Regular
