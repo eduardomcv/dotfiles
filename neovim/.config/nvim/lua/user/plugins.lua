@@ -116,7 +116,7 @@ local plugins = {
   },
   'christoomey/vim-tmux-navigator', -- tmux navigation
 
-  'github/copilot.vim',             -- Copilot
+  'zbirenbaum/copilot.lua'          -- Github copilot
 }
 
 local opts = {}
