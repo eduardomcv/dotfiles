@@ -1,11 +1,17 @@
-vim.g.copilot_no_tab_map = true
+local ok, copilot = pcall(require, 'copilot')
+if not ok then return end
 
-vim.g.copilot_filetypes = {
-  ["*"] = false,
-  ["javascript"] = true,
-  ["typescript"] = true,
-  ["typescriptreact"] = true,
-  ["rust"] = true,
+copilot.setup {
+  suggestion = {
+    auto_trigger = true,
+    keymap = {
+      accept = '<C-j>',
+    },
+  },
+  filetypes = {
+    ['*'] = false,
+    javascript = true,
+    typescript = true,
+    typescriptreact = true
+  }
 }
-
-vim.api.nvim_set_keymap('i', '<C-J>', 'copilot#Accept("<CR>")', { silent = true, expr = true })
