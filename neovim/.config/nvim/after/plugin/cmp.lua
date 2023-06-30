@@ -10,9 +10,6 @@ if not ok_luasnip then return end
 local ok_cmp_npm, cmp_npm = pcall(require, 'cmp-npm')
 if not ok_cmp_npm then return end
 
-local ok_ts_utils, ts_utils = pcall(require, 'nvim-treesitter.ts_utils')
-if not ok_ts_utils then return end
-
 -- Set completeopt to have a better completion experience
 vim.opt.completeopt = { 'menuone', 'noinsert', 'noselect' }
 -- Avoid showing message extra message when using completion
