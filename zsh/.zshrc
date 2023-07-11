@@ -1,6 +1,7 @@
 # exports
 export EDITOR=nvim
 export VISUAL=nvim
+export TERM='screen-256color'
 
 # Plugin manager
 antidote_dir=${ZDOTDIR:-~}/.antidote
