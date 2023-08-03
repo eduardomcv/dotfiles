@@ -32,11 +32,6 @@ end
 
 null_ls.setup {
   sources = {
-    null_ls.builtins.diagnostics.standardjs.with({
-      condition = function()
-        return package_json_has_keyword("standard")
-      end,
-    }),
     null_ls.builtins.formatting.prettierd.with({
       condition = function(utils)
         local has_config = utils.root_has_file({
@@ -51,12 +46,6 @@ null_ls.setup {
         return has_config or package_json_has_keyword("prettier")
       end
     }),
-    null_ls.builtins.formatting.standardjs.with({
-      condition = function()
-        return package_json_has_keyword("standard")
-      end
-    }),
-    null_ls.builtins.formatting.rustfmt,
   },
   on_attach = function(client, bufnr)
     if client.supports_method("textDocument/formatting") then

@@ -130,7 +130,6 @@ local servers = {
   jsonls = {},
   emmet_ls = {},
   eslint = {},
-  rust_analyzer = {},
   graphql = {},
   tsserver = {},
   lua_ls = {
