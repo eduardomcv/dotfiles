@@ -87,13 +87,13 @@ local plugins = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   },
-  { "catppuccin/nvim", name = "catppuccin" }, -- Catppuccin theme
-  'akinsho/nvim-bufferline.lua',              -- Buffer line for tabs
-  'lukas-reineke/indent-blankline.nvim',      -- Indentation guides
+  { "catppuccin/nvim",                     name = "catppuccin" },           -- Catppuccin theme
+  'akinsho/nvim-bufferline.lua',                                            -- Buffer line for tabs
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl',       opts = {} }, -- Indentation guides
   {
-    'nvim-tree/nvim-tree.lua',                -- File tree
+    'nvim-tree/nvim-tree.lua',                                              -- File tree
     dependencies = {
-      'nvim-tree/nvim-web-devicons',          -- optional, for file icons
+      'nvim-tree/nvim-web-devicons',                                        -- optional, for file icons
     },
   },
   'mbbill/undotree',          -- Undo tree
