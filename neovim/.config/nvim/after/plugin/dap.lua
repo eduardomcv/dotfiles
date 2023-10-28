@@ -7,7 +7,7 @@ if not ok_dapui then return end
 local ok_dap_vscode_js, dap_vscode_js = pcall(require, 'dap-vscode-js')
 if not ok_dap_vscode_js then return end
 
-local utils = require('user.utils')
+local utils = require('eduardomcv.utils')
 local mason_path = vim.fn.stdpath('data') .. '/mason'
 
 dap_vscode_js.setup({

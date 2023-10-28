@@ -1,7 +1,7 @@
 local ok, bufferline = pcall(require, "bufferline")
 if not ok then return end
 
-local u = require('user.utils')
+local u = require('eduardomcv.utils')
 
 bufferline.setup {
   options = {

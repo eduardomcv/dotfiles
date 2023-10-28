@@ -1,7 +1,7 @@
 local ok, telescope = pcall(require, 'telescope')
 if not ok then return end
 
-local u = require('user.utils')
+local u = require('eduardomcv.utils')
 
 local builtin = require('telescope.builtin')
 local actions = require('telescope.actions')

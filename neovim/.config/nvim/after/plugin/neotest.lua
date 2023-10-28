@@ -1,7 +1,7 @@
 local ok, neotest = pcall(require, 'neotest');
 if not ok then return end
 
-local utils = require('user.utils')
+local utils = require('eduardomcv.utils')
 
 neotest.setup {
   adapters = {

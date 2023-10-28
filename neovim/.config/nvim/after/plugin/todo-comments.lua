@@ -1,7 +1,7 @@
 local ok, todo_comments = pcall(require, 'todo-comments')
 if not ok then return end
 
-local u = require('user.utils')
+local u = require('eduardomcv.utils')
 
 todo_comments.setup {
   keywords = {

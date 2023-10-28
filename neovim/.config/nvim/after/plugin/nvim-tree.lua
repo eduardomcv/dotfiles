@@ -1,7 +1,7 @@
 local ok, nvim_tree = pcall(require, 'nvim-tree')
 if not ok then return end
 
-local utils = require('user.utils')
+local utils = require('eduardomcv.utils')
 
 -- Disable netrw
 vim.g.loaded_netrw = 1
