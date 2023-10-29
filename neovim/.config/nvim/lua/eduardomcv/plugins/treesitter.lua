@@ -27,7 +27,9 @@ return {
         'markdown',
         'markdown_inline',
         'vim',
-        'vimdoc'
+        'vimdoc',
+        'gitignore',
+        'bash',
       },
     }
   end
