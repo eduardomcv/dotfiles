@@ -1,3 +1,8 @@
+-- Test runner framework for neovim
+--
+-- This plugin is complaining about missing fields, when the fields aren's actually required.
+---@diagnostic disable: missing-fields
+
 return {
   "nvim-neotest/neotest",
   event = { 'BufReadPre', 'BufNewFile' },
