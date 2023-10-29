@@ -14,11 +14,9 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'neovim/nvim-lspconfig',                         -- LSP configurations
   'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
   { 'j-hui/fidget.nvim',         tag = 'legacy' }, -- UI for LSP progress
   'williamboman/mason.nvim',                       -- Manage LSPs, linters, formatters
-  'williamboman/mason-lspconfig.nvim',             -- Make it easier to use lspconfig with mason
   'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
 
   {
@@ -73,7 +71,6 @@ local plugins = {
   'uga-rosa/ccc.nvim',                  -- Color picker and highlighter
   'folke/todo-comments.nvim',           -- Highlight keywords
   'jose-elias-alvarez/typescript.nvim', -- Better Typescript support
-  'folke/neodev.nvim',                  -- Support for init.lua docs and completion
   {
     'folke/trouble.nvim',               -- Pretty diagnostics
     dependencies = {
