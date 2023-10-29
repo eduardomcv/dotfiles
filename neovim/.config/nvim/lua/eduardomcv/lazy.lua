@@ -17,7 +17,6 @@ local plugins = {
   'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
   'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
 
-  { 'akinsho/git-conflict.nvim', version = "*" },  -- Git conflict visualizer
 
   {
     'rcarriga/nvim-dap-ui',   -- UI for debugging
