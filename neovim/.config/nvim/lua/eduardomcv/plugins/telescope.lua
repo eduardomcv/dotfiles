@@ -6,7 +6,8 @@ return {
   dependencies = {
     'nvim-lua/plenary.nvim',                    -- Common utilities
     'nvim-telescope/telescope-fzy-native.nvim', -- Compiled FZY style sorter
-    'debugloop/telescope-undo.nvim'             -- Visualize and fuzzy search undo tree with telescope
+    'debugloop/telescope-undo.nvim',            -- Visualize and fuzzy search undo tree with telescope
+    'nvim-tree/nvim-web-devicons',              -- Icons in telescope
   },
   config = function()
     local telescope = require('telescope')
