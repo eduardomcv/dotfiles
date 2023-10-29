@@ -16,9 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
   'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
-  { 'j-hui/fidget.nvim',         tag = 'legacy' }, -- UI for LSP progress
-
-  'windwp/nvim-autopairs',                         -- Handle brackets, quotes, etc. in pairs
 
   'lewis6991/gitsigns.nvim',                       -- Git decorations
   { 'akinsho/git-conflict.nvim', version = "*" },  -- Git conflict visualizer
