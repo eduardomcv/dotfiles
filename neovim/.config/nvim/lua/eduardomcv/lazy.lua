@@ -13,11 +13,6 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-local plugins = {
-  'jose-elias-alvarez/null-ls.nvim', -- Inject LSP diagnostics
-  'jayp0521/mason-null-ls.nvim',     -- Make it easier to use null-ls with mason
-}
-
 require('lazy').setup({
   { import = 'eduardomcv.plugins' },
   { import = 'eduardomcv.plugins.lsp' },
