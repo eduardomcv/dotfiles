@@ -13,12 +13,12 @@ end
 
 vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
-  { import = 'eduardomcv.plugins' },
-  { import = 'eduardomcv.plugins.lsp' },
+require("lazy").setup({
+  { import = "eduardomcv.plugins" },
+  { import = "eduardomcv.plugins.lsp" },
 }, {
   install = {
-    colorscheme = { 'catppuccin' },
+    colorscheme = { "catppuccin" },
   },
   checker = {
     enabled = true,

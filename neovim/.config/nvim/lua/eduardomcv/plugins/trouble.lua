@@ -1,27 +1,27 @@
 -- Pretty diagnostics
 
 return {
-  'folke/trouble.nvim',
+  "folke/trouble.nvim",
   dependencies = {
-    'nvim-tree/nvim-web-devicons',
+    "nvim-tree/nvim-web-devicons",
   },
   config = function()
-    local trouble = require('trouble')
-    local u = require('eduardomcv.utils')
+    local trouble = require("trouble")
+    local u = require("eduardomcv.utils")
 
     -- Setup
-    trouble.setup {
+    trouble.setup({
       auto_open = true,
       auto_close = true,
-    }
+    })
 
     -- Mappings
-    u.nmap('<leader>xx', '<cmd>TroubleToggle<cr>')
-    u.nmap('<leader>xw', '<cmd>TroubleToggle workspace_diagnostics<cr>')
-    u.nmap('<leader>xd', '<cmd>TroubleToggle document_diagnostics<cr>')
-    u.nmap('<leader>xl', '<cmd>TroubleToggle loclist<cr>')
-    u.nmap('<leader>xq', '<cmd>TroubleToggle quickfix<cr>')
-    u.nmap('gR', '<cmd>TroubleToggle lsp_references<cr>')
+    u.nmap("<leader>xx", "<cmd>TroubleToggle<cr>")
+    u.nmap("<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>")
+    u.nmap("<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>")
+    u.nmap("<leader>xl", "<cmd>TroubleToggle loclist<cr>")
+    u.nmap("<leader>xq", "<cmd>TroubleToggle quickfix<cr>")
+    u.nmap("gR", "<cmd>TroubleToggle lsp_references<cr>")
 
     -- Create autocmd to replace quickfix with Trouble
     local function replace_quickfix_with_trouble()
@@ -47,5 +47,5 @@ return {
       group = group,
       callback = replace_quickfix_with_trouble,
     })
-  end
+  end,
 }

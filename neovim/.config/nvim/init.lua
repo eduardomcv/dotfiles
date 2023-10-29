@@ -1,2 +1,2 @@
-require('eduardomcv.core')
-require('eduardomcv.lazy')
+require("eduardomcv.core")
+require("eduardomcv.lazy")

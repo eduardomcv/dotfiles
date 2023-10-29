@@ -7,22 +7,22 @@ return {
     "mfussenegger/nvim-dap",
     "mxsdev/nvim-dap-vscode-js",
   },
-  event = { 'BufReadPre', 'BufNewFile' },
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local dap, dapui = require('dap'), require('dapui')
-    local u = require('eduardomcv.utils')
+    local dap, dapui = require("dap"), require("dapui")
+    local u = require("eduardomcv.utils")
 
-    local mason_path = vim.fn.stdpath('data') .. '/mason'
+    local mason_path = vim.fn.stdpath("data") .. "/mason"
 
-    require('dap-vscode-js').setup({
-      adapters = { 'pwa-node' }, -- which adapters to register in nvim-dap
-      debugger_path = mason_path .. '/packages/js-debug-adapter'
+    require("dap-vscode-js").setup({
+      adapters = { "pwa-node" }, -- which adapters to register in nvim-dap
+      debugger_path = mason_path .. "/packages/js-debug-adapter",
     })
 
     dap.adapters.firefox = {
-      type = 'executable',
-      command = 'node',
-      args = { mason_path .. '/packages/firefox-debug-adapter/dist/adapter.bundle.js' },
+      type = "executable",
+      command = "node",
+      args = { mason_path .. "/packages/firefox-debug-adapter/dist/adapter.bundle.js" },
     }
 
     dap.configurations.typescript = {
@@ -41,7 +41,7 @@ return {
         console = "integratedTerminal",
         internalConsoleOptions = "neverOpen",
         sourceMaps = true,
-      }
+      },
     }
 
     dap.configurations.typescriptreact = {
@@ -67,12 +67,12 @@ return {
         request = "attach",
       },
       {
-        name = 'Launch Firefox',
-        type = 'firefox',
-        request = 'launch',
+        name = "Launch Firefox",
+        type = "firefox",
+        request = "launch",
         reAttach = true,
-        url = 'http://localhost:3000',
-        webRoot = '${workspaceFolder}',
+        url = "http://localhost:3000",
+        webRoot = "${workspaceFolder}",
       },
     }
 
@@ -98,12 +98,12 @@ return {
     sign("DapLogPoint", { text = "◆", texthl = "DapLogPoint", linehl = "", numhl = "" })
 
     -- Keymaps
-    u.nmap('gbp', dap.toggle_breakpoint)
-    u.nmap('<F5>', dap.continue)
-    u.nmap('<F10>', dap.step_over)
-    u.nmap('<F11>', dap.step_into)
-    u.nmap('<S-F11>', dap.step_out)
-    u.nmap('<S-F5>', dap.terminate)
-    vim.keymap.set({ 'n', 'v' }, '<leader>db', dapui.eval)
-  end
+    u.nmap("gbp", dap.toggle_breakpoint)
+    u.nmap("<F5>", dap.continue)
+    u.nmap("<F10>", dap.step_over)
+    u.nmap("<F11>", dap.step_into)
+    u.nmap("<S-F11>", dap.step_out)
+    u.nmap("<S-F5>", dap.terminate)
+    vim.keymap.set({ "n", "v" }, "<leader>db", dapui.eval)
+  end,
 }

@@ -1,10 +1,10 @@
 local has = vim.fn.has
 
-if has "unix" == 1 then
-  vim.opt.clipboard:append { 'unnamedplus' }
+if has("unix") == 1 then
+  vim.opt.clipboard:append({ "unnamedplus" })
 end
 
-if has "wsl" == 1 then
+if has("wsl") == 1 then
   vim.g.clipboard = {
     name = "WslClipboard",
     copy = {
@@ -19,6 +19,6 @@ if has "wsl" == 1 then
   }
 end
 
-if has "win32" == 1 then
-  vim.opt.clipboard:prepend { 'unnamed', 'unnamedplus' }
+if has("win32") == 1 then
+  vim.opt.clipboard:prepend({ "unnamed", "unnamedplus" })
 end

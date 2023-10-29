@@ -1,34 +1,34 @@
 -- Highlight keywords
 
 return {
-  'folke/todo-comments.nvim',
-  event = { 'BufReadPre', 'BufNewFile' },
+  "folke/todo-comments.nvim",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
-    local todo_comments = require('todo-comments')
-    local u = require('eduardomcv.utils')
+    local todo_comments = require("todo-comments")
+    local u = require("eduardomcv.utils")
 
-    todo_comments.setup {
+    todo_comments.setup({
       keywords = {
         DELETEME = {
-          icon = '',
-          color = '#ff0000',
+          icon = "",
+          color = "#ff0000",
         },
         FIXME = {
-          icon = '',
-          color = '#fff400',
+          icon = "",
+          color = "#fff400",
         },
         HACK = {
-          icon = '',
-          color = '#00f9ff',
+          icon = "",
+          color = "#00f9ff",
         },
         TODO = {
-          icon = '',
-          color = '#ed00ff',
+          icon = "",
+          color = "#ed00ff",
         },
         WIP = {
-          icon = '',
-          color = '#ff7C00',
-        }
+          icon = "",
+          color = "#ff7C00",
+        },
       },
       merge_keywords = false,
       highlight = {
@@ -36,34 +36,26 @@ return {
       },
       search = {
         pattern = [[\b(KEYWORDS)\b]],
-        command = 'rg',
+        command = "rg",
         args = {
-          '--color=never',
-          '--no-heading',
-          '--with-filename',
-          '--line-number',
-          '--column',
-          '--hidden',
+          "--color=never",
+          "--no-heading",
+          "--with-filename",
+          "--line-number",
+          "--column",
+          "--hidden",
         },
-      }
-    }
+      },
+    })
 
-    u.nmap(
-      ']t',
-      function()
-        todo_comments.jump_next()
-      end,
-      'Next todo comment'
-    )
+    u.nmap("]t", function()
+      todo_comments.jump_next()
+    end, "Next todo comment")
 
-    u.nmap(
-      ']t',
-      function()
-        todo_comments.jump_prev()
-      end,
-      'Previous todo comment'
-    )
+    u.nmap("]t", function()
+      todo_comments.jump_prev()
+    end, "Previous todo comment")
 
-    u.nmap('<leader>sc', ':TodoTelescope<CR>')
-  end
+    u.nmap("<leader>sc", ":TodoTelescope<CR>")
+  end,
 }
