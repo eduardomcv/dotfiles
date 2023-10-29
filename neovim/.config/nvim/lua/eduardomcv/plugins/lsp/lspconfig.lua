@@ -140,10 +140,11 @@ return {
     -- neodev must be loaded before lspconfig
     require('neodev').setup {
       library = {
+        types = true,
         plugins = {
           'neotest',
+          'nvim-dap-ui',
         },
-        types = true,
       },
     }
 
