@@ -21,8 +21,8 @@ return {
     })
 
     -- Tab management
-    u.nmap("<leader>l", ":BufferLineCycleNext<CR>")
-    u.nmap("<leader>h", ":BufferLineCyclePrev<CR>")
+    u.nmap("<leader>]", ":BufferLineCycleNext<CR>")
+    u.nmap("<leader>[", ":BufferLineCyclePrev<CR>")
     u.nmap("<leader>tn", ":tabnew<CR>")
     u.nmap("<leader>to", ":tabonly<CR>")
     u.nmap("<leader>tc", ":tabclose<CR>")
