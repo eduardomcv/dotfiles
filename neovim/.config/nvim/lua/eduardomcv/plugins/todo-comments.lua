@@ -2,6 +2,7 @@
 
 return {
   'folke/todo-comments.nvim',
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local todo_comments = require('todo-comments')
     local u = require('eduardomcv.utils')
