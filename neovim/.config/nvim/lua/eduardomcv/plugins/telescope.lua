@@ -1,5 +1,7 @@
+-- Fuzzy finder
+
 return {
-  'nvim-telescope/telescope.nvim', -- Fuzzy finder
+  'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
   dependencies = {
     'nvim-lua/plenary.nvim', -- Common utilities
