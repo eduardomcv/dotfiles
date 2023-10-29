@@ -1,5 +1,7 @@
+-- Completion plugin
+
 return {
-  'hrsh7th/nvim-cmp', -- Completion
+  'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
   dependencies = {
     'hrsh7th/cmp-nvim-lsp',         -- nvim-cmp source for neovim's built-in LSP
