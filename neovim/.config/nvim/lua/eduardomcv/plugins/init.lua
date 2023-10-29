@@ -2,5 +2,5 @@
 
 return {
   "christoomey/vim-tmux-navigator", -- tmux navigation
-  "gpanders/editorconfig.nvim",    -- EditorConfig support
+  "gpanders/editorconfig.nvim", -- EditorConfig support
 }

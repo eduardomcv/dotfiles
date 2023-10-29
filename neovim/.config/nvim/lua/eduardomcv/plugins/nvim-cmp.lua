@@ -4,15 +4,15 @@ return {
   "hrsh7th/nvim-cmp",
   event = "InsertEnter",
   dependencies = {
-    "hrsh7th/cmp-buffer",         -- nvim-cmp source for words within buffer
-    "hrsh7th/cmp-path",           -- nvim-cmp source for paths
-    "L3MON4D3/LuaSnip",           -- Snippet engine
-    "saadparwaiz1/cmp_luasnip",   -- Luasnip completion source for nvim-cmp
-    "onsails/lspkind.nvim",       -- vscode-like pictograms
+    "hrsh7th/cmp-buffer", -- nvim-cmp source for words within buffer
+    "hrsh7th/cmp-path", -- nvim-cmp source for paths
+    "L3MON4D3/LuaSnip", -- Snippet engine
+    "saadparwaiz1/cmp_luasnip", -- Luasnip completion source for nvim-cmp
+    "onsails/lspkind.nvim", -- vscode-like pictograms
     "rafamadriz/friendly-snippets", -- vscode-like snippets
-    "nvim-autopairs",             -- Auto-pair plugin
+    "nvim-autopairs", -- Auto-pair plugin
     {
-      "David-Kunz/cmp-npm",       -- nvim-cmp source for npm
+      "David-Kunz/cmp-npm", -- nvim-cmp source for npm
       dependencies = {
         "nvim-lua/plenary.nvim",
       },
@@ -77,10 +77,7 @@ return {
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
-        ["<Down>"] = cmp.mapping(
-          cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }),
-          { "i" }
-        ),
+        ["<Down>"] = cmp.mapping(cmp.mapping.select_next_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
         ["<Up>"] = cmp.mapping(cmp.mapping.select_prev_item({ behavior = cmp.SelectBehavior.Select }), { "i" }),
         ["<Tab>"] = cmp.mapping(tab, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(shift_tab, { "i", "s" }),
