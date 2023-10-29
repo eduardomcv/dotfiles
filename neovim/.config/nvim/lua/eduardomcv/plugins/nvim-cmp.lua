@@ -1,16 +1,16 @@
 return {
-  'hrsh7th/nvim-cmp',           -- Completion
+  'hrsh7th/nvim-cmp', -- Completion
   event = 'InsertEnter',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',     -- nvim-cmp source for neovim's built-in LSP
-    'hrsh7th/cmp-buffer',       -- nvim-cmp source for words within buffer
-    'hrsh7th/cmp-path',         -- nvim-cmp source for paths
-    'L3MON4D3/LuaSnip',         -- Snippet engine
-    'saadparwaiz1/cmp_luasnip', -- Luasnip completion source for nvim-cmp
-    'onsails/lspkind.nvim',                          -- vscode-like pictograms
-    'rafamadriz/friendly-snippets',                  -- vscode-like snippets
+    'hrsh7th/cmp-nvim-lsp',         -- nvim-cmp source for neovim's built-in LSP
+    'hrsh7th/cmp-buffer',           -- nvim-cmp source for words within buffer
+    'hrsh7th/cmp-path',             -- nvim-cmp source for paths
+    'L3MON4D3/LuaSnip',             -- Snippet engine
+    'saadparwaiz1/cmp_luasnip',     -- Luasnip completion source for nvim-cmp
+    'onsails/lspkind.nvim',         -- vscode-like pictograms
+    'rafamadriz/friendly-snippets', -- vscode-like snippets
     {
-      'David-Kunz/cmp-npm',     -- nvim-cmp source for npm
+      'David-Kunz/cmp-npm',         -- nvim-cmp source for npm
       dependencies = {
         'nvim-lua/plenary.nvim'
       },
@@ -25,12 +25,12 @@ return {
 
     -- Load npm completion
     require('cmp-npm').setup()
-    
+
     local function has_words_before()
       local line, col = unpack(vim.api.nvim_win_get_cursor(0))
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match('%s') == nil
     end
-    
+
     local function tab(fallback)
       if cmp.visible() then
         cmp.select_next_item()
@@ -42,7 +42,7 @@ return {
         fallback()
       end
     end
-    
+
     local function shift_tab(fallback)
       if cmp.visible() then
         cmp.select_prev_item()
@@ -52,7 +52,7 @@ return {
         fallback()
       end
     end
-    
+
     cmp.setup({
       snippet = {
         expand = function(args)
@@ -101,4 +101,3 @@ return {
     vim.opt.shortmess:append('c')
   end
 }
-
