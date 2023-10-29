@@ -14,8 +14,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
-  'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
-  'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
+  'jose-elias-alvarez/null-ls.nvim', -- Inject LSP diagnostics
+  'jayp0521/mason-null-ls.nvim',     -- Make it easier to use null-ls with mason
 
 
   {
@@ -40,9 +40,7 @@ local plugins = {
     }
   },
 
-  'akinsho/nvim-bufferline.lua', -- Buffer line for tabs
-  'gpanders/editorconfig.nvim',  -- EditorConfig support
-  'folke/todo-comments.nvim',    -- Highlight keywords
+  'gpanders/editorconfig.nvim', -- EditorConfig support
 }
 
 require('lazy').setup({
