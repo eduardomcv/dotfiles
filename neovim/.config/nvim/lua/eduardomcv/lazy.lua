@@ -19,16 +19,12 @@ local plugins = {
   'williamboman/mason.nvim',                       -- Manage LSPs, linters, formatters
   'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
 
-  {
-    'nvim-treesitter/nvim-treesitter', -- Treesitter
-    build = ':TSUpdate'
-  },
-  'windwp/nvim-ts-autotag',                       -- Use treesitter to auto close html tags
-  'windwp/nvim-autopairs',                        -- Handle brackets, quotes, etc. in pairs
+  'windwp/nvim-ts-autotag',                        -- Use treesitter to auto close html tags
+  'windwp/nvim-autopairs',                         -- Handle brackets, quotes, etc. in pairs
 
-  'lewis6991/gitsigns.nvim',                      -- Git decorations
-  'kdheepak/lazygit.nvim',                        -- lazygit
-  { 'akinsho/git-conflict.nvim', version = "*" }, -- Git conflict visualizer
+  'lewis6991/gitsigns.nvim',                       -- Git decorations
+  'kdheepak/lazygit.nvim',                         -- lazygit
+  { 'akinsho/git-conflict.nvim', version = "*" },  -- Git conflict visualizer
 
   {
     'rcarriga/nvim-dap-ui',   -- UI for debugging
