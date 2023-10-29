@@ -4,7 +4,8 @@ return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
   dependencies = {
-    'nvim-lua/plenary.nvim', -- Common utilities
+    'nvim-lua/plenary.nvim',                  -- Common utilities
+    'nvim-telescope/telescope-fzy-native.nvim', -- Compiled FZY style sorter
   },
   config = function()
     local telescope = require('telescope')
