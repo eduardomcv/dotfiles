@@ -184,25 +184,6 @@ return {
           },
         })
       end,
-      eslint = function()
-        lspconfig.eslint.setup({
-          capabilities = capabilities,
-          settings = servers.eslint,
-          on_attach = function(_, bufnr)
-            -- Fix on save
-            vim.api.nvim_create_autocmd("BufWritePre", {
-              buffer = bufnr,
-              command = "EslintFixAll",
-            })
-          end,
-        })
-      end,
-      lua_ls = function()
-        lspconfig.lua_ls.setup({
-          capabilities = capabilities,
-          settings = servers.lua_ls,
-        })
-      end,
     })
   end,
 }
