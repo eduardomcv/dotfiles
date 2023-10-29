@@ -5,7 +5,6 @@ return {
   html = {},
   jsonls = {},
   emmet_ls = {},
-  eslint = {},
   graphql = {},
   tsserver = {},
   lua_ls = {
@@ -13,8 +12,8 @@ return {
       workspace = { checkThirdParty = false },
       telemetry = { enable = false },
       diagnostics = {
-        globals = { 'vim' },
+        globals = { "vim" },
       },
     },
-  }
+  },
 }
