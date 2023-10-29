@@ -13,9 +13,10 @@ return {
       indent = {
         enable = true,
       },
-      autotag = {
-        enable = true,
-      },
+      -- FIXME: autotag seems to be borked
+      -- autotag = {
+      --   enable = true,
+      -- },
       ensure_installed = {
         "lua",
         "javascript",
