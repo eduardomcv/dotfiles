@@ -16,20 +16,6 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
   'jose-elias-alvarez/null-ls.nvim', -- Inject LSP diagnostics
   'jayp0521/mason-null-ls.nvim',     -- Make it easier to use null-ls with mason
-
-
-  {
-    'rcarriga/nvim-dap-ui',   -- UI for debugging
-    dependencies = {
-      'mfussenegger/nvim-dap' -- Debugging
-    }
-  },
-  {
-    "mxsdev/nvim-dap-vscode-js", -- DAP support for vscode-js-debug
-    dependencies = {
-      "mfussenegger/nvim-dap"
-    }
-  },
 }
 
 require('lazy').setup({
