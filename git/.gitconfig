@@ -19,3 +19,5 @@
     # View abbreviated SHA, description, and history graph of the latest 20 commits
     ll = log --pretty=oneline -n 20 --graph --abbrev-commit
     up = push -u origin HEAD
+[init]
+	defaultBranch = main
