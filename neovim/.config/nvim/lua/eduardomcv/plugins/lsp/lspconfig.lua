@@ -91,7 +91,8 @@ return {
         virtual_text = {
           spacing = 4,
           prefix = '●',
-        }
+        },
+        update_in_insert = true
       }
     )
 

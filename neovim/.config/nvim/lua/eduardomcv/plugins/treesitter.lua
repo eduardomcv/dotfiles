@@ -1,5 +1,8 @@
 return {
   "nvim-treesitter/nvim-treesitter",
+  dependencies = {
+    'windwp/nvim-ts-autotag' -- Auto close and auto rename tags
+  },
   build = ":TSUpdate",
   event = { "BufReadPre", "BufNewFile" },
   config = function()
