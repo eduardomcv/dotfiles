@@ -11,6 +11,7 @@ return {
     'saadparwaiz1/cmp_luasnip',     -- Luasnip completion source for nvim-cmp
     'onsails/lspkind.nvim',         -- vscode-like pictograms
     'rafamadriz/friendly-snippets', -- vscode-like snippets
+    'nvim-autopairs',               -- Auto-pair plugin
     {
       'David-Kunz/cmp-npm',         -- nvim-cmp source for npm
       dependencies = {
@@ -21,6 +22,12 @@ return {
   config = function()
     local cmp = require('cmp')
     local luasnip = require('luasnip')
+    local cmp_autopairs = require('nvim-autopairs.completion.cmp')
+
+    cmp.event:on(
+      'confirm_done',
+      cmp_autopairs.on_confirm_done()
+    )
 
     -- Load vscode snippets
     require("luasnip.loaders.from_vscode").lazy_load()
