@@ -15,15 +15,13 @@ vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
   'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
-  { 'j-hui/fidget.nvim',         tag = 'legacy' }, -- UI for LSP progress
-  'williamboman/mason.nvim',                       -- Manage LSPs, linters, formatters
   'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
+  { 'j-hui/fidget.nvim',         tag = 'legacy' }, -- UI for LSP progress
 
   'windwp/nvim-ts-autotag',                        -- Use treesitter to auto close html tags
   'windwp/nvim-autopairs',                         -- Handle brackets, quotes, etc. in pairs
 
   'lewis6991/gitsigns.nvim',                       -- Git decorations
-  'kdheepak/lazygit.nvim',                         -- lazygit
   { 'akinsho/git-conflict.nvim', version = "*" },  -- Git conflict visualizer
 
   {
@@ -51,22 +49,9 @@ local plugins = {
   'akinsho/nvim-bufferline.lua',                                      -- Buffer line for tabs
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} }, -- Indentation guides
   'mbbill/undotree',                                                  -- Undo tree
-  {
-    'kylechui/nvim-surround',                                         -- Surround functionality
-    version = '*',
-    event = 'VeryLazy'
-  },
-  'numToStr/Comment.nvim',              -- Commenting functionality
-  'gpanders/editorconfig.nvim',         -- EditorConfig support
-  'uga-rosa/ccc.nvim',                  -- Color picker and highlighter
-  'folke/todo-comments.nvim',           -- Highlight keywords
-  'jose-elias-alvarez/typescript.nvim', -- Better Typescript support
-  {
-    'folke/trouble.nvim',               -- Pretty diagnostics
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',
-    },
-  },
+  'gpanders/editorconfig.nvim',                                       -- EditorConfig support
+  'uga-rosa/ccc.nvim',                                                -- Color picker and highlighter
+  'folke/todo-comments.nvim',                                         -- Highlight keywords
 }
 
 require('lazy').setup({
