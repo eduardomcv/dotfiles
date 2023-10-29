@@ -4,7 +4,6 @@ return {
   'hrsh7th/nvim-cmp',
   event = 'InsertEnter',
   dependencies = {
-    'hrsh7th/cmp-nvim-lsp',         -- nvim-cmp source for neovim's built-in LSP
     'hrsh7th/cmp-buffer',           -- nvim-cmp source for words within buffer
     'hrsh7th/cmp-path',             -- nvim-cmp source for paths
     'L3MON4D3/LuaSnip',             -- Snippet engine

@@ -3,11 +3,12 @@
 return {
   'neovim/nvim-lspconfig',
   dependencies = {
-    'folke/neodev.nvim',                  -- Support for init.lua docs and completion
-    'williamboman/mason.nvim',            -- Manage LSPs, linters, formatters
+    'hrsh7th/cmp-nvim-lsp',               -- nvim-cmp source for neovim's built-in LSP
     'williamboman/mason-lspconfig.nvim',  -- Make it easier to use lspconfig with mason
+    'folke/neodev.nvim',                  -- Support for init.lua docs and completion
     'jose-elias-alvarez/typescript.nvim', -- Better Typescript support
   },
+  event = { 'BufReadPre', 'BufNewFile' },
   config = function()
     local lspconfig = require('lspconfig')
 
@@ -133,25 +134,7 @@ return {
       },
     })
 
-    -- Server configurations
-    local servers = {
-      cssls = {},
-      html = {},
-      jsonls = {},
-      emmet_ls = {},
-      eslint = {},
-      graphql = {},
-      tsserver = {},
-      lua_ls = {
-        Lua = {
-          workspace = { checkThirdParty = false },
-          telemetry = { enable = false },
-          diagnostics = {
-            globals = { 'vim' },
-          },
-        },
-      }
-    }
+    local servers = require('eduardomcv.plugins.lsp.config.server-configurations')
 
     -- neodev must be loaded before lspconfig
     require('neodev').setup {
@@ -161,14 +144,6 @@ return {
         },
         types = true,
       },
-    }
-
-    -- Mason must be loaded before lspconfig
-    require('mason').setup {}
-
-    require('mason-lspconfig').setup {
-      automatic_installation = true,
-      ensure_installed = vim.tbl_keys(servers),
     }
 
     require('mason-lspconfig').setup_handlers {

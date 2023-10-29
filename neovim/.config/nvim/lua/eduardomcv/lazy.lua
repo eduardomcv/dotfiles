@@ -73,7 +73,10 @@ local plugins = {
   },
 }
 
-require('lazy').setup('eduardomcv.plugins', {
+require('lazy').setup({
+  { import = 'eduardomcv.plugins' },
+  { import = 'eduardomcv.plugins.lsp' },
+}, {
   install = {
     colorscheme = { 'catppuccin' },
   },
