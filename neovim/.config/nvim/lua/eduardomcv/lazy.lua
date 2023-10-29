@@ -52,12 +52,6 @@ local plugins = {
     }
   },
 
-  {
-    'nvim-lualine/lualine.nvim',     -- Status line
-    dependencies = {
-      'nvim-tree/nvim-web-devicons', -- optional, for file icons
-    },
-  },
   'akinsho/nvim-bufferline.lua',                                      -- Buffer line for tabs
   { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} }, -- Indentation guides
   'mbbill/undotree',                                                  -- Undo tree
