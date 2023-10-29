@@ -17,43 +17,16 @@ local plugins = {
   'neovim/nvim-lspconfig',                         -- LSP configurations
   'jose-elias-alvarez/null-ls.nvim',               -- Inject LSP diagnostics
   { 'j-hui/fidget.nvim',         tag = 'legacy' }, -- UI for LSP progress
-  'onsails/lspkind.nvim',                          -- vscode-like pictograms
-  'rafamadriz/friendly-snippets',                  -- vscode-like snippets
   'williamboman/mason.nvim',                       -- Manage LSPs, linters, formatters
   'williamboman/mason-lspconfig.nvim',             -- Make it easier to use lspconfig with mason
   'jayp0521/mason-null-ls.nvim',                   -- Make it easier to use null-ls with mason
 
   {
-    'hrsh7th/nvim-cmp',           -- Completion
-    dependencies = {
-      'hrsh7th/cmp-nvim-lsp',     -- nvim-cmp source for neovim's built-in LSP
-      'hrsh7th/cmp-buffer',       -- nvim-cmp source for buffer words
-      'L3MON4D3/LuaSnip',         -- Snippet engine
-      'saadparwaiz1/cmp_luasnip', -- Luasnip completion source for nvim-cmp
-      {
-        'David-Kunz/cmp-npm',     -- nvim-cmp source for npm
-        dependencies = {
-          'nvim-lua/plenary.nvim'
-        },
-      },
-    },
-  },
-
-  {
     'nvim-treesitter/nvim-treesitter', -- Treesitter
     build = ':TSUpdate'
   },
-  'windwp/nvim-ts-autotag', -- Use treesitter to auto close html tags
-  'windwp/nvim-autopairs',  -- Handle brackets, quotes, etc. in pairs
-
-  {
-    'nvim-telescope/telescope.nvim', -- Fuzzy finder
-    branch = '0.1.x',
-    dependencies = {
-      'nvim-lua/plenary.nvim', -- Common utilities
-    },
-  },
-  'nvim-telescope/telescope-fzy-native.nvim',     -- Compiled FZY style sorter
+  'windwp/nvim-ts-autotag',                       -- Use treesitter to auto close html tags
+  'windwp/nvim-autopairs',                        -- Handle brackets, quotes, etc. in pairs
 
   'lewis6991/gitsigns.nvim',                      -- Git decorations
   'kdheepak/lazygit.nvim',                        -- lazygit
@@ -87,18 +60,11 @@ local plugins = {
       'nvim-tree/nvim-web-devicons', -- optional, for file icons
     },
   },
-  { "catppuccin/nvim",                     name = "catppuccin" },           -- Catppuccin theme
-  'akinsho/nvim-bufferline.lua',                                            -- Buffer line for tabs
-  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl',       opts = {} }, -- Indentation guides
+  'akinsho/nvim-bufferline.lua',                                      -- Buffer line for tabs
+  { 'lukas-reineke/indent-blankline.nvim', main = 'ibl', opts = {} }, -- Indentation guides
+  'mbbill/undotree',                                                  -- Undo tree
   {
-    'nvim-tree/nvim-tree.lua',                                              -- File tree
-    dependencies = {
-      'nvim-tree/nvim-web-devicons',                                        -- optional, for file icons
-    },
-  },
-  'mbbill/undotree',          -- Undo tree
-  {
-    'kylechui/nvim-surround', -- Surround functionality
+    'kylechui/nvim-surround',                                         -- Surround functionality
     version = '*',
     event = 'VeryLazy'
   },
@@ -114,11 +80,17 @@ local plugins = {
       'nvim-tree/nvim-web-devicons',
     },
   },
-  'christoomey/vim-tmux-navigator', -- tmux navigation
-
-  'zbirenbaum/copilot.lua'          -- Github copilot
 }
 
-local opts = {}
-
-require('lazy').setup(plugins, opts)
+require('lazy').setup('eduardomcv.plugins', {
+  install = {
+    colorscheme = { 'catppuccin' },
+  },
+  checker = {
+    enabled = true,
+    notify = false,
+  },
+  change_detection = {
+    notify = false,
+  },
+})

@@ -1,5 +1,2 @@
-require('eduardomcv.base')
-require('eduardomcv.keymaps')
-require('eduardomcv.plugins')
-require('eduardomcv.clipboard')
-require('eduardomcv.autocmds')
+require('eduardomcv.core')
+require('eduardomcv.lazy')
