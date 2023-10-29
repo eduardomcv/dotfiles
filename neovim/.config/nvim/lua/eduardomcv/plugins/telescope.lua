@@ -4,8 +4,9 @@ return {
   'nvim-telescope/telescope.nvim',
   branch = '0.1.x',
   dependencies = {
-    'nvim-lua/plenary.nvim',                  -- Common utilities
+    'nvim-lua/plenary.nvim',                    -- Common utilities
     'nvim-telescope/telescope-fzy-native.nvim', -- Compiled FZY style sorter
+    'debugloop/telescope-undo.nvim'             -- Visualize and fuzzy search undo tree with telescope
   },
   config = function()
     local telescope = require('telescope')
@@ -104,7 +105,9 @@ return {
       },
     }
 
+    -- Telescope extensions
     telescope.load_extension('fzy_native')
+    telescope.load_extension("undo")
 
     -- Builtin maps
     u.nmap('<C-p>', find_project_files)
@@ -124,5 +127,6 @@ return {
     u.nmap('<leader>sh', builtin.help_tags)
     u.nmap('<leader>sr', builtin.oldfiles)
     u.nmap('<leader>st', builtin.tags)
+    u.nmap('<leader>su', ':Telescope undo')
   end
 }

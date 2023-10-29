@@ -41,7 +41,6 @@ local plugins = {
   },
 
   'akinsho/nvim-bufferline.lua', -- Buffer line for tabs
-  'mbbill/undotree',             -- Undo tree
   'gpanders/editorconfig.nvim',  -- EditorConfig support
   'uga-rosa/ccc.nvim',           -- Color picker and highlighter
   'folke/todo-comments.nvim',    -- Highlight keywords
