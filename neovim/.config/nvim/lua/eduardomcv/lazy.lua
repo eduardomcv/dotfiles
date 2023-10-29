@@ -30,17 +30,6 @@ local plugins = {
       "mfussenegger/nvim-dap"
     }
   },
-  {
-    'nvim-neotest/neotest', -- Test runner framework
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'nvim-treesitter/nvim-treesitter',
-      'antoinemadec/FixCursorHold.nvim',
-      'haydenmeade/neotest-jest', -- Jest support
-    }
-  },
-
-  'gpanders/editorconfig.nvim', -- EditorConfig support
 }
 
 require('lazy').setup({
