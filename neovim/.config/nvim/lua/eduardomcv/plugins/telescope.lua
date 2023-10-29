@@ -127,6 +127,6 @@ return {
     u.nmap('<leader>sh', builtin.help_tags)
     u.nmap('<leader>sr', builtin.oldfiles)
     u.nmap('<leader>st', builtin.tags)
-    u.nmap('<leader>su', ':Telescope undo')
+    u.nmap('<leader>su', ':Telescope undo<cr>')
   end
 }
