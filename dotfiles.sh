@@ -11,7 +11,6 @@ THINGS_TO_STOW=( \
     zsh \
     alacritty \
     neovim \
-    i3 \
     tmux
 )
 
