@@ -25,6 +25,7 @@ pacman -Syu --noconfirm \
   fzf \
   lazygit \
   neovim \
+  xclip \
   alacritty \
   tmux \
   firefox
