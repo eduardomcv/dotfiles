@@ -1,6 +1,9 @@
 import:
   - ~/.config/alacritty/catppuccin-mocha.yml # Theme
 
+shell:
+  program: tmux
+
 # Fonts
 font:
   size: 14
