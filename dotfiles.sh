@@ -15,8 +15,13 @@ THINGS_TO_STOW=( \
 )
 
 for thing in ${THINGS_TO_STOW[@]}; do
-    stow -vDt ~ $thing
-    stow -vt ~ $thing
+    if [[ "$#" == 0 || "$1" == "uninstall" ]]; then
+        stow -vDt ~ $thing
+    fi
+
+    if [[ "$#" == 0 || $1 == "install" ]]; then
+        stow -vt ~ $thing
+    fi
 done
 
 echo Done.
