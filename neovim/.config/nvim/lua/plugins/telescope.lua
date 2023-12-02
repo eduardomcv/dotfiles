@@ -14,9 +14,10 @@ end
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-telescope/telescope-fzy-native.nvim", -- Compiled FZY style sorter
+    "nvim-telescope/telescope-fzf-native.nvim", -- Compiled fzf style sorter
     "debugloop/telescope-undo.nvim", -- Visualize and fuzzy search undo tree with telescope
   },
+  build = "make",
   keys = {
     {
       "<c-p>",
@@ -37,8 +38,10 @@ return {
     local telescope = require("telescope")
 
     opts.defaults = vim.tbl_deep_extend("force", opts.defaults, {
+      file_ignore_patterns = { "^.git/", "^node_modules/" },
       path_display = { "truncate" },
       sorting_strategy = "ascending",
+      winblend = 0,
       layout_strategy = "horizontal",
       layout_config = {
         prompt_position = "top",
@@ -50,8 +53,6 @@ return {
           min = 80,
         },
       },
-      winblend = 0,
-      file_ignore_patterns = { "^.git/", "^node_modules/" },
       vimgrep_arguments = {
         "rg",
         "--color=never",
@@ -72,9 +73,6 @@ return {
       git_files = {
         show_untracked = true,
       },
-      current_buffer_fuzzy_find = {
-        previewer = false,
-      },
       buffers = {
         mappings = {
           n = {
@@ -84,14 +82,7 @@ return {
       },
     }
 
-    opts.extensions = {
-      fzy_native = {
-        override_generic_sorter = false,
-        override_file_sorter = true,
-      },
-    }
-
-    telescope.load_extension("fzy_native")
+    telescope.load_extension("fzf")
     telescope.load_extension("undo")
     telescope.setup(opts)
   end,
