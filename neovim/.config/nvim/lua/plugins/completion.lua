@@ -43,13 +43,18 @@ return {
       opts.mapping = vim.tbl_extend("force", opts.mapping, {
         ["<Tab>"] = cmp.mapping(next_item, { "i", "s" }),
         ["<S-Tab>"] = cmp.mapping(prev_item, { "i", "s" }),
-        ["<C-d>"] = cmp.mapping.scroll_docs(-4),
-        ["<C-u>"] = cmp.mapping.scroll_docs(4),
+        ["<C-d>"] = cmp.mapping.scroll_docs(4),
+        ["<C-u>"] = cmp.mapping.scroll_docs(-4),
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<CR>"] = cmp.mapping.confirm({
           behavior = cmp.ConfirmBehavior.Replace,
           select = true,
         }),
+      })
+
+      opts.window = vim.tbl_extend("force", opts.window or {}, {
+        completion = cmp.config.window.bordered({ side_padding = 2 }),
+        documentation = cmp.config.window.bordered({ side_padding = 2 }),
       })
     end,
   },
