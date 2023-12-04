@@ -7,9 +7,9 @@ source ./utils/sudo.sh
 check_is_not_sudo
 
 sudo apt update -y
-
 sudo apt upgrade -y
 
+# install dependencies
 sudo apt install -y \
 	build-essential \
 	fuse \
@@ -30,16 +30,17 @@ sudo apt install -y \
 	xclip \
 	tmux
 
-# Create directory for user binaries
+# create directory for user binaries
 mkdir -p ~/.local/bin
 
 # install starship prompt
-curl -sS https://starship.rs/install.sh | sh
+curl -sS https://starship.rs/install.sh | bash -s -- -y
 
 # install latest neovim stable AppImage
 echo Installing neovim...
-curl -sSL https://github.com/neovim/neovim/releases/download/stable/nvim.appimage -o ~/.local/bin/nvim
-chmod +x ~/.local/bin/nvim
+nvim_bin_path=~/.local/bin/nvim
+curl -sSLo $nvim_bin_path https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+chmod +x $nvim_bin_path
 
 # install lazygit
 echo Installing lazygit...
