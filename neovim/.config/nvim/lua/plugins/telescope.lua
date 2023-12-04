@@ -14,8 +14,19 @@ end
 return {
   "nvim-telescope/telescope.nvim",
   dependencies = {
-    "nvim-telescope/telescope-fzf-native.nvim", -- Compiled fzf style sorter
-    "debugloop/telescope-undo.nvim", -- Visualize and fuzzy search undo tree with telescope
+    {
+      "nvim-telescope/telescope-fzf-native.nvim", -- Compiled fzf style sorter
+      build = "make",
+      config = function()
+        require("telescope").load_extension("fzf")
+      end,
+    },
+    {
+      "debugloop/telescope-undo.nvim", -- Visualize and fuzzy search undo tree with telescope
+      config = function()
+        require("telescope").load_extension("undo")
+      end,
+    },
   },
   build = "make",
   keys = {
@@ -33,6 +44,13 @@ return {
       end,
       desc = "Find Project Files",
     },
+    {
+      "<leader>fu",
+      function()
+        require("telescope").extensions.undo.undo()
+      end,
+      desc = "Browse undo tree",
+    },
   },
   config = function(_, opts)
     local telescope = require("telescope")
@@ -45,7 +63,7 @@ return {
       layout_strategy = "horizontal",
       layout_config = {
         prompt_position = "top",
-        preview_cutoff = 200,
+        preview_cutoff = 150,
         preview_width = 0.55,
         height = 0.7,
         width = {
@@ -82,8 +100,6 @@ return {
       },
     }
 
-    telescope.load_extension("fzf")
-    telescope.load_extension("undo")
     telescope.setup(opts)
   end,
 }
