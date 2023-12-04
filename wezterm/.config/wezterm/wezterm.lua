@@ -8,7 +8,6 @@ local config = {
 	}),
 	color_scheme = "Catppuccin Mocha",
 	hide_tab_bar_if_only_one_tab = true,
-	disable_default_key_bindings = true,
 	font_size = 14,
 	window_padding = {
 		left = 0,
