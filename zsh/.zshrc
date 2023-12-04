@@ -18,7 +18,7 @@ alias ls="exa -F"
 alias l=ls
 alias la="ls -a"
 alias ll="la -l"
-alias cat=bat
+alias cat="bat 2>/dev/null || batcat"   # bat may be installed as "batcat"
 alias lg=lazygit
 alias v=nvim
 alias vi=nvim
@@ -46,7 +46,7 @@ autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 compinit -d ~/.cache/zsh/compdump
-_comp_options+=(globdots)           # Include hidden files
+_comp_options+=(globdots)   # Include hidden files 
 
 # enable colors
 autoload -U colors && colors
@@ -71,8 +71,8 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # auto suggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)           # try to find a suggestion from history. if no match is found, try from completion engine
-bindkey '^ ' autosuggest-accept                         # accept suggestion with ctrl+space
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)   # try to find a suggestion from history. if no match is found, try from completion engine
+bindkey '^ ' autosuggest-accept                 # accept suggestion with ctrl+space
 
 # starship prompt
 eval "$(starship init zsh)"
