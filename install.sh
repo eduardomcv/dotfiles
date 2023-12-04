@@ -12,7 +12,7 @@ sudo apt upgrade -y
 # install dependencies
 sudo apt install -y \
 	build-essential \
-	fuse \
+	fuse3 \
 	libfuse2 \
 	git \
 	stow \
@@ -28,10 +28,14 @@ sudo apt install -y \
 	exa \
 	fzf \
 	xclip \
-	tmux
+	tmux \
+	flatpak
 
 # create directory for user binaries
 mkdir -p ~/.local/bin
+
+# add flathub repository
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
 
 # install starship prompt
 curl -sS https://starship.rs/install.sh | sh -s -- -y
