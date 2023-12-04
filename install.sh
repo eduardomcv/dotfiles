@@ -34,12 +34,12 @@ sudo apt install -y \
 mkdir -p ~/.local/bin
 
 # install starship prompt
-curl -sS https://starship.rs/install.sh | bash -s -- -y
+curl -sS https://starship.rs/install.sh | sh -s -- -y
 
 # install latest neovim stable AppImage
 echo Installing neovim...
 nvim_bin_path=~/.local/bin/nvim
-curl -sSLo $nvim_bin_path https://github.com/neovim/neovim/releases/download/stable/nvim.appimage
+curl -sSL https://github.com/neovim/neovim/releases/download/stable/nvim.appimage >$nvim_bin_path
 chmod +x $nvim_bin_path
 
 # install lazygit
