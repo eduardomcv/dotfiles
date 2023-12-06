@@ -27,9 +27,14 @@ sudo apt install -y \
 	fd-find \
 	exa \
 	fzf \
-	wl-clipboard \
 	tmux \
-	flatpak
+	flatpak \
+	sway \
+	sway-notification-center \
+	swayidle \
+	wofi \
+	waybar \
+	wl-clipboard
 
 # create directory for user binaries
 mkdir -p ~/.local/bin
