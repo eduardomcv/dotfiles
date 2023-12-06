@@ -27,7 +27,7 @@ sudo apt install -y \
 	fd-find \
 	exa \
 	fzf \
-	xclip \
+	wl-clipboard \
 	tmux \
 	flatpak
 
