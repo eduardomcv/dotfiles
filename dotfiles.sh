@@ -12,7 +12,6 @@ THINGS_TO_STOW=(
 	neovim
 	tmux
 	wezterm
-	sway
 )
 
 for thing in ${THINGS_TO_STOW[@]}; do
