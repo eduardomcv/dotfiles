@@ -29,11 +29,6 @@ sudo apt install -y \
 	fzf \
 	tmux \
 	flatpak \
-	sway \
-	sway-notification-center \
-	swayidle \
-	wofi \
-	waybar \
 	wl-clipboard
 
 # create directory for user binaries
