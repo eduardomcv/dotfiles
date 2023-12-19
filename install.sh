@@ -29,7 +29,7 @@ sudo apt install -y \
 	fzf \
 	tmux \
 	flatpak \
-	wl-clipboard
+	xclip
 
 # create directory for user binaries
 mkdir -p ~/.local/bin
