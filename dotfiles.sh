@@ -14,14 +14,28 @@ THINGS_TO_STOW=(
 	wezterm
 )
 
+if [[ "$#" == 0 || "$1" == "install" ]]; then
+	INSTALL=true
+fi
+
+if [[ "$#" == 0 || "$1" == "uninstall" ]]; then
+	UNINSTALL=true
+fi
+
 for thing in ${THINGS_TO_STOW[@]}; do
-	if [[ "$#" == 0 || "$1" == "uninstall" ]]; then
+	if [[ "$UNINSTALL" == true ]]; then
 		stow -vDt ~ $thing
 	fi
 
-	if [[ "$#" == 0 || $1 == "install" ]]; then
+	if [[ "$INSTALL" == true ]]; then
 		stow -vt ~ $thing
 	fi
 done
 
-echo Done.
+if [[ "$INSTALL" == true ]]; then
+	read -e -p "Enter git username: " username
+	read -e -p "Enter git email: " email
+
+	git config --global user.email "$email"
+	git config --global user.name "$username"
+fi

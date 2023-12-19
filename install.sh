@@ -54,4 +54,8 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm lazygit*
 
+# install dotfiles
+echo Installing dotfiles...
+./dotfiles.sh
+
 echo Done.
