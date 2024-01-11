@@ -54,6 +54,9 @@ tar xf lazygit.tar.gz lazygit
 sudo install lazygit /usr/local/bin
 rm lazygit*
 
+# install pnpm
+curl -fsSL https://get.pnpm.io/install.sh | sh -
+
 # install dotfiles
 echo Installing dotfiles...
 ./dotfiles.sh
