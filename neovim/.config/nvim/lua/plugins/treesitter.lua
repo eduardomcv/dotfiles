@@ -17,6 +17,7 @@ return {
       "rust",
       "vim",
       "yaml",
+      "toml",
     })
   end,
 }
