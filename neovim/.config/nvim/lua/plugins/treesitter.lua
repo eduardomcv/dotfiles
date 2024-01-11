@@ -12,6 +12,9 @@ return {
       "regex",
       "tsx",
       "typescript",
+      "svelte",
+      "vue",
+      "rust",
       "vim",
       "yaml",
     })
