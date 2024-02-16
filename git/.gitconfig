@@ -7,7 +7,9 @@
 [color]
   ui = auto
 [alias]
-  clean = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
+  # Clean up deleted branches
+  clean-branches = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
+  cb = clean-branches
   ch = checkout
   branches = branch -a
   remotes = remote -v
