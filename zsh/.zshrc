@@ -14,7 +14,7 @@ antidote load
 
 # aliases
 alias grep="grep --color=auto"
-alias ls="exa -F"
+alias ls="ls -G"
 alias l=ls
 alias la="ls -a"
 alias ll="la -l"
