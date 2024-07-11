@@ -9,3 +9,6 @@ zsh-users/zsh-completions
 
 # Jump to recent directories with z
 rupa/z
+
+# Node Version Manager
+lukechilds/zsh-nvm
