@@ -1,3 +1,9 @@
+# Node Version Manager
+lukechilds/zsh-nvm
+
+# pyenv
+mattberther/zsh-pyenv
+
 # Fish-like suggestions
 zsh-users/zsh-autosuggestions
 
@@ -9,6 +15,3 @@ zsh-users/zsh-completions
 
 # Jump to recent directories with z
 rupa/z
-
-# Node Version Manager
-lukechilds/zsh-nvm
