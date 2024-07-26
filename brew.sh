@@ -14,8 +14,13 @@ fi
 
 # Main install
 brew install \
-  stow \
+  openssl \
+  readline \
+  sqlite3 \
+  xz \
+  zlib \
   wget \
+  stow \
   ripgrep \
   fd \
   bat \
