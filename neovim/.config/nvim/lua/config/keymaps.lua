@@ -8,9 +8,6 @@ local set = vim.keymap.set
 set("n", "x", [["_x]], { desc = "Delete without yanking" })
 set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
--- Paste without yank
-set("x", "<leader>p", [["_dP]], { desc = "Past without yanking" })
-
 -- Keep cursor in place when joining lines
 set("n", "J", "mzJ`z")
 
