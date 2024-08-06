@@ -77,10 +77,3 @@ bindkey '^ ' autosuggest-accept                 # accept suggestion with ctrl+sp
 # starship prompt
 eval "$(starship init zsh)"
 
-# pnpm
-export PNPM_HOME="/home/eduardo/.local/share/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
