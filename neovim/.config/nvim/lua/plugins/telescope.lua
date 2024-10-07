@@ -9,6 +9,8 @@ return {
     },
   },
   keys = {
+    { "<leader>gc", false },
+    { "<leader>gC", "<cmd>Telescope git_commits<CR>", desc = "Commits" },
     {
       "<c-p>",
       function()
