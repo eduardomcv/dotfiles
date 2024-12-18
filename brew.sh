@@ -25,6 +25,7 @@ brew install \
   fd \
   bat \
   fzf \
+  eza \
   starship \
   lazygit \
   neovim \
