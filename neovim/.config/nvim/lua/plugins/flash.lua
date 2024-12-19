@@ -1,14 +1,14 @@
 return {
   "folke/flash.nvim",
   keys = {
-    { "s", false },
-    { "S", false },
-    { "r", false },
-    { "R", false },
+    { "s", mode = { "n", "o", "x" }, false },
+    { "S", mode = { "n", "o", "x" }, false },
+    { "r", mode = "o", false },
+    { "R", mode = { "o", "x" }, false },
     { "<c-s>", false },
     {
       "<F2>",
-      mode = { "n", "x", "o" },
+      mode = { "n", "o", "x" },
       function()
         require("flash").jump()
       end,
