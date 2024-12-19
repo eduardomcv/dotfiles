@@ -22,3 +22,6 @@ set("n", "N", "Nzzzv")
 -- Increment/decrement
 set("n", "+", "<C-a>")
 set("n", "-", "<C-x>")
+
+-- Set <c-p> as file picker.
+set("n", "<c-p>", LazyVim.pick("files"), { desc = "Find Files (Root Dir)" })
