@@ -13,7 +13,8 @@ source $antidote_dir/antidote.zsh
 antidote load
 
 # aliases
-alias grep="grep --color=auto"
+alias grep="rg"
+alias find="fd"
 alias ls="eza"
 alias l=ls
 alias la="ls -a"
