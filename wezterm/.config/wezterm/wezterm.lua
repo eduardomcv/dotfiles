@@ -2,10 +2,7 @@ local wezterm = require("wezterm")
 
 local config = {
 	default_prog = { "tmux", "new", "-A", "-s", "default" },
-	font = wezterm.font_with_fallback({
-		"FiraCode Nerd Font",
-		"JetBrains Mono",
-	}),
+	font = wezterm.font_with_fallback({ "JetBrains Mono" }),
 	color_scheme = "Catppuccin Mocha",
 	hide_tab_bar_if_only_one_tab = true,
 	font_size = 12,
