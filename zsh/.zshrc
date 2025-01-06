@@ -5,7 +5,7 @@ export VISUAL=nvim
 # Plugin manager
 antidote_dir=${ZDOTDIR:-~}/.antidote
 
-if [[ ! -e $antidote_dir ]] then
+if [[ ! -e $antidote_dir ]]; then
   git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
 fi
 
@@ -19,7 +19,7 @@ alias ls="eza"
 alias l=ls
 alias la="ls -a"
 alias ll="la -l"
-alias cat=bat   # bat may be installed as "batcat"
+alias cat=bat # bat may be installed as "batcat"
 alias lg=lazygit
 alias v=nvim
 alias vi=nvim
@@ -33,8 +33,17 @@ fh() {
 }
 
 # set PATH so it includes user's private bin if it exists
-if [ -d "$HOME/.local/bin" ] ; then
-    PATH="$HOME/.local/bin:$PATH"
+local_bin_dir="$HOME/.local/bin"
+
+if [ -d $local_bin_dir ]; then
+  PATH="$local_bin_dir:$PATH"
+fi
+
+# set PATH so it includes emacs bin if it exists
+emacs_bin="$HOME/.config/emacs/bin"
+
+if [ -d $emacs_bin ]; then
+  PATH="$emacs_bin:$PATH"
 fi
 
 # history
@@ -47,7 +56,7 @@ autoload -Uz compinit
 zmodload zsh/complist
 zstyle ':completion:*' menu select
 compinit -d ~/.cache/zsh/compdump
-_comp_options+=(globdots)   # Include hidden files 
+_comp_options+=(globdots) # Include hidden files
 
 # enable colors
 autoload -U colors && colors
@@ -72,9 +81,8 @@ bindkey -M menuselect '^j' vi-down-line-or-history
 bindkey -M menuselect '^[[Z' reverse-menu-complete
 
 # auto suggestions
-ZSH_AUTOSUGGEST_STRATEGY=(history completion)   # try to find a suggestion from history. if no match is found, try from completion engine
-bindkey '^ ' autosuggest-accept                 # accept suggestion with ctrl+space
+ZSH_AUTOSUGGEST_STRATEGY=(history completion) # try to find a suggestion from history. if no match is found, try from completion engine
+bindkey '^ ' autosuggest-accept               # accept suggestion with ctrl+space
 
 # starship prompt
 eval "$(starship init zsh)"
-
