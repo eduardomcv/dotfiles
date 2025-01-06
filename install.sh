@@ -14,6 +14,8 @@ sudo pacman -S --noconfirm --needed \
   base-devel \
   power-profiles-daemon \
   system-config-printer \
+  noto-fonts-cjk \
+  noto-fonts-emoji \
   firewalld \
   stow \
   zip \
@@ -28,7 +30,7 @@ sudo pacman -S --noconfirm --needed \
   wl-clipboard \
   git \
   lazygit \
-  ttf-firacode-nerd \
+  ttf-jetbrains-mono-nerd \
   starship \
   tmux \
   wezterm \
