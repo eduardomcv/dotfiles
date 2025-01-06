@@ -20,9 +20,13 @@
 ;; See 'C-h v doom-font' for documentation and more examples of what they
 ;; accept. For example:
 ;;
-(setq doom-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
+(setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24))
+;; Show keywords and comments in italic
+(custom-set-faces!
+  '(font-lock-comment-face :slant italic)
+  '(font-lock-keyword-face :slant italic))
 
 ;; If you or Emacs can't find your font, use 'M-x describe-font' to look them
 ;; up, `M-x eval-region' to execute elisp code, and 'M-x doom/reload-font' to
@@ -76,6 +80,10 @@
 ;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
 ;; they are implemented.
 
-;; larger default frames
+;; Larger default frames
 (add-to-list 'default-frame-alist '(height . 60))
 (add-to-list 'default-frame-alist '(width . 120))
+
+(after! org
+  ;; Hide emphasis markers in org mode
+  (setq org-hide-emphasis-markers t))
