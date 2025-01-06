@@ -23,7 +23,6 @@ alias cat=bat # bat may be installed as "batcat"
 alias lg=lazygit
 alias v=nvim
 alias vi=nvim
-alias vim=nvim
 alias ff="fd -H -t f -E .git"
 alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
