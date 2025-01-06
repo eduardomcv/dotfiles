@@ -9,6 +9,7 @@ check_is_not_sudo
 THINGS_TO_STOW=(
 	git
 	zsh
+	emacs
 	neovim
 	tmux
 	wezterm
@@ -24,17 +25,17 @@ fi
 
 for thing in ${THINGS_TO_STOW[@]}; do
 	if [[ "$UNINSTALL" == true ]]; then
-		stow -vDt ~ $thing
+		stow -vDt ~ "$thing"
 	fi
 
 	if [[ "$INSTALL" == true ]]; then
-		stow -vt ~ $thing
+		stow -vt ~ "$thing"
 	fi
 done
 
 if [[ "$INSTALL" == true ]]; then
-	read -e -p "Enter git username: " username
-	read -e -p "Enter git email: " email
+	read -e -r -p "Enter git username: " username
+	read -e -r -p "Enter git email: " email
 
 	git config --global user.email "$email"
 	git config --global user.name "$username"
