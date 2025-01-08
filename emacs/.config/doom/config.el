@@ -81,8 +81,8 @@
 ;; they are implemented.
 
 ;; Larger default frames
-(add-to-list 'default-frame-alist '(height . 60))
-(add-to-list 'default-frame-alist '(width . 120))
+(add-to-list 'default-frame-alist '(height . 55))
+(add-to-list 'default-frame-alist '(width . 100))
 
 (after! org
   ;; Hide emphasis markers in org mode
