@@ -23,6 +23,7 @@
 (setq doom-font (font-spec :family "JetBrainsMono Nerd Font Mono" :size 15)
       doom-variable-pitch-font (font-spec :family "JetBrainsMono Nerd Font" :size 15)
       doom-big-font (font-spec :family "JetBrainsMono Nerd Font" :size 24))
+
 ;; Show keywords and comments in italic
 (custom-set-faces!
   '(font-lock-comment-face :slant italic)
@@ -87,4 +88,19 @@
 
 (after! org
   ;; Hide emphasis markers in org mode
-  (setq org-hide-emphasis-markers t))
+  (setq org-hide-emphasis-markers t)
+  ;; Set org directories
+  (setq org-directory "~/Org")
+  (setq org-roam-directory "~/Org/Roam")
+  (setq org-agenda-files "~/Org/agenda.org"))
+
+(use-package! websocket
+  :after org)
+
+(use-package! org-roam-ui
+  :after org
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
