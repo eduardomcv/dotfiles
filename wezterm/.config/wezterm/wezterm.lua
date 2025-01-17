@@ -45,7 +45,7 @@ local host_os = detect_host_os()
 -- add homebrew binaries to $PATH on macos
 if host_os == "macos" then
 	config.set_environment_variables = {
-		PATH = "/opt/homebrew/bin/:" .. os.getenv("PATH"),
+		PATH = "/opt/homebrew/bin:/usr/local/bin:" .. os.getenv("PATH"),
 	}
 end
 
