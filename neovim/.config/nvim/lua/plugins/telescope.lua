@@ -65,9 +65,11 @@ return {
 					hidden = true,
 				},
 				live_grep = {
+					file_ignore_patterns = { "^.git/" },
 					additional_args = { "--hidden" },
 				},
 				grep_string = {
+					file_ignore_patterns = { "^.git/" },
 					additional_args = { "--hidden" },
 				},
 			},
