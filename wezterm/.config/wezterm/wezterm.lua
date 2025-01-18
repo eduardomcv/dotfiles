@@ -5,7 +5,7 @@ local config = {
 	font = wezterm.font_with_fallback({ "JetBrains Mono" }),
 	color_scheme = "Catppuccin Mocha",
 	hide_tab_bar_if_only_one_tab = true,
-	font_size = 12,
+	font_size = 14,
 	window_padding = {
 		left = 4,
 		right = 4,
@@ -45,7 +45,7 @@ local host_os = detect_host_os()
 -- add homebrew binaries to $PATH on macos
 if host_os == "macos" then
 	config.set_environment_variables = {
-		PATH = "/opt/homebrew/bin/:" .. os.getenv("PATH"),
+		PATH = "/opt/homebrew/bin:/usr/local/bin:" .. os.getenv("PATH"),
 	}
 end
 
