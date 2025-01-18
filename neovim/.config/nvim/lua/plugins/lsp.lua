@@ -77,7 +77,7 @@ return {
 				},
 			})
 
-			-- Setup keymaps
+			-- Setup keymaps (setting this in "keys" breaks the plugin)
 			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
 			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
 			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
