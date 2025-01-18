@@ -38,13 +38,6 @@ if [ -d $local_bin_dir ]; then
   PATH="$local_bin_dir:$PATH"
 fi
 
-# set PATH so it includes emacs bin if it exists
-emacs_bin="$HOME/.config/emacs/bin"
-
-if [ -d $emacs_bin ]; then
-  PATH="$emacs_bin:$PATH"
-fi
-
 # history
 HISTSIZE=10000
 SAVEHIST=10000
