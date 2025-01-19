@@ -1,9 +1,5 @@
 local opt = vim.opt
 
--- Leader keys must be set before calling Lazy
-vim.g.mapleader = " "
-vim.g.maplocalleader = "\\"
-
 -- Set line numbers
 opt.number = true
 opt.relativenumber = true
@@ -32,3 +28,6 @@ opt.undolevels = 10000
 
 -- Don't show cmdline. Commands and messages are handled by noice.nvim
 opt.cmdheight = 0
+
+-- Support concealed text
+opt.conceallevel = 1

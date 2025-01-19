@@ -91,6 +91,7 @@ return {
 					"vim",
 					"regex",
 					"markdown",
+					"markdown_inline",
 					"json",
 					"jsonc",
 					"yaml",

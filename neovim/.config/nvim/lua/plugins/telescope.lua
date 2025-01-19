@@ -21,6 +21,13 @@ local function search_config_files()
 	})
 end
 
+local function search_vault()
+	require("telescope.builtin").find_files({
+		cwd = vim.g.obsidian_vault_dir,
+		find_command = { "fd", "--type", "f", "-H", "-E", ".git/", "-E", ".obsidian*" },
+	})
+end
+
 return {
 	"nvim-telescope/telescope.nvim",
 	branch = "0.1.x",
@@ -38,6 +45,7 @@ return {
 		{ "<leader>sp", search_project_files, desc = "Search project" },
 		{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Search files" },
 		{ "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Search recent files" },
+		{ "<leader>sv", search_vault, desc = "Search vault" },
 		{ "<leader>sc", search_config_files, desc = "Search config files" },
 		{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
 		{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Search buffers" },

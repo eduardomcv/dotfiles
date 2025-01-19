@@ -30,10 +30,11 @@ return {
 				enabled = true,
 				preset = {
 					keys = {
-						{ icon = " ", key = "f", desc = "Find file", action = "<leader>sf" },
-						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
-						{ icon = " ", key = "g", desc = "Find Text", action = "<leader>sg" },
-						{ icon = " ", key = "r", desc = "Recent Files", action = "<leader>sr" },
+						{ icon = " ", key = "f", desc = "Search file", action = "<leader>sf" },
+						{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
+						{ icon = " ", key = "g", desc = "Search text", action = "<leader>sg" },
+						{ icon = " ", key = "r", desc = "Recent files", action = "<leader>sr" },
+						{ icon = " ", key = "v", desc = "Search vault", action = "<leader>sv" },
 						{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
 						{ icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
 						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
@@ -54,7 +55,7 @@ return {
 				sections = {
 					{ section = "header" },
 					{ icon = " ", title = "Bookmarks", section = "keys", indent = 2, padding = 1 },
-					{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+					{ icon = " ", title = "Recent files", section = "recent_files", indent = 2, padding = 1 },
 					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 				},
 			},
@@ -264,5 +265,31 @@ return {
 		"echasnovski/mini.bracketed",
 		version = "*",
 		opts = {},
+	},
+	-- Support for obsidian
+	{
+		"epwalsh/obsidian.nvim",
+		version = "*",
+		lazy = true,
+		-- Only trigger when inside vault directories
+		event = {
+			"BufReadPre " .. vim.g.obsidian_vault_dir .. "*.md",
+			"BufNewFile " .. vim.g.obsidian_vault_dir .. "*.md",
+		},
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		opts = {
+			workspaces = {
+				{
+					name = "Vault 22",
+					path = vim.g.obsidian_vault_dir,
+				},
+			},
+			completion = {
+				nvim_cmp = true,
+				min_chars = 2,
+			},
+		},
 	},
 }
