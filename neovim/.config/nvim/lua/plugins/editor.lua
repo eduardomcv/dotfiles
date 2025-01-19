@@ -142,7 +142,7 @@ return {
 			},
 		},
 	},
-	-- Show popup with available keybindings
+	-- Show pop-up with available keybindings
 	{
 		"folke/which-key.nvim",
 		dependencies = "mini.icons",

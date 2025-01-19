@@ -31,3 +31,7 @@ opt.cmdheight = 0
 
 -- Support concealed text
 opt.conceallevel = 1
+
+-- Enable spell checking
+opt.spell = true
+opt.spelllang = "en,pt"
