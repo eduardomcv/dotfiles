@@ -51,17 +51,25 @@ return {
 	{
 		"nvim-treesitter/nvim-treesitter",
 		build = ":TSUpdate",
+		event = "VeryLazy",
 		config = function()
-			local configs = require("nvim-treesitter.configs")
-
-			configs.setup({
-				ensure_installed = {
-					"bash",
-					"lua",
-					"typescript",
-				},
+			require("nvim-treesitter.configs").setup({
+				auto_install = true,
 				highlight = { enable = true },
 				indent = { enable = true },
+				ensure_installed = {
+					"bash",
+					"tmux",
+					"lua",
+					"markdown",
+					"json",
+					"yaml",
+					"javascript",
+					"typescript",
+					"tsx",
+					"html",
+					"css",
+				},
 			})
 		end,
 	},
