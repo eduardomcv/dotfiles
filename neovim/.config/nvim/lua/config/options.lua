@@ -1,18 +1,31 @@
+local opt = vim.opt
+
 -- Leader keys must be set before calling Lazy
 vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 
 -- Set line numbers
-vim.opt.number = true
-vim.opt.relativenumber = true
-vim.opt.signcolumn = "yes"
+opt.number = true
+opt.relativenumber = true
+opt.signcolumn = "yes"
 
 -- Set tab size to 2 spaces
-vim.opt.tabstop = 2
-vim.opt.shiftwidth = 2
+opt.tabstop = 2
+opt.shiftwidth = 2
 
 -- Use system clipboard
-vim.opt.clipboard:append({ "unnamedplus" })
+opt.clipboard:append({ "unnamedplus" })
 
 -- Don't show mode message (the status line plugin takes care of that)
-vim.opt.showmode = false
+opt.showmode = false
+
+-- Highlight cursor line
+opt.cursorline = true
+
+-- Cursor scroll offset
+opt.scrolloff = 8
+opt.sidescrolloff = 8
+
+-- Persistent undo
+opt.undofile = true
+opt.undolevels = 10000
