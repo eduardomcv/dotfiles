@@ -9,7 +9,7 @@ return {
 			MiniIcons.mock_nvim_web_devicons()
 		end,
 	},
-	-- A collection of UI plugins
+	-- A collection of QoL plugins
 	{
 		"folke/snacks.nvim",
 		dependencies = "mini.icons",
@@ -18,9 +18,11 @@ return {
 		opts = {
 			bigfile = { enabled = true },
 			git = { enabled = true },
+			gitbrowse = { enabled = true },
 			indent = { enabled = true },
 			input = { enabled = true },
 			notifier = { enabled = true },
+			quickfile = { enabled = true },
 			scroll = { enabled = true },
 			rename = { enabled = true },
 			words = { enabled = true },
@@ -32,6 +34,30 @@ return {
 					Snacks.git.blame_line()
 				end,
 				desc = "Git Blame Line",
+			},
+			{
+				"<leader>gB",
+				function()
+					Snacks.gitbrowse()
+				end,
+				desc = "Git Browse",
+				mode = { "n", "v" },
+			},
+			{
+				"]]",
+				function()
+					Snacks.words.jump(vim.v.count1)
+				end,
+				desc = "Next Reference",
+				mode = { "n", "t" },
+			},
+			{
+				"[[",
+				function()
+					Snacks.words.jump(-vim.v.count1)
+				end,
+				desc = "Prev Reference",
+				mode = { "n", "t" },
 			},
 		},
 		init = function()
@@ -159,6 +185,12 @@ return {
 			"mini-git",
 			"mini.diff",
 		},
+		config = true,
+	},
+	-- Extends forward/back functionality with brackets
+	{
+		"echasnovski/mini.bracketed",
+		version = "*",
 		config = true,
 	},
 }

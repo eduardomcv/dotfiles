@@ -120,4 +120,10 @@ return {
 		version = "*",
 		config = true,
 	},
+	-- Enhances and extends a/i text objects
+	{
+		"echasnovski/mini.ai",
+		version = "*",
+		config = true,
+	},
 }
