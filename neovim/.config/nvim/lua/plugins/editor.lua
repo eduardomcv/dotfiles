@@ -37,6 +37,7 @@ return {
 						{ icon = "󱉼 ", key = "v", desc = "Search vault", action = "<leader>sv" },
 						{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
 						{ icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+						{ icon = "󰟾 ", key = "m", desc = "Mason", action = ":Mason" },
 						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 					},
 					header = [[
