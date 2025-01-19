@@ -89,7 +89,6 @@ return {
 						require("lspconfig").eslint.setup({
 							on_attach = function(_, bufnr)
 								vim.api.nvim_create_autocmd("BufWritePre", {
-									group = vim.api.nvim_create_augroup("eslint-lsp", { clear = true }),
 									buffer = bufnr,
 									command = "EslintFixAll",
 								})
