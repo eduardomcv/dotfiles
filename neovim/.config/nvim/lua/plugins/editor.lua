@@ -229,7 +229,7 @@ return {
 		"echasnovski/mini-git",
 		version = "*",
 		main = "mini.git",
-		config = true,
+		opts = {},
 	},
 	-- Integrates git diffs and hunks
 	{
@@ -250,12 +250,12 @@ return {
 			"mini-git",
 			"mini.diff",
 		},
-		config = true,
+		opts = {},
 	},
 	-- Extends forward/back functionality with brackets
 	{
 		"echasnovski/mini.bracketed",
 		version = "*",
-		config = true,
+		opts = {},
 	},
 }
