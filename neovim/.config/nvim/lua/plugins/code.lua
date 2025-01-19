@@ -16,6 +16,13 @@ return {
 		dependencies = {
 			"rafamadriz/friendly-snippets",
 			"lazydev.nvim",
+			-- Compatibility layer for using nvim-cmp sources
+			{
+				"saghen/blink.compat",
+				version = "*",
+				lazy = true,
+				opts = {},
+			},
 		},
 		version = "*",
 		---@module 'blink.cmp'
