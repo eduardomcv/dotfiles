@@ -19,3 +19,6 @@ rupa/z
 
 # Better vi emulation
 jeffreytse/zsh-vi-mode
+
+# Prompt
+sindresorhus/pure

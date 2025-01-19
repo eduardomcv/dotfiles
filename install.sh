@@ -31,7 +31,6 @@ sudo pacman -S --noconfirm --needed \
   git \
   lazygit \
   ttf-jetbrains-mono-nerd \
-  starship \
   tmux \
   wezterm \
   neovim \

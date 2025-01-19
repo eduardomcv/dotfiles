@@ -67,5 +67,5 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ## Accept suggestion with ctrl+space
 bindkey '^ ' autosuggest-accept              
 
-# starship prompt
-eval "$(starship init zsh)"
+# Prompt
+autoload -Uz promptinit && promptinit && prompt pure
