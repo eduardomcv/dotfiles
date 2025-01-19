@@ -9,7 +9,6 @@ return {
 				blink_cmp = true,
 				telescope = true,
 				treesitter = true,
-				treesitter_context = true,
 				which_key = true,
 				neogit = true,
 				diffview = true,
