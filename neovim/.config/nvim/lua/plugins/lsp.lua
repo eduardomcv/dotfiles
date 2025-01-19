@@ -13,8 +13,50 @@ return {
 		config = function()
 			-- A map of server names to configurations
 			local servers = {
-				lua_ls = {},
-				vtsls = {},
+				lua_ls = {
+					settings = {
+						Lua = {
+							workspace = {
+								checkThirdParty = false,
+							},
+							codeLens = {
+								enable = true,
+							},
+							completion = {
+								callSnippet = "Replace",
+							},
+							hint = {
+								enable = true,
+							},
+						},
+					},
+				},
+				vtsls = {
+					settings = {
+						complete_function_calls = true,
+						vtsls = {
+							enableMoveToFileCodeAction = true,
+							autoUseWorkspaceTsdk = true,
+							experimental = {
+								completion = {
+									enableServerSideFuzzyMatch = true,
+								},
+							},
+						},
+						typescript = {
+							updateImportsOnFileMove = { enabled = "always" },
+							suggest = {
+								completeFunctionCalls = true,
+							},
+						},
+						javascript = {
+							updateImportsOnFileMove = { enabled = "always" },
+							suggest = {
+								completeFunctionCalls = true,
+							},
+						},
+					},
+				},
 				eslint = {
 					workingDirectories = { mode = "auto" },
 					format = true,
