@@ -34,12 +34,18 @@ return {
 						{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
 						{ icon = " ", key = "g", desc = "Search text", action = "<leader>sg" },
 						{ icon = " ", key = "r", desc = "Recent files", action = "<leader>sr" },
-						{ icon = " ", key = "v", desc = "Search vault", action = "<leader>sv" },
+						{ icon = "󱉼 ", key = "v", desc = "Search vault", action = "<leader>sv" },
 						{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
 						{ icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
 						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 					},
 					header = [[
+|\---/|
+| ,_, |
+        \_`_/-..----.
+         ___/ `   ' ,""+ \  sk
+             (__...'   __\    |`.___.';
+               (_,...'(_,.`__)/'.....+
      _   __                _          
    / | / /__  ____ _   __(_)___ ___ 
   /  |/ / _ \/ __ \ | / / / __ `__ \
