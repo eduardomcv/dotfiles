@@ -20,6 +20,8 @@
   "mini.statusline": { "branch": "main", "commit": "813854243156472c9d0bc9c64ea0af159b9b37ca" },
   "mini.surround": { "branch": "main", "commit": "0e67c4bc147f2a15cee94e7c94dcc0e115b9f55e" },
   "neogit": { "branch": "master", "commit": "060a625660b2816649d83dbd6c7ab1b4345ea8bc" },
+  "noice.nvim": { "branch": "main", "commit": "eaed6cc9c06aa2013b5255349e4f26a6b17ab70f" },
+  "nui.nvim": { "branch": "main", "commit": "53e907ffe5eedebdca1cd503b00aa8692068ca46" },
   "nvim-lint": { "branch": "master", "commit": "9195dd0fa532f6657ff3bbc4bf7c5afa8a55ca43" },
   "nvim-lspconfig": { "branch": "master", "commit": "14b5a806c928390fac9ff4a5630d20eb902afad8" },
   "nvim-treesitter": { "branch": "master", "commit": "5da195ac3dfafd08d8b10756d975f0e01e1d563a" },

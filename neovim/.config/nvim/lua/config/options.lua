@@ -29,3 +29,6 @@ opt.sidescrolloff = 8
 -- Persistent undo
 opt.undofile = true
 opt.undolevels = 10000
+
+-- Don't show cmdline. Commands and messages are handled by noice.nvim
+opt.cmdheight = 0

@@ -33,14 +33,14 @@ return {
 				function()
 					Snacks.git.blame_line()
 				end,
-				desc = "Git Blame Line",
+				desc = "Git blame",
 			},
 			{
 				"<leader>gB",
 				function()
 					Snacks.gitbrowse()
 				end,
-				desc = "Git Browse",
+				desc = "Git browse",
 				mode = { "n", "v" },
 			},
 			{
@@ -48,7 +48,7 @@ return {
 				function()
 					Snacks.words.jump(vim.v.count1)
 				end,
-				desc = "Next Reference",
+				desc = "Next reference",
 				mode = { "n", "t" },
 			},
 			{
@@ -56,8 +56,22 @@ return {
 				function()
 					Snacks.words.jump(-vim.v.count1)
 				end,
-				desc = "Prev Reference",
+				desc = "Previous reference",
 				mode = { "n", "t" },
+			},
+			{
+				"<leader>nd",
+				function()
+					Snacks.notifier.hide()
+				end,
+				desc = "Dismiss all notifications",
+			},
+			{
+				"<leader>nh",
+				function()
+					Snacks.notifier.show_history()
+				end,
+				desc = "Notification history",
 			},
 		},
 		init = function()
@@ -70,6 +84,31 @@ return {
 			})
 		end,
 	},
+	-- UI component library
+	{ "MunifTanjim/nui.nvim", lazy = true },
+	-- Better UI for messages, cmdline and popupmenu
+	{
+		"folke/noice.nvim",
+		event = "VeryLazy",
+		dependencies = {
+			"nui.nvim",
+		},
+		opts = {
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+					["cmp.entry.get_documentation"] = true,
+				},
+			},
+			presets = {
+				bottom_search = false,
+				command_palette = true,
+				long_message_to_split = true,
+				lsp_doc_border = true,
+			},
+		},
+	},
 	-- Show popup with available keybindings
 	{
 		"folke/which-key.nvim",
@@ -80,6 +119,7 @@ return {
 				{ "<leader>s", group = "+search" },
 				{ "<leader>g", group = "+git" },
 				{ "<leader>c", group = "+code" },
+				{ "<leader>n", group = "+notification" },
 			},
 		},
 	},
