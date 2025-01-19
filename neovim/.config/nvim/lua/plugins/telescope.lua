@@ -1,7 +1,7 @@
 -- Cache the results of "git rev-parse"
 local is_inside_work_tree = {}
 
-local function find_project_files()
+local function search_project_files()
 	local cwd = vim.fn.getcwd()
 	if is_inside_work_tree[cwd] == nil then
 		vim.fn.system("git rev-parse --is-inside-work-tree")
@@ -13,6 +13,12 @@ local function find_project_files()
 	else
 		require("telescope.builtin").find_files()
 	end
+end
+
+local function search_config_files()
+	require("telescope.builtin").find_files({
+		cwd = vim.fn.stdpath("config"),
+	})
 end
 
 return {
@@ -28,9 +34,11 @@ return {
 		},
 	},
 	keys = {
-		{ "<c-p>", find_project_files, desc = "Search project" },
-		{ "<leader>sp", find_project_files, desc = "Search project" },
+		{ "<c-p>", search_project_files, desc = "Search project" },
+		{ "<leader>sp", search_project_files, desc = "Search project" },
 		{ "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Search files" },
+		{ "<leader>sr", "<cmd>Telescope oldfiles<cr>", desc = "Search recent files" },
+		{ "<leader>sc", search_config_files, desc = "Search config files" },
 		{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
 		{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Search buffers" },
 		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Search help tags" },

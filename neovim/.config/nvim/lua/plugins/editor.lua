@@ -26,6 +26,31 @@ return {
 			scroll = { enabled = true },
 			rename = { enabled = true },
 			words = { enabled = true },
+			dashboard = {
+				enabled = true,
+				preset = {
+					keys = {
+						{ icon = " ", key = "f", desc = "Find file", action = "<leader>sf" },
+						{ icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
+						{ icon = " ", key = "g", desc = "Find Text", action = "<leader>sg" },
+						{ icon = " ", key = "r", desc = "Recent Files", action = "<leader>sr" },
+						{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
+						{ icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
+						{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
+					},
+				},
+				formats = {
+					key = function(item)
+						return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
+					end,
+				},
+				sections = {
+					{ section = "header" },
+					{ icon = " ", title = "Bookmarks", section = "keys", indent = 2, padding = 1 },
+					{ icon = " ", title = "Recent Files", section = "recent_files", indent = 2, padding = 1 },
+					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
+				},
+			},
 		},
 		keys = {
 			{
