@@ -289,7 +289,7 @@ return {
 		opts = {
 			workspaces = {
 				{
-					name = "Vault 22",
+					name = "obsidian-vault",
 					path = vim.g.obsidian_vault_dir,
 				},
 			},
