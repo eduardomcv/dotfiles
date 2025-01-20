@@ -30,8 +30,8 @@ return {
 				enabled = true,
 				preset = {
 					keys = {
-						{ icon = " ", key = "f", desc = "Search file", action = "<leader>sf" },
 						{ icon = " ", key = "n", desc = "New file", action = ":ene | startinsert" },
+						{ icon = " ", key = "f", desc = "Search file", action = "<leader>sf" },
 						{ icon = " ", key = "g", desc = "Search text", action = "<leader>sg" },
 						{ icon = " ", key = "r", desc = "Recent files", action = "<leader>sr" },
 						{ icon = "󱉼 ", key = "v", desc = "Search vault", action = "<leader>sv" },
@@ -61,7 +61,7 @@ return {
 				},
 				sections = {
 					{ section = "header" },
-					{ icon = " ", title = "Bookmarks", section = "keys", indent = 2, padding = 1 },
+					{ icon = " ", title = "Keymaps", section = "keys", indent = 2, padding = 1 },
 					{ icon = " ", title = "Recent files", section = "recent_files", indent = 2, padding = 1 },
 					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 				},
