@@ -363,5 +363,16 @@ return {
 				return title
 			end,
 		},
+		keys = {
+			{ "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create new note" },
+			{ "<leader>od", "<cmd>ObsidianDailies<cr>", desc = "Browse daily notes" },
+			{ "<leader>ot", "<cmd>ObsidianToday<cr>", desc = "Open or create today's daily note" },
+			{ "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Browse note backlinks" },
+			{ "<leader>og", "<cmd>ObsidianSearch<cr>", desc = "Grep notes" },
+			{ "<leader>of", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch notes" },
+			{ "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open note in Obsidian" },
+			{ "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename note" },
+			{ "<leader>oc", "<cmd>ObsidianTOC<cr>", desc = "Browse table of contents" },
+		},
 	},
 }
