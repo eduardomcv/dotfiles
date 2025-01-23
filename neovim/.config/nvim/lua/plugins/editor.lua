@@ -356,8 +356,12 @@ return {
 			},
 			completion = {
 				nvim_cmp = true,
-				min_chars = 2,
+				min_chars = 1,
 			},
+			-- Opt out of using ids
+			note_id_func = function(title)
+				return title
+			end,
 			-- Customise note file path
 			note_path_func = function(spec)
 				local path
