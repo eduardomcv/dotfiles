@@ -349,7 +349,7 @@ return {
 			daily_notes = {
 				folder = "Daily notes",
 				default_tags = { "daily-notes" },
-				template = nil,
+				template = "Templates/Daily template",
 			},
 			templates = {
 				folder = "Templates",
@@ -358,11 +358,32 @@ return {
 				nvim_cmp = true,
 				min_chars = 2,
 			},
-			-- Opt out of generating frontmatter
-			disable_frontmatter = true,
-			-- Opt out of generating zettlekasten-like ids
-			note_id_func = function(title)
-				return title
+			-- Customise note file path
+			note_path_func = function(spec)
+				local path
+
+				if spec.title then
+					path = spec.dir / tostring(spec.title)
+				else
+					path = spec.dir / tostring(spec.id)
+				end
+
+				return path:with_suffix(".md")
+			end,
+			-- Customize the frontmatter data
+			note_frontmatter_func = function(note)
+				-- Opt out of using ids in general
+				local out = { tags = note.tags }
+
+				-- `note.metadata` contains any manually added fields in the frontmatter.
+				-- So here we just make sure those fields are kept in the frontmatter.
+				if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
+					for k, v in pairs(note.metadata) do
+						out[k] = v
+					end
+				end
+
+				return out
 			end,
 		},
 		keys = {
@@ -379,6 +400,7 @@ return {
 			{ "<leader>oc", "<cmd>ObsidianTOC<cr>", desc = "Browse table of contents" },
 			{ "<leader>ow", "<cmd>ObsidianWorkspace<cr>", desc = "Browse workspaces" },
 			{ "<leader>oe", "<cmd>ObsidianExtractNote<cr>", mode = "v", desc = "Extract note" },
+			{ "<leader>ot", "<cmd>ObsidianTemplate<cr>", mode = "v", desc = "Apply template to note" },
 		},
 	},
 }
