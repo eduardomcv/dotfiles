@@ -28,18 +28,21 @@ return {
 		---@module 'blink.cmp'
 		---@type blink.cmp.Config
 		opts = {
+			appearance = {
+				nerd_font_variant = "mono",
+			},
 			keymap = {
 				preset = "enter",
 				["<C-j>"] = { "select_next", "fallback" },
 				["<C-k>"] = { "select_prev", "fallback" },
-				cmdline = {
+			},
+			cmdline = {
+				sources = {},
+				keymap = {
 					preset = "super-tab",
 					["<C-j>"] = { "select_next", "fallback" },
 					["<C-k>"] = { "select_prev", "fallback" },
 				},
-			},
-			appearance = {
-				nerd_font_variant = "mono",
 			},
 			sources = {
 				default = {
