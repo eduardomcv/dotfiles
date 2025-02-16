@@ -318,11 +318,7 @@ return {
 	{
 		"echasnovski/mini.bracketed",
 		version = "*",
-		opts = {
-			treesitter = {
-				suffix = "s",
-			},
-		},
+		opts = {},
 	},
 	-- Support for obsidian
 	{
