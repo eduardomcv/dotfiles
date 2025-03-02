@@ -160,7 +160,6 @@ return {
 				{ "<leader>g", group = "+git" },
 				{ "<leader>c", group = "+code" },
 				{ "<leader>n", group = "+notification" },
-				{ "<leader>o", group = "+obsidian" },
 				{ "<leader>od", group = "+dailies" },
 			},
 		},
@@ -319,88 +318,5 @@ return {
 		"echasnovski/mini.bracketed",
 		version = "*",
 		opts = {},
-	},
-	-- Support for obsidian
-	{
-		"epwalsh/obsidian.nvim",
-		version = "*",
-		lazy = true,
-		-- Only trigger when inside vault directories
-		event = {
-			"BufReadPre " .. vim.g.obsidian_vault_dir .. "*.md",
-			"BufNewFile " .. vim.g.obsidian_vault_dir .. "*.md",
-		},
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		opts = {
-			workspaces = {
-				{
-					name = "obsidian-vault",
-					path = vim.g.obsidian_vault_dir,
-				},
-			},
-			notes_subdir = "Unsorted",
-			new_notes_location = "notes_subdir",
-			daily_notes = {
-				folder = "Daily notes",
-				default_tags = { "daily-notes" },
-				template = "Templates/Daily template",
-			},
-			templates = {
-				folder = "Templates",
-			},
-			completion = {
-				nvim_cmp = true,
-				min_chars = 1,
-			},
-			-- Opt out of using ids
-			note_id_func = function(title)
-				return title
-			end,
-			-- Customise note file path
-			note_path_func = function(spec)
-				local path
-
-				if spec.title then
-					path = spec.dir / tostring(spec.title)
-				else
-					path = spec.dir / tostring(spec.id)
-				end
-
-				return path:with_suffix(".md")
-			end,
-			-- Customize the frontmatter data
-			note_frontmatter_func = function(note)
-				-- Opt out of using ids in general
-				local out = { tags = note.tags }
-
-				-- `note.metadata` contains any manually added fields in the frontmatter.
-				-- So here we just make sure those fields are kept in the frontmatter.
-				if note.metadata ~= nil and not vim.tbl_isempty(note.metadata) then
-					for k, v in pairs(note.metadata) do
-						out[k] = v
-					end
-				end
-
-				return out
-			end,
-		},
-		keys = {
-			{ "<leader>on", "<cmd>ObsidianNew<cr>", desc = "Create new note" },
-			{ "<leader>odd", "<cmd>ObsidianDailies<cr>", desc = "Browse daily notes" },
-			{ "<leader>odt", "<cmd>ObsidianToday<cr>", desc = "Open or create today's daily note" },
-			{ "<leader>ody", "<cmd>ObsidianYesterday<cr>", desc = "Open or create yesterday's daily note" },
-			{ "<leader>odm", "<cmd>ObsidianTomorrow<cr>", desc = "Open or create tomorrow's daily note" },
-			{ "<leader>ob", "<cmd>ObsidianBacklinks<cr>", desc = "Browse note backlinks" },
-			{ "<leader>og", "<cmd>ObsidianSearch<cr>", desc = "Grep notes" },
-			{ "<leader>oq", "<cmd>ObsidianQuickSwitch<cr>", desc = "Quick switch notes" },
-			{ "<leader>oo", "<cmd>ObsidianOpen<cr>", desc = "Open note in Obsidian" },
-			{ "<leader>or", "<cmd>ObsidianRename<cr>", desc = "Rename note" },
-			{ "<leader>oc", "<cmd>ObsidianTOC<cr>", desc = "Browse table of contents" },
-			{ "<leader>ow", "<cmd>ObsidianWorkspace<cr>", desc = "Browse workspaces" },
-			{ "<leader>oe", "<cmd>ObsidianExtractNote<cr>", mode = "v", desc = "Extract note" },
-			{ "<leader>ot", "<cmd>ObsidianTemplate<cr>", mode = "v", desc = "Apply template to note" },
-		},
 	},
 }

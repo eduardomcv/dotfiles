@@ -47,9 +47,6 @@ return {
 			sources = {
 				default = {
 					"lazydev",
-					"obsidian",
-					"obsidian_new",
-					"obsidian_tags",
 					"lsp",
 					"path",
 					"snippets",
@@ -61,9 +58,6 @@ return {
 						module = "lazydev.integrations.blink",
 						score_offset = 100,
 					},
-					obsidian = { name = "obsidian", module = "blink.compat.source" },
-					obsidian_new = { name = "obsidian_new", module = "blink.compat.source" },
-					obsidian_tags = { name = "obsidian_tags", module = "blink.compat.source" },
 				},
 			},
 		},
