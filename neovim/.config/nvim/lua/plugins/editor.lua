@@ -34,7 +34,6 @@ return {
 						{ icon = " ", key = "f", desc = "Search file", action = "<leader>sf" },
 						{ icon = " ", key = "g", desc = "Search text", action = "<leader>sg" },
 						{ icon = " ", key = "r", desc = "Recent files", action = "<leader>sr" },
-						{ icon = "󱉼 ", key = "v", desc = "Search vault", action = "<leader>sv" },
 						{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
 						{ icon = "󰒲 ", key = "l", desc = "Lazy", action = ":Lazy", enabled = package.loaded.lazy ~= nil },
 						{ icon = "󰟾 ", key = "m", desc = "Mason", action = ":Mason" },
