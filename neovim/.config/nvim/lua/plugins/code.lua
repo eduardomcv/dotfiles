@@ -37,7 +37,6 @@ return {
 				["<C-k>"] = { "select_prev", "fallback" },
 			},
 			cmdline = {
-				sources = {},
 				keymap = {
 					preset = "super-tab",
 					["<C-j>"] = { "select_next", "fallback" },
