@@ -67,7 +67,8 @@ return {
 			},
 			pickers = {
 				find_files = {
-					find_command = { "fd", "--type", "f", "--strip-cwd-prefix", "-H", "-E", ".git" },
+					hidden = true,
+					file_ignore_patterns = { "^.git/" },
 				},
 				git_files = {
 					hidden = true,
