@@ -12,6 +12,9 @@ return {
 				javascript = { "prettier" },
 				typescript = { "prettier" },
 				typescriptreact = { "prettier" },
+				css = { "prettier" },
+				scss = { "prettier" },
+				md = { "prettier" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
