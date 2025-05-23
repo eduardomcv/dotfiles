@@ -7,49 +7,39 @@ source ./utils/sudo.sh
 check_is_not_sudo
 
 # update system
-sudo pacman -Syu --noconfirm
+sudo apt update && sudo apt upgrade -y
 
-# install dependencies
-sudo pacman -S --noconfirm --needed \
-  base-devel \
-  power-profiles-daemon \
-  system-config-printer \
-  noto-fonts-cjk \
-  noto-fonts-emoji \
-  firewalld \
+# install packages
+sudo apt install -y \
+  build-essential \
+  software-properties-common \
+	cmake \
+  git \
   stow \
-  zip \
-  unzip \
   zsh \
-  openssh \
+	fd-find \
   ripgrep \
   fzf \
-  fd \
   bat \
   eza \
-  wl-clipboard \
-  git \
-  lazygit \
-  ttf-jetbrains-mono-nerd \
-  tmux \
-  wezterm \
-  neovim \
-  flatpak \
-  qemu \
-  libvirt \
-  edk2-ovmf \
-  virt-manager \
-  dnsmasq \
-  ebtables \
-  swtpm \
-  firefox \
-  steam \
-  spotify-launcher
+  tmux
 
-# create directory for user binaries
+# Add nvim PPA
+sudo add-apt-repository -y ppa:neovim-ppa/unstable
+
+# Add wezterm repository
+curl -fsSL https://apt.fury.io/wez/gpg.key | sudo gpg --yes --dearmor -o /usr/share/keyrings/wezterm-fury.gpg
+echo 'deb [signed-by=/usr/share/keyrings/wezterm-fury.gpg] https://apt.fury.io/wez/ * *' | sudo tee /etc/apt/sources.list.d/wezterm.list
+sudo chmod 644 /usr/share/keyrings/wezterm-fury.gpg
+
+# Install packages
+sudo apt update
+sudo apt install -y neovim wezterm
+
+# Create directory for user binaries
 mkdir -p ~/.local/bin
 
-# install dotfiles
+# Install dotfiles
 echo Installing dotfiles...
 ./dotfiles.sh
 
