@@ -4,7 +4,7 @@ export VISUAL=nvim
 
 # Aliases
 alias grep="rg"
-alias find="fd"
+alias find="fd" # fd may me installed as fd-find
 alias ls="eza"
 alias l=ls
 alias la="ls -a"
