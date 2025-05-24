@@ -3,7 +3,9 @@ return {
 		"stevearc/conform.nvim",
 		event = { "BufWritePre" },
 		cmd = { "ConformInfo" },
-		dependencies = "mason.nvim",
+		dependencies = {
+			"mason.nvim",
+		},
 		---@module "conform"
 		---@type conform.setupOpts
 		opts = {
@@ -15,6 +17,9 @@ return {
 				css = { "prettier" },
 				scss = { "prettier" },
 				md = { "prettier" },
+				astro = { "prettier" },
+				json = { "prettier" },
+				yaml = { "prettier" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
@@ -32,6 +37,9 @@ return {
 				desc = "Format buffer",
 			},
 		},
+		init = function()
+			vim.o.formatexpr = "v:lua.require'conform'.formatexpr()"
+		end,
 	},
 	{
 		"zapling/mason-conform.nvim",
@@ -39,8 +47,6 @@ return {
 			"mason.nvim",
 			"conform.nvim",
 		},
-		config = function()
-			require("mason-conform").setup()
-		end,
+		opts = {},
 	},
 }

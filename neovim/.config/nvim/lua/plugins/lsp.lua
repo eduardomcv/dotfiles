@@ -143,7 +143,7 @@ return {
 
 			return {
 				automatic_enable = true,
-				ensure_installed,
+				ensure_installed = ensure_installed,
 			}
 		end,
 	},
