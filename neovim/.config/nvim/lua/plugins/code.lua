@@ -142,9 +142,4 @@ return {
 		version = "*",
 		opts = {},
 	},
-	-- Painless Java development
-	{
-		"nvim-java/nvim-java",
-		opts = {},
-	},
 }
