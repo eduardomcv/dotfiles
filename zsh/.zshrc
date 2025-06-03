@@ -3,13 +3,11 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 # Aliases
-alias grep="rg"
-alias find="fd" # fd may me installed as fd-find
-alias ls="eza"
-alias l=ls
-alias la="ls -a"
-alias ll="la -l"
-alias cat=bat # bat may be installed as "batcat"
+alias l="eza"
+alias la="l -a"
+alias ll="l -l"
+alias bat=batcat # bat may be installed as "batcat"
+alias fd=fdfind # fd may be installed as "fdfind"
 alias lg=lazygit
 alias v=nvim
 alias vi=nvim
