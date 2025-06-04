@@ -5,7 +5,7 @@ export VISUAL=nvim
 # Aliases
 alias l="eza"
 alias la="l -a"
-alias ll="l -l"
+alias ll="la -l"
 alias bat=batcat # bat may be installed as "batcat"
 alias fd=fdfind # fd may be installed as "fdfind"
 alias lg=lazygit
