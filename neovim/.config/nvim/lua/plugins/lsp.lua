@@ -79,50 +79,44 @@ local servers = {
 	yamlls = {},
 }
 
-return {
-	{
-		"neovim/nvim-lspconfig",
-		dependencies = {
-			"blink.cmp",
-		},
-		config = function()
-			-- Configure language servers
-			for server, config in pairs(servers) do
-				vim.lsp.config(server, config)
-			end
+-- Configure language servers
+for server, config in pairs(servers) do
+	vim.lsp.config(server, config)
+end
 
-			-- Configure diagnostics
-			vim.diagnostic.config({
-				underline = true,
-				severity_sort = true,
-				update_in_insert = false,
-				virtual_text = {
-					spacing = 4,
-					source = "if_many",
-					prefix = "●",
-				},
-				signs = {
-					text = {
-						[vim.diagnostic.severity.ERROR] = " ",
-						[vim.diagnostic.severity.WARN] = " ",
-						[vim.diagnostic.severity.HINT] = " ",
-						[vim.diagnostic.severity.INFO] = " ",
-					},
-				},
-			})
-
-			-- Setup keymaps (setting this in Lazy "keys" field breaks the plugin)
-			vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
-			vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-			vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
-			vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
-			vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto Type Definition" })
-			vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-			vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
-			vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, { desc = "Run Codelens" })
-			vim.keymap.set("n", "<leader>cL", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
-		end,
+-- Configure diagnostics
+vim.diagnostic.config({
+	underline = true,
+	severity_sort = true,
+	update_in_insert = false,
+	virtual_text = {
+		spacing = 4,
+		source = "if_many",
+		prefix = "●",
 	},
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = " ",
+			[vim.diagnostic.severity.WARN] = " ",
+			[vim.diagnostic.severity.HINT] = " ",
+			[vim.diagnostic.severity.INFO] = " ",
+		},
+	},
+})
+
+-- Setup keymaps
+vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
+vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
+vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
+vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
+vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto Type Definition" })
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, { desc = "Run Codelens" })
+vim.keymap.set("n", "<leader>cL", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
+
+return {
+	"neovim/nvim-lspconfig",
 	{
 		"mason-org/mason.nvim",
 		opts = {},
