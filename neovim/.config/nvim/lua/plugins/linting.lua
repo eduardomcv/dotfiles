@@ -1,3 +1,8 @@
+if IS_VSCODE then
+	-- Linting is handled by vscode
+	return {}
+end
+
 return {
 	{
 		"mfussenegger/nvim-lint",

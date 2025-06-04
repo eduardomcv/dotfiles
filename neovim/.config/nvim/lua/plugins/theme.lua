@@ -1,3 +1,8 @@
+if IS_VSCODE then
+	-- Color scheme is unecessary in vscode
+	return {}
+end
+
 return {
 	"catppuccin/nvim",
 	lazy = false,

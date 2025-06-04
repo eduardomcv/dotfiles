@@ -1,4 +1,15 @@
-return {
+-- plugins to load in vscode
+local vscode_plugins = {
+	-- Surround functionality
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		opts = {},
+	},
+}
+
+-- plugins excluded from vscode
+local other_plugins = {
 	-- Add lua types for neovim
 	{
 		"folke/lazydev.nvim",
@@ -130,12 +141,6 @@ return {
 		"windwp/nvim-ts-autotag",
 		deps = "nvim-treesitter",
 	},
-	-- Surround functionality
-	{
-		"echasnovski/mini.surround",
-		version = "*",
-		opts = {},
-	},
 	-- Enhances and extends a/i text objects
 	{
 		"echasnovski/mini.ai",
@@ -143,3 +148,9 @@ return {
 		opts = {},
 	},
 }
+
+if IS_VSCODE then
+	return vscode_plugins
+end
+
+return require("utils").table_join(vscode_plugins, other_plugins)

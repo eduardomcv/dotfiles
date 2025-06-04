@@ -1,3 +1,8 @@
+if IS_VSCODE then
+	-- Searching is handled by vscode
+	return {}
+end
+
 -- Cache the results of "git rev-parse"
 local is_inside_work_tree = {}
 
