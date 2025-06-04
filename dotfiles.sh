@@ -12,6 +12,7 @@ THINGS_TO_STOW=(
 	neovim
 	tmux
 	wezterm
+	vscode
 )
 
 if [[ "$#" == 0 || "$1" == "install" ]]; then
