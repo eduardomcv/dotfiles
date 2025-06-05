@@ -26,9 +26,6 @@ opt.sidescrolloff = 8
 opt.undofile = true
 opt.undolevels = 10000
 
--- Don't show cmdline. Commands and messages are handled by noice.nvim
-opt.cmdheight = 0
-
 -- Support concealed text
 opt.conceallevel = 1
 
