@@ -15,6 +15,9 @@ THINGS_TO_STOW=(
 	vscode
 )
 
+INSTALL=false
+UNINSTALL=false
+
 if [[ "$#" == 0 || "$1" == "install" ]]; then
 	INSTALL=true
 fi
