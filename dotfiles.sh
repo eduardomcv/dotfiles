@@ -12,7 +12,6 @@ THINGS_TO_STOW=(
 	neovim
 	tmux
 	wezterm
-	vscode
 )
 
 INSTALL=false
