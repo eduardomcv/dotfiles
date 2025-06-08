@@ -140,6 +140,7 @@ local other_plugins = {
 	{
 		"windwp/nvim-ts-autotag",
 		deps = "nvim-treesitter",
+		opts = {},
 	},
 	-- Enhances and extends a/i text objects
 	{
@@ -147,6 +148,8 @@ local other_plugins = {
 		version = "*",
 		opts = {},
 	},
+	-- Copilot
+	{ "github/copilot.vim" },
 }
 
 if IS_VSCODE then
