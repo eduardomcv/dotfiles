@@ -47,6 +47,8 @@ return {
 		{ "<leader>sg", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
 		{ "<leader>sb", "<cmd>Telescope buffers<cr>", desc = "Search buffers" },
 		{ "<leader>sh", "<cmd>Telescope help_tags<cr>", desc = "Search help tags" },
+		{ "<leader>st", "<cmd>Telescope lsp_workspace_symbols<cr>", desc = "Search workspace symbols (static)" },
+		{ "<leader>sT", "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>", desc = "Search workspace symbols (dynamic)" },
 	},
 	config = function()
 		local telescope = require("telescope")
