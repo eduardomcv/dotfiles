@@ -6,8 +6,6 @@ end
 --- Keymaps
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
 vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
-vim.keymap.set("n", "gI", vim.lsp.buf.implementation, { desc = "Goto Implementation" })
 vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto Type Definition" })
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
