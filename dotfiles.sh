@@ -11,7 +11,7 @@ THINGS_TO_STOW=(
 	zsh
 	neovim
 	tmux
-	wezterm
+	ghostty
 )
 
 INSTALL=false
