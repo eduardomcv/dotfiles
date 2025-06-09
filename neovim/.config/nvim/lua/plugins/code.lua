@@ -120,6 +120,7 @@ local other_plugins = {
 					"jsdoc",
 					"html",
 					"css",
+					"http",
 				},
 			})
 		end,
