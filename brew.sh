@@ -29,5 +29,5 @@ brew install \
   lazygit \
   neovim \
   tmux \
-  font-fira-code-nerd-font \
-  iterm2
+	ghostty \
+	font-jetbrains-mono

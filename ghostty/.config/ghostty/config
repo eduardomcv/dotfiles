@@ -1,4 +1,4 @@
-command = "tmux new -A -s default"
+command = /bin/zsh -i -l -c "tmux new -A -s default"
 font-family = JetBrains Mono
 font-size = 14
 theme = catppuccin-mocha
