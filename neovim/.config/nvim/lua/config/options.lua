@@ -29,9 +29,5 @@ opt.undolevels = 10000
 -- Support concealed text
 opt.conceallevel = 1
 
-if not IS_VSCODE then
-	-- Enable spell checking
-	-- vscode doesn't play well with vim's spellchecking
-	opt.spell = true
-	opt.spelllang = "en,pt"
-end
+-- Set spell languages to English and Portuguese
+opt.spelllang = "en,pt"
