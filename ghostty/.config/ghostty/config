@@ -3,4 +3,5 @@ font-family = JetBrains Mono
 font-size = 14
 theme = catppuccin-mocha
 window-decoration = server
-
+window-height = 45
+window-width = 140
