@@ -23,7 +23,10 @@ sudo pacman -S --noconfirm \
   tmux \
   lazygit \
   neovim \
-	ttf-jetbrains-mono
+	ttf-jetbrains-mono \
+	discord \
+	steam \
+	lutris
 
 # Create directory for user binaries
 mkdir -p ~/.local/bin
