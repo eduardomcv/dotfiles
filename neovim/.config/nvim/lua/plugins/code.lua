@@ -10,23 +10,25 @@ local vscode_plugins = {
 
 -- plugins excluded from vscode
 local other_plugins = {
-	-- Add lua types for neovim
-	{
-		"folke/lazydev.nvim",
-		ft = "lua", -- only load on lua files
-		opts = {
-			library = {
-				-- Load luvit types when the `vim.uv` word is found
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
 	-- Completion
 	{
 		"saghen/blink.cmp",
 		dependencies = {
+			-- Support snippets in completion menu
 			"rafamadriz/friendly-snippets",
-			"lazydev.nvim",
+			-- Better support for neovim config in lua
+			{
+				"folke/lazydev.nvim",
+				ft = "lua", -- only load on lua files
+				opts = {
+					library = {
+						-- Load luvit types when the `vim.uv` word is found
+						{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+					},
+				},
+			},
+			-- Add copilot as completion source
+			"fang2hou/blink-copilot",
 			-- Compatibility layer for using nvim-cmp sources
 			{
 				"saghen/blink.compat",
@@ -56,6 +58,7 @@ local other_plugins = {
 			},
 			sources = {
 				default = {
+					"copilot",
 					"lazydev",
 					"lsp",
 					"path",
@@ -63,6 +66,12 @@ local other_plugins = {
 					"buffer",
 				},
 				providers = {
+					copilot = {
+						name = "copilot",
+						module = "blink-copilot",
+						score_offset = 100,
+						async = true,
+					},
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
@@ -150,7 +159,15 @@ local other_plugins = {
 		opts = {},
 	},
 	-- Copilot
-	{ "github/copilot.vim" },
+	{
+		"zbirenbaum/copilot.lua",
+		cmd = "Copilot",
+		event = "InsertEnter",
+		opts = {
+			suggestion = { enabled = false },
+			panel = { enabled = false },
+		},
+	},
 }
 
 if IS_VSCODE then
