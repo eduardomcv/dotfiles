@@ -1,6 +1,11 @@
 #!/bin/bash
 
 dotfiles() {
+	if ! command -v stow >/dev/null 2>&1; then
+		echo "Error: Stow is required for installing dotfiles."
+		exit 1
+	fi
+
 	# The stow directory is the same as the repository root
 	STOW_DIR="$(git rev-parse --show-toplevel)"
 
