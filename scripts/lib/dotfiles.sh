@@ -1,16 +1,28 @@
 #!/bin/bash
 
 dotfiles() {
-	INSTALL=false
-	UNINSTALL=false
+	# The stow directory is the same as the repository root
+	STOW_DIR="$(git rev-parse --show-toplevel)"
 
-	THINGS_TO_STOW=(
+	if [ $? -ne 0 ]; then
+		echo "Error: Not inside a Git repository."
+		exit 1
+	fi
+
+	# Store the original directory where we invoked the script
+	ORIGINAL_DIR="$(pwd)"
+
+	# Names of directories to stow (i.e. packages)
+	PACKAGES=(
 		git
 		zsh
 		neovim
 		tmux
 		ghostty
 	)
+
+	INSTALL=false
+	UNINSTALL=false
 
 	if [[ "$#" == 0 || "$1" == "install" ]]; then
 		INSTALL=true
@@ -20,13 +32,17 @@ dotfiles() {
 		UNINSTALL=true
 	fi
 
-	for THING in ${THINGS_TO_STOW[@]}; do
+	# Change to stow directory
+	cd "$STOW_DIR" || exit 1
+
+	# Stow packages listed in PACKAGES
+	for PACKAGE in ${PACKAGES[@]}; do
 		if [[ "$UNINSTALL" == true ]]; then
-			stow -vDt ~ "$THING"
+			stow -vDt ~ "$PACKAGE"
 		fi
 
 		if [[ "$INSTALL" == true ]]; then
-			stow -vt ~ "$THING"
+			stow -vt ~ "$PACKAGE"
 		fi
 	done
 
@@ -38,4 +54,7 @@ dotfiles() {
 		git config --global user.email "$EMAIL"
 		git config --global user.name "$USERNAME"
 	fi
+
+	# Revert to original directory
+	cd "$ORIGINAL_DIR" || exit 1
 }
