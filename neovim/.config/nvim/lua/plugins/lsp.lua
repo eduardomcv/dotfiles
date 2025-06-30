@@ -91,6 +91,7 @@ local servers = {
 	eslint = {},
 	jsonls = {},
 	yamlls = {},
+	bashls = {},
 }
 
 -- Configure language servers

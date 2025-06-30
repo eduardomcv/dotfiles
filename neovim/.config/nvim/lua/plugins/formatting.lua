@@ -25,6 +25,7 @@ return {
 				astro = { "prettier" },
 				json = { "prettier" },
 				yaml = { "prettier" },
+				sh = { "shfmt" },
 			},
 			default_format_opts = {
 				lsp_format = "fallback",
