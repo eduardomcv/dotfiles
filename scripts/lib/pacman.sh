@@ -18,5 +18,6 @@ install_pacman() {
 		tmux \
 		lazygit \
 		neovim \
-		ttf-jetbrains-mono
+		ttf-jetbrains-mono \
+		ghostty
 }
