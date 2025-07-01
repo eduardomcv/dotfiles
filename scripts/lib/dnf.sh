@@ -14,28 +14,39 @@ check_rpmfusion() {
 	fi
 }
 
+enable_copr() {
+	# enable fedora copr repositories
+	# yes, it has do be one command at a time.
+	# considering putting this on a loop and read repo names from a txt file.
+	sudo dnf copr enable -y atim/lazygit
+	sudo dnf copr enable -y pgdev/ghostty
+	sudo dnf copr enable -y alternateved/eza
+}
+
 install_dnf() {
 	# update system
 	sudo dnf update -y
 
 	check_rpmfusion
 
-	sudo dnf copr enable -y pgdev/ghostty
+	enable_copr
 
 	# install packages
 	sudo dnf install -y \
 		@development-tools \
 		stow \
-		zsh \
-		fd-find \
-		ripgrep \
-		fzf \
-		bat \
-		tmux \
 		lua \
 		lua5.1 \
 		luarocks \
-		neovim \
 		jetbrains-mono-fonts-all \
+		fd-find \
+		ripgrep \
+		bat \
+		eza \
+		fzf \
+		zsh \
+		tmux \
+		lazygit \
+		neovim \
 		ghostty
 }
