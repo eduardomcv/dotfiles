@@ -1,4 +1,6 @@
 #!/bin/bash
+# Generic install script. Attempts to find the available package manager, install dependencies,
+# and link dotfiles to the user's home directory.
 
 set -euo pipefail
 
