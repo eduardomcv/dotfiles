@@ -32,6 +32,11 @@ brew)
 	install_brew
 	;;
 
+dnf)
+	source "$REPO_ROOT/scripts/lib/dnf.sh"
+	install_dnf
+	;;
+
 *)
 	echo "Couldn't install dependencies."
 	exit 1
