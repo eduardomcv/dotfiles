@@ -2,7 +2,7 @@
 
 check_brew() {
 	# Install homebrew if brew command does not exist
-	if command -v brew >/dev/null 2>&1; then
+	if ! command -v brew >/dev/null 2>&1; then
 		/bin/bash -c \
 			"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
 	fi
