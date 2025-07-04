@@ -2,11 +2,13 @@
 
 install_pacman() {
 	# update system
-	sudo pacman -Syu
+	sudo pacman -Syu --noconfirm
 
 	# install packages
 	sudo pacman -S --noconfirm \
 		base-devel \
+		zip \
+		unzip \
 		git \
 		stow \
 		zsh \
@@ -17,7 +19,9 @@ install_pacman() {
 		eza \
 		tmux \
 		lazygit \
-		neovim \
+		lua51 \
+		luarocks \
 		ttf-jetbrains-mono \
+		neovim \
 		ghostty
 }
