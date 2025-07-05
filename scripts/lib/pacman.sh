@@ -23,5 +23,7 @@ install_pacman() {
 		luarocks \
 		ttf-jetbrains-mono \
 		neovim \
-		ghostty
+		ghostty \
+		firefox \
+		thunderbird
 }

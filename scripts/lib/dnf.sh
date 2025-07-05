@@ -48,5 +48,7 @@ install_dnf() {
 		tmux \
 		lazygit \
 		neovim \
-		ghostty
+		ghostty \
+		firefox \
+		thunderbird
 }

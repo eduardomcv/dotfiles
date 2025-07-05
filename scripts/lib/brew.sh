@@ -26,5 +26,7 @@ install_brew() {
 		neovim \
 		tmux \
 		ghostty \
-		font-jetbrains-mono
+		font-jetbrains-mono \
+		thunderbird \
+		firefox
 }
