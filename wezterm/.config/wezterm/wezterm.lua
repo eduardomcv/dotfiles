@@ -49,4 +49,11 @@ if host_os == "macos" then
 	}
 end
 
+-- add homebrew binaries to $PATH on linux
+if host_os == "linux" then
+	config.set_environment_variables = {
+		PATH = "/home/linuxbrew/.linuxbrew/bin:" .. os.getenv("PATH"),
+	}
+end
+
 return config
