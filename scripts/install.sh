@@ -39,6 +39,11 @@ dnf)
 	install_dnf
 	;;
 
+bazzite)
+	source "$REPO_ROOT/scripts/lib/bazzite.sh"
+	install_bazzite
+	;;
+
 *)
 	echo "Couldn't install dependencies."
 	exit 1

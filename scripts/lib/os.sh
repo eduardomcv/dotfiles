@@ -17,8 +17,15 @@ require_non_root() {
 }
 
 get_package_manager() {
-	if command -v brew >/dev/null 2>&1 || [[ "$(uname -s)" == "Darwin" ]]; then
-		# either brew is available, or we're on MacOS, so use brew
+	# In Bazzite, install has to be handled differently due to the read-only file system.
+	# An easy way to detect this system is to check the presence of the "ujust" utility.
+	if command -v ujust >/dev/null 2>&1; then
+		echo "bazzite"
+		exit 0
+	fi
+
+	if command -v brew >/dev/null 2>&1 && [[ "$(uname -s)" == "Darwin" ]]; then
+		# we're on MacOS and brew is available
 		echo "brew"
 		exit 0
 	fi

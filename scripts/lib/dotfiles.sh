@@ -24,6 +24,7 @@ dotfiles() {
 		neovim
 		tmux
 		ghostty
+		wezterm
 	)
 
 	INSTALL=false
