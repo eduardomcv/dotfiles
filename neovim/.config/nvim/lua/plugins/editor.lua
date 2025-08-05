@@ -224,10 +224,21 @@ return {
 				function()
 					local MiniFiles = require("mini.files")
 					if not MiniFiles.close() then
+						MiniFiles.open(vim.api.nvim_buf_get_name(0))
+						MiniFiles.reveal_cwd()
+					end
+				end,
+				desc = "Toggle file explorer (current buffer)",
+			},
+			{
+				"<leader>r",
+				function()
+					local MiniFiles = require("mini.files")
+					if not MiniFiles.close() then
 						MiniFiles.open()
 					end
 				end,
-				desc = "Toggle file explorer",
+				desc = "Toggle file explorer (root dir)",
 			},
 		},
 	},
