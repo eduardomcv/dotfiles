@@ -23,7 +23,6 @@ dotfiles() {
 		zsh
 		neovim
 		tmux
-		ghostty
 		wezterm
 	)
 
