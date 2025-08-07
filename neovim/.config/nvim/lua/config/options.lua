@@ -31,3 +31,6 @@ opt.conceallevel = 1
 
 -- Set spell languages to English and Portuguese
 opt.spelllang = "en,pt"
+
+-- Rounded borders on floating windows
+opt.winborder = "rounded"
