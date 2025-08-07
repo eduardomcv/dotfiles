@@ -10,14 +10,22 @@ return {
 	name = "catppuccin",
 	config = function()
 		require("catppuccin").setup({
+			float = {
+				solid = false,
+				transparent = true,
+			},
 			integrations = {
-				blink_cmp = true,
+				blink_cmp = {
+					style = "bordered",
+				},
 				telescope = true,
 				treesitter = true,
 				which_key = true,
 				neogit = true,
 				diffview = true,
-				snacks = true,
+				snacks = {
+					enabled = true,
+				},
 				mini = {
 					enabled = true,
 				},
