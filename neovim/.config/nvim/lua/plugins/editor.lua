@@ -383,7 +383,6 @@ return {
 				{ "<leader>g", group = "+git" },
 				{ "<leader>c", group = "+code" },
 				{ "<leader>n", group = "+notification" },
-				{ "<leader>od", group = "+dailies" },
 			},
 		},
 	},
