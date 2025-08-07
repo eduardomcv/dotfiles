@@ -63,7 +63,6 @@ return {
 					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 				},
 			},
-			explorer = { enabled = true },
 			git = { enabled = true },
 			gitbrowse = { enabled = true },
 			indent = { enabled = true },
@@ -74,7 +73,6 @@ return {
 				sources = {
 					files = { hidden = true },
 					grep = { hidden = true },
-					explorer = { hidden = true },
 				},
 			},
 			quickfile = { enabled = true },
@@ -197,13 +195,6 @@ return {
 					Snacks.picker.projects()
 				end,
 				desc = "Search projects",
-			},
-			{
-				"<leader>e",
-				function()
-					Snacks.explorer()
-				end,
-				desc = "File Explorer",
 			},
 			{
 				"<leader>sr",
@@ -348,6 +339,15 @@ return {
 				desc = "Goto T[y]pe Definition",
 			},
 		},
+		init = function()
+			-- Create autocmd to integrate file renaming with mini.files
+			vim.api.nvim_create_autocmd("User", {
+				pattern = "MiniFilesActionRename",
+				callback = function(event)
+					Snacks.rename.on_rename_file(event.data.from, event.data.to)
+				end,
+			})
+		end,
 	},
 	-- Better UI for messages, cmdline and popupmenu
 	{
@@ -384,6 +384,83 @@ return {
 				{ "<leader>c", group = "+code" },
 				{ "<leader>n", group = "+notification" },
 				{ "<leader>od", group = "+dailies" },
+			},
+		},
+	},
+	-- File explorer
+	{
+		"echasnovski/mini.files",
+		version = "*",
+		dependencies = {
+			"mini.icons",
+		},
+		opts = {
+			content = {
+				-- Filter these files from the explorer
+				filter = function(entry)
+					return entry.name ~= ".DS_Store" and entry.name ~= ".git" and entry.name ~= ".direnv"
+				end,
+				sort = function(entries)
+					-- We can take advantage of having all the entries available here
+					-- in the sort function to send all the paths at once to `git check-ignore`.
+					-- Using the filter function above, we would have to run the command once for each entry.
+					local all_paths = table.concat(
+						vim.tbl_map(function(entry)
+							return entry.path
+						end, entries),
+						"\n"
+					)
+
+					local output_lines = {}
+
+					-- Run `git check-ignore` command waiting for stdin
+					local job_id = vim.fn.jobstart({ "git", "check-ignore", "--stdin" }, {
+						stdout_buffered = true,
+						on_stdout = function(_, data)
+							output_lines = data
+						end,
+					})
+
+					-- Command failed to run
+					if job_id < 1 then
+						return entries
+					end
+
+					-- Send all paths to the command via stdin
+					vim.fn.chansend(job_id, all_paths)
+					vim.fn.chanclose(job_id, "stdin")
+					vim.fn.jobwait({ job_id })
+
+					-- Filter out git ignored files.
+					local filtered_entries = vim.tbl_filter(function(entry)
+						return not vim.tbl_contains(output_lines, entry.path)
+					end, entries)
+
+					return require("mini.files").default_sort(filtered_entries)
+				end,
+			},
+		},
+		keys = {
+			{
+				"<leader>e",
+				function()
+					local MiniFiles = require("mini.files")
+					if not MiniFiles.close() then
+						MiniFiles.open(vim.api.nvim_buf_get_name(0))
+						MiniFiles.reveal_cwd()
+					end
+				end,
+				desc = "Toggle file explorer (current buffer)",
+			},
+			{
+				"<leader>r",
+				function()
+					local MiniFiles = require("mini.files")
+					if not MiniFiles.close() then
+						MiniFiles.open()
+					end
+				end,
+				desc = "Toggle file explorer (root dir)",
 			},
 		},
 	},
