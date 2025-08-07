@@ -18,7 +18,6 @@ return {
 				blink_cmp = {
 					style = "bordered",
 				},
-				telescope = true,
 				treesitter = true,
 				which_key = true,
 				neogit = true,

@@ -17,20 +17,13 @@ return {
 	-- A collection of QoL plugins
 	{
 		"folke/snacks.nvim",
-		dependencies = "mini.icons",
+		dependencies = {
+			"mini.icons",
+		},
 		priority = 1000,
 		lazy = false,
 		opts = {
 			bigfile = { enabled = true },
-			git = { enabled = true },
-			gitbrowse = { enabled = true },
-			indent = { enabled = true },
-			input = { enabled = true },
-			notifier = { enabled = true },
-			quickfile = { enabled = true },
-			scroll = { enabled = true },
-			rename = { enabled = true },
-			words = { enabled = true },
 			dashboard = {
 				enabled = true,
 				preset = {
@@ -70,6 +63,24 @@ return {
 					{ icon = " ", title = "Projects", section = "projects", indent = 2, padding = 1 },
 				},
 			},
+			explorer = { enabled = true },
+			git = { enabled = true },
+			gitbrowse = { enabled = true },
+			indent = { enabled = true },
+			input = { enabled = true },
+			notifier = { enabled = true },
+			picker = {
+				enabled = true,
+				sources = {
+					files = { hidden = true },
+					grep = { hidden = true },
+					explorer = { hidden = true },
+				},
+			},
+			quickfile = { enabled = true },
+			scroll = { enabled = true },
+			rename = { enabled = true },
+			words = { enabled = true },
 		},
 		keys = {
 			{
@@ -117,6 +128,219 @@ return {
 				end,
 				desc = "Notification history",
 			},
+			{
+				"<C-p>",
+				function()
+					Snacks.picker.smart()
+				end,
+				desc = "Smart find files",
+			},
+			{
+				"<leader>sc",
+				function()
+					Snacks.picker.files({ cwd = vim.fn.stdpath("config") })
+				end,
+				desc = "Search config files",
+			},
+			{
+				"<leader>sf",
+				function()
+					Snacks.picker.files()
+				end,
+				desc = "Search files",
+			},
+			{
+				"<leader>sb",
+				function()
+					Snacks.picker.buffers()
+				end,
+				desc = "Search buffers",
+			},
+			{
+				"<leader>sB",
+				function()
+					Snacks.picker.grep_buffers()
+				end,
+				desc = "Grep Open Buffers",
+			},
+			{
+				"<leader>sg",
+				function()
+					Snacks.picker.grep()
+				end,
+				desc = "Grep",
+			},
+			{
+				"<leader>s:",
+				function()
+					Snacks.picker.command_history()
+				end,
+				desc = "Search command history",
+			},
+			{
+				"<leader>sC",
+				function()
+					Snacks.picker.commands()
+				end,
+				desc = "Search commands",
+			},
+			{
+				"<leader>sn",
+				function()
+					Snacks.picker.notifications()
+				end,
+				desc = "Search notification history",
+			},
+			{
+				"<leader>sp",
+				function()
+					Snacks.picker.projects()
+				end,
+				desc = "Search projects",
+			},
+			-- { "<leader>e", function() Snacks.explorer() end, desc = "File Explorer" },
+			{
+				"<leader>sr",
+				function()
+					Snacks.picker.recent()
+				end,
+				desc = "Search recent files",
+			},
+			{
+				"<leader>sw",
+				function()
+					Snacks.picker.grep_word()
+				end,
+				desc = "Visual selection or word",
+				mode = { "n", "x" },
+			},
+			{
+				'<leader>s"',
+				function()
+					Snacks.picker.registers()
+				end,
+				desc = "Search registers",
+			},
+			{
+				"<leader>s/",
+				function()
+					Snacks.picker.search_history()
+				end,
+				desc = "Search History",
+			},
+			{
+				"<leader>sd",
+				function()
+					Snacks.picker.diagnostics()
+				end,
+				desc = "Search diagnostics",
+			},
+			{
+				"<leader>sD",
+				function()
+					Snacks.picker.diagnostics_buffer()
+				end,
+				desc = "Search buffer diagnostics",
+			},
+			{
+				"<leader>sh",
+				function()
+					Snacks.picker.help()
+				end,
+				desc = "Search help pages",
+			},
+			{
+				"<leader>sk",
+				function()
+					Snacks.picker.keymaps()
+				end,
+				desc = "Search keymaps",
+			},
+			{
+				"<leader>sm",
+				function()
+					Snacks.picker.marks()
+				end,
+				desc = "Search marks",
+			},
+			{
+				"<leader>sM",
+				function()
+					Snacks.picker.man()
+				end,
+				desc = "Search man pages",
+			},
+			{
+				"<leader>sl",
+				function()
+					Snacks.picker.loclist()
+				end,
+				desc = "Search location list",
+			},
+			{
+				"<leader>sq",
+				function()
+					Snacks.picker.qflist()
+				end,
+				desc = "Search quickfix list",
+			},
+			{
+				"<leader>su",
+				function()
+					Snacks.picker.undo()
+				end,
+				desc = "Search undo history",
+			},
+			{
+				"<leader>st",
+				function()
+					Snacks.picker.lsp_workspace_symbols()
+				end,
+				desc = "Search LSP Workspace Symbols (tags)",
+			},
+			{
+				"<leader>sT",
+				function()
+					Snacks.picker.lsp_symbols()
+				end,
+				desc = "Search LSP Symbols (tags)",
+			},
+			{
+				"gd",
+				function()
+					Snacks.picker.lsp_definitions()
+				end,
+				desc = "Goto Definition",
+			},
+			{
+				"gD",
+				function()
+					Snacks.picker.lsp_declarations()
+				end,
+				desc = "Goto Declaration",
+			},
+			{
+				"gr",
+				function()
+					Snacks.picker.lsp_references()
+				end,
+				nowait = true,
+				desc = "References",
+			},
+			{
+				"gI",
+				function()
+					Snacks.picker.lsp_implementations()
+				end,
+				desc = "Goto Implementation",
+			},
+			{
+				"gy",
+				function()
+					Snacks.picker.lsp_type_definitions()
+				end,
+				desc = "Goto T[y]pe Definition",
+			},
 		},
 		init = function()
 			-- Create autocmd to integrate file renaming with mini.files
@@ -128,14 +352,13 @@ return {
 			})
 		end,
 	},
-	-- UI component library
-	{ "MunifTanjim/nui.nvim", lazy = true },
 	-- Better UI for messages, cmdline and popupmenu
 	{
 		"folke/noice.nvim",
 		event = "VeryLazy",
 		dependencies = {
-			"nui.nvim",
+			-- UI component library
+			{ "MunifTanjim/nui.nvim", lazy = true },
 		},
 		opts = {
 			lsp = {
@@ -171,7 +394,9 @@ return {
 	{
 		"echasnovski/mini.files",
 		version = "*",
-		dependencies = "mini.icons",
+		dependencies = {
+			"mini.icons",
+		},
 		opts = {
 			content = {
 				-- Filter these files from the explorer
@@ -267,12 +492,12 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"sindrets/diffview.nvim",
-			"nvim-telescope/telescope.nvim",
+			"folke/snacks.nvim",
 		},
 		opts = {
 			integrations = {
-				telescope = true,
 				diffview = true,
+				snacks = true,
 			},
 		},
 		keys = {

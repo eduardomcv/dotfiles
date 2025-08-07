@@ -4,9 +4,6 @@ if IS_VSCODE then
 end
 
 --- Keymaps
-vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto definition" })
-vim.keymap.set("n", "gD", vim.lsp.buf.declaration, { desc = "Goto Declaration" })
-vim.keymap.set("n", "gy", vim.lsp.buf.type_definition, { desc = "Goto Type Definition" })
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
 vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, { desc = "Run Codelens" })
@@ -59,7 +56,9 @@ local servers = {
 			})
 		end,
 		settings = {
-			Lua = {},
+			Lua = {
+				telemetry = { enable = false },
+			},
 		},
 	},
 	vtsls = {
