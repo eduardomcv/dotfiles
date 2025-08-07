@@ -358,10 +358,11 @@ return {
 			{ "MunifTanjim/nui.nvim", lazy = true },
 		},
 		opts = {
-			lsp = {
-				override = {
-					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-					["vim.lsp.util.stylize_markdown"] = true,
+			cmdline = {
+				opts = {
+					position = {
+						row = "30%",
+					},
 				},
 			},
 			presets = {
@@ -369,6 +370,12 @@ return {
 				command_palette = true,
 				long_message_to_split = true,
 				lsp_doc_border = true,
+			},
+			lsp = {
+				override = {
+					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
+					["vim.lsp.util.stylize_markdown"] = true,
+				},
 			},
 		},
 	},
