@@ -70,6 +70,11 @@ return {
 			notifier = { enabled = true },
 			picker = {
 				enabled = true,
+				layout = {
+					layout = {
+						backdrop = false,
+					},
+				},
 				sources = {
 					files = { hidden = true },
 					grep = { hidden = true },
@@ -358,13 +363,6 @@ return {
 			{ "MunifTanjim/nui.nvim", lazy = true },
 		},
 		opts = {
-			cmdline = {
-				opts = {
-					position = {
-						row = "30%",
-					},
-				},
-			},
 			presets = {
 				bottom_search = false,
 				command_palette = true,
@@ -375,6 +373,25 @@ return {
 				override = {
 					["vim.lsp.util.convert_input_to_markdown_lines"] = true,
 					["vim.lsp.util.stylize_markdown"] = true,
+				},
+				progress = {
+					view = "notify",
+				},
+			},
+			views = {
+				cmdline_popup = {
+					position = {
+						row = "30%",
+					},
+				},
+				notify = {
+					replace = true,
+				},
+			},
+			routes = {
+				{
+					view = "notify",
+					filter = { event = "msg_showmode" },
 				},
 			},
 		},
