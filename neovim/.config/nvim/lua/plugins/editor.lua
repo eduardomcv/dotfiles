@@ -66,7 +66,6 @@ return {
 			git = { enabled = true },
 			gitbrowse = { enabled = true },
 			indent = { enabled = true },
-			input = { enabled = true },
 			notifier = { enabled = true },
 			picker = {
 				enabled = true,
@@ -381,7 +380,7 @@ return {
 			views = {
 				cmdline_popup = {
 					position = {
-						row = "30%",
+						row = "20%",
 					},
 				},
 				notify = {
