@@ -13,4 +13,4 @@ set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Create new tab" })
 set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- Open command line in lua mode
-set("n", "<C-:>", ":lua ", { desc = "Open command line in lua mode" })
+set("n", "<leader>:", ":lua ", { desc = "Open command line in lua mode" })
