@@ -51,8 +51,9 @@ local other_plugins = {
 				["<C-k>"] = { "select_prev", "fallback" },
 			},
 			cmdline = {
+				enabled = true,
 				keymap = {
-					preset = "super-tab",
+					preset = "cmdline",
 					["<C-j>"] = { "select_next", "fallback" },
 					["<C-k>"] = { "select_prev", "fallback" },
 				},
