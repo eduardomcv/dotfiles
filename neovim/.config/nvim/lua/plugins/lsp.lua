@@ -1,8 +1,3 @@
-if IS_VSCODE then
-	-- LSP is handled by vscode
-	return {}
-end
-
 --- Keymaps
 vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })

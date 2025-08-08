@@ -1,8 +1,3 @@
-if IS_VSCODE then
-	-- Don't load editor plugins inside vscode
-	return {}
-end
-
 return {
 	-- Icons
 	{

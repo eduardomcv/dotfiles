@@ -1,15 +1,4 @@
--- plugins to load in vscode
-local vscode_plugins = {
-	-- Surround functionality
-	{
-		"echasnovski/mini.surround",
-		version = "*",
-		opts = {},
-	},
-}
-
--- plugins excluded from vscode
-local other_plugins = {
+return {
 	-- Completion
 	{
 		"saghen/blink.cmp",
@@ -148,6 +137,12 @@ local other_plugins = {
 			},
 		},
 	},
+	-- Surround functionality
+	{
+		"echasnovski/mini.surround",
+		version = "*",
+		opts = {},
+	},
 	-- Auto tags using treesitter
 	{
 		"windwp/nvim-ts-autotag",
@@ -171,9 +166,3 @@ local other_plugins = {
 		},
 	},
 }
-
-if IS_VSCODE then
-	return vscode_plugins
-end
-
-return require("utils").table_join(vscode_plugins, other_plugins)

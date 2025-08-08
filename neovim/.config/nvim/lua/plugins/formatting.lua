@@ -1,8 +1,3 @@
-if IS_VSCODE then
-	-- formatting is handled by vscode
-	return {}
-end
-
 return {
 	{
 		"stevearc/conform.nvim",
