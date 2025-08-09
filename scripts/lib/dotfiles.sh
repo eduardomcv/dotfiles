@@ -23,7 +23,7 @@ dotfiles() {
 		zsh
 		neovim
 		tmux
-		wezterm
+		ghostty
 	)
 
 	INSTALL=false
@@ -52,12 +52,16 @@ dotfiles() {
 	done
 
 	if [[ "$INSTALL" == true ]]; then
-		# Prompt the user for the git username and email
-		read -e -r -p "Enter git username: " USERNAME
-		read -e -r -p "Enter git email: " EMAIL
 
-		git config --global user.email "$EMAIL"
-		git config --global user.name "$USERNAME"
+		# Prompt the user for the git username and email
+		echo -n "Enter git username: "
+		IFS="\n" read -r GIT_USERNAME
+
+		echo -n "Enter git email: "
+		IFS="\n" read -r GIT_EMAIL
+
+		git config --global user.name "$GIT_USERNAME"
+		git config --global user.email "$GIT_EMAIL"
 	fi
 
 	# Revert to original directory

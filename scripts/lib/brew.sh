@@ -25,7 +25,7 @@ install_brew() {
 		lazygit \
 		neovim \
 		tmux \
-		wezterm \
+		ghostty \
 		font-jetbrains-mono \
 		thunderbird \
 		firefox
