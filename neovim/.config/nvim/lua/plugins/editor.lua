@@ -442,44 +442,6 @@ return {
 				filter = function(entry)
 					return entry.name ~= ".DS_Store" and entry.name ~= ".git" and entry.name ~= ".direnv"
 				end,
-				sort = function(entries)
-					-- We can take advantage of having all the entries available here
-					-- in the sort function to send all the paths at once to `git check-ignore`.
-					-- Using the filter function above, we would have to run the command once for each entry.
-					local all_paths = table.concat(
-						vim.tbl_map(function(entry)
-							return entry.path
-						end, entries),
-						"\n"
-					)
-
-					local output_lines = {}
-
-					-- Run `git check-ignore` command waiting for stdin
-					local job_id = vim.fn.jobstart({ "git", "check-ignore", "--stdin" }, {
-						stdout_buffered = true,
-						on_stdout = function(_, data)
-							output_lines = data
-						end,
-					})
-
-					-- Command failed to run
-					if job_id < 1 then
-						return entries
-					end
-
-					-- Send all paths to the command via stdin
-					vim.fn.chansend(job_id, all_paths)
-					vim.fn.chanclose(job_id, "stdin")
-					vim.fn.jobwait({ job_id })
-
-					-- Filter out git ignored files.
-					local filtered_entries = vim.tbl_filter(function(entry)
-						return not vim.tbl_contains(output_lines, entry.path)
-					end, entries)
-
-					return require("mini.files").default_sort(filtered_entries)
-				end,
 			},
 		},
 		keys = {
