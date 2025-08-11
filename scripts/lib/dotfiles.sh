@@ -22,7 +22,6 @@ dotfiles() {
 		git
 		zsh
 		neovim
-		tmux
 		ghostty
 	)
 
