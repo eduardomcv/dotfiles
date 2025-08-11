@@ -14,6 +14,7 @@ return {
 			packages = {
 				"bash-language-server",
 				"eslint-lsp",
+				"emmet-language-server",
 				"json-lsp",
 				"lua-language-server",
 				"vtsls",

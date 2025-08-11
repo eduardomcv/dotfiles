@@ -2,6 +2,7 @@
 local lsp_servers = {
 	"bashls",
 	"eslint",
+	"emmet_language_server",
 	"jsonls",
 	"lua_ls",
 	"vtsls",
