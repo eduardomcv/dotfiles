@@ -128,7 +128,7 @@ return {
 	-- Auto pairs
 	{
 		"echasnovski/mini.pairs",
-		version = "*",
+		version = false,
 		opts = {
 			modes = {
 				insert = true,
@@ -140,7 +140,7 @@ return {
 	-- Surround functionality
 	{
 		"echasnovski/mini.surround",
-		version = "*",
+		version = false,
 		opts = {},
 	},
 	-- Auto tags using treesitter
@@ -152,7 +152,7 @@ return {
 	-- Enhances and extends a/i text objects
 	{
 		"echasnovski/mini.ai",
-		version = "*",
+		version = false,
 		opts = {},
 	},
 	-- Copilot

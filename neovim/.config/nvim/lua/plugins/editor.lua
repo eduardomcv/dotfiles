@@ -2,7 +2,7 @@ return {
 	-- Icons
 	{
 		"echasnovski/mini.icons",
-		version = "*",
+		version = false,
 		lazy = true,
 		config = function()
 			require("mini.icons").setup()
@@ -407,7 +407,7 @@ return {
 	-- File explorer
 	{
 		"echasnovski/mini.files",
-		version = "*",
+		version = false,
 		dependencies = {
 			"mini.icons",
 		},
@@ -493,14 +493,14 @@ return {
 	-- Tracking of git data and exposes :Git command
 	{
 		"echasnovski/mini-git",
-		version = "*",
+		version = false,
 		main = "mini.git",
 		opts = {},
 	},
 	-- Integrates git diffs and hunks
 	{
 		"echasnovski/mini.diff",
-		version = "*",
+		version = false,
 		opts = {
 			view = {
 				style = "sign",
@@ -510,7 +510,7 @@ return {
 	-- Status line
 	{
 		"echasnovski/mini.statusline",
-		version = "*",
+		version = false,
 		dependencies = {
 			"mini.icons",
 			"mini-git",
@@ -521,7 +521,12 @@ return {
 	-- Extends forward/back functionality with brackets
 	{
 		"echasnovski/mini.bracketed",
-		version = "*",
+		version = false,
+		opts = {},
+	},
+	{
+		"echasnovski/mini.splitjoin",
+		version = false,
 		opts = {},
 	},
 }
