@@ -14,3 +14,9 @@ set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- Open command line in lua mode
 set("n", "<leader>:", ":lua ", { desc = "Open command line in lua mode" })
+
+-- Window navigation
+set("n", "<c-h>", "<c-w>h", { desc = "Go to the left window" })
+set("n", "<c-j>", "<c-w>j", { desc = "Go to the down window" })
+set("n", "<c-k>", "<c-w>k", { desc = "Go to the up window" })
+set("n", "<c-l>", "<c-w>l", { desc = "Go to the right window" })
