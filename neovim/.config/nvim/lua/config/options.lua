@@ -1,33 +1,33 @@
-local opt = vim.opt
+local o = vim.opt
 
 -- Set line numbers
-opt.number = true
-opt.relativenumber = true
-opt.signcolumn = "yes"
+o.number = true
+o.relativenumber = true
+o.signcolumn = "yes"
 
 -- Set tab size to 2 spaces
-opt.tabstop = 2
-opt.shiftwidth = 2
+o.tabstop = 2
+o.shiftwidth = 2
 
 -- Use system clipboard
-opt.clipboard:append({ "unnamedplus" })
+o.clipboard:append({ "unnamedplus" })
 
 -- Don't show mode message (the status line plugin takes care of that)
-opt.showmode = false
+o.showmode = false
 
 -- Highlight cursor line
-opt.cursorline = true
+o.cursorline = true
 
 -- Cursor scroll offset
-opt.scrolloff = 8
-opt.sidescrolloff = 8
+o.scrolloff = 8
+o.sidescrolloff = 8
 
 -- Persistent undo
-opt.undofile = true
-opt.undolevels = 10000
+o.undofile = true
+o.undolevels = 10000
 
 -- Support concealed text
-opt.conceallevel = 1
+o.conceallevel = 1
 
 -- Rounded borders on floating windows
-opt.winborder = "rounded"
+o.winborder = "rounded"
