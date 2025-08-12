@@ -125,34 +125,10 @@ return {
 			})
 		end,
 	},
-	-- Auto pairs
-	{
-		"echasnovski/mini.pairs",
-		version = false,
-		opts = {
-			modes = {
-				insert = true,
-				command = true,
-				terminal = false,
-			},
-		},
-	},
-	-- Surround functionality
-	{
-		"echasnovski/mini.surround",
-		version = false,
-		opts = {},
-	},
 	-- Auto tags using treesitter
 	{
 		"windwp/nvim-ts-autotag",
 		deps = "nvim-treesitter",
-		opts = {},
-	},
-	-- Enhances and extends a/i text objects
-	{
-		"echasnovski/mini.ai",
-		version = false,
 		opts = {},
 	},
 	-- Copilot

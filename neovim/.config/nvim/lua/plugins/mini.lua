@@ -34,6 +34,21 @@ return {
 
 		-- Add gS keybind to split/join arguments
 		require("mini.splitjoin").setup()
+
+		-- Auto pairs
+		require("mini.pairs").setup({
+			modes = {
+				insert = true,
+				command = true,
+				terminal = false,
+			},
+		})
+
+		-- Surround functionality
+		require("mini.surround").setup()
+
+		-- Enhances and extends a/i text objects
+		require("mini.ai").setup()
 	end,
 	keys = {
 		{
