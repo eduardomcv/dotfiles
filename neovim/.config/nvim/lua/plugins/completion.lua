@@ -1,10 +1,10 @@
 return {
-	-- Completion
+	-- Completion engine
 	{
 		"saghen/blink.cmp",
 		dependencies = {
 			-- Support snippets in completion menu
-			"rafamadriz/friendly-snippets",
+			{ "rafamadriz/friendly-snippets" },
 			-- Better support for neovim config in lua
 			{
 				"folke/lazydev.nvim",
@@ -17,8 +17,18 @@ return {
 					},
 				},
 			},
+			-- Copilot
+			{
+				"zbirenbaum/copilot.lua",
+				cmd = "Copilot",
+				event = "InsertEnter",
+				opts = {
+					suggestion = { enabled = false },
+					panel = { enabled = false },
+				},
+			},
 			-- Add copilot as completion source
-			"fang2hou/blink-copilot",
+			{ "fang2hou/blink-copilot" },
 			-- Compatibility layer for using nvim-cmp sources
 			{
 				"saghen/blink.compat",
@@ -72,53 +82,5 @@ return {
 			},
 		},
 		opts_extend = { "sources.default" },
-	},
-	-- Treesitter parser integration
-	{
-		"nvim-treesitter/nvim-treesitter",
-		build = ":TSUpdate",
-		event = "VeryLazy",
-		config = function()
-			---@diagnostic disable-next-line: missing-fields
-			require("nvim-treesitter.configs").setup({
-				auto_install = true,
-				highlight = { enable = true },
-				indent = { enable = true },
-				incremental_selection = {
-					enable = true,
-					keymaps = {
-						init_selection = "<C-space>",
-						node_incremental = "<C-space>",
-						scope_incremental = false,
-						node_decremental = "<bs>",
-					},
-				},
-				textobjects = {
-					move = {
-						enable = true,
-						goto_next_start = { ["]f"] = "@function.outer", ["]c"] = "@class.outer", ["]a"] = "@parameter.inner" },
-						goto_next_end = { ["]F"] = "@function.outer", ["]C"] = "@class.outer", ["]A"] = "@parameter.inner" },
-						goto_previous_start = { ["[f"] = "@function.outer", ["[c"] = "@class.outer", ["[a"] = "@parameter.inner" },
-						goto_previous_end = { ["[F"] = "@function.outer", ["[C"] = "@class.outer", ["[A"] = "@parameter.inner" },
-					},
-				},
-			})
-		end,
-	},
-	-- Auto tags using treesitter
-	{
-		"windwp/nvim-ts-autotag",
-		deps = "nvim-treesitter",
-		opts = {},
-	},
-	-- Copilot
-	{
-		"zbirenbaum/copilot.lua",
-		cmd = "Copilot",
-		event = "InsertEnter",
-		opts = {
-			suggestion = { enabled = false },
-			panel = { enabled = false },
-		},
 	},
 }
