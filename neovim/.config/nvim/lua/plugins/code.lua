@@ -104,7 +104,6 @@ return {
 				},
 				ensure_installed = {
 					"bash",
-					"tmux",
 					"diff",
 					"lua",
 					"vim",
@@ -120,7 +119,7 @@ return {
 					"jsdoc",
 					"html",
 					"css",
-					"http",
+					"gitcommit",
 				},
 			})
 		end,
