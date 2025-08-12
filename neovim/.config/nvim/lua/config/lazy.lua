@@ -20,7 +20,9 @@ require("lazy").setup({
 	spec = {
 		{ import = "plugins" },
 	},
-	install = { colorscheme = { "catppuccin" } },
+	install = {
+		colorscheme = { "catppuccin" },
+	},
 	checker = {
 		-- Disable automatic updates
 		enabled = false,
