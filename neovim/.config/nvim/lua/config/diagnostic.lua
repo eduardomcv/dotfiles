@@ -1,3 +1,4 @@
+-- Configure diagnostics
 vim.diagnostic.config({
 	underline = true,
 	severity_sort = true,
@@ -16,3 +17,7 @@ vim.diagnostic.config({
 		},
 	},
 })
+
+-- Keymaps
+vim.keymap.set("n", "[d", vim.diagnostic.goto_prev, { desc = "Jump to previous diagnostic" })
+vim.keymap.set("n", "]d", vim.diagnostic.goto_next, { desc = "Jump to next diagnostic" })
