@@ -18,17 +18,17 @@ return {
 				},
 			},
 			-- Copilot
-			{
-				"zbirenbaum/copilot.lua",
-				cmd = "Copilot",
-				event = "InsertEnter",
-				opts = {
-					suggestion = { enabled = false },
-					panel = { enabled = false },
-				},
-			},
+			-- {
+			-- 	"zbirenbaum/copilot.lua",
+			-- 	cmd = "Copilot",
+			-- 	event = "InsertEnter",
+			-- 	opts = {
+			-- 		suggestion = { enabled = false },
+			-- 		panel = { enabled = false },
+			-- 	},
+			-- },
 			-- Add copilot as completion source
-			{ "fang2hou/blink-copilot" },
+			-- { "fang2hou/blink-copilot" },
 			-- Compatibility layer for using nvim-cmp sources
 			{
 				"saghen/blink.compat",
@@ -59,7 +59,7 @@ return {
 			},
 			sources = {
 				default = {
-					"copilot",
+					-- "copilot",
 					"lazydev",
 					"lsp",
 					"path",
@@ -67,12 +67,12 @@ return {
 					"buffer",
 				},
 				providers = {
-					copilot = {
-						name = "copilot",
-						module = "blink-copilot",
-						score_offset = 100,
-						async = true,
-					},
+					-- copilot = {
+					-- 	name = "copilot",
+					-- 	module = "blink-copilot",
+					-- 	score_offset = 100,
+					-- 	async = true,
+					-- },
 					lazydev = {
 						name = "LazyDev",
 						module = "lazydev.integrations.blink",
