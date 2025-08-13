@@ -64,7 +64,6 @@ return {
 			},
 		},
 		quickfile = { enabled = true },
-		scroll = { enabled = true },
 		rename = { enabled = true },
 		words = { enabled = true },
 	},
