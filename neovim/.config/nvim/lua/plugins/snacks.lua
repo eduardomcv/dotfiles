@@ -64,6 +64,7 @@ return {
 			},
 		},
 		quickfile = { enabled = true },
+		scroll = { enabled = true },
 		rename = { enabled = true },
 		words = { enabled = true },
 	},
@@ -332,6 +333,20 @@ return {
 			pattern = "MiniFilesActionRename",
 			callback = function(event)
 				Snacks.rename.on_rename_file(event.data.from, event.data.to)
+			end,
+		})
+
+		-- Disable scroll when entering insert mode
+		vim.api.nvim_create_autocmd("InsertEnter", {
+			callback = function()
+				vim.g.snacks_scroll = false
+			end,
+		})
+
+		-- Enable scroll when leaving insert mode
+		vim.api.nvim_create_autocmd("InsertLeave", {
+			callback = function()
+				vim.g.snacks_scroll = true
 			end,
 		})
 	end,
