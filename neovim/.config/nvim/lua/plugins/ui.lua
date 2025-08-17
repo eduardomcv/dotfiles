@@ -44,7 +44,9 @@ return {
 	-- Show pop-up with available keybindings
 	{
 		"folke/which-key.nvim",
-		dependencies = "mini.icons",
+		dependencies = {
+			"mini.nvim",
+		},
 		event = "VeryLazy",
 		opts = {
 			spec = {
