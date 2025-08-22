@@ -50,10 +50,11 @@ return {
 		event = "VeryLazy",
 		opts = {
 			spec = {
-				{ "<leader>s", group = "+search" },
-				{ "<leader>g", group = "+git" },
 				{ "<leader>c", group = "+code" },
+				{ "<leader>f", group = "+format" },
+				{ "<leader>g", group = "+git" },
 				{ "<leader>n", group = "+notification" },
+				{ "<leader>s", group = "+search" },
 			},
 		},
 	},
