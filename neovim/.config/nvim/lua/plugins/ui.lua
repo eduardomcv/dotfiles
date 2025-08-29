@@ -45,7 +45,7 @@ return {
 	{
 		"folke/which-key.nvim",
 		dependencies = {
-			"mini.nvim",
+			"nvim-mini/mini.nvim",
 		},
 		event = "VeryLazy",
 		opts = {
