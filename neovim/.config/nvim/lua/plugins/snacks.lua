@@ -50,6 +50,7 @@ return {
 		git = { enabled = true },
 		gitbrowse = { enabled = true },
 		indent = { enabled = true },
+		lazygit = { enabled = true },
 		notifier = { enabled = true },
 		picker = {
 			enabled = true,
@@ -83,6 +84,14 @@ return {
 			end,
 			desc = "Git browse",
 			mode = { "n", "v" },
+		},
+		{
+			"<leader>gg",
+			function()
+				Snacks.lazygit()
+			end,
+			desc = "Open Lazygit",
+			mode = { "n" },
 		},
 		{
 			"]]",
