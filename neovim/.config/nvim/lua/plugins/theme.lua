@@ -15,8 +15,6 @@ return {
 				},
 				treesitter = true,
 				which_key = true,
-				neogit = true,
-				diffview = true,
 				snacks = {
 					enabled = true,
 				},
