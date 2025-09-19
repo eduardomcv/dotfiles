@@ -58,4 +58,6 @@ return {
 			},
 		},
 	},
+	-- Git conflicts visualizer
+	{ "akinsho/git-conflict.nvim", version = "*", config = true },
 }
