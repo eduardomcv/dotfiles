@@ -60,4 +60,20 @@ return {
 	},
 	-- Git conflicts visualizer
 	{ "akinsho/git-conflict.nvim", version = "*", config = true },
+	-- Improve tab integration
+	{
+		"nanozuki/tabby.nvim",
+		config = function()
+			require("tabby").setup()
+
+			local function rename_tab()
+				local tab_name = vim.fn.input({ prompt = "New tab name" })
+				if tab_name ~= "" then
+					require("tabby").tab_rename(tab_name)
+				end
+			end
+
+			vim.keymap.set("n", "<leader>tr", rename_tab, { desc = "Rename tab" })
+		end,
+	},
 }
