@@ -85,6 +85,9 @@ return {
 			suggest = {
 				completeFunctionCalls = true,
 			},
+			preferences = {
+				includePackageJsonAutoImports = "on",
+			},
 		},
 		javascript = {
 			updateImportsOnFileMove = { enabled = "always" },
