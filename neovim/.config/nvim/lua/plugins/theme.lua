@@ -13,11 +13,7 @@ return {
 				blink_cmp = {
 					style = "bordered",
 				},
-				treesitter = true,
-				which_key = true,
-				snacks = {
-					enabled = true,
-				},
+				mason = true,
 				mini = {
 					enabled = true,
 				},
@@ -30,6 +26,11 @@ return {
 						information = { "undercurl" },
 					},
 				},
+				snacks = {
+					enabled = true,
+				},
+				treesitter = true,
+				which_key = true,
 			},
 		})
 
