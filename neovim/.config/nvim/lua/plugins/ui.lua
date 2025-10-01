@@ -76,4 +76,10 @@ return {
 			vim.keymap.set("n", "<leader>tr", rename_tab, { desc = "Rename tab" })
 		end,
 	},
+	-- Highlight TODO comments
+	{
+		"folke/todo-comments.nvim",
+		dependencies = { "nvim-lua/plenary.nvim" },
+		opts = {},
+	},
 }
