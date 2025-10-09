@@ -17,13 +17,9 @@ install_pacman() {
 		fzf \
 		bat \
 		eza \
-		tmux \
 		lazygit \
-		lua51 \
-		luarocks \
 		ttf-jetbrains-mono \
 		neovim \
 		ghostty \
-		firefox \
 		thunderbird
 }
