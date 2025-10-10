@@ -10,12 +10,6 @@ check_brew() {
 
 install_brew() {
 	brew install \
-		openssl \
-		readline \
-		sqlite3 \
-		xz \
-		zlib \
-		wget \
 		stow \
 		ripgrep \
 		fd \
@@ -23,10 +17,10 @@ install_brew() {
 		fzf \
 		eza \
 		lazygit \
+		tealdeer \
 		neovim \
-		tmux \
 		ghostty \
 		font-jetbrains-mono \
 		thunderbird \
-		firefox
+		zen
 }
