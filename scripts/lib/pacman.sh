@@ -18,6 +18,7 @@ install_pacman() {
 		bat \
 		eza \
 		lazygit \
+		tealdeer \
 		ttf-jetbrains-mono \
 		neovim \
 		ghostty \
