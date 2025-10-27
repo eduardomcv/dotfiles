@@ -1,7 +1,7 @@
 command = /bin/zsh
 font-family = JetBrains Mono
 font-size = 14
-theme = Catppuccin Mocha
+theme = catppuccin-mocha
 macos-titlebar-style=tabs
 window-decoration = server
 window-height = 40
