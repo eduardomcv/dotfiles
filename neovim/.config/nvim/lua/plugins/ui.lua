@@ -7,7 +7,7 @@ vim.pack.add({
 	-- Show pop-up with available keybindings
 	"https://github.com/folke/which-key.nvim",
 	-- Git conflicts visualizer
-	{ src = "akinsho/git-conflict.nvim", version = "*" },
+	{ src = "https://github.com/akinsho/git-conflict.nvim", version = vim.version.range("*") },
 	-- Improve tab integration
 	"https://github.com/nanozuki/tabby.nvim",
 	-- Highlight TODO comments

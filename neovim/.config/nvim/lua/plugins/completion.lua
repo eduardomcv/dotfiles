@@ -6,12 +6,12 @@ vim.pack.add({
 	{
 		-- Completion engine
 		src = "https://github.com/saghen/blink.cmp",
-		version = "1.*",
+		version = vim.version.range("1.*"),
 	},
 	{
 		-- Compatibility layer for using nvim-cmp sources
 		src = "https://github.com/saghen/blink.compat",
-		version = "*",
+		version = vim.version.range("*"),
 	},
 	-- Copilot
 	-- "https://github.com/zbirenbaum/copilot.lua",
