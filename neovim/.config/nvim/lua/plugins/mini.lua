@@ -48,7 +48,7 @@ require("mini.files").setup({
 	},
 })
 
-vim.keymap.add("n", "<leader>e", function()
+vim.keymap.set("n", "<leader>e", function()
 	local MiniFiles = require("mini.files")
 	if not MiniFiles.close() then
 		MiniFiles.open(vim.api.nvim_buf_get_name(0))
@@ -58,7 +58,7 @@ end, {
 	desc = "Toggle file explorer (current buffer)",
 })
 
-vim.keymap.add("n", "<leader>r", function()
+vim.keymap.set("n", "<leader>r", function()
 	local MiniFiles = require("mini.files")
 	if not MiniFiles.close() then
 		MiniFiles.open()
