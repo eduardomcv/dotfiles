@@ -1,12 +1,14 @@
 {
   "plugins": {
     "blink.cmp": {
+      "rev": "327fff9",
       "src": "https://github.com/saghen/blink.cmp",
-      "version": "'1.*'"
+      "version": "1.0.0 - 2.0.0"
     },
     "blink.compat": {
+      "rev": "2ed6d9a",
       "src": "https://github.com/saghen/blink.compat",
-      "version": "'*'"
+      "version": ">=0.0.0"
     },
     "catppuccin": {
       "rev": "8c4125e",
@@ -19,6 +21,11 @@
     "friendly-snippets": {
       "rev": "572f566",
       "src": "https://github.com/rafamadriz/friendly-snippets"
+    },
+    "git-conflict.nvim": {
+      "rev": "4bbfdd9",
+      "src": "https://github.com/akinsho/git-conflict.nvim",
+      "version": ">=0.0.0"
     },
     "lazydev.nvim": {
       "rev": "371cd74",
