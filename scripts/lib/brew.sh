@@ -18,6 +18,9 @@ install_brew() {
 		eza \
 		lazygit \
 		tealdeer \
+		stylua \
+		lua-language-server \
+		shfmt \
 		neovim \
 		ghostty \
 		font-jetbrains-mono \
