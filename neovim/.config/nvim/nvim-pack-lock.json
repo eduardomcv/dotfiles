@@ -15,7 +15,7 @@
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
-      "rev": "9fd3d5e",
+      "rev": "02736cf",
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "friendly-snippets": {
@@ -73,7 +73,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "snacks.nvim": {
-      "rev": "6f60105",
+      "rev": "bd3c1a0",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tabby.nvim": {
