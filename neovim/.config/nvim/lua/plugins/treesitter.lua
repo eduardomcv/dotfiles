@@ -37,6 +37,8 @@ require("nvim-treesitter.configs").setup({
 		"tsx",
 		"yaml",
 		"json",
+		"html",
+		"css",
 	},
 	incremental_selection = {
 		enable = true,
