@@ -22,8 +22,8 @@ install_pacman() {
 		ttf-jetbrains-mono \
 		stylua \
 		shfmt \
+		lua-language-server \
 		neovim \
 		ghostty \
-		lua-language-server \
 		thunderbird
 }
