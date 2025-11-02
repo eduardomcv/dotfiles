@@ -11,7 +11,7 @@
       "version": ">=0.0.0"
     },
     "catppuccin": {
-      "rev": "8c4125e",
+      "rev": "234fc04",
       "src": "https://github.com/catppuccin/nvim"
     },
     "conform.nvim": {
@@ -40,7 +40,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "ee4a4a4",
+      "rev": "429e5f9",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "noice.nvim": {
@@ -52,11 +52,11 @@
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
     "nvim-lint": {
-      "rev": "9da1fb9",
+      "rev": "8c694e1",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-treesitter": {
-      "rev": "42fc28ba",
+      "rev": "64f4755b",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
       "version": "'main'"
     },
@@ -69,7 +69,7 @@
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
     "snacks.nvim": {
-      "rev": "76160be",
+      "rev": "6f60105",
       "src": "https://github.com/folke/snacks.nvim"
     },
     "tabby.nvim": {
