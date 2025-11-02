@@ -1,8 +1,9 @@
 vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
 
 -- Icons
-require("mini.icons").setup()
-MiniIcons.mock_nvim_web_devicons()
+local mini_icons = require("mini.icons")
+mini_icons.setup()
+mini_icons.mock_nvim_web_devicons()
 
 -- Tracking of git data and exposes :Git command
 require("mini.git").setup()
@@ -35,8 +36,11 @@ require("mini.pairs").setup({
 -- Surround functionality
 require("mini.surround").setup()
 
--- Enhances and extends a/i text objects
+-- Extends a/i text objects
 require("mini.ai").setup()
+
+-- Adds operators such as evaluating expressions, exchanging text, etc
+require("mini.operators").setup()
 
 -- File explorer
 require("mini.files").setup({
@@ -47,6 +51,8 @@ require("mini.files").setup({
 		end,
 	},
 })
+
+-- Keymaps
 
 vim.keymap.set("n", "<leader>e", function()
 	local MiniFiles = require("mini.files")
