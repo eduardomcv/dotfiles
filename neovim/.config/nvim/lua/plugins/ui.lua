@@ -12,6 +12,8 @@ vim.pack.add({
 	"https://github.com/nanozuki/tabby.nvim",
 	-- Highlight TODO comments
 	"https://github.com/folke/todo-comments.nvim",
+	-- Highlight colors
+	"https://github.com/brenoprata10/nvim-highlight-colors",
 })
 
 require("noice").setup({
@@ -73,3 +75,5 @@ local function rename_tab()
 end
 
 vim.keymap.set("n", "<leader>tr", rename_tab, { desc = "Rename tab" })
+
+require("nvim-highlight-colors").setup({})
