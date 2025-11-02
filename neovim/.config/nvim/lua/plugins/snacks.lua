@@ -12,7 +12,6 @@ require("snacks").setup({
 				{ icon = " ", key = "g", desc = "Search text", action = "<leader>sg" },
 				{ icon = " ", key = "r", desc = "Recent files", action = "<leader>sr" },
 				{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
-				{ icon = "󰟾 ", key = "m", desc = "Mason", action = ":Mason" },
 				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 			},
 			header = [[
