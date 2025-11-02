@@ -14,7 +14,6 @@ npm install -g \
 	prettier \
 	@vtsls/language-server \
 	@olrtg/emmet-language-server \
-	eslint-lsp \
 	bash-language-server \
 	yaml-language-server \
 	vscode-langservers-extracted
