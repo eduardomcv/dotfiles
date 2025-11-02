@@ -34,3 +34,6 @@ o.winborder = "rounded"
 
 -- Don't use swapfile
 o.swapfile = false
+
+-- Enable 24-bit RGB color
+o.termguicolors = true
