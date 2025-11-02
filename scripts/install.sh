@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Generic install script. Attempts to find the available package manager, install dependencies,
 # and link dotfiles to the user's home directory.
 
@@ -9,7 +10,7 @@ set -euo pipefail
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 if [ $? -ne 0 ]; then
-	echo "Error: Not inside a Git repository."
+	echo "Not inside a Git repository."
 	exit 1
 fi
 
