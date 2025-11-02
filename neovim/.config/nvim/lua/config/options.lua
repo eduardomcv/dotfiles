@@ -31,3 +31,6 @@ o.conceallevel = 1
 
 -- Rounded borders on floating windows
 o.winborder = "rounded"
+
+-- Don't use swapfile
+o.swapfile = false
