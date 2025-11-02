@@ -16,4 +16,5 @@ npm install -g \
 	@olrtg/emmet-language-server \
 	eslint-lsp \
 	bash-language-server \
+	yaml-language-server \
 	vscode-langservers-extracted
