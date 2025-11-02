@@ -51,6 +51,10 @@
       "rev": "de74099",
       "src": "https://github.com/MunifTanjim/nui.nvim"
     },
+    "nvim-highlight-colors": {
+      "rev": "e0c4a58",
+      "src": "https://github.com/brenoprata10/nvim-highlight-colors"
+    },
     "nvim-lint": {
       "rev": "8c694e1",
       "src": "https://github.com/mfussenegger/nvim-lint"
