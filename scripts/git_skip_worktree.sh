@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # This script makes git skip changes in the files listed in $FILES_TO_SKIP
 
 set -euo pipefail
