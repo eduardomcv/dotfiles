@@ -56,9 +56,9 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-treesitter": {
-      "rev": "64f4755b",
+      "rev": "42fc28ba",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter",
-      "version": "'main'"
+      "version": "'master'"
     },
     "nvim-ts-autotag": {
       "rev": "c4ca798",

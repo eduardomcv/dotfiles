@@ -16,11 +16,12 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 vim.pack.add({
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "main" },
+	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
 	"https://github.com/windwp/nvim-ts-autotag",
 })
 
-require("nvim-treesitter").setup({
+---@diagnostic disable-next-line: missing-fields
+require("nvim-treesitter.configs").setup({
 	auto_install = true,
 	highlight = { enable = true },
 	indent = { enable = true },
