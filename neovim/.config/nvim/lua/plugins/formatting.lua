@@ -13,6 +13,7 @@ require("conform").setup({
 		json = { "prettier" },
 		yaml = { "prettier" },
 		sh = { "shfmt" },
+		rust = { "rustfmt" },
 	},
 	default_format_opts = {
 		lsp_format = "fallback",
