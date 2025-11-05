@@ -1,4 +1,5 @@
 command = /bin/zsh
+shell-integration = zsh
 font-family = JetBrains Mono
 font-size = 14
 theme = Catppuccin Mocha
