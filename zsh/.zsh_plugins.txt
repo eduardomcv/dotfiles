@@ -22,3 +22,4 @@ jeffreytse/zsh-vi-mode
 
 # Prompt
 sindresorhus/pure
+mafredri/zsh-async

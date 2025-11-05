@@ -66,4 +66,5 @@ ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 bindkey '^ ' autosuggest-accept              
 
 # Prompt
-autoload -Uz promptinit && promptinit && prompt pure
+autoload -U promptinit; promptinit
+prompt pure
