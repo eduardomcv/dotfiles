@@ -21,10 +21,8 @@ install_pacman() {
 		lazygit \
 		tealdeer \
 		ttf-jetbrains-mono \
-		stylua \
-		shfmt \
-		lua-language-server \
 		neovim \
+		mise \
 		ghostty \
 		thunderbird
 }
