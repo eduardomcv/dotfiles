@@ -53,10 +53,10 @@ dotfiles() {
 	if [[ "$INSTALL" == true ]]; then
 
 		# Prompt the user for the git username and email
-		echo -n "Enter git username: "
+		echo -n "Enter full name (for git): "
 		IFS="\n" read -r GIT_USERNAME
 
-		echo -n "Enter git email: "
+		echo -n "Enter email (for git): "
 		IFS="\n" read -r GIT_EMAIL
 
 		git config --global user.name "$GIT_USERNAME"
