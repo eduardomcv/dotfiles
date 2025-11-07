@@ -1,5 +1,10 @@
+vim.pack.add({
+	--- Default configurations for lsp
+	"https://github.com/neovim/nvim-lspconfig",
+})
+
 -- The list of servers to enable
-local lsp_servers = {
+vim.lsp.enable({
 	"bashls",
 	"eslint",
 	"emmet_language_server",
@@ -7,9 +12,37 @@ local lsp_servers = {
 	"lua_ls",
 	"vtsls",
 	"yamlls",
-}
+})
 
-vim.lsp.enable(lsp_servers)
+vim.lsp.config("vtsls", {
+	settings = {
+		complete_function_calls = true,
+		vtsls = {
+			enableMoveToFileCodeAction = true,
+			autoUseWorkspaceTsdk = true,
+			experimental = {
+				completion = {
+					enableServerSideFuzzyMatch = true,
+				},
+			},
+		},
+		typescript = {
+			updateImportsOnFileMove = { enabled = "always" },
+			suggest = {
+				completeFunctionCalls = true,
+			},
+			preferences = {
+				includePackageJsonAutoImports = "on",
+			},
+		},
+		javascript = {
+			updateImportsOnFileMove = { enabled = "always" },
+			suggest = {
+				completeFunctionCalls = true,
+			},
+		},
+	},
+})
 
 vim.lsp.config("lua_ls", {
 	on_init = function(client)
