@@ -14,9 +14,6 @@ zdharma-continuum/fast-syntax-highlighting kind:defer
 mattmc3/ez-compinit
 zsh-users/zsh-completions
 
-# Jump to recent directories with z
-rupa/z
-
 # Better vi emulation
 jeffreytse/zsh-vi-mode
 

@@ -15,6 +15,7 @@ install_brew() {
 		fd \
 		bat \
 		fzf \
+		zoxide \
 		eza \
 		lazygit \
 		tealdeer \

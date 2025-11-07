@@ -15,6 +15,7 @@ install_pacman() {
 		fd \
 		ripgrep \
 		fzf \
+		zoxide \
 		bat \
 		eza \
 		lazygit \

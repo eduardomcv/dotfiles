@@ -68,3 +68,6 @@ bindkey '^ ' autosuggest-accept
 # Prompt
 autoload -U promptinit; promptinit
 prompt pure
+
+# Fast travel with z
+eval "$(zoxide init zsh)"
