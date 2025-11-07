@@ -12,7 +12,7 @@ UPDATE_INDEX_ARG="--skip-worktree"
 
 FILES_TO_SKIP=(
 	"zsh/.zshrc"
-	"git/.gitconfig"
+	"git/.config/git/config"
 )
 
 if [[ "$#" > 0 ]]; then
