@@ -23,6 +23,7 @@ install_brew() {
 		lua-language-server \
 		shfmt \
 		neovim \
+		mise \
 		ghostty \
 		font-jetbrains-mono \
 		thunderbird \
