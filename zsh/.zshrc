@@ -71,3 +71,6 @@ prompt pure
 
 # Fast travel with z
 eval "$(zoxide init zsh)"
+
+# Activate Mise-en-place
+eval "$(mise activate zsh)"
