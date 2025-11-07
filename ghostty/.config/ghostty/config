@@ -1,8 +1,23 @@
+
+# Shell
 command = /bin/zsh
 shell-integration = zsh
+
+# Font
 font-family = JetBrains Mono
+font-style = Regular
 font-size = 14
+
+# Theme
 theme = Catppuccin Mocha
+# Optional dynamic theme colors for omarchy
+config-file = ?"~/.config/omarchy/current/theme/ghostty.conf"
+
+# Cursor
+cursor-style = "block"
+cursor-style-blink = false
+
+# Window
 macos-titlebar-style=tabs
 window-decoration = server
 window-height = 40
