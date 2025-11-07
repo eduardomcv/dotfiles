@@ -1,4 +1,5 @@
 require("plugins.theme")
+require("plugins.mason")
 require("plugins.completion")
 require("plugins.linting")
 require("plugins.formatting")
