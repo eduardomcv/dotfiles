@@ -1,9 +1,3 @@
-# Node Version Manager
-lukechilds/zsh-nvm
-
-# pyenv
-mattberther/zsh-pyenv
-
 # Fish-like suggestions
 zsh-users/zsh-autosuggestions
 
