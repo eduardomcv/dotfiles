@@ -19,9 +19,6 @@ install_brew() {
 		eza \
 		lazygit \
 		tealdeer \
-		stylua \
-		lua-language-server \
-		shfmt \
 		neovim \
 		mise \
 		ghostty \
