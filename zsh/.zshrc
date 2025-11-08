@@ -6,8 +6,8 @@ export VISUAL=nvim
 alias l="eza"
 alias la="l -a"
 alias ll="la -l"
-alias bat=batcat # bat may be installed as "batcat"
-alias fd=fdfind # fd may be installed as "fdfind"
+# alias bat=batcat # bat may be installed as "batcat"
+# alias fd=fdfind  # fd may be installed as "fdfind"
 alias lg=lazygit
 alias v=nvim
 alias vi=nvim
@@ -16,14 +16,14 @@ alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:5
 
 # Use fzf to search command history
 fh() {
-  print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+	print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
 }
 
 # Set $PATH so it includes user's private bin if it exists
 local_bin_dir="$HOME/.local/bin"
 
 if [ -d $local_bin_dir ]; then
-  PATH="$local_bin_dir:$PATH"
+	PATH="$local_bin_dir:$PATH"
 fi
 
 # Completion
@@ -37,7 +37,7 @@ bindkey -M menuselect '^[[Z' reverse-menu-complete
 antidote_dir=${ZDOTDIR:-~}/.antidote
 
 if [[ ! -e $antidote_dir ]]; then
-  git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
+	git clone --depth=1 https://github.com/mattmc3/antidote.git $antidote_dir
 fi
 
 source $antidote_dir/antidote.zsh
@@ -61,16 +61,21 @@ bindkey '^e' edit-command-line
 
 # Auto suggestions
 ## Try to find a suggestion from history. if no match is found, try from completion engine
-ZSH_AUTOSUGGEST_STRATEGY=(history completion) 
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
 ## Accept suggestion with ctrl+space
-bindkey '^ ' autosuggest-accept              
+bindkey '^ ' autosuggest-accept
 
 # Prompt
-autoload -U promptinit; promptinit
+autoload -U promptinit
+promptinit
 prompt pure
 
-# Fast travel with z
-eval "$(zoxide init zsh)"
+if command -v mise &>/dev/null; then
+	# Activate Mise-en-place
+	eval "$(mise activate zsh)"
+fi
 
-# Activate Mise-en-place
-eval "$(mise activate zsh)"
+if command -v zoxide &>/dev/null; then
+	# Fast travel with z
+	eval "$(zoxide init zsh)"
+fi
