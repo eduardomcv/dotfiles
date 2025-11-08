@@ -13,6 +13,8 @@ require("conform").setup({
 		json = { "prettier" },
 		yaml = { "prettier" },
 		sh = { "shfmt" },
+		zsh = { "shfmt" },
+		bash = { "shfmt" },
 		rust = { "rustfmt" },
 	},
 	default_format_opts = {
