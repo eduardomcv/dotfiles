@@ -15,9 +15,6 @@ check_can_install_dotfiles() {
 		echo "Error: not inside a git repository" >&2
 		return 1
 	fi
-
-	echo "Error: not inside a git repository" >&2
-	return 1
 }
 
 install_dotfiles() {
@@ -54,7 +51,7 @@ install_dotfiles() {
 	# Revert to original directory
 	cd "$original_dir" || return 1
 
-	echo "Installed dotfiles!"
+	echo "Installed dotfiles for $@!"
 }
 
 uninstall_dotfiles() {
