@@ -9,14 +9,11 @@ set -euo pipefail
 # All scripts are sourced relative to the repository's root directory.
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
-if [ $? -ne 0 ]; then
-	echo "Not inside the dotfiles repository." >&2
-	exit 1
-fi
-
 source "$REPO_ROOT/scripts/lib/os.sh"
-
 require_non_root
+
+# Create ~/.local/bin
+create_user_bin
 
 PACKAGE_MANAGER="$(get_package_manager)"
 
@@ -53,9 +50,6 @@ bazzite)
 	;;
 esac
 
-# Create ~/.local/bin
-create_user_bin
-
 # Install dotfiles
 source "$REPO_ROOT/scripts/lib/dotfiles.sh"
 install_dotfiles \
@@ -63,3 +57,7 @@ install_dotfiles \
 	zsh \
 	neovim \
 	ghostty
+
+# Set git name and email
+source "$REPO_ROOT/scripts/git.sh"
+set_user_git_info
