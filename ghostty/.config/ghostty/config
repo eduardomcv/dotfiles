@@ -22,6 +22,7 @@ macos-titlebar-style=tabs
 window-decoration = server
 window-height = 40
 window-width = 130
+background-opacity = 0.92
 
 # Keybinds
 keybind = ctrl+a>c=new_tab
