@@ -1,16 +1,16 @@
 #!/bin/bash
 
 # Generic install script. Attempts to find the available package manager, install dependencies,
-# and link dotfiles to the user's home directory.
+# and stow dotfiles to the user's home directory.
 
 set -euo pipefail
 
-# I'm assuming that, in order to use these scripts, git has been installed and this repository has been cloned.
-# Then, all scripts and sources are located in reference to the root of this repo.
+# This script should be used inside the dotfiles git repository.
+# All scripts are sourced relative to the repository's root directory.
 REPO_ROOT="$(git rev-parse --show-toplevel)"
 
 if [ $? -ne 0 ]; then
-	echo "Not inside a Git repository."
+	echo "Not inside the dotfiles repository." >&2
 	exit 1
 fi
 
@@ -18,7 +18,9 @@ source "$REPO_ROOT/scripts/lib/os.sh"
 
 require_non_root
 
-case "$(get_package_manager)" in
+PACKAGE_MANAGER="$(get_package_manager)"
+
+case PACKAGE_MANAGER in
 apt)
 	source "$REPO_ROOT/scripts/lib/apt.sh"
 	install_apt
@@ -46,12 +48,18 @@ bazzite)
 	;;
 
 *)
-	echo "Couldn't install dependencies."
+	echo "No install script exists for $PACKAGE_MANAGER" >&2
 	exit 1
 	;;
 esac
 
+# Create ~/.local/bin
 create_user_bin
 
+# Install dotfiles
 source "$REPO_ROOT/scripts/lib/dotfiles.sh"
-dotfiles install
+install_dotfiles \
+	git \
+	zsh \
+	neovim \
+	ghostty

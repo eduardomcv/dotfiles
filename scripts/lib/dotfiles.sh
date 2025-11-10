@@ -1,68 +1,90 @@
 #!/bin/bash
 
-dotfiles() {
+DOTFILES_STOW_TARGET="$HOME"
+
+check_can_install_dotfiles() {
 	if ! command -v stow >/dev/null 2>&1; then
-		echo "Error: Stow is required for installing dotfiles."
-		exit 1
+		echo "Error: stow is required for managing dotfiles" >&2
+
+		return 1
+	fi
+
+	git rev-parse --show-toplevel >/dev/null 2>&1
+
+	if [ $? -ne 0 ]; then
+		echo "Error: not inside a git repository" >&2
+		return 1
+	fi
+
+	echo "Error: not inside a git repository" >&2
+	return 1
+}
+
+install_dotfiles() {
+	check_can_install_dotfiles
+
+	if [[ "$?" != 0 ]]; then
+		return 1
 	fi
 
 	# The stow directory is the same as the repository root
-	STOW_DIR="$(git rev-parse --show-toplevel)"
-
-	if [ $? -ne 0 ]; then
-		echo "Error: Not inside a Git repository."
-		exit 1
-	fi
+	local stow_dir="$(git rev-parse --show-toplevel)"
 
 	# Store the original directory where we invoked the script
-	ORIGINAL_DIR="$(pwd)"
-
-	# Names of directories to stow (i.e. packages)
-	PACKAGES=(
-		git
-		zsh
-		neovim
-		ghostty
-	)
-
-	INSTALL=false
-	UNINSTALL=false
-
-	if [[ "$#" == 0 || "$1" == "install" ]]; then
-		INSTALL=true
-	fi
-
-	if [[ "$#" == 0 || "$1" == "uninstall" ]]; then
-		UNINSTALL=true
-	fi
+	local original_dir="$(pwd)"
 
 	# Change to stow directory
-	cd "$STOW_DIR" || exit 1
+	cd "$stow_dir" || return 1
 
-	# Stow packages listed in PACKAGES
-	for PACKAGE in ${PACKAGES[@]}; do
-		if [[ "$UNINSTALL" == true ]]; then
-			stow -vDt ~ "$PACKAGE"
-		fi
+	# Simulate stowing from args
+	for config in "$@"; do
+		stow -nt "$DOTFILES_STOW_TARGET" "$config" 2>/dev/null
 
-		if [[ "$INSTALL" == true ]]; then
-			stow -vt ~ "$PACKAGE"
+		if [[ "$?" != 0 ]]; then
+			echo "Error: the stow directory $stow_dir does not contain a config for $config"
+			return 1
 		fi
 	done
 
-	if [[ "$INSTALL" == true ]]; then
-
-		# Prompt the user for the git username and email
-		echo -n "Enter full name (for git): "
-		IFS="\n" read -r GIT_USERNAME
-
-		echo -n "Enter email (for git): "
-		IFS="\n" read -r GIT_EMAIL
-
-		git config --global user.name "$GIT_USERNAME"
-		git config --global user.email "$GIT_EMAIL"
-	fi
+	# Stow packages from args
+	for config in "$@"; do
+		stow -t "$DOTFILES_STOW_TARGET" "$config"
+	done
 
 	# Revert to original directory
-	cd "$ORIGINAL_DIR" || exit 1
+	cd "$original_dir" || return 1
+
+	echo "Installed dotfiles!"
+}
+
+uninstall_dotfiles() {
+	check_can_install_dotfiles
+
+	# The stow directory is the same as the repository root
+	stow_dir="$(git rev-parse --show-toplevel)"
+
+	# Store the original directory where we invoked the script
+	original_dir="$(pwd)"
+
+	# Change to stow directory
+	cd "$stow_dir" || return 1
+
+	# Simulate un-stowing from args
+	for config in "$@"; do
+		stow -nDt "$DOTFILES_STOW_TARGET" "$config" 2>/dev/null
+
+		if [[ "$?" != 0 ]]; then
+			echo "Error: the stow directory $stow_dir does not contain a config for $config"
+			return 1
+		fi
+	done
+
+	for config in "$@"; do
+		stow -Dt "$DOTFILES_STOW_TARGET" "$config"
+	done
+
+	# Revert to original directory
+	cd "$original_dir" || return 1
+
+	echo "Uninstalled dotfiles!"
 }
