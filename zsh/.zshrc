@@ -7,7 +7,8 @@ alias l="eza -1 --icons=auto"
 alias la="l -a"
 alias ll="la -l"
 alias lt="l -T"
-# alias bat=batcat # bat may be installed as "batcat"
+alias cat=bat
+# alias cat=batcat # bat may be installed as "batcat"
 # alias fd=fdfind  # fd may be installed as "fdfind"
 alias lg=lazygit
 alias v=nvim
