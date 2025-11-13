@@ -3,9 +3,10 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 # Aliases
-alias l="eza"
+alias l="eza --icons=auto"
 alias la="l -a"
 alias ll="la -l"
+alias lt="l -T"
 # alias bat=batcat # bat may be installed as "batcat"
 # alias fd=fdfind  # fd may be installed as "fdfind"
 alias lg=lazygit
