@@ -3,7 +3,7 @@ export EDITOR=nvim
 export VISUAL=nvim
 
 # Aliases
-alias l="eza --icons=auto"
+alias l="eza -1 --icons=auto"
 alias la="l -a"
 alias ll="la -l"
 alias lt="l -T"
