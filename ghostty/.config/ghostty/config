@@ -2,6 +2,7 @@
 # Shell
 command = /bin/zsh
 shell-integration = zsh
+shell-integration-features = ssh-terminfo,ssh-env
 
 # Font
 font-family = JetBrains Mono
