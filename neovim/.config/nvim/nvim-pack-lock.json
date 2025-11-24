@@ -76,11 +76,6 @@
       "rev": "b9fd522",
       "src": "https://github.com/nvim-lua/plenary.nvim"
     },
-    "rustaceanvim": {
-      "rev": "88575b9",
-      "src": "https://github.com/mrcjkb/rustaceanvim",
-      "version": "6.0.0 - 7.0.0"
-    },
     "snacks.nvim": {
       "rev": "dec29f5",
       "src": "https://github.com/folke/snacks.nvim"
