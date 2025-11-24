@@ -31,6 +31,10 @@
       "rev": "5231c62",
       "src": "https://github.com/folke/lazydev.nvim"
     },
+    "mason-lspconfig.nvim": {
+      "rev": "7d527c7",
+      "src": "https://github.com/mason-org/mason-lspconfig.nvim"
+    },
     "mason-tool-installer.nvim": {
       "rev": "517ef59",
       "src": "https://github.com/WhoIsSethDaniel/mason-tool-installer.nvim"
