@@ -3,17 +3,6 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 })
 
--- The list of servers to enable
-vim.lsp.enable({
-	"bashls",
-	"eslint",
-	"emmet_language_server",
-	"jsonls",
-	"lua_ls",
-	"vtsls",
-	"yamlls",
-})
-
 vim.lsp.config("vtsls", {
 	settings = {
 		complete_function_calls = true,
