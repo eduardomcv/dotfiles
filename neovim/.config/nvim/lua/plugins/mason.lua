@@ -17,5 +17,7 @@ require("mason-lspconfig").setup({
 		"jsonls",
 		"cssls",
 		"yamlls",
+		"pylsp",
+		"ruff",
 	},
 })
