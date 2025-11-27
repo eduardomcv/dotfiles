@@ -56,7 +56,8 @@ install_dotfiles \
 	git \
 	zsh \
 	neovim \
-	ghostty
+	ghostty \
+	mise
 
 # Set git name and email
 source "$REPO_ROOT/scripts/git.sh"
