@@ -89,6 +89,8 @@ vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, { desc = "Run C
 vim.keymap.set("n", "<leader>cL", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
 
 --- Autocmds
+
+-- Disable hover for ruff
 vim.api.nvim_create_autocmd("LspAttach", {
 	group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
 	callback = function(args)
@@ -97,9 +99,27 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			return
 		end
 		if client.name == "ruff" then
-			-- Disable hover in favor of python-lsp-server
+			-- Disable hover in favor of pylsp
 			client.server_capabilities.hoverProvider = false
 		end
 	end,
 	desc = "LSP: Disable hover capability from Ruff",
+})
+
+-- Auto-fix on save
+local eslint_base_on_attach = vim.lsp.config.eslint.on_attach
+
+vim.lsp.config("eslint", {
+	on_attach = function(client, bufnr)
+		if not eslint_base_on_attach then
+			return
+		end
+
+		eslint_base_on_attach(client, bufnr)
+
+		vim.api.nvim_create_autocmd("BufWritePre", {
+			buffer = bufnr,
+			command = "LspEslintFixAll",
+		})
+	end,
 })
