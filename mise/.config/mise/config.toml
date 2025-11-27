@@ -1,0 +1,9 @@
+[tools]
+node = "lts"
+python = "latest"
+ruby = "latest"
+usage = "latest"
+uv = "latest"
+
+[settings]
+python.uv_venv_auto = true
