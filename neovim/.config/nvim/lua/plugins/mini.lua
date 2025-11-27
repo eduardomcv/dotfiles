@@ -52,7 +52,7 @@ require("mini.files").setup({
 	},
 })
 
--- Keymaps
+--- Keymaps
 
 vim.keymap.set("n", "<leader>e", function()
 	local MiniFiles = require("mini.files")
