@@ -17,7 +17,7 @@ create_user_bin
 
 PACKAGE_MANAGER="$(get_package_manager)"
 
-case PACKAGE_MANAGER in
+case $PACKAGE_MANAGER in
 apt)
 	source "$REPO_ROOT/scripts/lib/apt.sh"
 	install_apt
@@ -60,5 +60,5 @@ install_dotfiles \
 	mise
 
 # Set git name and email
-source "$REPO_ROOT/scripts/git.sh"
+source "$REPO_ROOT/scripts/lib/git.sh"
 set_user_git_info
