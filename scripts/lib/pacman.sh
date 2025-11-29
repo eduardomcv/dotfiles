@@ -5,7 +5,7 @@ install_pacman() {
 	sudo pacman -Syu --noconfirm
 
 	# install packages
-	sudo pacman -S --noconfirm \
+	sudo pacman -S --noconfirm --needed \
 		base-devel \
 		zip \
 		unzip \
