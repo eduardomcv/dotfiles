@@ -18,7 +18,7 @@ install_brew() {
 		zoxide \
 		eza \
 		lazygit \
-		tealdeer \
+		tldr \
 		neovim \
 		mise \
 		ghostty \

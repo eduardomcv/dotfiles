@@ -14,12 +14,13 @@ install_pacman() {
 		zsh \
 		fd \
 		ripgrep \
+		wl-clipboard \
 		fzf \
 		zoxide \
 		bat \
 		eza \
 		lazygit \
-		tealdeer \
+		tldr \
 		ttf-jetbrains-mono \
 		neovim \
 		mise \
