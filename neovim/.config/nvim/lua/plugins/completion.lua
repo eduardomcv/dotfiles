@@ -13,10 +13,6 @@ vim.pack.add({
 		src = "https://github.com/saghen/blink.compat",
 		version = vim.version.range("*"),
 	},
-	-- Copilot
-	-- "https://github.com/zbirenbaum/copilot.lua",
-	-- Add copilot as completion source
-	-- "fang2hou/blink-copilot",
 })
 
 require("lazydev").setup({
@@ -26,11 +22,6 @@ require("lazydev").setup({
 		{ path = "snacks.nvim", words = { "Snacks" } },
 	},
 })
-
--- require("copilot").setup({
--- 	suggestion = { enabled = false },
--- 	panel = { enabled = false },
--- })
 
 require("blink-compat").setup({})
 

@@ -1,5 +1,5 @@
 vim.pack.add({
-	"https://github.com/nvim-lua/plenary.nvim",
+	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
 	-- UI component library
 	"https://github.com/MunifTanjim/nui.nvim",
 	-- Better UI for messages, cmdline and popupmenu

@@ -14,6 +14,10 @@
       "rev": "ce4a8e0",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "codecompanion.nvim": {
+      "rev": "8ad65ee",
+      "src": "https://github.com/olimorris/codecompanion.nvim"
+    },
     "conform.nvim": {
       "rev": "4993e07",
       "src": "https://github.com/stevearc/conform.nvim"
@@ -74,7 +78,8 @@
     },
     "plenary.nvim": {
       "rev": "b9fd522",
-      "src": "https://github.com/nvim-lua/plenary.nvim"
+      "src": "https://github.com/nvim-lua/plenary.nvim",
+      "version": "'master'"
     },
     "snacks.nvim": {
       "rev": "fe7cfe9",
