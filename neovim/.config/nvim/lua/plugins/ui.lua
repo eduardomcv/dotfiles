@@ -52,6 +52,7 @@ require("noice").setup({
 
 require("which-key").setup({
 	spec = {
+		{ "<leader>a", group = "+agent" },
 		{ "<leader>c", group = "+code" },
 		{ "<leader>f", group = "+format" },
 		{ "<leader>g", group = "+git" },
