@@ -16,6 +16,10 @@ require("conform").setup({
 		zsh = { "shfmt" },
 		bash = { "shfmt" },
 		rust = { "rustfmt" },
+		python = {
+			"ruff_fix",
+			"ruff_organize_imports",
+		},
 	},
 	default_format_opts = {
 		lsp_format = "fallback",
