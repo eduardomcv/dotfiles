@@ -82,36 +82,44 @@ vim.lsp.config("lua_ls", {
 	},
 })
 
---- Keymaps
-vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
-vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
-vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, { desc = "Run Codelens" })
-vim.keymap.set("n", "<leader>cL", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
-
---- Autocmds
-
--- Disable hover for ruff
-vim.api.nvim_create_autocmd("LspAttach", {
-	group = vim.api.nvim_create_augroup("lsp_attach_disable_ruff_hover", { clear = true }),
-	callback = function(args)
-		local client = vim.lsp.get_client_by_id(args.data.client_id)
-		if client == nil then
-			return
+local ruff_base_on_attach = vim.lsp.config.ruff.on_attach
+vim.lsp.config("ruff", {
+	init_options = {
+		settings = {
+			-- Prioritize project config over editor config
+			configurationPreference = "filesystemFirst",
+		},
+	},
+	on_attach = function(client, bufnr)
+		if ruff_base_on_attach ~= nil then
+			ruff_base_on_attach(client, bufnr)
 		end
-		if client.name == "ruff" then
-			-- Disable hover in favor of pylsp
-			client.server_capabilities.hoverProvider = false
-		end
+
+		-- Disable hover in favor of pyright
+		client.server_capabilities.hoverProvider = false
 	end,
-	desc = "LSP: Disable hover capability from Ruff",
 })
 
--- Auto-fix on save
-local eslint_base_on_attach = vim.lsp.config.eslint.on_attach
+vim.lsp.config("pyright", {
+	settings = {
+		pyright = {
+			-- Using Ruff's import organizer
+			disableOrganizeImports = true,
+		},
+		python = {
+			analysis = {
+				-- Ignore all files for analysis to exclusively use Ruff for linting
+				ignore = { "*" },
+			},
+		},
+	},
+})
 
+local eslint_base_on_attach = vim.lsp.config.eslint.on_attach
 vim.lsp.config("eslint", {
 	on_attach = function(client, bufnr)
 		if not eslint_base_on_attach then
+			-- The base on_attach provides the LspEslintFixAll command
 			return
 		end
 
@@ -123,3 +131,9 @@ vim.lsp.config("eslint", {
 		})
 	end,
 })
+
+--- Keymaps
+vim.keymap.set({ "n", "v" }, "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Action" })
+vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Rename" })
+vim.keymap.set({ "n", "v" }, "<leader>cl", vim.lsp.codelens.run, { desc = "Run Codelens" })
+vim.keymap.set("n", "<leader>cL", vim.lsp.codelens.refresh, { desc = "Refresh & Display Codelens" })
