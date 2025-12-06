@@ -9,7 +9,7 @@ require("mason-lspconfig").setup({
 	automatic_enable = true,
 	ensure_installed = {
 		"bashls",
-		"lua_ls",
+		"lua_ls@3.15.0",
 		"stylua",
 		"vtsls",
 		"emmet_language_server",
