@@ -1,6 +1,5 @@
 [tools]
 node = "lts"
-python = "latest"
 ruby = "latest"
 usage = "latest"
 uv = "latest"
