@@ -49,8 +49,14 @@ require("snacks").setup({
 	picker = {
 		enabled = true,
 		layout = {
+			preset = "dropdown",
+			hidden = {
+				"preview",
+			},
 			layout = {
 				backdrop = false,
+				row = 4,
+				height = 0.7,
 			},
 		},
 		sources = {
