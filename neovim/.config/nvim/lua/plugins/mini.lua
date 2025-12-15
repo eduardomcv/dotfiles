@@ -45,9 +45,26 @@ require("mini.operators").setup()
 -- File explorer
 require("mini.files").setup({
 	content = {
-		-- Filter these files from the explorer
 		filter = function(entry)
-			return entry.name ~= ".DS_Store" and entry.name ~= ".git" and entry.name ~= ".direnv"
+			-- Filter these files from the explorer
+			local hidden_patterns = {
+				"%.DS_Store",
+				"%.git",
+				"%.direnv",
+				"%.pytest_cache",
+				"%.ruff_cache",
+				"%.venv",
+				"__pycache__",
+				"%.egg%-info$",
+			}
+
+			for _, pattern in ipairs(hidden_patterns) do
+				if entry.name:find(pattern) then
+					return false
+				end
+			end
+
+			return true
 		end,
 	},
 })
