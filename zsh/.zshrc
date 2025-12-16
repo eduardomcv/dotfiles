@@ -23,7 +23,6 @@ fh() {
 
 # Set $PATH so it includes user's private bin if it exists
 local_bin_dir="$HOME/.local/bin"
-
 if [ -d $local_bin_dir ]; then
 	PATH="$local_bin_dir:$PATH"
 fi
