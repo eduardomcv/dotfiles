@@ -49,7 +49,7 @@ require("mini.files").setup({
 			-- Filter these files from the explorer
 			local hidden_patterns = {
 				"%.DS_Store",
-				"%.git",
+				"%.git$",
 				"%.direnv",
 				"%.pytest_cache",
 				"%.ruff_cache",
