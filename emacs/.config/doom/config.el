@@ -76,3 +76,18 @@
 
 (add-to-list 'default-frame-alist '(height . 55))
 (add-to-list 'default-frame-alist '(width . 150))
+
+(use-package! eldoc-box
+  :config
+  (set-face-attribute 'eldoc-box-body nil :family "JetBrains Mono" :height 150)
+  (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors)
+  (setq eldoc-idle-delay 0.1))
+
+(map! :after eglot
+      :map eglot-mode-map
+      :n "K" #'eldoc-box-help-at-point)
+
+(map! :after eldoc-box
+      :map eldoc-box-mode-map
+      :n "C-j" #'eldoc-box-scroll-up
+      :n "C-k" #'eldoc-box-scroll-down)
