@@ -12,20 +12,34 @@
 
 ;;; Basic settings
 
+;; Performance settings
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024))
+
+;; Backups
+(setq version-control t)
+(setq delete-old-versions t)
+(setq kept-new-versions 6)
+(setq kept-old-versions 2)
+
+
 ;; Don't pollute config directory
 (use-package no-littering
   :config
-	;; Store custom file in etc/
+  ;; Store custom file in etc/
   (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
   (when (file-exists-p custom-file)
     (load custom-file 'noerror))
+
+  ;; Store backups file in var/
+  (setq backup-directory-alist
+      `(("." . ,(no-littering-expand-var-file-name "backups/"))))
   ;; Store auto-save files in var/
   (setq auto-save-file-name-transforms
         `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 
-;; Performance settings
-(setq gc-cons-threshold 100000000)
-(setq read-process-output-max (* 1024 1024))
+
+
 
 ;; Frame default size
 (add-to-list 'default-frame-alist '(width . 120))
