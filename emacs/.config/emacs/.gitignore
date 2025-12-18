@@ -1,0 +1,24 @@
+# Package downloads
+elpa/
+
+# Emacs backups and state
+var/
+etc/
+*~
+\#*\#
+.#*
+eln-cache/
+transient/
+bookmarks
+projects
+.org-id-locations
+ac-comphist.dat
+history
+server/
+auto-save-list/
+
+# Machine-specific settings
+custom.el
+
+# Compiled elisp
+*.elc
