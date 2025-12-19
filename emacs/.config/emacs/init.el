@@ -206,13 +206,6 @@
   (corfu-quit-no-match 'separator)
   :init
   (global-corfu-mode)
-  :bind
-  (:map corfu-map
-        ("C-j" . corfu-next)
-        ("C-k" . corfu-previous)
-        ("<tab>" . nil)
-        ("TAB" . nil)
-        ("C-SPC" . corfu-insert))
   :custom-face
   (corfu-default ((t (:background "#1e1e2e" :foreground "#cdd6f4"))))
   (corfu-border ((t (:background "#89b4fa"))))
@@ -221,7 +214,7 @@
 
 (use-package emacs
   :init
-  (setq tab-always-indent 'complete))
+  (setq tab-always-indent 'indent))
 
 ;;; LSP
 (use-package eglot
@@ -229,6 +222,7 @@
   ((prog-mode . eglot-ensure))
   :config
   (fset #'jsonrpc--log-event #'ignore)
+  (setq eldoc-echo-area-use-multiline-p nil)
   (setq eglot-ignored-server-capabilities '(:hoverProvider))
   (add-to-list 'eglot-stay-out-of 'flymake))
 
@@ -342,11 +336,22 @@
   :after evil
   :config
   (general-evil-setup)
+
   (general-create-definer leader-def
     :states '(normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
     :global-prefix "M-m")
+
+  (general-define-key
+   :keymaps 'corfu-map
+   "TAB" nil
+   "<tab>" nil
+   "C-i" nil
+   "C-j" 'corfu-next
+   "C-k" 'corfu-previous
+   "C-SPC" 'corfu-insert)
+
   (general-define-key
    :states 'normal
    "[d"  'flymake-goto-prev-error
@@ -354,8 +359,13 @@
    "gD"  'eglot-find-declaration
    "gI"  'eglot-find-implementation
    "K"   'eldoc-box-help-at-point
-   "C-p" 'project-find-file
+   "C-p" 'project-find-file)
+
+  (general-define-key
+   :states 'insert
+   "C-SPC" 'completion-at-point
    )
+
   (leader-def
     "s"  '(:ignore t :which-key "search")
     "c"  '(:ignore t :which-key "code")
