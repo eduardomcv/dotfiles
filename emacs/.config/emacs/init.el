@@ -104,6 +104,9 @@
 (use-package vertico
   :init
   (vertico-mode)
+  :bind (:map vertico-map
+              ("C-j" . vertico-next)
+              ("C-k" . vertico-previous))
   :config
   (setq vertico-resize t)
   (setq vertico-count 15)
@@ -115,7 +118,7 @@
   :config
   (vertico-posframe-mode 1)
   (setq vertico-posframe-parameters
-	'((left-fringe . 0)
+	'((left-fringe . 8)
 	  (right-fringe . 8)))
 
   (setq vertico-posframe-border-width 2)
@@ -147,6 +150,27 @@
           ("DEPRECATED"      . "#E8A2AF")
           ("NOTE"       . "#ABE9B3"))))
 
+;; Eldoc child frame
+(use-package eldoc-box
+  :hook ((eglot-managed-mode . eldoc-box-hover-mode)
+         (eglot-managed-mode . eldoc-box-hover-at-point-mode))
+  :init
+  (setq eldoc-idle-delay 0.1)
+  :config
+  (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors 0 t)
+  (set-face-attribute 'eldoc-box-border nil :background  "#89b4fa")
+  (set-face-attribute 'eldoc-box-body nil :background "#1e1e2e" :family "JetBrainsMono" :height 130)
+  (setq eldoc-box-clear-with-C-g t)
+  (setq eldoc-box-frame-parameters
+        '((left-fringe . 8)
+          (right-fringe . 8)
+	  (internal-border-width . 1)
+	  (vertical-scroll-bars . nil)
+	  (horizontal-scroll-bars . nil)
+	  (menu-bar-lines . 0)
+	  (tool-bar-lines . 0)
+          (line-spacing . 0.1))))
+
 ;;; Evil mode
 
 (use-package evil
@@ -170,16 +194,28 @@
   (evil-commentary-mode 1))
 
 ;;; Completion
+
 (use-package corfu
-  ;; Optional customizations
   :custom
-  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto t)                 ;; Enable auto completion
-  (corfu-auto-delay 0.2)         ;; Delay before showing popup
-  (corfu-auto-prefix 2)          ;; Number of chars before showing popup
-  (corfu-quit-no-match 'separator) ;; Don't quit if there is no match
+  (corfu-cycle t)
+  (corfu-auto t)
+  (corfu-auto-delay 0.2)
+  (corfu-auto-prefix 2)
+  (corfu-quit-no-match 'separator)
   :init
-  (global-corfu-mode))
+  (global-corfu-mode)
+  :bind
+  (:map corfu-map
+        ("C-j" . corfu-next)
+        ("C-k" . corfu-previous)
+        ("<tab>" . nil)
+        ("TAB" . nil)
+        ("C-SPC" . corfu-insert))
+  :custom-face
+  (corfu-default ((t (:background "#1e1e2e" :foreground "#cdd6f4"))))
+  (corfu-border ((t (:background "#89b4fa"))))
+  (corfu-current ((t (:background "#313244" :foreground "#cdd6f4" :weight bold))))
+  (corfu-bar ((t (:background "#585b70")))))
 
 (use-package emacs
   :init
@@ -308,13 +344,16 @@
     :states '(normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
-    :global-prefix "C-SPC")
+    :global-prefix "M-m")
   (general-define-key
    :states 'normal
-   "[d" 'flymake-goto-prev-error
-   "]d" 'flymake-goto-next-error
-   "gD" 'eglot-find-declaration
-   "gI" 'eglot-find-implementation)
+   "[d"  'flymake-goto-prev-error
+   "]d"  'flymake-goto-next-error
+   "gD"  'eglot-find-declaration
+   "gI"  'eglot-find-implementation
+   "K"   'eldoc-box-help-at-point
+   "C-p" 'project-find-file
+   )
   (leader-def
     "s"  '(:ignore t :which-key "search")
     "c"  '(:ignore t :which-key "code")
