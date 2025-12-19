@@ -100,7 +100,7 @@
 ;; Enable which key
 (which-key-mode 1)
 
-;; Completion UI
+;; Finder/completion UI
 (use-package vertico
   :init
   (vertico-mode)
@@ -120,13 +120,7 @@
   (setq vertico-posframe-parameters
 	'((left-fringe . 8)
 	  (right-fringe . 8)))
-
   (setq vertico-posframe-border-width 2)
-
-  ;; 3. Position it in the center of the frame
-  ;;(setq vertico-posframe-poshandler 'vertico-posframe-poshandler-frame-center)
-  
-  ;; 4. (Optional) Make it slightly smaller/wider to match your taste
   (setq vertico-posframe-width 90)
   (setq vertico-posframe-height 25))
 
@@ -180,7 +174,7 @@
   (setq evil-want-integration t)
   (setq evil-want-keybinding nil)
   (setq evil-want-C-u-scroll t)
-  (setq evil-undo-system 'undo-redo)
+  (setq evil-undo-system 'undo-tree)
   :config
   (evil-mode 1)
   (define-key evil-motion-state-map (kbd "SPC") nil))
@@ -256,7 +250,19 @@
    '(diff-hl-delete ((t (:foreground "#f38ba8" :background nil))))
    '(diff-hl-change ((t (:foreground "#89b4fa" :background nil))))))
 
+;;; Undo tree
+
+(use-package undo-tree
+  :init
+  (global-undo-tree-mode)
+  :config
+  (setq undo-tree-auto-save-history t)
+  ;; Store undo files in var/undo-tree-hist/
+  (setq undo-tree-history-directory-alist
+        `(("." . ,(no-littering-expand-var-file-name "undo-tree-hist/")))))
+
 ;;; Fuzzy finder
+
 (use-package consult
   :init
   (setq xref-show-xrefs-function #'consult-xref)
@@ -269,6 +275,7 @@
 	 )
   :config
   (setq consult-async-min-input 0)
+  ;; Show hidden files in fd
   (let ((fd-name (if (executable-find "fdfind") "fdfind" "fd")))
     (setq consult-fd-args (concat fd-name " --full-path --absolute-path --color=never --hidden --exclude .git"))))
 
@@ -303,10 +310,7 @@
 (use-package flymake
   :hook (prog-mode . flymake-mode)
   :config
-  ;; 1. keybindings are already set in your General section ([d / ]d)
-  
-  ;; 2. Customize the "Signs" (Gutter Icons)
-  ;; Define bitmaps for dots/arrows
+  ;; Bitmaps for flymake (circles near the number column)
   (define-fringe-bitmap 'flymake-fringe-bitmap-circle
     (vector #b00000000
             #b00111100
@@ -317,7 +321,6 @@
             #b00111100
             #b00000000))
 
-  ;; Map Errors/Warnings to these bitmaps
   (setq flymake-error-bitmap '(flymake-fringe-bitmap-circle compilation-error))
   (setq flymake-warning-bitmap '(flymake-fringe-bitmap-circle compilation-warning))
   (setq flymake-note-bitmap '(flymake-fringe-bitmap-circle compilation-info))
