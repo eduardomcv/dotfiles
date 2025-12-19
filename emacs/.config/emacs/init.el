@@ -147,7 +147,6 @@
           ("DEPRECATED"      . "#E8A2AF")
           ("NOTE"       . "#ABE9B3"))))
 
-
 ;;; Evil mode
 
 (use-package evil
@@ -170,6 +169,31 @@
   :config
   (evil-commentary-mode 1))
 
+;;; Completion
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  (corfu-auto-delay 0.2)         ;; Delay before showing popup
+  (corfu-auto-prefix 2)          ;; Number of chars before showing popup
+  (corfu-quit-no-match 'separator) ;; Don't quit if there is no match
+  :init
+  (global-corfu-mode))
+
+(use-package emacs
+  :init
+  (setq tab-always-indent 'complete))
+
+;;; LSP
+(use-package eglot
+  :hook
+  ((prog-mode . eglot-ensure))
+  :config
+  (fset #'jsonrpc--log-event #'ignore)
+  (setq eglot-ignored-server-capabilities '(:hoverProvider))
+  (add-to-list 'eglot-stay-out-of 'flymake))
+
 ;;; Git
 
 (use-package magit
@@ -179,6 +203,9 @@
 
 ;;; Fuzzy finder
 (use-package consult
+  :init
+  (setq xref-show-xrefs-function #'consult-xref)
+  (setq xref-show-definitions-function #'consult-xref)
   :bind (
 	 ("C-c g" . consult-ripgrep)
 	 ("C-c f" . consult-fd)
@@ -227,6 +254,12 @@
     :keymaps 'override
     :prefix "SPC"
     :global-prefix "C-SPC")
+  (general-define-key
+   :states 'normal
+   "[d" 'flymake-goto-prev-error
+   "]d" 'flymake-goto-next-error
+   "gD" 'eglot-find-declaration
+   "gI" 'eglot-find-implementation)
   (leader-def
     "s"  '(:ignore t :which-key "search")
     "c"  '(:ignore t :which-key "code")
@@ -238,6 +271,9 @@
     "bt" '(consult-todo :which-key "search buffer todos")
     "bl" '(consult-line :which-key "search buffer lines")
     "cf" '(apheleia-format-buffer :which-key "format buffer")
+    "ca" '(eglot-code-actions :which-key "actions")
+    "cr" '(eglot-rename :which-key "rename")
+    "ch" '(eldoc :which-key "hover documentation")
     "gg" '(magit-status :which-key "magit status")
     "pp" '(project-switch-project :which-key "switch project")
     "pb" '(consult-project-buffer :which-key "project buffers")
