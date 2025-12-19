@@ -162,14 +162,16 @@
   (set-face-attribute 'eldoc-box-body nil :background "#1e1e2e" :family "JetBrainsMono" :height 130)
   (setq eldoc-box-clear-with-C-g t)
   (setq eldoc-box-frame-parameters
-        '((left-fringe . 8)
+        '(
+	  (left-fringe . 8)
           (right-fringe . 8)
 	  (internal-border-width . 1)
 	  (vertical-scroll-bars . nil)
 	  (horizontal-scroll-bars . nil)
 	  (menu-bar-lines . 0)
 	  (tool-bar-lines . 0)
-          (line-spacing . 0.1))))
+          (line-spacing . 0.1)
+	  (cursor-type . nil))))
 
 ;;; Evil mode
 
