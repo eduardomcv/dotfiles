@@ -115,7 +115,7 @@
   :config
   (vertico-posframe-mode 1)
   (setq vertico-posframe-parameters
-	'((left-fringe . 8)
+	'((left-fringe . 0)
 	  (right-fringe . 8)))
 
   (setq vertico-posframe-border-width 2)
@@ -196,10 +196,33 @@
 
 ;;; Git
 
+;; Magit
 (use-package magit
   :commands magit-status
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+
+;; Git signs
+(use-package diff-hl
+  :hook ((dired-mode . diff-hl-dired-mode)
+         (magit-pre-refresh . diff-hl-magit-pre-refresh)
+         (magit-post-refresh . diff-hl-magit-post-refresh))
+  :init
+  (global-diff-hl-mode)
+  :config
+  (diff-hl-flydiff-mode)
+  (diff-hl-margin-mode)
+  (setq diff-hl-margin-symbols-alist
+        '((insert . "│")
+          (delete . "│")
+          (change . "│")
+          (unknown . "│")
+          (ignored . "│")))
+
+  (custom-set-faces
+   '(diff-hl-insert ((t (:foreground "#a6e3a1" :background nil))))
+   '(diff-hl-delete ((t (:foreground "#f38ba8" :background nil))))
+   '(diff-hl-change ((t (:foreground "#89b4fa" :background nil))))))
 
 ;;; Fuzzy finder
 (use-package consult
@@ -243,6 +266,38 @@
   :config
   (apheleia-global-mode +1))
 
+;;; Linting
+
+(use-package flymake
+  :hook (prog-mode . flymake-mode)
+  :config
+  ;; 1. keybindings are already set in your General section ([d / ]d)
+  
+  ;; 2. Customize the "Signs" (Gutter Icons)
+  ;; Define bitmaps for dots/arrows
+  (define-fringe-bitmap 'flymake-fringe-bitmap-circle
+    (vector #b00000000
+            #b00111100
+            #b01111110
+            #b01111110
+            #b01111110
+            #b01111110
+            #b00111100
+            #b00000000))
+
+  ;; Map Errors/Warnings to these bitmaps
+  (setq flymake-error-bitmap '(flymake-fringe-bitmap-circle compilation-error))
+  (setq flymake-warning-bitmap '(flymake-fringe-bitmap-circle compilation-warning))
+  (setq flymake-note-bitmap '(flymake-fringe-bitmap-circle compilation-info))
+
+  (custom-set-faces
+   '(flymake-error ((t (:underline (:style wave :color "#F28FAD")))))
+   '(flymake-warning ((t (:underline (:style wave :color "#FAE3B0")))))
+   '(flymake-note ((t (:underline (:style wave :color "#96CDFB")))))))
+
+(use-package flymake-collection
+  :hook (after-init . flymake-collection-hook-setup))
+
 ;;; Key bindings
 
 (use-package general
@@ -282,3 +337,4 @@
     "sb" '(consult-buffer :which-key "buffers")
     "ss" '(consult-line :which-key "current file")
     "st" '(consult-todo-project :which-key "project todos")))
+
