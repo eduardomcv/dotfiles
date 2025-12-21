@@ -216,8 +216,18 @@
   ((prog-mode . eglot-ensure))
   :config
   (fset #'jsonrpc--log-event #'ignore)
+
+  (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
+  (setenv "PATH" (concat (expand-file-name "~/.local/bin") ":" (getenv "PATH")))
+
+  (let ((mise-path (expand-file-name "~/.local/share/mise/shims")))
+    (when (file-directory-p mise-path)
+      (add-to-list 'exec-path mise-path)
+      (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
+
   (setq eldoc-echo-area-use-multiline-p nil)
   (setq eglot-ignored-server-capabilities '(:hoverProvider))
+
   (add-to-list 'eglot-stay-out-of 'flymake))
 
 ;;; Git
@@ -303,7 +313,12 @@
 ;;; Formatting
 (use-package apheleia
   :config
-  (apheleia-global-mode +1))
+  (apheleia-global-mode +1)
+
+  (setf (alist-get 'python-mode apheleia-mode-alist)
+	'(ruff-isort ruff))
+  (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+	'(ruff-isort ruff)))
 
 ;;; Linting
 
@@ -348,9 +363,6 @@
 
   (general-define-key
    :keymaps 'corfu-map
-   "TAB" nil
-   "<tab>" nil
-   "C-i" nil
    "C-j" 'corfu-next
    "C-k" 'corfu-previous
    "C-SPC" 'corfu-insert)
@@ -362,7 +374,11 @@
    "gD"  'eglot-find-declaration
    "gI"  'eglot-find-implementation
    "K"   'eldoc-box-help-at-point
-   "C-p" 'project-find-file)
+   "C-p" 'project-find-file
+   "C-h" 'evil-window-left
+   "C-j" 'evil-window-down
+   "C-k" 'evil-window-up
+   "C-l" 'evil-window-right)
 
   (general-define-key
    :states 'insert
