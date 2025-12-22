@@ -1,7 +1,7 @@
 # Package downloads
 elpa/
 
-# Emacs backups and state
+# Emacs files
 var/
 etc/
 *~
@@ -16,6 +16,9 @@ ac-comphist.dat
 history
 server/
 auto-save-list/
+tree-sitter/
+places
+recentf
 
 # Machine-specific settings
 custom.el
