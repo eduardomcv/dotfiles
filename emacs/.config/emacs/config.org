@@ -351,16 +351,26 @@
     :config
     (fset #'jsonrpc--log-event #'ignore)
 
+    ;; Add user bin to emacs PATH
     (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
     (setenv "PATH" (concat (expand-file-name "~/.local/bin") ":" (getenv "PATH")))
 
+    ;; Add mise shims to emacs PATH
     (let ((mise-path (expand-file-name "~/.local/share/mise/shims")))
       (when (file-directory-p mise-path)
         (add-to-list 'exec-path mise-path)
         (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
+    
+    (add-to-list 'eglot-server-programs
+  	       '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
-    (setq eldoc-echo-area-use-multiline-p nil)
-    (setq eglot-ignored-server-capabilities '(:hoverProvider)))
+    (setq-default eglot-workspace-configuration
+  		'(:vtsls (:autoUseWorkspaceTsdk t)
+  			 :typescript (:preferences (:importModuleSpecifier "non-relative")
+  						   :inlayHints (:parameterNames (:enabled "all")
+  										:variableTypes (:enabled t)))
+  			 :javascript (:inlayHints (:parameterNames (:enabled "all")
+  								   :variableTypes (:enabled t))))))
 #+end_src
 
 * Treesitter
