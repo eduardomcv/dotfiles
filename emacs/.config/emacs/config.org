@@ -15,7 +15,8 @@
 - [[#ui][UI]]
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
-  - [[#frame-default-size][Frame default size]]
+  - [[#default-size-for-frames][Default size for frames]]
+  - [[#smooth-scrolling][Smooth scrolling]]
   - [[#remove-menu-toolbar-and-scroll-bar][Remove menu, toolbar and scroll bar]]
   - [[#enable-visual-lines-word-wrap][Enable visual lines (word wrap)]]
   - [[#highlight-current-line][Highlight current line]]
@@ -81,10 +82,8 @@
 
 ** Remember recent files
 #+begin_src emacs-lisp
-  (use-package recentf
-    :config
-    (recentf-mode 1)
-    (run-at-time nil 300 'recentf-save-list))
+  (recentf-mode 1)
+  (run-at-time nil 300 'recentf-save-list)
 #+end_src
 
 ** Avoid polluting the config directory
@@ -173,10 +172,18 @@
     (global-ligature-mode t))
 #+end_src
 
-** Frame default size
+** Default size for frames
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist '(width . 120))
   (add-to-list 'default-frame-alist '(height . 45))
+#+end_src
+
+** Smooth scrolling
+#+begin_src emacs-lisp
+  (setq pixel-scroll-precision-large-scroll-height 40.0)
+  (setq pixel-scroll-precision-interpolation-factor 1.0)
+  (setq pixel-scroll-precision-interpolate-page t)
+  (pixel-scroll-precision-mode 1)
 #+end_src
 
 ** Remove menu, toolbar and scroll bar
@@ -332,9 +339,7 @@
     (corfu-current ((t (:background "#313244" :foreground "#cdd6f4" :weight bold))))
     (corfu-bar ((t (:background "#585b70")))))
 
-  (use-package emacs
-    :init
-    (setq tab-always-indent 'indent))
+  (setq tab-always-indent 'complete) ; Fallback to completion when pressing TAB
 #+end_src
 
 * LSP
@@ -504,7 +509,7 @@
     :config
     (general-evil-setup)
 
-    (general-create-definer leader-def
+    (general-create-definer leader-keys-def
       :states '(normal visual insert emacs)
       :keymaps 'override
       :prefix "SPC"
@@ -523,7 +528,9 @@
      "gD"  'eglot-find-declaration
      "gI"  'eglot-find-implementation
      "K"   'eldoc-box-help-at-point
-     "C-p" 'project-find-file)
+     "C-p" 'project-find-file
+     "C--" 'text-scale-decrease
+     "C-=" 'text-scale-increase)
 
     (general-define-key
      :states 'insert
@@ -543,7 +550,7 @@
      "=" 'wdired-finish-edit
      "ESC" 'wdired-abort-changes)
 
-    (leader-def
+    (leader-keys-def
       "s"  '(:ignore t :which-key "search")
       "c"  '(:ignore t :which-key "code")
       "g"  '(:ignore t :which-key "git")
