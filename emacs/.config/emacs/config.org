@@ -141,17 +141,17 @@
   (set-face-attribute 'default nil
   		    :font "Iosevka"
   		    :height 150
-  		    :weight 'medium)
+  		    :weight 'regular)
 
   (set-face-attribute 'variable-pitch nil
   		    :font "Iosevka Aile"
   		    :height 150
-  		    :weight 'medium)
+  		    :weight 'regular)
 
   (set-face-attribute 'fixed-pitch nil
   		    :font "Iosevka"
   		    :height 150
-  		    :weight 'medium)
+  		    :weight 'regular)
 
   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
   (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
