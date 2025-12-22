@@ -5,9 +5,9 @@ shell-integration = zsh
 shell-integration-features = ssh-terminfo,ssh-env
 
 # Font
-font-family = JetBrains Mono
+font-family = Iosevka
 font-style = Regular
-font-size = 14
+font-size = 16
 
 # Theme
 theme = Catppuccin Mocha
