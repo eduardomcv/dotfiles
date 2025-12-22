@@ -230,17 +230,6 @@
     (setq vertico-count 15)
     :custom
     (vertico-cycle t))
-
-  (use-package vertico-posframe
-    :after vertico
-    :config
-    (vertico-posframe-mode 1)
-    (setq vertico-posframe-parameters
-  	'((left-fringe . 8)
-  	  (right-fringe . 8)))
-    (setq vertico-posframe-border-width 2)
-    (setq vertico-posframe-width 90)
-    (setq vertico-posframe-height 25))
 #+end_src
 
 ** Rich annotations
@@ -332,6 +321,9 @@
     ((prog-mode . eglot-ensure))
     :config
     (fset #'jsonrpc--log-event #'ignore)
+
+    ;; Make sure eldoc can show multiple lines
+    (setq eldoc-echo-area-use-multiline-p t)
     
     ;; Add user bin to emacs PATH
     (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
@@ -359,9 +351,9 @@
 #+begin_src emacs-lisp
   (use-package treesit-auto
     :custom
-    (treesit-auto-install 'prompt) ;; Prompt to install grammar if missing
+    (treesit-auto-install 'prompt)
     :config
-    (treesit-auto-add-to-auto-mode-alist 'all) ;; Use TS modes for all supported languages
+    (treesit-auto-add-to-auto-mode-alist 'all)
     (global-treesit-auto-mode))
 #+end_src
 
@@ -410,7 +402,6 @@
           `(("." . ,(no-littering-expand-var-file-name "undo-tree-hist/")))))
 #+end_src
 
-
 * Fuzzy finder
 #+begin_src emacs-lisp
   (use-package consult
@@ -458,12 +449,13 @@
 #+begin_src emacs-lisp
   (use-package apheleia
     :config
-    (apheleia-global-mode +1)
-
+    (setq apheleia-formatters-respect-indent-level nil)
+    
     (setf (alist-get 'python-mode apheleia-mode-alist)
   	'(ruff-isort ruff))
     (setf (alist-get 'python-ts-mode apheleia-mode-alist)
-  	'(ruff-isort ruff)))
+  	'(ruff-isort ruff))
+  (apheleia-global-mode +1))
 #+end_src
 
 * Linting
