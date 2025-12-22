@@ -1,8 +1,48 @@
-#+TITLE:Emacs configuration
+#+TITLE: Emacs configuration
+#+AUTHOR: eduardomcv
 #+OPTIONS: toc:2
 
-* Package manager
+* Table of contents :toc:
+- [[#package-manager][Package manager]]
+- [[#general][General]]
+  - [[#performance-settings][Performance settings]]
+  - [[#backup-handling][Backup handling]]
+  - [[#update-buffers-automatically][Update buffers automatically]]
+  - [[#remember-last-place-visited-in-files][Remember last place visited in files]]
+  - [[#remember-recent-files][Remember recent files]]
+  - [[#avoid-polluting-the-config-directory][Avoid polluting the config directory]]
+- [[#evil-mode][Evil mode]]
+- [[#ui][UI]]
+  - [[#theme][Theme]]
+  - [[#fonts][Fonts]]
+  - [[#frame-default-size][Frame default size]]
+  - [[#remove-menu-toolbar-and-scroll-bar][Remove menu, toolbar and scroll bar]]
+  - [[#enable-visual-lines-word-wrap][Enable visual lines (word wrap)]]
+  - [[#highlight-current-line][Highlight current line]]
+  - [[#line-numbers-and-column][Line numbers and column]]
+  - [[#enable-which-key][Enable which key]]
+  - [[#vertico-vertical-completion-ui][Vertico (vertical completion UI)]]
+  - [[#rich-annotations][Rich annotations]]
+  - [[#dashboard][Dashboard]]
+  - [[#highlight-todo-comments][Highlight TODO comments]]
+  - [[#child-frame-for-eldoc][Child frame for eldoc]]
+- [[#completion][Completion]]
+- [[#lsp][LSP]]
+- [[#treesitter][Treesitter]]
+- [[#git][Git]]
+  - [[#magit][Magit]]
+  - [[#git-signs][Git signs]]
+- [[#undo-tree][Undo tree]]
+- [[#fuzzy-finder][Fuzzy finder]]
+- [[#project-detection][Project detection]]
+- [[#formatting][Formatting]]
+- [[#linting][Linting]]
+- [[#key-bindings][Key bindings]]
+- [[#org-mode][Org mode]]
+  - [[#table-of-contents][Table of contents]]
+  - [[#org-bullets][Org bullets]]
 
+* Package manager
 #+begin_src emacs-lisp
   (require 'package)
   (add-to-list 'package-archives
@@ -14,16 +54,13 @@
 #+end_src
 
 * General 
-
 ** Performance settings
-
 #+begin_src emacs-lisp
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
 #+end_src
 
 ** Backup handling
-
 #+begin_src emacs-lisp
   (setq version-control t)
   (setq delete-old-versions t)
@@ -32,20 +69,17 @@
 #+end_src
 
 ** Update buffers automatically
-
 #+begin_src emacs-lisp
   (global-auto-revert-mode 1)
   (setq global-auto-revert-non-file-buffers t)
 #+end_src
 
 ** Remember last place visited in files
-
 #+begin_src emacs-lisp
   (save-place-mode 1)
 #+end_src
 
 ** Remember recent files
-
 #+begin_src emacs-lisp
   (use-package recentf
     :config
@@ -54,7 +88,6 @@
 #+end_src
 
 ** Avoid polluting the config directory
-
 #+begin_src emacs-lisp
   (use-package no-littering
     :config
@@ -72,7 +105,6 @@
 #+end_src
 
 * Evil mode
-
 #+begin_src emacs-lisp
   (use-package evil
     :init
@@ -96,9 +128,7 @@
 #+end_src
 
 * UI
-
 ** Theme
-
 #+begin_src emacs-lisp
   (use-package catppuccin-theme
     :config
@@ -107,7 +137,6 @@
 #+end_src
 
 ** Fonts
-
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
   		    :font "Iosevka"
@@ -145,14 +174,12 @@
 #+end_src
 
 ** Frame default size
-
 #+begin_src emacs-lisp
   (add-to-list 'default-frame-alist '(width . 120))
   (add-to-list 'default-frame-alist '(height . 45))
 #+end_src
 
 ** Remove menu, toolbar and scroll bar
-
 #+begin_src emacs-lisp
   (menu-bar-mode -1)
   (tool-bar-mode -1)
@@ -160,19 +187,16 @@
 #+end_src
 
 ** Enable visual lines (word wrap)
-
 #+begin_src emacs-lisp
   (global-visual-line-mode 1)
 #+end_src
 
 ** Highlight current line
-
 #+begin_src emacs-lisp
   (global-hl-line-mode 1)
 #+end_src
 
 ** Line numbers and column
-
 #+begin_src emacs-lisp
   (setq-default display-line-numbers-type 'relative)   ; Relative numbers
   (setq-default display-line-numbers-width 3)          ; Set line number column width to 3 
@@ -181,13 +205,11 @@
 #+end_src
 
 ** Enable which key
-
 #+begin_src emacs-lisp
   (which-key-mode 1)
 #+end_src
 
-** Finder/completion UI
-
+** Vertico (vertical completion UI)
 #+begin_src emacs-lisp
   (use-package vertico
     :init
@@ -214,7 +236,6 @@
 #+end_src
 
 ** Rich annotations
-
 #+begin_src emacs-lisp
   (use-package marginalia
     :init
@@ -222,7 +243,6 @@
 #+end_src
 
 ** Dashboard
-
 #+begin_src emacs-lisp
 (use-package dashboard
   :ensure t
@@ -254,7 +274,6 @@
 #+end_src
 
 ** Highlight TODO comments
-
 #+begin_src emacs-lisp
   (use-package hl-todo
     :hook ((prog-mode . hl-todo-mode)
@@ -272,7 +291,6 @@
 #+end_src
 
 ** Child frame for eldoc
-
 #+begin_src emacs-lisp
   (use-package eldoc-box
     :hook ((eglot-managed-mode . eldoc-box-hover-mode)
@@ -298,7 +316,6 @@
 #+end_src
 
 * Completion
-
 #+begin_src emacs-lisp
   (use-package corfu
     :custom
@@ -321,7 +338,6 @@
 #+end_src
 
 * LSP
-
 #+begin_src emacs-lisp
   (use-package eglot
     :hook
@@ -342,7 +358,6 @@
 #+end_src
 
 * Treesitter
-
 #+begin_src emacs-lisp
   (use-package treesit-auto
     :custom
@@ -353,7 +368,6 @@
 #+end_src
 
 * Git
-
 ** Magit
 #+begin_src emacs-lisp
   (use-package magit
@@ -361,7 +375,6 @@
     :custom
     (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
 #+end_src
-
 
 ** Git signs
 #+begin_src emacs-lisp
@@ -388,7 +401,6 @@
 #+end_src
 
 * Undo tree
-
 #+begin_src emacs-lisp
   (use-package undo-tree
     :init
@@ -402,7 +414,6 @@
 
 
 * Fuzzy finder
-
 #+begin_src emacs-lisp
   (use-package consult
     :init
@@ -437,7 +448,6 @@
 
 
 * Project detection
-
 #+begin_src emacs-lisp
   (use-package project
     :config
@@ -459,7 +469,6 @@
 #+end_src
 
 * Linting
-
 #+begin_src emacs-lisp
   (use-package flymake
       :hook (prog-mode . flymake-mode)
@@ -489,7 +498,6 @@
 #+end_src
 
 * Key bindings
-
 #+begin_src emacs-lisp
   (use-package general
     :after evil
@@ -560,3 +568,18 @@
       "st" '(consult-todo-project :which-key "project todos")))
 #+end_src
 
+* Org mode
+** Table of contents
+#+begin_src emacs-lisp
+  (use-package toc-org
+    :commands toc-org-enable
+    :init
+    (add-hook 'org-mode-hook 'toc-org-enable))
+#+end_src
+
+** Org bullets
+#+begin_src emacs-lisp
+  (use-package org-bullets
+    :config
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
+#+end_src
