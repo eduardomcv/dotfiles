@@ -1,4 +1,4 @@
-;;; -*- lexical-binding: t; -*-
+;;; init.el --- Init file for emacs -*- lexical-binding: t; -*-
 
 ;;; Package manager
 
@@ -26,15 +26,19 @@
 (global-auto-revert-mode 1)
 (setq global-auto-revert-non-file-buffers t)
 
-;; Remember last place visited in files
-(save-place-mode 1)
-
-;; Remember recently edited files
-(recentf-mode 1)
-
 ;; Frame default size
 (add-to-list 'default-frame-alist '(width . 120))
 (add-to-list 'default-frame-alist '(height . 45))
+
+;; Remember last place visited in files
+(save-place-mode 1)
+
+;;; Recent files
+
+(use-package recentf
+  :config
+  (recentf-mode 1)
+  (run-at-time nil 300 'recentf-save-list))
 
 ;; Don't pollute config directory
 (use-package no-littering
@@ -59,23 +63,39 @@
   (load-theme 'catppuccin :no-confirm))
 
 ;;; Fonts
-(add-to-list 'default-frame-alist '(font . "JetBrainsMono-14"))
+
+(set-face-attribute 'default nil
+		    :font "Iosevka"
+		    :height 140
+		    :weight 'medium)
+
+(set-face-attribute 'variable-pitch nil
+		    :font "Iosevka Aile"
+		    :height 140
+		    :weight 'medium)
+
+(set-face-attribute 'fixed-pitch nil
+		    :font "Iosevka"
+		    :height 140
+		    :weight 'medium)
+
+(set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+(set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
+
+(add-to-list 'default-frame-alist '(font . "Iosevka-14"))
+
+(setq-default line-spacing 0.1)
+
+(use-package nerd-icons)
 
 (use-package ligature
   :config
-  (ligature-set-ligatures 'prog-mode '("--" "---" "==" "===" "!=" "!==" "=!="
-				       "=:=" "=/=" "<=" ">=" "&&" "&&&" "&=" "++" "+++" "***" ";;" "!!"
-				       "??" "???" "?:" "?." "?=" "<:" ":<" ":>" ">:" "<:<" "<>" "<<<" ">>>"
-				       "<<" ">>" "||" "-|" "_|_" "|-" "||-" "|=" "||=" "##" "###" "####"
-				       "#{" "#[" "]#" "#(" "#?" "#_" "#_(" "#:" "#!" "#=" "^=" "<$>" "<$"
-				       "$>" "<+>" "<+" "+>" "<*>" "<*" "*>" "</" "</>" "/>" "<!--" "<#--"
-				       "-->" "->" "->>" "<<-" "<-" "<=<" "=<<" "<<=" "<==" "<=>" "<==>"
-				       "==>" "=>" "=>>" ">=>" ">>=" ">>-" ">-" "-<" "-<<" ">->" "<-<" "<-|"
-				       "<=|" "|=>" "|->" "<->" "<~~" "<~" "<~>" "~~" "~~>" "~>" "~-" "-~"
-				       "~@" "[||]" "|]" "[|" "|}" "{|" "[<" ">]" "|>" "<|" "||>" "<||"
-				       "|||>" "<|||" "<|>" "..." ".." ".=" "..<" ".?" "::" ":::" ":=" "::="
-				       ":?" ":?>" "//" "///" "/*" "*/" "/=" "//=" "/==" "@_" "__" "???"
-				       "<:<" ";;;"))
+  (ligature-set-ligatures 'prog-mode '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->"
+				       "<--->" "<---->" "<!--" "<==" "<===" "<=" "=>" "=>>"
+				       "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
+                                       "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
+                                       ":=" ":-" ":+" "<*" "<*>" "*>" "<|" "<|>" "|>" "+:" "-:"
+				       "=:" "<******>" "++" "+++"))
   (global-ligature-mode t))
 
 ;;; UI
@@ -226,9 +246,14 @@
       (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
 
   (setq eldoc-echo-area-use-multiline-p nil)
-  (setq eglot-ignored-server-capabilities '(:hoverProvider))
+  (setq eglot-ignored-server-capabilities '(:hoverProvider)))
 
-  (add-to-list 'eglot-stay-out-of 'flymake))
+(use-package treesit-auto
+  :custom
+  (treesit-auto-install 'prompt) ;; Prompt to install grammar if missing
+  :config
+  (treesit-auto-add-to-auto-mode-alist 'all) ;; Use TS modes for all supported languages
+  (global-treesit-auto-mode))
 
 ;;; Git
 
@@ -348,6 +373,36 @@
 (use-package flymake-collection
   :hook (after-init . flymake-collection-hook-setup))
 
+;;; Dashboard
+
+(use-package dashboard
+  :ensure t
+  :init
+  (setq initial-buffer-choice 'dashboard-open)
+  :config
+  (setq dashboard-startup-banner 'logo)
+  
+  (setq dashboard-center-content t)
+  (setq dashboard-vertically-center-content t)
+  
+  (setq dashboard-display-icons-p t)
+  (setq dashboard-icon-type 'nerd-icons)
+
+  (setq dashboard-set-heading-icons t)
+  (setq dashboard-set-file-icons t)
+  
+  (setq dashboard-items '((recents   . 5)
+                          (bookmarks . 5)
+                          (projects  . 5)
+                          (registers . 5)))
+
+  (setq dashboard-item-shortcuts '((recents   . "r")
+                                   (bookmarks . "b")
+                                   (projects  . "p")
+                                   (registers . "g")))
+
+  (dashboard-setup-startup-hook))
+
 ;;; Key bindings
 
 (use-package general
@@ -374,16 +429,25 @@
    "gD"  'eglot-find-declaration
    "gI"  'eglot-find-implementation
    "K"   'eldoc-box-help-at-point
-   "C-p" 'project-find-file
-   "C-h" 'evil-window-left
-   "C-j" 'evil-window-down
-   "C-k" 'evil-window-up
-   "C-l" 'evil-window-right)
+   "C-p" 'project-find-file)
 
   (general-define-key
    :states 'insert
    "C-SPC" 'completion-at-point
    )
+
+  (general-define-key
+   :states 'normal
+   :keymaps 'dired-mode-map
+   "TAB" 'dired-toggle-read-only
+   "o" 'dired-create-empty-file
+   "O" 'dired-create-directory)
+
+  (general-define-key
+   :states 'normal
+   :keymaps 'wdired-mode-map
+   "=" 'wdired-finish-edit
+   "ESC" 'wdired-abort-changes)
 
   (leader-def
     "s"  '(:ignore t :which-key "search")
@@ -406,5 +470,6 @@
     "sf" '(project-find-file :which-key "project files")
     "sb" '(consult-buffer :which-key "buffers")
     "ss" '(consult-line :which-key "current file")
+    "sr" '(consult-recent-file :which-key "recent files")
     "st" '(consult-todo-project :which-key "project todos")))
 
