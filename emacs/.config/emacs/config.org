@@ -24,8 +24,8 @@
   - [[#vertico-vertical-completion-ui][Vertico (vertical completion UI)]]
   - [[#rich-annotations][Rich annotations]]
   - [[#dashboard][Dashboard]]
+  - [[#modeline][Modeline]]
   - [[#highlight-todo-comments][Highlight TODO comments]]
-  - [[#child-frame-for-eldoc][Child frame for eldoc]]
 - [[#completion][Completion]]
 - [[#lsp][LSP]]
 - [[#treesitter][Treesitter]]
@@ -49,7 +49,7 @@
 #+begin_src emacs-lisp
   (require 'package)
   (add-to-list 'package-archives
-               '("melpa" . "https://melpa.org/packages/"))
+  	     '("melpa" . "https://melpa.org/packages/"))
   (package-initialize)
 
   (require 'use-package)
@@ -140,23 +140,23 @@
 #+begin_src emacs-lisp
   (set-face-attribute 'default nil
   		    :font "Iosevka"
-  		    :height 140
+  		    :height 150
   		    :weight 'medium)
 
   (set-face-attribute 'variable-pitch nil
   		    :font "Iosevka Aile"
-  		    :height 140
+  		    :height 150
   		    :weight 'medium)
 
   (set-face-attribute 'fixed-pitch nil
   		    :font "Iosevka"
-  		    :height 140
+  		    :height 150
   		    :weight 'medium)
 
   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
   (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
-  (add-to-list 'default-frame-alist '(font . "Iosevka-14"))
+  (add-to-list 'default-frame-alist '(font . "Iosevka-15"))
 
   (setq-default line-spacing 0.1)
 
@@ -164,7 +164,7 @@
 
   (use-package ligature
     :config
-    (ligature-set-ligatures 'prog-mode '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->"
+    (ligature-set-ligatures '('prog-mode 'text-mode) '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->"
   				       "<--->" "<---->" "<!--" "<==" "<===" "<=" "=>" "=>>"
   				       "==>" "===>" ">=" "<=>" "<==>" "<===>" "<====>" "<!---"
                                          "<~~" "<~" "~>" "~~>" "::" ":::" "==" "!=" "===" "!=="
@@ -252,33 +252,40 @@
 
 ** Dashboard
 #+begin_src emacs-lisp
-(use-package dashboard
-  :ensure t
-  :init
-  (setq initial-buffer-choice 'dashboard-open)
-  :config
-  (setq dashboard-startup-banner 'logo)
-  
-  (setq dashboard-center-content t)
-  (setq dashboard-vertically-center-content t)
-  
-  (setq dashboard-display-icons-p t)
-  (setq dashboard-icon-type 'nerd-icons)
+  (use-package dashboard
+    :ensure t
+    :init
+    (setq initial-buffer-choice 'dashboard-open)
+    :config
+    (setq dashboard-startup-banner 'logo)
+    
+    (setq dashboard-center-content t)
+    (setq dashboard-vertically-center-content t)
+    
+    (setq dashboard-display-icons-p t)
+    (setq dashboard-icon-type 'nerd-icons)
 
-  (setq dashboard-set-heading-icons t)
-  (setq dashboard-set-file-icons t)
-  
-  (setq dashboard-items '((recents   . 5)
-                          (bookmarks . 5)
-                          (projects  . 5)
-                          (registers . 5)))
+    (setq dashboard-set-heading-icons t)
+    (setq dashboard-set-file-icons t)
+    
+    (setq dashboard-items '((recents   . 5)
+                            (bookmarks . 5)
+                            (projects  . 5)
+                            (registers . 5)))
 
-  (setq dashboard-item-shortcuts '((recents   . "r")
-                                   (bookmarks . "b")
-                                   (projects  . "p")
-                                   (registers . "g")))
+    (setq dashboard-item-shortcuts '((recents   . "r")
+                                     (bookmarks . "b")
+                                     (projects  . "p")
+                                     (registers . "g")))
 
-  (dashboard-setup-startup-hook))
+    (dashboard-setup-startup-hook))
+#+end_src
+
+** Modeline
+#+begin_src emacs-lisp
+  (use-package doom-modeline
+    :ensure t
+    :hook (after-init . doom-modeline-mode))
 #+end_src
 
 ** Highlight TODO comments
@@ -296,31 +303,6 @@
             ("HACK"       . "#FAE3B0")
             ("DEPRECATED"      . "#E8A2AF")
             ("NOTE"       . "#ABE9B3"))))
-#+end_src
-
-** Child frame for eldoc
-#+begin_src emacs-lisp
-  (use-package eldoc-box
-    :hook ((eglot-managed-mode . eldoc-box-hover-mode)
-           (eglot-managed-mode . eldoc-box-hover-at-point-mode))
-    :init
-    (setq eldoc-idle-delay 0.1)
-    :config
-    (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors 0 t)
-    (set-face-attribute 'eldoc-box-border nil :background  "#89b4fa")
-    (set-face-attribute 'eldoc-box-body nil :background "#1e1e2e" :family "JetBrainsMono" :height 130)
-    (setq eldoc-box-clear-with-C-g t)
-    (setq eldoc-box-frame-parameters
-          '(
-  	  (left-fringe . 8)
-            (right-fringe . 8)
-  	  (internal-border-width . 1)
-  	  (vertical-scroll-bars . nil)
-  	  (horizontal-scroll-bars . nil)
-  	  (menu-bar-lines . 0)
-  	  (tool-bar-lines . 0)
-            (line-spacing . 0.1)
-  	  (cursor-type . nil))))
 #+end_src
 
 * Completion
@@ -350,20 +332,20 @@
     ((prog-mode . eglot-ensure))
     :config
     (fset #'jsonrpc--log-event #'ignore)
-
+    
     ;; Add user bin to emacs PATH
     (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
     (setenv "PATH" (concat (expand-file-name "~/.local/bin") ":" (getenv "PATH")))
-
+    
     ;; Add mise shims to emacs PATH
     (let ((mise-path (expand-file-name "~/.local/share/mise/shims")))
       (when (file-directory-p mise-path)
         (add-to-list 'exec-path mise-path)
         (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
-    
+
     (add-to-list 'eglot-server-programs
   	       '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
-
+    
     (setq-default eglot-workspace-configuration
   		'(:vtsls (:autoUseWorkspaceTsdk t)
   			 :typescript (:preferences (:importModuleSpecifier "non-relative")
@@ -487,27 +469,27 @@
 * Linting
 #+begin_src emacs-lisp
   (use-package flymake
-      :hook (prog-mode . flymake-mode)
-      :config
-      ;; Bitmaps for flymake (circles near the number column)
-      (define-fringe-bitmap 'flymake-fringe-bitmap-circle
-        (vector #b00000000
-                #b00111100
-                #b01111110
-                #b01111110
-                #b01111110
-                #b01111110
-                #b00111100
-                #b00000000))
+    :hook (prog-mode . flymake-mode)
+    :config
+    ;; Bitmaps for flymake (circles near the number column)
+    (define-fringe-bitmap 'flymake-fringe-bitmap-circle
+      (vector #b00000000
+              #b00111100
+              #b01111110
+              #b01111110
+              #b01111110
+              #b01111110
+              #b00111100
+              #b00000000))
 
-      (setq flymake-error-bitmap '(flymake-fringe-bitmap-circle compilation-error))
-      (setq flymake-warning-bitmap '(flymake-fringe-bitmap-circle compilation-warning))
-      (setq flymake-note-bitmap '(flymake-fringe-bitmap-circle compilation-info))
+    (setq flymake-error-bitmap '(flymake-fringe-bitmap-circle compilation-error))
+    (setq flymake-warning-bitmap '(flymake-fringe-bitmap-circle compilation-warning))
+    (setq flymake-note-bitmap '(flymake-fringe-bitmap-circle compilation-info))
 
-      (custom-set-faces
-       '(flymake-error ((t (:underline (:style wave :color "#F28FAD")))))
-       '(flymake-warning ((t (:underline (:style wave :color "#FAE3B0")))))
-       '(flymake-note ((t (:underline (:style wave :color "#96CDFB")))))))
+    (custom-set-faces
+     '(flymake-error ((t (:underline (:style wave :color "#F28FAD")))))
+     '(flymake-warning ((t (:underline (:style wave :color "#FAE3B0")))))
+     '(flymake-note ((t (:underline (:style wave :color "#96CDFB")))))))
 
   (use-package flymake-collection
     :hook (after-init . flymake-collection-hook-setup))
@@ -581,7 +563,6 @@
      "]d"  'flymake-goto-next-error
      "gD"  'eglot-find-declaration
      "gI"  'eglot-find-implementation
-     "K"   'eldoc-box-help-at-point
      "C-p" 'project-find-file
      "C--" 'text-scale-decrease
      "C-=" 'text-scale-increase)
