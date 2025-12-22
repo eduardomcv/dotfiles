@@ -3,6 +3,18 @@ vim.pack.add({
 	"https://github.com/neovim/nvim-lspconfig",
 })
 
+vim.lsp.enable({
+	"basedpyright",
+	"vtsls",
+	"lua_ls",
+	"cssls",
+	"html",
+	"jsonls",
+	"yamlls",
+	"eslint",
+	"ruff",
+})
+
 vim.lsp.config("vtsls", {
 	settings = {
 		complete_function_calls = true,
@@ -100,13 +112,11 @@ vim.lsp.config("ruff", {
 	end,
 })
 
-vim.lsp.config("pyright", {
+vim.lsp.config("basedpyright", {
 	settings = {
-		pyright = {
+		basedpyright = {
 			-- Using Ruff's import organizer
 			disableOrganizeImports = true,
-		},
-		python = {
 			analysis = {
 				-- Ignore all files for analysis to exclusively use Ruff for linting
 				ignore = { "*" },
