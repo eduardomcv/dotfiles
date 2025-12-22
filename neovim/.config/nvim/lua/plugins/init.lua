@@ -1,6 +1,5 @@
 require("plugins.theme")
 require("plugins.lsp")
-require("plugins.mason")
 require("plugins.linting")
 require("plugins.formatting")
 require("plugins.mini")
