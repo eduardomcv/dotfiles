@@ -23,5 +23,8 @@ recentf
 # Machine-specific settings
 custom.el
 
+# Transpiled config.org
+config.el
+
 # Compiled elisp
 *.elc
