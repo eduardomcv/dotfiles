@@ -274,7 +274,10 @@
 #+begin_src emacs-lisp
   (use-package doom-modeline
     :ensure t
-    :hook (after-init . doom-modeline-mode))
+    :hook (after-init . doom-modeline-mode)
+    :config
+    (with-eval-after-load 'doom-modeline
+      (set-face-attribute 'doom-modeline-evil-insert-state nil :slant 'normal)))
 #+end_src
 
 ** Highlight TODO comments
@@ -349,6 +352,8 @@
 
 * Treesitter
 #+begin_src emacs-lisp
+  (setq-default treesit-font-lock-level 4)
+
   (use-package treesit-auto
     :custom
     (treesit-auto-install 'prompt)
@@ -449,6 +454,7 @@
 #+begin_src emacs-lisp
   (use-package apheleia
     :config
+
     (setq apheleia-formatters-respect-indent-level nil)
     
     (setf (alist-get 'python-mode apheleia-mode-alist)
