@@ -4,14 +4,16 @@
 
 * Table of contents :toc:
 - [[#package-manager][Package manager]]
-- [[#performance-settings][Performance settings]]
-- [[#indentation][Indentation]]
-- [[#backup-handling][Backup handling]]
-- [[#update-buffers-automatically][Update buffers automatically]]
-- [[#remember-last-place-visited-in-files][Remember last place visited in files]]
-- [[#remember-recent-files][Remember recent files]]
-- [[#avoid-polluting-the-config-directory][Avoid polluting the config directory]]
-- [[#dired][Dired]]
+- [[#general-emacs-settings][General emacs settings]]
+  - [[#performance-settings][Performance settings]]
+  - [[#indentation][Indentation]]
+  - [[#backup-handling][Backup handling]]
+  - [[#update-buffers-automatically][Update buffers automatically]]
+  - [[#remember-last-place-visited-in-files][Remember last place visited in files]]
+  - [[#remember-recent-files][Remember recent files]]
+  - [[#use-no-littering-to-tidy-up-emacs-configuration-files][Use no-littering to tidy up emacs configuration files]]
+  - [[#dired][Dired]]
+  - [[#eldoc][Eldoc]]
 - [[#evil-mode][Evil mode]]
 - [[#ui][UI]]
   - [[#theme][Theme]]
@@ -30,8 +32,7 @@
   - [[#highlight-todo-comments][Highlight TODO comments]]
   - [[#indentation-guides][Indentation guides]]
   - [[#render-whitespace][Render whitespace]]
-- [[#completion][Completion]]
-- [[#eldoc][Eldoc]]
+- [[#completion-corfu][Completion (corfu)]]
 - [[#lsp][LSP]]
 - [[#treesitter][Treesitter]]
 - [[#git][Git]]
@@ -61,13 +62,15 @@
   (setq use-package-always-ensure t)
 #+end_src
 
-* Performance settings
+* General emacs settings
+
+** Performance settings
 #+begin_src emacs-lisp
   (setq gc-cons-threshold 100000000)
   (setq read-process-output-max (* 1024 1024))
 #+end_src
 
-* Indentation
+** Indentation
 #+begin_src emacs-lisp
   ;; Use spaces by default
   (setq-default indent-tabs-mode nil)
@@ -81,7 +84,7 @@
               (setq tab-width 2)))
 #+end_src
 
-* Backup handling
+** Backup handling
 #+begin_src emacs-lisp
   (setq version-control t)
   (setq delete-old-versions t)
@@ -89,24 +92,24 @@
   (setq kept-old-versions 2)
 #+end_src
 
-* Update buffers automatically
+** Update buffers automatically
 #+begin_src emacs-lisp
   (global-auto-revert-mode 1)
   (setq global-auto-revert-non-file-buffers t)
 #+end_src
 
-* Remember last place visited in files
+** Remember last place visited in files
 #+begin_src emacs-lisp
   (save-place-mode 1)
 #+end_src
 
-* Remember recent files
+** Remember recent files
 #+begin_src emacs-lisp
   (recentf-mode 1)
   (run-at-time nil 300 'recentf-save-list)
 #+end_src
 
-* Avoid polluting the config directory
+** Use no-littering to tidy up emacs configuration files
 #+begin_src emacs-lisp
   (use-package no-littering
     :config
@@ -123,7 +126,7 @@
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
 #+end_src
 
-* Dired
+** Dired
 #+begin_src emacs-lisp
   (use-package dired
     :ensure nil ;; Built-in
@@ -141,6 +144,46 @@
   (use-package diredfl
     :ensure t
     :hook (dired-mode . diredfl-mode))
+#+end_src
+
+** Eldoc
+#+begin_src emacs-lisp
+  ;; Make eldoc use bottom buffer, and limit height to 20%
+  (add-to-list 'display-buffer-alist
+               '("^\\*eldoc"
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 (window-height . 0.20)
+                 (dedicated . t)))
+
+  (defun custom/close-eldoc-window-on-next-command ()
+    "Close eldoc window on the next command (unless switching windows or toggling)."
+    (let ((win (get-buffer-window "*eldoc*")))
+      (when win
+        (unless (or
+                 (eq (selected-window) win)
+                 (eq this-command 'custom/toggle-eldoc-tooltip)
+                 (eq this-command 'other-window)
+                 (eq this-command 'evil-window-down)
+                 (eq this-command 'evil-window-up)
+                 (eq this-command 'evil-window-next)
+                 (eq this-command 'evil-window-prev)
+                 (eq this-command 'evil-window-mru))
+          (delete-window win))))
+
+    ;; Only remove the hook if the window is actually gone
+    (unless (get-buffer-window "*eldoc*")
+      (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command)))
+
+  (defun custom/toggle-eldoc-tooltip ()
+    "Toggle eldoc window. If visible, will auto-close on the next cursor movement."
+    (interactive)
+    (let ((win (get-buffer-window "*eldoc*")))
+      (if win
+          (progn
+            (delete-window win)
+            (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
+        (eldoc-doc-buffer t)
+        (add-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))))
 #+end_src
 
 * Evil mode
@@ -365,7 +408,7 @@
 ** Render whitespace
 #+begin_src emacs-lisp
   (use-package whitespace
-    :ensure nil
+    :ensure nil ;; built-in
     :hook (before-save . whitespace-cleanup)
     :config
     (setq whitespace-style '(face
@@ -378,7 +421,7 @@
                              indentation)))
 #+end_src
 
-* Completion
+* Completion (corfu)
 #+begin_src emacs-lisp
   (use-package corfu
     :custom
@@ -396,44 +439,6 @@
     (corfu-bar ((t (:background "#585b70")))))
 
   (setq tab-always-indent 'complete) ; Fallback to completion when pressing TAB
-#+end_src
-
-* Eldoc
-#+begin_src emacs-lisp
-  ;; Make eldoc use bottom buffer, and limit height to 20%
-  (add-to-list 'display-buffer-alist
-               '("^\\*eldoc"
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                 (window-height . 0.20)
-                 (dedicated . t)))
-
-  (defun custom/close-eldoc-window-on-next-command ()
-    "Close eldoc window on the next command (unless switching windows or toggling)."
-    (let ((win (get-buffer-window "*eldoc*")))
-      (when win
-        (unless (or (eq this-command 'other-window)
-                    (eq this-command 'custom/toggle-eldoc-tooltip)
-                    (eq this-command 'evil-window-down)
-                    (eq this-command 'evil-window-up)
-                    (eq this-command 'evil-window-next)
-                    (eq this-command 'evil-window-prev)
-                    (eq this-command 'evil-window-mru))
-          (delete-window win))))
-    ;; Only remove the hook if the window is actually gone
-    (unless (get-buffer-window "*eldoc*")
-      (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command)))
-
-
-  (defun custom/toggle-eldoc-tooltip ()
-    "Toggle eldoc window. If visible, will auto-close on the next cursor movement."
-    (interactive)
-    (let ((win (get-buffer-window "*eldoc*")))
-      (if win
-          (progn
-            (delete-window win)
-            (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
-        (eldoc-doc-buffer t)
-        (add-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))))
 #+end_src
 
 * LSP
