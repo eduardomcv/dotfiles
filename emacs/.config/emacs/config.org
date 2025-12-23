@@ -25,7 +25,7 @@
   - [[#highlight-current-line][Highlight current line]]
   - [[#line-numbers-and-column][Line numbers and column]]
   - [[#enable-which-key][Enable which key]]
-  - [[#vertico-vertical-completion-ui][Vertico (vertical completion UI)]]
+  - [[#vertical-completion-ui-vertico][Vertical completion UI (vertico)]]
   - [[#rich-annotations][Rich annotations]]
   - [[#dashboard][Dashboard]]
   - [[#modeline][Modeline]]
@@ -44,6 +44,7 @@
 - [[#formatting][Formatting]]
 - [[#linting][Linting]]
 - [[#org-mode][Org mode]]
+  - [[#org-configuration][Org configuration]]
   - [[#table-of-contents][Table of contents]]
   - [[#org-bullets][Org bullets]]
 - [[#terminal][Terminal]]
@@ -249,6 +250,7 @@
 
   (use-package nerd-icons)
 
+  ;; Specific ligature setup for Iosevka
   (use-package ligature
     :config
     (ligature-set-ligatures '('prog-mode 'text-mode) '("<---" "<--"  "<<-" "<-" "->" "-->" "--->" "<->" "<-->"
@@ -311,7 +313,7 @@
   (which-key-mode 1)
 #+end_src
 
-** Vertico (vertical completion UI)
+** Vertical completion UI (vertico)
 #+begin_src emacs-lisp
   (use-package vertico
     :init
@@ -633,6 +635,12 @@
 #+end_src
 
 * Org mode
+** Org configuration
+#+begin_src emacs-lisp
+  (setq org-directory "~/Org")
+  (setq org-agenda-files "~/Org/agenda")
+#+end_src
+
 ** Table of contents
 #+begin_src emacs-lisp
   (use-package toc-org
