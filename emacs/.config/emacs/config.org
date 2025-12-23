@@ -31,6 +31,7 @@
   - [[#indentation-guides][Indentation guides]]
   - [[#render-whitespace][Render whitespace]]
 - [[#completion][Completion]]
+- [[#eldoc][Eldoc]]
 - [[#lsp][LSP]]
 - [[#treesitter][Treesitter]]
 - [[#git][Git]]
@@ -397,6 +398,35 @@
   (setq tab-always-indent 'complete) ; Fallback to completion when pressing TAB
 #+end_src
 
+* Eldoc
+#+begin_src emacs-lisp
+  ;; Make eldoc use bottom buffer, and limit height to 20%
+  (add-to-list 'display-buffer-alist
+               '("^\\*eldoc"
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 (window-height . 0.20)
+                 (dedicated . t)))
+
+  (defun custom/close-eldoc-window-on-next-command ()
+    "Close eldoc window on the next command (except switching windows)."
+    (let ((win (get-buffer-window "*eldoc*")))
+      (when win
+        (unless (eq this-command 'other-window)
+          (delete-window win))))
+    (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
+
+  (defun custom/toggle-eldoc-tooltip ()
+    "Toggle eldoc window. If visible, will auto-close on the next cursor movement."
+    (interactive)
+    (let ((win (get-buffer-window "*eldoc*")))
+      (if win
+          (progn
+            (delete-window win)
+            (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
+        (eldoc-doc-buffer t)
+        (add-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))))
+#+end_src
+
 * LSP
 #+begin_src emacs-lisp
   ;; allow eldoc to show multiple lines
@@ -639,10 +669,10 @@
     (general-evil-setup)
 
     (general-create-definer custom/leader-keys
-                :states '(normal visual insert emacs)
-                :keymaps 'override
-                :prefix "SPC"
-                :global-prefix "M-m")
+      :states '(normal visual insert emacs)
+      :keymaps 'override
+      :prefix "SPC"
+      :global-prefix "M-m")
 
     ;; Normal mode
     (general-define-key
@@ -653,7 +683,13 @@
      "gI"  'eglot-find-implementation
      "C-p" 'project-find-file
      "C--" 'text-scale-decrease
-     "C-=" 'text-scale-increase)
+     "C-=" 'text-scale-increase
+     "K"   'my/toggle-eldoc-tooltip)
+
+    (general-define-key
+     :states '(normal visual)
+     :keymaps 'override
+     "K" 'my/toggle-eldoc-tooltip)
 
     ;; Insert mode
     (general-define-key
@@ -685,35 +721,35 @@
      "C-SPC" 'corfu-insert)
 
     (custom/leader-keys
-                ;; Search
-                "s"   '(:ignore t :which-key "search")
-                "sg"  '(consult-ripgrep :which-key "grep")
-                "sf"  '(project-find-file :which-key "project files")
-                "sb"  '(consult-buffer :which-key "buffers")
-                "ss"  '(consult-line :which-key "current file")
-                "sr"  '(consult-recent-file :which-key "recent files")
-                "st"  '(consult-todo-project :which-key "project todos")
-                ;; Code
-                "c"   '(:ignore t :which-key "code")
-                "cf"  '(apheleia-format-buffer :which-key "format buffer")
-                "ca"  '(eglot-code-actions :which-key "actions")
-                "cr"  '(eglot-rename :which-key "rename")
-                "cw"  '(whitespace-mode :which-key "toggle whitespace")
-                "ch"  '(eldoc :which-key "hover documentation")
-                ;; Git
-                "g"   '(:ignore t :which-key "git")
-                "gg"  '(magit-status :which-key "magit status")
-                ;; Project
-                "p"   '(:ignore t :which-key "project")
-                "pp"  '(project-switch-project :which-key "switch project")
-                "pb"  '(consult-project-buffer :which-key "project buffers")
-                ;; Buffer
-                "b"   '(:ignore t :which-key "buffer")
-                "bf"  '(apheleia-format-buffer :which-key "format buffer")
-                "bt"  '(consult-todo :which-key "search buffer todos")
-                "bl"  '(consult-line :which-key "search buffer lines")
-                ;; Other
-                "."   '(find-file :which-key "navigate files")
-                "RET" '(vterm-toggle :which-key "toggle vterm")
-                "="   '(indent-region :which-key "indent region")))
+      ;; Search
+      "s"   '(:ignore t :which-key "search")
+      "sg"  '(consult-ripgrep :which-key "grep")
+      "sf"  '(project-find-file :which-key "project files")
+      "sb"  '(consult-buffer :which-key "buffers")
+      "ss"  '(consult-line :which-key "current file")
+      "sr"  '(consult-recent-file :which-key "recent files")
+      "st"  '(consult-todo-project :which-key "project todos")
+      ;; Code
+      "c"   '(:ignore t :which-key "code")
+      "cf"  '(apheleia-format-buffer :which-key "format buffer")
+      "ca"  '(eglot-code-actions :which-key "actions")
+      "cr"  '(eglot-rename :which-key "rename")
+      "cw"  '(whitespace-mode :which-key "toggle whitespace")
+      "ch"  '(eldoc :which-key "hover documentation")
+      ;; Git
+      "g"   '(:ignore t :which-key "git")
+      "gg"  '(magit-status :which-key "magit status")
+      ;; Project
+      "p"   '(:ignore t :which-key "project")
+      "pp"  '(project-switch-project :which-key "switch project")
+      "pb"  '(consult-project-buffer :which-key "project buffers")
+      ;; Buffer
+      "b"   '(:ignore t :which-key "buffer")
+      "bf"  '(apheleia-format-buffer :which-key "format buffer")
+      "bt"  '(consult-todo :which-key "search buffer todos")
+      "bl"  '(consult-line :which-key "search buffer lines")
+      ;; Other
+      "."   '(find-file :which-key "navigate files")
+      "RET" '(vterm-toggle :which-key "toggle vterm")
+      "="   '(indent-region :which-key "indent region")))
 #+end_src
