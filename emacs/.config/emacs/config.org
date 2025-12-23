@@ -15,7 +15,7 @@
 - [[#ui][UI]]
   - [[#theme][Theme]]
   - [[#fonts][Fonts]]
-  - [[#default-size-for-frames][Default size for frames]]
+  - [[#frames][Frames]]
   - [[#smooth-scrolling][Smooth scrolling]]
   - [[#remove-menu-toolbar-and-scroll-bar][Remove menu, toolbar and scroll bar]]
   - [[#enable-visual-lines-word-wrap][Enable visual lines (word wrap)]]
@@ -192,10 +192,17 @@
     (global-ligature-mode t))
 #+end_src
 
-** Default size for frames
+** Frames
 #+begin_src emacs-lisp
+  ;; Default size for frames
   (add-to-list 'default-frame-alist '(width . 120))
   (add-to-list 'default-frame-alist '(height . 45))
+  ;; Titlebar
+  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
+  (add-to-list 'default-frame-alist '(ns-appearance . dark))
+  ;; Transparency
+  (set-frame-parameter nil 'alpha 97)
+  (add-to-list 'default-frame-alist '(alpha . 97))
 #+end_src
 
 ** Smooth scrolling
@@ -384,37 +391,37 @@
 
     ;; Add mise shims to emacs PATH
     (let ((mise-path (expand-file-name "~/.local/share/mise/shims")))
-  		(when (file-directory-p mise-path)
-  	    (add-to-list 'exec-path mise-path)
-  	(setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
+		(when (file-directory-p mise-path)
+	    (add-to-list 'exec-path mise-path)
+	(setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
 
     (add-to-list 'eglot-server-programs
-  		 '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
+		 '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
-  	(setq-default eglot-workspace-configuration
-  		  '(:vtsls (:enableMoveToFileCodeAction t
-  		:autoUseWorkspaceTsdk t
-  		:experimental (:completion (:enableServerSideFuzzyMatch t)))
-  	   :typescript (:updateImportsOnFileMove (:enabled "always")
-  		   :suggest (:completeFunctionCalls t)
-  		   :preferences (:includePackageJsonAutoImports "on"
+	(setq-default eglot-workspace-configuration
+		  '(:vtsls (:enableMoveToFileCodeAction t
+		:autoUseWorkspaceTsdk t
+		:experimental (:completion (:enableServerSideFuzzyMatch t)))
+	   :typescript (:updateImportsOnFileMove (:enabled "always")
+		   :suggest (:completeFunctionCalls t)
+		   :preferences (:includePackageJsonAutoImports "on"
 	    :importModuleSpecifier "non-relative")
-  		   :inlayHints (:parameterNames (:enabled "all")
+		   :inlayHints (:parameterNames (:enabled "all")
 	      :variableTypes (:enabled t)))
-  	   :javascript (:updateImportsOnFileMove (:enabled "always")
-  		   :suggest (:completeFunctionCalls t)
-  		   :inlayHints (:parameterNames (:enabled "all")
+	   :javascript (:updateImportsOnFileMove (:enabled "always")
+		   :suggest (:completeFunctionCalls t)
+		   :inlayHints (:parameterNames (:enabled "all")
 	      :variableTypes (:enabled t))))))
 
   (use-package markdown-mode
-  	:ensure t
-  	:mode ("README\\.md\\'" . gfm-mode)
-  	:init
-  	(setq markdown-command "pandoc")
-  	:config
-  	(setq markdown-fontify-code-blocks-natively t)
-  	:bind (:map markdown-mode-map
-  		("C-c C-e" . markdown-do)))
+	:ensure t
+	:mode ("README\\.md\\'" . gfm-mode)
+	:init
+	(setq markdown-command "pandoc")
+	:config
+	(setq markdown-fontify-code-blocks-natively t)
+	:bind (:map markdown-mode-map
+		("C-c C-e" . markdown-do)))
 #+end_src
 
 * Treesitter
