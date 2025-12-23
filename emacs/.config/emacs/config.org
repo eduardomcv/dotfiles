@@ -124,17 +124,17 @@
 
 * Dired
 #+begin_src emacs-lisp
-(use-package dired
-  :ensure nil ;; Built-in
-  :commands (dired dired-jump)
-  :custom
-  ;; Delete and copy recursively without asking
-  (dired-recursive-copies 'always)
-  (dired-recursive-deletes 'always)
-  ;; Re-use existing dired windows
-  (dired-dwim-target t)
-  ;; Auto-refresh dired buffers when files change on disk
-  (global-auto-revert-non-file-buffers t))
+  (use-package dired
+    :ensure nil ;; Built-in
+    :commands (dired dired-jump)
+    :custom
+    ;; Delete and copy recursively without asking
+    (dired-recursive-copies 'always)
+    (dired-recursive-deletes 'always)
+    ;; Re-use existing dired windows
+    (dired-dwim-target t)
+    ;; Auto-refresh dired buffers when files change on disk
+    (global-auto-revert-non-file-buffers t))
 
   ;; Add colors to dired
   (use-package diredfl
@@ -309,12 +309,12 @@
     (setq dashboard-set-file-icons t)
 
     (setq dashboard-items '((recents   . 5)
-                    (bookmarks . 5)
-                    (projects  . 5)))
+                            (bookmarks . 5)
+                            (projects  . 5)))
 
     (setq dashboard-item-shortcuts '((recents   . "r")
-                             (bookmarks . "b")
-                             (projects  . "p")))
+                                     (bookmarks . "b")
+                                     (projects  . "p")))
 
     (dashboard-setup-startup-hook))
 #+end_src
@@ -399,14 +399,14 @@
 
 * LSP
 #+begin_src emacs-lisp
+  ;; allow eldoc to show multiple lines
+  (setq eldoc-echo-area-use-multiline-p t)
+
   (use-package eglot
     :hook
     ((prog-mode . eglot-ensure))
     :config
     (fset #'jsonrpc--log-event #'ignore)
-
-    ;; Make sure eldoc can show multiple lines
-    (setq eldoc-echo-area-use-multiline-p t)
 
     ;; Add user bin to emacs PATH
     (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
@@ -414,36 +414,36 @@
 
     ;; Add mise shims to emacs PATH
     (let ((mise-path (expand-file-name "~/.local/share/mise/shims")))
-                (when (file-directory-p mise-path)
-            (add-to-list 'exec-path mise-path)
+      (when (file-directory-p mise-path)
+        (add-to-list 'exec-path mise-path)
         (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
 
     (add-to-list 'eglot-server-programs
                  '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
-        (setq-default eglot-workspace-configuration
+    (setq-default eglot-workspace-configuration
                   '(:vtsls (:enableMoveToFileCodeAction t
-                :autoUseWorkspaceTsdk t
-                :experimental (:completion (:enableServerSideFuzzyMatch t)))
-           :typescript (:updateImportsOnFileMove (:enabled "always")
-                   :suggest (:completeFunctionCalls t)
-                   :preferences (:includePackageJsonAutoImports "on"
-            :importModuleSpecifier "non-relative")
-                   :inlayHints (:parameterNames (:enabled "all")
-              :variableTypes (:enabled t)))
-           :javascript (:updateImportsOnFileMove (:enabled "always")
-                   :suggest (:completeFunctionCalls t)
-                   :inlayHints (:parameterNames (:enabled "all")
-              :variableTypes (:enabled t))))))
+                                                        :autoUseWorkspaceTsdk t
+                                                        :experimental (:completion (:enableServerSideFuzzyMatch t)))
+                           :typescript (:updateImportsOnFileMove (:enabled "always")
+                                                                 :suggest (:completeFunctionCalls t)
+                                                                 :preferences (:includePackageJsonAutoImports "on"
+                                                                                                              :importModuleSpecifier "non-relative")
+                                                                 :inlayHints (:parameterNames (:enabled "all")
+                                                                                              :variableTypes (:enabled t)))
+                           :javascript (:updateImportsOnFileMove (:enabled "always")
+                                                                 :suggest (:completeFunctionCalls t)
+                                                                 :inlayHints (:parameterNames (:enabled "all")
+                                                                                              :variableTypes (:enabled t))))))
 
   (use-package markdown-mode
-        :ensure t
-        :mode ("README\\.md\\'" . gfm-mode)
-        :init
-        (setq markdown-command "pandoc")
-        :config
-        (setq markdown-fontify-code-blocks-natively t)
-        :bind (:map markdown-mode-map
+    :ensure t
+    :mode ("README\\.md\\'" . gfm-mode)
+    :init
+    (setq markdown-command "pandoc")
+    :config
+    (setq markdown-fontify-code-blocks-natively t)
+    :bind (:map markdown-mode-map
                 ("C-c C-e" . markdown-do)))
 #+end_src
 
