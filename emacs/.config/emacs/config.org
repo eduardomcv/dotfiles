@@ -408,12 +408,21 @@
                  (dedicated . t)))
 
   (defun custom/close-eldoc-window-on-next-command ()
-    "Close eldoc window on the next command (except switching windows)."
+    "Close eldoc window on the next command (unless switching windows or toggling)."
     (let ((win (get-buffer-window "*eldoc*")))
       (when win
-        (unless (eq this-command 'other-window)
+        (unless (or (eq this-command 'other-window)
+                    (eq this-command 'custom/toggle-eldoc-tooltip)
+                    (eq this-command 'evil-window-down)
+                    (eq this-command 'evil-window-up)
+                    (eq this-command 'evil-window-next)
+                    (eq this-command 'evil-window-prev)
+                    (eq this-command 'evil-window-mru))
           (delete-window win))))
-    (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
+    ;; Only remove the hook if the window is actually gone
+    (unless (get-buffer-window "*eldoc*")
+      (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command)))
+
 
   (defun custom/toggle-eldoc-tooltip ()
     "Toggle eldoc window. If visible, will auto-close on the next cursor movement."
@@ -683,13 +692,12 @@
      "gI"  'eglot-find-implementation
      "C-p" 'project-find-file
      "C--" 'text-scale-decrease
-     "C-=" 'text-scale-increase
-     "K"   'my/toggle-eldoc-tooltip)
+     "C-=" 'text-scale-increase)
 
     (general-define-key
      :states '(normal visual)
      :keymaps 'override
-     "K" 'my/toggle-eldoc-tooltip)
+     "K" 'custom/toggle-eldoc-tooltip)
 
     ;; Insert mode
     (general-define-key
