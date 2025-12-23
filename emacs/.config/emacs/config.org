@@ -11,6 +11,7 @@
 - [[#remember-last-place-visited-in-files][Remember last place visited in files]]
 - [[#remember-recent-files][Remember recent files]]
 - [[#avoid-polluting-the-config-directory][Avoid polluting the config directory]]
+- [[#dired][Dired]]
 - [[#evil-mode][Evil mode]]
 - [[#ui][UI]]
   - [[#theme][Theme]]
@@ -119,6 +120,26 @@
     ;; Store auto-save files in var/
     (setq auto-save-file-name-transforms
           `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))))
+#+end_src
+
+* Dired
+#+begin_src emacs-lisp
+(use-package dired
+  :ensure nil ;; Built-in
+  :commands (dired dired-jump)
+  :custom
+  ;; Delete and copy recursively without asking
+  (dired-recursive-copies 'always)
+  (dired-recursive-deletes 'always)
+  ;; Re-use existing dired windows
+  (dired-dwim-target t)
+  ;; Auto-refresh dired buffers when files change on disk
+  (global-auto-revert-non-file-buffers t))
+
+  ;; Add colors to dired
+  (use-package diredfl
+    :ensure t
+    :hook (dired-mode . diredfl-mode))
 #+end_src
 
 * Evil mode
