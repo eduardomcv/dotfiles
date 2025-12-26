@@ -33,7 +33,10 @@
   - [[#indentation-guides][Indentation guides]]
   - [[#render-whitespace][Render whitespace]]
 - [[#completion-corfu][Completion (corfu)]]
-- [[#lsp][LSP]]
+- [[#languages][Languages]]
+  - [[#lsp-configuration][LSP configuration]]
+  - [[#markdown-mode][Markdown mode]]
+  - [[#python-venv-support][Python venv support]]
 - [[#treesitter][Treesitter]]
 - [[#git][Git]]
   - [[#magit][Magit]]
@@ -155,6 +158,9 @@
                (display-buffer-reuse-window display-buffer-at-bottom)
                (window-height . 0.20)
                (dedicated . t)))
+
+;; allow eldoc to show multiple lines
+(setq eldoc-echo-area-use-multiline-p t)
 
 (defun custom/close-eldoc-window-on-next-command ()
   "Close eldoc window on the next command (unless switching windows or toggling)."
@@ -443,11 +449,10 @@
 (setq tab-always-indent 'complete) ; Fallback to completion when pressing TAB
 #+end_src
 
-* LSP
-#+begin_src emacs-lisp
-;; allow eldoc to show multiple lines
-(setq eldoc-echo-area-use-multiline-p t)
+* Languages
 
+** LSP configuration
+#+begin_src emacs-lisp
 (use-package eglot
   :hook
   ((prog-mode . eglot-ensure))
@@ -468,8 +473,7 @@
                '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
 (setq-default eglot-workspace-configuration
-              '(:basedpyright (:pythonPath ".venv/bin/python"
-                               :analysis (:autoSearchPaths t
+              '(:basedpyright (:analysis (:autoSearchPaths t
                                           :useLibraryCodeForTypes t
                                           :diagnosticMode "openFilesOnly"))
 
@@ -488,7 +492,10 @@
                              :suggest (:completeFunctionCalls t)
                              :inlayHints (:parameterNames (:enabled "all")
                                           :variableTypes (:enabled t)))))
+#+end_src
 
+** Markdown mode
+#+begin_src emacs-lisp
 (use-package markdown-mode
   :ensure t
   :mode ("README\\.md\\'" . gfm-mode)
@@ -498,6 +505,14 @@
   (setq markdown-fontify-code-blocks-natively t)
   :bind (:map markdown-mode-map
               ("C-c C-e" . markdown-do)))
+#+end_src
+
+** Python venv support
+#+begin_src emacs-lisp
+(use-package pyvenv
+  :ensure t
+  :config
+  (setq pyvenv-default-virtual-env-name ".venv"))
 #+end_src
 
 * Treesitter
