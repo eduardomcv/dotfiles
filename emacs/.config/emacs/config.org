@@ -5,7 +5,8 @@
 * Table of contents :toc:
 - [[#package-manager][Package manager]]
 - [[#general-emacs-settings][General emacs settings]]
-  - [[#performance-settings][Performance settings]]
+  - [[#increase-size-of-sub-process-chunks][Increase size of sub-process chunks]]
+  - [[#garbage-collector][Garbage collector]]
   - [[#indentation][Indentation]]
   - [[#backup-handling][Backup handling]]
   - [[#update-buffers-automatically][Update buffers automatically]]
@@ -68,10 +69,23 @@
 
 * General emacs settings
 
-** Performance settings
+** Increase size of sub-process chunks
 #+begin_src emacs-lisp
-(setq gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024))
+#+end_src
+
+** Garbage collector
+#+begin_src emacs-lisp
+;; Increase memory threshold
+(setq gc-cons-threshold 100000000)
+
+(use-package gcmh
+  :ensure t
+  :init
+  (gcmh-mode 1)
+  :config
+  (setq gcmh-idle-delay 0.5
+        gcmh-high-cons-threshold (* 100 1024 1024)))
 #+end_src
 
 ** Indentation
@@ -132,17 +146,13 @@
 
 ** Dired
 #+begin_src emacs-lisp
-(use-package dired
-  :ensure nil ;; Built-in
-  :commands (dired dired-jump)
-  :custom
-  ;; Delete and copy recursively without asking
-  (dired-recursive-copies 'always)
-  (dired-recursive-deletes 'always)
-  ;; Re-use existing dired windows
-  (dired-dwim-target t)
-  ;; Auto-refresh dired buffers when files change on disk
-  (global-auto-revert-non-file-buffers t))
+;; Always be recursive
+(setq dired-recursive-copies 'always)
+(setq dired-recursive-deletes 'always)
+;; Re-use existing dired windows
+(setq dired-dwim-target t)
+;; Auto-refresh dired buffers when files change on disk
+(setq global-auto-revert-non-file-buffers t)
 
 ;; Add colors to dired
 (use-package diredfl
@@ -431,22 +441,48 @@
 
 * Completion (corfu)
 #+begin_src emacs-lisp
+;; Fallback to completion when pressing TAB
+(setq tab-always-indent 'complete)
+;; Disable Ispell completion
+(setq text-mode-ispell-word-completion nil)
+
 (use-package corfu
+  :ensure t
+  :init
+  (global-corfu-mode)
+  :config
+  (corfu-popupinfo-mode)
+
+  (general-def
+    :keymaps 'corfu-map
+    "C-j" 'corfu-next
+    "C-k" 'corfu-previous
+    "TAB" 'corfu-next
+    "S-TAB" 'corfu-previous
+    "C-SPC" 'corfu-insert
+    "M-h" 'corfu-popupinfo-toggle
+    "M-j" 'corfu-popupinfo-scroll-up
+    "M-k" 'corfu-popupinfo-scroll-down)
   :custom
   (corfu-cycle t)
   (corfu-auto t)
   (corfu-auto-delay 0.2)
   (corfu-auto-prefix 2)
   (corfu-quit-no-match 'separator)
-  :init
-  (global-corfu-mode)
+  (corfu-popupinfo-delay '(0.1 . 1.0))
   :custom-face
   (corfu-default ((t (:background "#1e1e2e" :foreground "#cdd6f4"))))
-  (corfu-border ((t (:background "#89b4fa"))))
+  (corfu-border ((t (:inherit region :background unspecified))))
   (corfu-current ((t (:background "#313244" :foreground "#cdd6f4" :weight bold))))
   (corfu-bar ((t (:background "#585b70")))))
 
-(setq tab-always-indent 'complete) ; Fallback to completion when pressing TAB
+(use-package cape
+  :bind ("C-c p" . cape-prefix-map)
+  :init
+  (add-hook 'completion-at-point-functions #'cape-dabbrev)
+  (add-hook 'completion-at-point-functions #'cape-file)
+  (add-hook 'completion-at-point-functions #'cape-elisp-block)
+  (add-hook 'completion-at-point-functions #'cape-history))
 #+end_src
 
 * Languages
@@ -457,7 +493,7 @@
   :hook
   ((prog-mode . eglot-ensure))
   :config
-  (fset #'jsonrpc--log-event #'ignore)
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
 
   ;; Add user bin to emacs PATH
   (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
@@ -469,10 +505,11 @@
       (add-to-list 'exec-path mise-path)
       (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
 
+  ;; Add vtsls
   (add-to-list 'eglot-server-programs
                '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
-(setq-default eglot-workspace-configuration
+        (setq-default eglot-workspace-configuration
               '(:basedpyright (:analysis (:autoSearchPaths t
                                           :useLibraryCodeForTypes t
                                           :diagnosticMode "openFilesOnly"))
@@ -491,17 +528,17 @@
                 :javascript (:updateImportsOnFileMove (:enabled "always")
                              :suggest (:completeFunctionCalls t)
                              :inlayHints (:parameterNames (:enabled "all")
-                                          :variableTypes (:enabled t)))))
+                                          :variableTypes (:enabled t))))))
 #+end_src
 
 ** Markdown mode
 #+begin_src emacs-lisp
 (use-package markdown-mode
   :ensure t
-  :mode ("README\\.md\\'" . gfm-mode)
-  :init
-  (setq markdown-command "pandoc")
+  :mode (("README\\.md\\'" . gfm-mode)
+         ("\\.md\\'" . markdown-mode))
   :config
+  (setq markdown-command "pandoc")
   (setq markdown-fontify-code-blocks-natively t)
   :bind (:map markdown-mode-map
               ("C-c C-e" . markdown-do)))
@@ -667,7 +704,7 @@
 (setq org-edit-src-content-indentation 0)
 (setq org-src-tab-acts-natively t)
 (setq org-src-fontify-natively t)
-(setq org-src-preserve-indentation t))
+(setq org-src-preserve-indentation t)
 #+end_src
 
 ** Table of contents
@@ -761,14 +798,6 @@
    :keymaps 'wdired-mode-map
    "=" 'wdired-finish-edit
    "ESC" 'wdired-abort-changes)
-
-  (general-define-key
-   :keymaps 'corfu-map
-   "C-j" 'corfu-next
-   "TAB" 'corfu-next
-   "C-k" 'corfu-previous
-   "S-TAB" 'corfu-previous
-   "C-SPC" 'corfu-insert)
 
   (custom/leader-keys
    ;; Search
