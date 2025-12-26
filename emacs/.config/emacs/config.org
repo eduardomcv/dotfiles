@@ -38,6 +38,7 @@
   - [[#lsp-configuration][LSP configuration]]
   - [[#markdown-mode][Markdown mode]]
   - [[#python-venv-support][Python venv support]]
+  - [[#snippets][Snippets]]
 - [[#treesitter][Treesitter]]
 - [[#git][Git]]
   - [[#magit][Magit]]
@@ -479,6 +480,9 @@
 (use-package kind-icon
   :ensure t
   :after corfu
+  :custom
+  (kind-icon-blend-background t)
+  (kind-icon-default-face 'corfu-default)
   :config
   (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
@@ -556,6 +560,13 @@
   :ensure t
   :config
   (setq pyvenv-default-virtual-env-name ".venv"))
+#+end_src
+
+** Snippets
+#+begin_src emacs-lisp
+(use-package yasnippet
+  :config
+  (yas-global-mode 1))
 #+end_src
 
 * Treesitter
@@ -660,13 +671,13 @@
 #+begin_src emacs-lisp
 (use-package apheleia
   :config
-
   (setq apheleia-formatters-respect-indent-level nil)
 
   (setf (alist-get 'python-mode apheleia-mode-alist)
         '(ruff-isort ruff))
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
         '(ruff-isort ruff))
+
   (apheleia-global-mode +1))
 #+end_src
 
