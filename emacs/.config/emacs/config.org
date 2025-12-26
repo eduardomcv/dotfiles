@@ -476,6 +476,12 @@
   (corfu-current ((t (:background "#313244" :foreground "#cdd6f4" :weight bold))))
   (corfu-bar ((t (:background "#585b70")))))
 
+(use-package kind-icon
+  :ensure t
+  :after corfu
+  :config
+  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+
 (use-package cape
   :bind ("C-c p" . cape-prefix-map)
   :init
