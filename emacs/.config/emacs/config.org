@@ -15,6 +15,7 @@
   - [[#use-no-littering-to-tidy-up-emacs-configuration-files][Use no-littering to tidy up emacs configuration files]]
   - [[#dired][Dired]]
   - [[#eldoc][Eldoc]]
+  - [[#eww][Eww]]
 - [[#evil-mode][Evil mode]]
 - [[#ui][UI]]
   - [[#theme][Theme]]
@@ -202,6 +203,12 @@
           (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
       (eldoc-doc-buffer t)
       (add-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))))
+#+end_src
+
+** Eww
+#+begin_src emacs-lisp
+;; eww, i hate it
+(setq browse-url-browser-function 'browse-url-default-browser)
 #+end_src
 
 * Evil mode
