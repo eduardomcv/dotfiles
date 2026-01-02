@@ -263,7 +263,7 @@
                     :weight 'regular)
 
 (set-face-attribute 'fixed-pitch nil
-                    :font "Iosevka"
+                    :font "Iosevka Term"
                     :height 150
                     :weight 'regular)
 
