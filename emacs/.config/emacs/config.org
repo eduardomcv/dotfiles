@@ -297,8 +297,8 @@
 (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
 (add-to-list 'default-frame-alist '(ns-appearance . dark))
 ;; Transparency
-(set-frame-parameter nil 'alpha 97)
-(add-to-list 'default-frame-alist '(alpha . 97))
+;; (set-frame-parameter nil 'alpha 97)
+;; (add-to-list 'default-frame-alist '(alpha . 97))
 #+end_src
 
 ** Smooth scrolling
@@ -751,8 +751,8 @@
 ** Org configuration
 #+begin_src emacs-lisp
 ;; Org directories
-(setq org-directory "~/Org")
-(setq org-agenda-files "~/Org/agenda")
+(setq org-directory "~/Repos/Org")
+(setq org-agenda-files "~/Repos/Org/agenda")
 
 ;; Keep code blocks consistent
 (setq org-edit-src-content-indentation 0)
