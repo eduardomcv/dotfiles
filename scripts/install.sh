@@ -55,8 +55,9 @@ source "$REPO_ROOT/scripts/lib/dotfiles.sh"
 install_dotfiles \
 	git \
 	zsh \
-	neovim \
 	ghostty \
+	neovim \
+	emacs \
 	mise
 
 # Set git name and email
