@@ -9,7 +9,11 @@ check_brew() {
 }
 
 install_brew() {
+	# Add tap for emacs
+ 	brew tap d12frosted/emacs-plus
+
 	brew install \
+		cmake \
 		stow \
 		ripgrep \
 		fd \
@@ -18,11 +22,17 @@ install_brew() {
 		zoxide \
 		eza \
 		lazygit \
-		tldr \
-		neovim \
+		tealdeer \
 		mise \
+		emacs-plus@30
+
+	brew install --cask \
+		font-iosevka \
+		font-iosevka-aile \
 		ghostty \
-		font-jetbrains-mono \
 		thunderbird \
 		zen
+
+	# Compile latest neovim
+	brew install neovim --HEAD
 }
