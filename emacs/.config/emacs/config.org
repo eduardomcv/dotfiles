@@ -365,7 +365,7 @@
 (use-package dashboard
   :ensure t
   :init
-  (setq initial-buffer-choice 'dashboard-open)
+  (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
   :config
   (set-face-attribute 'dashboard-text-banner nil :slant 'normal)
   (setq dashboard-startup-banner (expand-file-name "banner.txt" user-emacs-directory))
@@ -381,11 +381,15 @@
 
   (setq dashboard-items '((recents   . 5)
                           (bookmarks . 5)
-                          (projects  . 5)))
+                          (projects  . 5)
+                          (agenda    . 5)
+                          (registers . 5)))
 
   (setq dashboard-item-shortcuts '((recents   . "r")
-                                   (bookmarks . "b")
-                                   (projects  . "p")))
+                                   (bookmarks . "m")
+                                   (projects  . "p")
+                                   (agenda    . "a")
+                                   (registers . "e")))
 
   (dashboard-setup-startup-hook))
 #+end_src
@@ -713,7 +717,7 @@
 #+begin_src emacs-lisp
 ;; Org directories
 (setq org-directory "~/Repos/Org")
-(setq org-agenda-files "~/Repos/Org/agenda")
+(setq org-agenda-files "~/Repos/Org/agenda.org")
 
 ;; Keep code blocks consistent
 (setq org-edit-src-content-indentation 0)
