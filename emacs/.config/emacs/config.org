@@ -5,6 +5,7 @@
 * Table of contents :toc:
 - [[#package-manager][Package manager]]
 - [[#general-emacs-settings][General emacs settings]]
+- [[#start-server][Start server]]
   - [[#increase-size-of-sub-process-chunks][Increase size of sub-process chunks]]
   - [[#garbage-collector][Garbage collector]]
   - [[#indentation][Indentation]]
@@ -12,6 +13,7 @@
   - [[#update-buffers-automatically][Update buffers automatically]]
   - [[#remember-last-place-visited-in-files][Remember last place visited in files]]
   - [[#remember-recent-files][Remember recent files]]
+  - [[#auto-pairs][Auto-pairs]]
   - [[#use-no-littering-to-tidy-up-emacs-configuration-files][Use no-littering to tidy up emacs configuration files]]
   - [[#dired][Dired]]
   - [[#eldoc][Eldoc]]
@@ -59,8 +61,6 @@
 
 * Package manager
 #+begin_src emacs-lisp
-;; -*- lexical-binding: t; -*-
-
 (require 'package)
 (add-to-list 'package-archives
              '("melpa" . "https://melpa.org/packages/"))
@@ -71,6 +71,11 @@
 #+end_src
 
 * General emacs settings
+
+* Start server
+#+begin_src emacs-lisp
+(server-start)
+#+end_src
 
 ** Increase size of sub-process chunks
 #+begin_src emacs-lisp
@@ -128,6 +133,11 @@
 #+begin_src emacs-lisp
 (recentf-mode 1)
 (run-at-time nil 300 'recentf-save-list)
+#+end_src
+
+** Auto-pairs
+#+begin_src emacs-lisp
+(electric-pair-mode t)
 #+end_src
 
 ** Use no-littering to tidy up emacs configuration files
