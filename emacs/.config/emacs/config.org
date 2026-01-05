@@ -30,7 +30,6 @@
   - [[#vertical-completion-ui-vertico][Vertical completion UI (vertico)]]
   - [[#rich-annotations][Rich annotations]]
   - [[#dashboard][Dashboard]]
-  - [[#modeline][Modeline]]
   - [[#highlight-todo-comments][Highlight TODO comments]]
   - [[#indentation-guides][Indentation guides]]
   - [[#render-whitespace][Render whitespace]]
@@ -254,23 +253,23 @@
 #+begin_src emacs-lisp
 (set-face-attribute 'default nil
                     :font "Iosevka"
-                    :height 150
+                    :height 160
                     :weight 'regular)
 
 (set-face-attribute 'variable-pitch nil
                     :font "Iosevka Aile"
-                    :height 150
+                    :height 160
                     :weight 'regular)
 
 (set-face-attribute 'fixed-pitch nil
                     :font "Iosevka Term"
-                    :height 150
+                    :height 160
                     :weight 'regular)
 
 (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
 (set-face-attribute 'font-lock-keyword-face nil :slant 'italic)
 
-(add-to-list 'default-frame-alist '(font . "Iosevka-15"))
+(add-to-list 'default-frame-alist '(font . "Iosevka-16"))
 
 (setq-default line-spacing 0.1)
 
@@ -389,16 +388,6 @@
                                    (projects  . "p")))
 
   (dashboard-setup-startup-hook))
-#+end_src
-
-** Modeline
-#+begin_src emacs-lisp
-(use-package doom-modeline
-  :ensure t
-  :hook (after-init . doom-modeline-mode)
-  :config
-  (with-eval-after-load 'doom-modeline
-    (set-face-attribute 'doom-modeline-evil-insert-state nil :slant 'normal)))
 #+end_src
 
 ** Highlight TODO comments
@@ -717,34 +706,6 @@
 
 (use-package flymake-collection
   :hook (after-init . flymake-collection-hook-setup))
-
-(use-package flyover
-  :ensure t
-  :hook ((flymake-mode . flyover-mode))
-  :custom
-  ;; Checker settings
-  (flyover-checkers '(flycheck flymake))
-  (flyover-levels '(error warning info))
-
-  ;; Appearance
-  (flyover-use-theme-colors t)
-  (flyover-background-lightness 45)
-  (flyover-percent-darker 40)
-  (flyover-text-tint 'lighter)
-  (flyover-text-tint-percent 50)
-
-  ;; Display settings
-  (flyover-hide-checker-name t)
-  (flyover-show-virtual-line t)
-  (flyover-virtual-line-type 'curved-dotted-arrow)
-  (flyover-line-position-offset 1)
-
-  ;; Message wrapping
-  (flyover-wrap-messages t)
-  (flyover-max-line-length 80)
-
-  ;; Performance
-  (flyover-debounce-interval 0.2))
 #+end_src
 
 * Org mode
