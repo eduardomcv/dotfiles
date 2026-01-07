@@ -5,7 +5,7 @@
 * Table of contents :toc:
 - [[#package-manager][Package manager]]
 - [[#general-emacs-settings][General emacs settings]]
-- [[#start-server][Start server]]
+  - [[#start-server][Start server]]
   - [[#increase-size-of-sub-process-chunks][Increase size of sub-process chunks]]
   - [[#garbage-collector][Garbage collector]]
   - [[#indentation][Indentation]]
@@ -35,6 +35,7 @@
   - [[#highlight-todo-comments][Highlight TODO comments]]
   - [[#indentation-guides][Indentation guides]]
   - [[#render-whitespace][Render whitespace]]
+  - [[#minions-collapsed-minor-modes-in-modeline][Minions (collapsed minor modes in modeline)]]
 - [[#completion-corfu][Completion (corfu)]]
 - [[#languages][Languages]]
   - [[#lsp-configuration][LSP configuration]]
@@ -72,7 +73,7 @@
 
 * General emacs settings
 
-* Start server
+** Start server
 #+begin_src emacs-lisp
 (server-start)
 #+end_src
@@ -88,7 +89,6 @@
 (setq gc-cons-threshold 100000000)
 
 (use-package gcmh
-  :ensure t
   :init
   (gcmh-mode 1)
   :config
@@ -169,7 +169,6 @@
 
 ;; Add colors to dired
 (use-package diredfl
-  :ensure t
   :hook (dired-mode . diredfl-mode))
 #+end_src
 
@@ -245,7 +244,6 @@
   (evil-commentary-mode 1))
 
 (use-package evil-surround
-  :ensure t
   :config
   (global-evil-surround-mode 1))
 #+end_src
@@ -373,7 +371,6 @@
 ** Dashboard
 #+begin_src emacs-lisp
 (use-package dashboard
-  :ensure t
   :init
   (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
   :config
@@ -424,7 +421,6 @@
 ** Indentation guides
 #+begin_src emacs-lisp
 (use-package highlight-indent-guides
-  :ensure t
   :hook ((prog-mode . highlight-indent-guides-mode))
   :config
   (setq highlight-indent-guides-method 'character)
@@ -452,6 +448,12 @@
                            indentation)))
 #+end_src
 
+** Minions (collapsed minor modes in modeline)
+#+begin_src emacs-lisp
+(use-package minions
+  :config (minions-mode 1))
+#+end_src
+
 * Completion (corfu)
 #+begin_src emacs-lisp
 ;; Fallback to completion when pressing TAB
@@ -460,7 +462,6 @@
 (setq text-mode-ispell-word-completion nil)
 
 (use-package corfu
-  :ensure t
   :init
   (global-corfu-mode)
   :config
@@ -490,7 +491,6 @@
   (corfu-bar ((t (:background "#585b70")))))
 
 (use-package kind-icon
-  :ensure t
   :after corfu
   :custom
   (kind-icon-blend-background t)
@@ -556,7 +556,6 @@
 ** Markdown mode
 #+begin_src emacs-lisp
 (use-package markdown-mode
-  :ensure t
   :mode (("README\\.md\\'" . gfm-mode)
          ("\\.md\\'" . markdown-mode))
   :config
@@ -569,7 +568,6 @@
 ** Python venv support
 #+begin_src emacs-lisp
 (use-package pyvenv
-  :ensure t
   :config
   (setq pyvenv-default-virtual-env-name ".venv"))
 #+end_src
@@ -755,7 +753,6 @@
 ** Vterm
 #+begin_src emacs-lisp
 (use-package vterm
-  :ensure t
   :init (setq shell-file-name "/bin/zsh"))
 #+end_src
 
