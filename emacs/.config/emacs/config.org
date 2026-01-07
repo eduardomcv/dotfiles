@@ -17,6 +17,7 @@
   - [[#use-no-littering-to-tidy-up-emacs-configuration-files][Use no-littering to tidy up emacs configuration files]]
   - [[#dired][Dired]]
   - [[#eldoc][Eldoc]]
+  - [[#inject-path-from-shell][Inject PATH from shell]]
   - [[#eww][Eww]]
 - [[#evil-mode][Evil mode]]
 - [[#ui][UI]]
@@ -213,6 +214,16 @@
           (remove-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))
       (eldoc-doc-buffer t)
       (add-hook 'pre-command-hook 'custom/close-eldoc-window-on-next-command))))
+#+end_src
+
+** Inject PATH from shell
+#+begin_src emacs-lisp
+(use-package exec-path-from-shell
+  :config
+  (when (memq window-system '(mac ns x))
+  (exec-path-from-shell-initialize))
+  (when (daemonp)
+  (exec-path-from-shell-initialize)))
 #+end_src
 
 ** Eww
@@ -517,16 +528,6 @@
   :config
   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
 
-  ;; Add user bin to emacs PATH
-  (add-to-list 'exec-path (expand-file-name "~/.local/bin"))
-  (setenv "PATH" (concat (expand-file-name "~/.local/bin") ":" (getenv "PATH")))
-
-  ;; Add mise shims to emacs PATH
-  (let ((mise-path (expand-file-name "~/.local/share/mise/shims")))
-    (when (file-directory-p mise-path)
-      (add-to-list 'exec-path mise-path)
-      (setenv "PATH" (concat mise-path ":" (getenv "PATH")))))
-
   ;; Add vtsls
   (add-to-list 'eglot-server-programs
                '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
@@ -683,6 +684,7 @@
   :config
   (setq apheleia-formatters-respect-indent-level nil)
 
+  ;; Replace default (black) to use ruff for sorting import and formatting.
   (setf (alist-get 'python-mode apheleia-mode-alist)
         '(ruff-isort ruff))
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
