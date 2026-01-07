@@ -532,26 +532,27 @@
   (add-to-list 'eglot-server-programs
                '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
-        (setq-default eglot-workspace-configuration
-              '(:basedpyright (:analysis (:autoSearchPaths t
-                                          :useLibraryCodeForTypes t
-                                          :diagnosticMode "openFilesOnly"))
+  (put 'tsx-ts-mode 'eglot-language-id "typescriptreact")
 
-                :vtsls (:enableMoveToFileCodeAction t
-                        :autoUseWorkspaceTsdk t
-                        :experimental (:completion (:enableServerSideFuzzyMatch t)))
+  (setq-default eglot-workspace-configuration
+                '(:basedpyright (:analysis (:autoSearchPaths t
+                                                             :useLibraryCodeForTypes t
+                                                             :diagnosticMode "openFilesOnly"))
 
-                :typescript (:updateImportsOnFileMove (:enabled "always")
-                             :suggest (:completeFunctionCalls t)
-                             :preferences (:includePackageJsonAutoImports "on"
-                                           :importModuleSpecifier "non-relative")
-                             :inlayHints (:parameterNames (:enabled "all")
-                                          :variableTypes (:enabled t)))
+                                :vtsls (:enableMoveToFileCodeAction t
+                                                                    :experimental (:completion (:enableServerSideFuzzyMatch t)))
 
-                :javascript (:updateImportsOnFileMove (:enabled "always")
-                             :suggest (:completeFunctionCalls t)
-                             :inlayHints (:parameterNames (:enabled "all")
-                                          :variableTypes (:enabled t))))))
+                                :typescript (:updateImportsOnFileMove (:enabled "always")
+                                                                      :suggest (:completeFunctionCalls t)
+                                                                      :preferences (:includePackageJsonAutoImports "on"
+                                                                                                                   :importModuleSpecifier "non-relative")
+                                                                      :inlayHints (:parameterNames (:enabled "all")
+                                                                                                   :variableTypes (:enabled t)))
+
+                                :javascript (:updateImportsOnFileMove (:enabled "always")
+                                                                      :suggest (:completeFunctionCalls t)
+                                                                      :inlayHints (:parameterNames (:enabled "all")
+                                                                                                   :variableTypes (:enabled t))))))
 #+end_src
 
 ** Markdown mode
