@@ -1,0 +1,62 @@
+;;; config-emacs.el --- Base Emacs configuration -*- lexical-binding: t; -*-
+
+;;; Commentary:
+;;; Base Emacs configuration.
+
+;;; Code:
+
+(use-package emacs
+  :ensure nil
+  :init
+	(unless (daemonp)
+    (server-mode 1))
+
+  (global-auto-revert-mode 1)
+  (save-place-mode 1)
+  (electric-pair-mode t)
+  (recentf-mode 1)
+
+  :hook
+  (emacs-lisp-mode . (lambda () (setq tab-width 2)))
+
+  :custom
+  (read-process-output-max (* 1024 1024))
+
+  (gc-cons-threshold 100000000)
+
+  (version-control t)
+  (delete-old-versions t)
+  (kept-new-versions 6)
+  (kept-old-versions 2)
+
+  (global-auto-revert-non-file-buffers t)
+
+  (browse-url-browser-function 'browse-url-default-browser)
+
+  :config
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+
+  (run-at-time nil 300 'recentf-save-list))
+
+(use-package gcmh
+  :init
+  (gcmh-mode 1)
+  :custom
+  (gcmh-idle-delay 0.5)
+  (gcmh-high-cons-threshold (* 100 1024 1024)))
+
+(use-package no-littering
+  :config
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+  (when (file-exists-p custom-file)
+    (load custom-file 'noerror)))
+
+(use-package exec-path-from-shell
+	:if (or (daemonp) (memq window-system '(mac ns x)))
+  :config
+  (exec-path-from-shell-initialize))
+
+(provide 'config-emacs)
+
+;;; config-emacs.el ends here

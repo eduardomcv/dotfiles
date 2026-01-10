@@ -1,4 +1,29 @@
-;;; -*- lexical-binding: t; -*-
+;;; init.el --- Emacs configuration -*- lexical-binding: t; -*-
 
-(org-babel-load-file
- (expand-file-name "config.org" user-emacs-directory))
+;;; Commentary:
+;;; Adds the modules in the "config" directory and handles load order.
+
+;;; Code:
+
+(add-to-list 'load-path (expand-file-name "config" user-emacs-directory))
+
+(require 'config-package-manager)
+(require 'config-emacs)
+(require 'config-undo)
+(require 'config-evil)
+(require 'config-general)
+(require 'config-ui)
+(require 'config-dired)
+(require 'config-eldoc)
+(require 'config-completion)
+(require 'config-code)
+(require 'config-lsp)
+(require 'config-treesitter)
+(require 'config-git)
+(require 'config-finder)
+(require 'config-format)
+(require 'config-lint)
+(require 'config-org)
+(require 'config-terminal)
+
+;;; init.el ends here
