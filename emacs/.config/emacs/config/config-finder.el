@@ -17,6 +17,14 @@
   (let ((fd-name (if (executable-find "fdfind") "fdfind" "fd")))
     (setq consult-fd-args (concat fd-name " --full-path --absolute-path --color=never --hidden --exclude .git")))
 
+  (setq consult-ripgrep-args
+        "rg --null --line-buffered --color=never --max-columns=1000 --path-separator /   --smart-case --no-heading --with-filename --line-number --search-zip --hidden -g !.git")
+
+  (consult-customize
+   consult-ripgrep consult-git-grep consult-grep
+   consult-bookmark consult-recent-file consult-xref
+   :preview-key '(:debounce 0.2 any))
+
   :bind (
          ("C-c g" . consult-ripgrep)
          ("C-c f" . consult-fd)
@@ -32,11 +40,11 @@
 (use-package consult-todo
   :config
   (setq consult-todo--narrow
-    '((?t . "TODO")
-      (?f . "FIXME")
-      (?h . "HACK")
-      (?d . "DEPRECATED")
-      (?n . "NOTE"))))
+        '((?t . "TODO")
+          (?f . "FIXME")
+          (?h . "HACK")
+          (?d . "DEPRECATED")
+          (?n . "NOTE"))))
 
 (provide 'config-finder)
 
