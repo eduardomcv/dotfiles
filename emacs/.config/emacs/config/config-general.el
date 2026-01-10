@@ -90,4 +90,5 @@
     "="   '(indent-region :which-key "indent region")))
 
 (provide 'config-general)
+
 ;;; config-general.el ends here

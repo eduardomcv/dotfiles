@@ -30,9 +30,9 @@
   (diff-hl-flydiff-mode)
   (diff-hl-margin-mode)
 
-  (set-face-attribute 'diff-hl-insert nil :inherit 'diff-added :background nil)
-  (set-face-attribute 'diff-hl-delete nil :inherit 'diff-removed :background nil)
-  (set-face-attribute 'diff-hl-change nil :inherit 'diff-changed :background nil))
+  (set-face-attribute 'diff-hl-insert nil :inherit 'diff-added :background 'unspecified)
+  (set-face-attribute 'diff-hl-delete nil :inherit 'diff-removed :background 'unspecified)
+  (set-face-attribute 'diff-hl-change nil :inherit 'diff-changed :background 'unspecified))
 
 (provide 'config-git)
 
