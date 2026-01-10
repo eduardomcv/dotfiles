@@ -22,8 +22,6 @@
 (require 'config-lint)
 (require 'config-git)
 (require 'config-finder)
-(require 'config-format)
-(require 'config-lint)
 (require 'config-org)
 (require 'config-project)
 (require 'config-terminal)
