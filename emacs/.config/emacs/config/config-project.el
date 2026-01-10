@@ -7,14 +7,13 @@
 
 (use-package project
   :ensure nil
-	:config
-  (with-eval-after-load 'consult
-    (setq project-switch-commands 
-          '((project-find-file "Find file")
-            (project-dired "Dired")
-            (consult-project-buffer "Buffer")
-            (consult-ripgrep "Ripgrep")
-            (magit-project-status "Magit")))))
+  :config
+  (setq project-switch-commands
+        '((project-find-file "Find file")
+          (project-dired "Dired")
+          (consult-project-buffer "Buffer")
+          (consult-ripgrep "Ripgrep")
+          (magit-project-status "Magit"))))
 
 (provide 'config-project)
 
