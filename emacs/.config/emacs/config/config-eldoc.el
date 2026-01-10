@@ -7,6 +7,7 @@
 
 (use-package eldoc
   :ensure nil
+
   :custom
   (eldoc-echo-area-use-multiline-p t)
 
@@ -17,7 +18,7 @@
                  (window-height . 0.20)
                  (dedicated . t)))
 
-	(defun custom/close-eldoc-window-on-next-command ()
+  (defun custom/close-eldoc-window-on-next-command ()
     "Close eldoc window on the next command (unless switching windows)."
     (let ((win (get-buffer-window "*eldoc*")))
       (if win
