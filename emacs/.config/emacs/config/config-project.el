@@ -9,11 +9,11 @@
   :ensure nil
   :config
   (setq project-switch-commands
-        '((project-find-file "Find file")
-          (project-dired "Dired")
-          (consult-project-buffer "Buffer")
-          (consult-ripgrep "Ripgrep")
-          (magit-project-status "Magit"))))
+        '((project-find-file "Find file" ?f)
+          (project-dired "Dired" ?d)
+          (consult-project-buffer "Buffer" ?b)
+          (consult-ripgrep "Ripgrep" ?g)
+          (magit-project-status "Magit" ?G))))
 
 (provide 'config-project)
 
