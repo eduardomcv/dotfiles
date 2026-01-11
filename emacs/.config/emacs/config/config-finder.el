@@ -52,6 +52,28 @@
     "st" '(consult-todo-project :which-key "project todos")
     "bt" '(consult-todo :which-key "search buffer todos")))
 
+(use-package embark
+  :init
+  (setq prefix-help-command #'embark-prefix-help-command)
+  (add-hook 'context-menu-functions #'embark-context-menu 100)
+  :config
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none))))
+  :bind
+  (("C-q" . embark-act)
+   ("C-;" . embark-dwim)
+   ("C-h B" . embark-bindings)))
+
+(use-package embark-consult
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+(use-package wgrep
+  :custom
+  (wgrep-auto-save-buffer t))
+
 (provide 'config-finder)
 
 ;;; config-finder.el ends here
