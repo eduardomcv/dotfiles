@@ -8,7 +8,6 @@
 (use-package apheleia
   :custom
   (apheleia-formatters-respect-indent-level nil)
-
   :config
   ;; Replace default (black) to use ruff for sorting import and formatting.
   (setf (alist-get 'python-mode apheleia-mode-alist)
@@ -16,7 +15,11 @@
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
         '(ruff-isort ruff))
 
-  (apheleia-global-mode 1))
+  (apheleia-global-mode 1)
+  :general
+  (custom/leader-keys
+    "cf" '(apheleia-format-buffer :which-key "format buffer")
+    "bf" '(apheleia-format-buffer :which-key "format buffer")))
 
 (provide 'config-format)
 

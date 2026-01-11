@@ -48,7 +48,11 @@
             (delete-window win)
             (remove-hook 'pre-command-hook #'custom/close-eldoc-window-on-next-command))
         (eldoc-doc-buffer t)
-        (add-hook 'pre-command-hook #'custom/close-eldoc-window-on-next-command)))))
+        (add-hook 'pre-command-hook #'custom/close-eldoc-window-on-next-command))))
+
+  :general
+  (:states 'normal
+           "K" 'custom/toggle-eldoc-tooltip))
 
 (provide 'config-eldoc)
 

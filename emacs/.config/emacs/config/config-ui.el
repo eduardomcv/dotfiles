@@ -16,7 +16,6 @@
   (global-visual-line-mode 1)
   (global-hl-line-mode 1)
   (global-display-line-numbers-mode 1)
-  (which-key-mode 1)
 
   :custom
   (pixel-scroll-precision-large-scroll-height 40.0)
@@ -73,7 +72,10 @@
                            space-before-tab
                            newline
                            empty
-                           indentation)))
+                           indentation))
+  :general
+  (custom/leader-keys
+    "cw"  '(whitespace-mode :which-key "toggle whitespace")))
 
 (use-package nerd-icons)
 

@@ -25,12 +25,14 @@
    consult-bookmark consult-recent-file consult-xref
    :preview-key '(:debounce 0.2 any))
 
-  :bind (
-         ("C-c g" . consult-ripgrep)
-         ("C-c f" . consult-fd)
-         ("C-c b" . consult-buffer)
-         ("C-c s" . consult-line)
-         ))
+  :general
+  (custom/leader-keys
+    "sg" '(consult-ripgrep :which-key "grep")
+    "sb" '(consult-buffer :which-key "switch buffer")
+    "ss" '(consult-line :which-key "current file")
+    "bl" '(consult-line :which-key "search buffer lines")
+    "sr" '(consult-recent-file :which-key "recent files")
+    "pb" '(consult-project-buffer :which-key "project buffers")))
 
 (use-package orderless
   :custom
@@ -44,7 +46,11 @@
           (?f . "FIXME")
           (?h . "HACK")
           (?d . "DEPRECATED")
-          (?n . "NOTE"))))
+          (?n . "NOTE")))
+  :general
+  (custom/leader-keys
+    "st" '(consult-todo-project :which-key "project todos")
+    "bt" '(consult-todo :which-key "search buffer todos")))
 
 (provide 'config-finder)
 

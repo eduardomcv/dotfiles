@@ -11,6 +11,7 @@
 (require 'config-emacs)
 (require 'config-undo)
 (require 'config-evil)
+(require 'config-general)
 (require 'config-ui)
 (require 'config-dired)
 (require 'config-eldoc)
@@ -25,6 +26,5 @@
 (require 'config-org)
 (require 'config-project)
 (require 'config-terminal)
-(require 'config-general)
 
 ;;; init.el ends here

@@ -13,7 +13,13 @@
           (project-dired "Dired" ?d)
           (consult-project-buffer "Buffer" ?b)
           (consult-ripgrep "Ripgrep" ?g)
-          (magit-project-status "Magit" ?G))))
+          (magit-project-status "Magit" ?G)))
+  :general
+  (:states 'normal
+           "C-p" 'project-find-file)
+  (custom/leader-keys
+    "sf" '(project-find-file :which-key "project files")
+    "pp" '(project-switch-project :which-key "switch project")))
 
 (provide 'config-project)
 

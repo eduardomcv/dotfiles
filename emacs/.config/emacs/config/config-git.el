@@ -8,7 +8,12 @@
 (use-package magit
   :commands magit-status
   :custom
-  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1))
+  (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  :general
+  (custom/leader-keys
+    "gg" '(magit-status :which-key "status")
+    "gl" '(magit-log-current :which-key "log")
+    "gb" '(magit-blame :which-key "blame")))
 
 (use-package diff-hl
   :hook ((dired-mode . diff-hl-dired-mode)

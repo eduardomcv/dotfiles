@@ -7,17 +7,17 @@
 
 (use-package vterm
   :custom
-	(vterm-shell (or (executable-find "zsh") shell-file-name))
+  (vterm-shell (or (executable-find "zsh") shell-file-name))
   (vterm-max-scrollback 10000)
 
-	:config
+  :config
   (setq vterm-timer-delay 0.01))
 
 (use-package vterm-toggle
   :after vterm
   :custom
   (vterm-toggle-fullscreen-p nil)
-	(vterm-toggle-scope 'project)
+  (vterm-toggle-scope 'project)
   :config
   (add-to-list 'display-buffer-alist
                '((lambda (buffer-or-name _)
@@ -29,7 +29,10 @@
                  (side . bottom)
                  (dedicated . t)
                  (reusable-frames . visible)
-                 (window-height . 0.3))))
+                 (window-height . 0.3)))
+  :general
+  (custom/leader-keys
+    "RET" '(vterm-toggle :which-key "toggle vterm")))
 
 (provide 'config-terminal)
 
