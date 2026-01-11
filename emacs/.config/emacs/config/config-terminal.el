@@ -9,24 +9,17 @@
   :custom
   (vterm-shell (or (executable-find "zsh") shell-file-name))
   (vterm-max-scrollback 10000)
-  (vterm-timer-delay 0.01))
-
-(use-package multi-vterm
-  :ensure t
-  :after vterm
-  :custom
-  (multi-vterm-dedicated-window-height-percent 30)
-  :bind
-  (:map vterm-mode-map
-        ("C-n" . multi-vterm-next)
-        ("C-p" . multi-vterm-prev))
+  (vterm-timer-delay 0.01)
+  :config
+  (define-key vterm-mode-map [return] #'vterm-send-return)
+  (add-to-list 'display-buffer-alist
+               '("^\\*vterm"
+                 (display-buffer-reuse-window display-buffer-at-bottom)
+                 (window-height . 0.25)
+                 (dedicated . nil)))
   :general
   (custom/leader-keys
-    "tt" '(multi-vterm-project :which-key "toggle project terminal")
-    "pt" '(multi-vterm-project :which-key "toggle project terminal")
-    "tn" '(multi-vterm :which-key "new terminal"))
-  (:states '(normal insert)
-   "M-RET" 'multi-vterm))
+    "RET" '(vterm :which-key "new terminal")))
 
 (provide 'config-terminal)
 
