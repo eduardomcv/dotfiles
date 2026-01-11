@@ -8,13 +8,14 @@
 (use-package emacs
   :ensure nil
   :init
-	(unless (daemonp)
+  (unless (daemonp)
     (server-mode 1))
 
   (global-auto-revert-mode 1)
   (save-place-mode 1)
-  (electric-pair-mode t)
+  (electric-pair-mode 1)
   (recentf-mode 1)
+  (context-menu-mode 1)
 
   :hook
   (emacs-lisp-mode . (lambda () (setq tab-width 2)))
@@ -53,7 +54,7 @@
     (load custom-file 'noerror)))
 
 (use-package exec-path-from-shell
-	:if (or (daemonp) (memq window-system '(mac ns x)))
+  :if (or (daemonp) (memq window-system '(mac ns x)))
   :config
   (exec-path-from-shell-initialize))
 
