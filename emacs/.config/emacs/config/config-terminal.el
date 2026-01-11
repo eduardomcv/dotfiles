@@ -12,14 +12,9 @@
   (vterm-timer-delay 0.01)
   :config
   (define-key vterm-mode-map [return] #'vterm-send-return)
-  (add-to-list 'display-buffer-alist
-               '("^\\*vterm"
-                 (display-buffer-reuse-window display-buffer-at-bottom)
-                 (window-height . 0.25)
-                 (dedicated . nil)))
   :general
   (custom/leader-keys
-    "RET" '(vterm :which-key "new terminal")))
+    "tc" '(vterm :which-key "create terminal")))
 
 (provide 'config-terminal)
 

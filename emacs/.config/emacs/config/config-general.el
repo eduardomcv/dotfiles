@@ -34,6 +34,7 @@
     "g" '(:ignore t :which-key "git")
     "p" '(:ignore t :which-key "project")
     "s" '(:ignore t :which-key "search")
+    "t" '(:ignore t :which-key "terminal")
     "." '(find-file :which-key "navigate files")
     "=" '(indent-region :which-key "indent region")))
 
