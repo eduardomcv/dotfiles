@@ -16,6 +16,7 @@
   (electric-pair-mode 1)
   (recentf-mode 1)
   (context-menu-mode 1)
+  (winner-mode 1)
 
   :hook
   (emacs-lisp-mode . (lambda () (setq tab-width 2)))
