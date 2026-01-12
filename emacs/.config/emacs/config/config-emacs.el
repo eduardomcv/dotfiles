@@ -51,6 +51,8 @@
 (use-package no-littering
   :config
   (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+  (setq backup-directory-alist
+        `(("." . ,(no-littering-expand-var-file-name "backup/"))))
   (when (file-exists-p custom-file)
     (load custom-file 'noerror)))
 
