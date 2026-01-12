@@ -17,15 +17,23 @@
    (if (eq system-type 'darwin)
        "-lhA"
      "-lhA --group-directories-first"))
-  :general
-  (:states 'normal
-           :keymaps 'dired-mode-map
-           "TAB" 'dired-toggle-read-only
-           "n"   'dired-create-empty-file
-           "N"   'dired-create-directory
-           :keymaps 'wdired-mode-map
-           "="   'wdired-finish-edit
-           "ESC" 'wdired-abort-changes)
+  :config
+  (with-eval-after-load 'dired
+    (require 'evil-collection-dired)
+    (evil-collection-dired-setup))
+  (general-define-key
+   :states 'normal
+   :keymaps 'dired-mode-map
+   "TAB" 'dired-toggle-read-only
+   "n"   'dired-create-empty-file
+   "N"   'dired-create-directory
+   "h"   'dired-up-directory
+   "l"   'dired-find-file)
+  (general-define-key
+   :states 'normal
+   :keymaps 'wdired-mode-map
+   "="   'wdired-finish-edit
+   "ESC" 'wdired-abort-changes)
   (custom/leader-keys
     "." '(dired-jump :which-key "dired")))
 
