@@ -108,6 +108,10 @@
   (vertico-count 15)
   (vertico-cycle t))
 
+(use-package vertico-posframe
+  :init
+  (vertico-posframe-mode 1))
+
 (use-package marginalia
   :init
   (marginalia-mode))
@@ -189,6 +193,10 @@
   (popper-echo-mode +1)
   :config
   (setq popper-group-function #'popper-group-by-project))
+
+(use-package beacon
+  :init
+  (beacon-mode 1))
 
 (provide 'config-ui)
 
