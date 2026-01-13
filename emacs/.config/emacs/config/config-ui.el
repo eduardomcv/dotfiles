@@ -110,7 +110,11 @@
 
 (use-package vertico-posframe
   :init
-  (vertico-posframe-mode 1))
+  (vertico-posframe-mode 1)
+  :config
+  (vertico-posframe-parameters
+      '((left-fringe . 8)
+        (right-fringe . 8))))
 
 (use-package marginalia
   :init
@@ -195,8 +199,22 @@
   (setq popper-group-function #'popper-group-by-project))
 
 (use-package beacon
-  :init
+  :custom
+  (beacon-blink-when-window-scrolls t)
+  (beacon-blink-when-window-changes t)
+  (beacon-blink-when-point-moves-vertically t)
+  :config
   (beacon-mode 1))
+
+(use-package eldoc-box
+  :config
+  (setq eldoc-echo-area-use-multiline-p nil)
+  (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors 0 t)
+  (set-face-attribute 'eldoc-box-border nil :background (catppuccin-color 'surface2))
+  :general
+  (:states 'normal
+           :keymaps 'override
+           "K" 'eldoc-box-help-at-point))
 
 (provide 'config-ui)
 

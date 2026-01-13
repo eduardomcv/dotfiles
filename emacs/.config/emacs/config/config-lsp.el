@@ -7,7 +7,6 @@
 
 (use-package eglot
   :hook (prog-mode . eglot-ensure)
-
   :config
   (when (fboundp 'cape-wrap-buster)
     (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))

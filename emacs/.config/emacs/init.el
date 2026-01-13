@@ -14,7 +14,6 @@
 (require 'config-general)
 (require 'config-ui)
 (require 'config-dired)
-(require 'config-eldoc)
 (require 'config-completion)
 (require 'config-code)
 (require 'config-treesitter)
