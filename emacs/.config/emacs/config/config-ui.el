@@ -111,7 +111,7 @@
 (use-package vertico-posframe
   :init
   (vertico-posframe-mode 1)
-  :config
+  :custom
   (vertico-posframe-parameters
       '((left-fringe . 8)
         (right-fringe . 8))))
