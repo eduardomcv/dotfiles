@@ -6,7 +6,22 @@
 ;;; Code:
 
 (use-package eglot
-  :hook (prog-mode . eglot-ensure)
+  :hook ((python-mode . eglot-ensure)
+         (python-ts-mode . eglot-ensure)
+         (javascript-mode . eglot-ensure)
+         (js-ts-mode . eglot-ensure)
+         (typescript-ts-mode . eglot-ensure)
+         (tsx-ts-mode . eglot-ensure)
+         (yaml-ts-mode . eglot-ensure)
+         (js-json-mode . eglot-ensure)
+         (json-ts-mode . eglot-ensure)
+         (css-mode . eglot-ensure)
+         (css-ts-mode . eglot-ensure)
+         (html-mode . eglot-ensure)
+         (html-ts-mode . eglot-ensure))
+  :custom
+  (eglot-autoshutdown t)
+  (eglot-sync-connect nil)
   :config
   (when (fboundp 'cape-wrap-buster)
     (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
