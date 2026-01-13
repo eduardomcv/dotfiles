@@ -8,9 +8,6 @@
 (use-package emacs
   :ensure nil
   :init
-  (unless (daemonp)
-    (server-mode 1))
-
   (global-auto-revert-mode 1)
   (save-place-mode 1)
   (electric-pair-mode 1)
