@@ -179,7 +179,9 @@
   (eldoc-echo-area-use-multiline-p nil)
   (eldoc-documentation-strategy 'eldoc-documentation-compose)
   :config
-  (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors 0 t)
+  (add-hook 'typescript-ts-mode-hook
+            (lambda ()
+              (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors 0 t)))
   (set-face-attribute 'eldoc-box-border nil :background (catppuccin-color 'surface2))
   :general
   (:states 'normal
