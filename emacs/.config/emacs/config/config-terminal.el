@@ -16,17 +16,6 @@
   (custom/leader-keys
     "RET" '(vterm :which-key "open terminal")))
 
-(use-package detached
-  :init
-  (detached-init)
-  :custom ((detached-show-output-on-attach t)
-           (detached-terminal-data-command system-type))
-  :bind (
-         ([remap async-shell-command] . detached-shell-command)
-         ([remap compile] . detached-compile)
-         ([remap recompile] . detached-compile-recompile)
-         ([remap detached-open-session] . detached-consult-session)))
-
 (provide 'config-terminal)
 
 ;;; config-terminal.el ends here
