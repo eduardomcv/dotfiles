@@ -196,17 +196,11 @@
   :config
   (setq popper-group-function #'popper-group-by-project))
 
-(use-package beacon
-  :custom
-  (beacon-blink-when-window-scrolls t)
-  (beacon-blink-when-window-changes t)
-  (beacon-blink-when-point-moves-vertically t)
-  :config
-  (beacon-mode 1))
-
 (use-package eldoc-box
+  :custom
+  (eldoc-echo-area-use-multiline-p nil)
+  (eldoc-documentation-strategy 'eldoc-documentation-compose)
   :config
-  (setq eldoc-echo-area-use-multiline-p nil)
   (add-hook 'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors 0 t)
   (set-face-attribute 'eldoc-box-border nil :background (catppuccin-color 'surface2))
   :general
