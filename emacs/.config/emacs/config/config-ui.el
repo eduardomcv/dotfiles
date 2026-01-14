@@ -174,28 +174,6 @@
   :init
   (minions-mode 1))
 
-(use-package popper
-  :bind (("C-`"   . popper-toggle)
-         ("M-`"   . popper-cycle)
-         ("C-M-`" . popper-toggle-type))
-  :init
-  (setq popper-reference-buffers
-        '("\\*Messages\\*"
-          "\\*Warnings\\*"
-          "Output\\*$"
-          "\\*Async Shell Command\\*"
-          "\\*xref\\*"
-          "^\\*vterm.*\\*$"
-          "^\\*eshell.*\\*$"
-          eshell-mode
-          vterm-mode
-          help-mode
-          compilation-mode))
-  (popper-mode +1)
-  (popper-echo-mode +1)
-  :config
-  (setq popper-group-function #'popper-group-by-project))
-
 (use-package eldoc-box
   :custom
   (eldoc-echo-area-use-multiline-p nil)
