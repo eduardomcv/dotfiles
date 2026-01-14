@@ -34,9 +34,13 @@
     "g" '(:ignore t :which-key "git")
     "p" '(:ignore t :which-key "project")
     "s" '(:ignore t :which-key "search")
-    "t" '(:ignore t :which-key "terminal")
     "." '(find-file :which-key "navigate files")
-    "=" '(indent-region :which-key "indent region")))
+    "=" '(indent-region :which-key "indent region")
+    "t" '(:ignore t :which-key "tab")
+    "tn" '(tab-bar-new-tab :which-key "new tab")
+    "tc" '(tab-bar-close-tab :which-key "close tab")
+    "tr" '(tab-rename :which-key "rename tab")
+    "tu" '(tab-undo :which-key "undo closing tab")))
 
 (provide 'config-general)
 
