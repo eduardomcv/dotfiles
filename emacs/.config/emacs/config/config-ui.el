@@ -34,9 +34,7 @@
   (add-to-list 'default-frame-alist '(ns-appearance . dark))
   (add-to-list 'default-frame-alist '(width . 120))
   (add-to-list 'default-frame-alist '(height . 45))
-  ;; Transparency
-  ;; (add-to-list 'default-frame-alist '(alpha . 97))
-  ;; (set-frame-parameter nil 'alpha 97)
+  (add-to-list 'default-frame-alist '(alpha-background . 95))
 
   (defun custom/set-font-faces ()
     (set-face-attribute 'default nil
