@@ -16,7 +16,8 @@
   (winner-mode 1)
 
   :hook
-  (emacs-lisp-mode . (lambda () (setq tab-width 2)))
+  (emacs-lisp-mode . (lambda ()
+                       (setq tab-width 2)))
 
   :custom
   (read-process-output-max (* 1024 1024))
