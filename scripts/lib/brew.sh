@@ -22,19 +22,15 @@ install_brew() {
         fzf \
         zoxide \
         eza \
-        lazygit \
         tealdeer \
+        vim \
         mise \
-        emacs-plus@30
+        emacs-plus
 
     brew install --cask \
         font-iosevka \
         font-iosevka-aile \
         font-symbols-only-nerd-font \
-        ghostty \
         thunderbird \
         zen
-
-    # Compile latest neovim
-    brew install neovim --HEAD
 }

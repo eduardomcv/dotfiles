@@ -24,10 +24,8 @@ install_pacman() {
         zoxide \
         bat \
         eza \
-        lazygit \
         mise \
-        ghostty \
-        neovim-nightly-bin \
+        tealdeer \
         ttc-iosevka \
         ttc-iosevka-aile \
         ttf-nerd-fonts-symbols-mono \

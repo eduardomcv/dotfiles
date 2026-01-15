@@ -19,46 +19,45 @@ PACKAGE_MANAGER="$(get_package_manager)"
 
 case $PACKAGE_MANAGER in
 apt)
-	source "$REPO_ROOT/scripts/lib/apt.sh"
-	install_apt
-	;;
+    source "$REPO_ROOT/scripts/lib/apt.sh"
+    install_apt
+    ;;
 
 pacman)
-	source "$REPO_ROOT/scripts/lib/pacman.sh"
-	install_pacman
-	;;
+    source "$REPO_ROOT/scripts/lib/pacman.sh"
+    install_pacman
+    ;;
 
 brew)
-	source "$REPO_ROOT/scripts/lib/brew.sh"
-	check_brew
-	install_brew
-	;;
+    source "$REPO_ROOT/scripts/lib/brew.sh"
+    check_brew
+    install_brew
+    ;;
 
 dnf)
-	source "$REPO_ROOT/scripts/lib/dnf.sh"
-	install_dnf
-	;;
+    source "$REPO_ROOT/scripts/lib/dnf.sh"
+    install_dnf
+    ;;
 
 bazzite)
-	source "$REPO_ROOT/scripts/lib/bazzite.sh"
-	install_bazzite
-	;;
+    source "$REPO_ROOT/scripts/lib/bazzite.sh"
+    install_bazzite
+    ;;
 
 *)
-	echo "No install script exists for $PACKAGE_MANAGER" >&2
-	exit 1
-	;;
+    echo "No install script exists for $PACKAGE_MANAGER" >&2
+    exit 1
+    ;;
 esac
 
 # Install dotfiles
 source "$REPO_ROOT/scripts/lib/dotfiles.sh"
 install_dotfiles \
-	git \
-	zsh \
-	ghostty \
-	neovim \
-	emacs \
-	mise
+    git \
+    zsh \
+    vim \
+    emacs \
+    mise
 
 # Set git name and email
 source "$REPO_ROOT/scripts/lib/git.sh"
