@@ -3,7 +3,6 @@ node = "24"
 python = "3.12"
 uv = "0.9.23"
 ruby = "3"
-usage = "latest"
 
 [settings]
 python.uv_venv_auto = true
