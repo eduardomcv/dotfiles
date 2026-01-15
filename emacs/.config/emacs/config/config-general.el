@@ -40,6 +40,7 @@
     "tn" '(tab-bar-new-tab :which-key "new tab")
     "tc" '(tab-bar-close-tab :which-key "close tab")
     "tr" '(tab-rename :which-key "rename tab")
+    "ts" '(tab-switch :which-key "switch tab by name")
     "tu" '(tab-undo :which-key "undo closing tab")))
 
 (provide 'config-general)
