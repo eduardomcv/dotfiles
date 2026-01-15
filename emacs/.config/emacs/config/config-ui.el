@@ -106,14 +106,6 @@
   (vertico-count 15)
   (vertico-cycle t))
 
-(use-package vertico-posframe
-  :init
-  (vertico-posframe-mode 1)
-  :custom
-  (vertico-posframe-parameters
-      '((left-fringe . 8)
-        (right-fringe . 8))))
-
 (use-package marginalia
   :init
   (marginalia-mode))
