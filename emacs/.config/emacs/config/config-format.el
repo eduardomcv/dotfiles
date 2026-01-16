@@ -6,6 +6,8 @@
 ;;; Code:
 
 (use-package apheleia
+  :init
+  (apheleia-global-mode 1)
   :custom
   (apheleia-formatters-respect-indent-level nil)
   :config
@@ -14,8 +16,6 @@
         '(ruff-isort ruff))
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
         '(ruff-isort ruff))
-
-  (apheleia-global-mode 1)
   :general
   (custom/leader-keys
     "cf" '(apheleia-format-buffer :which-key "format buffer")
