@@ -57,6 +57,17 @@
                                                                  :inlayHints (:parameterNames (:enabled "all")
                                                                                               :variableTypes (:enabled t)))))
 
+  (defun custom/toggle-inlay-hints ()
+    "Toggle Eglot inlay hints for all buffers."
+    (interactive)
+    (let ((new-state (not (default-value 'eglot-inlay-hints-mode))))
+      (setq-default eglot-inlay-hints-mode new-state)
+      (dolist (buf (buffer-list))
+        (with-current-buffer buf
+          (when (bound-and-true-p eglot--managed-mode)
+            (eglot-inlay-hints-mode (if new-state 1 -1)))))
+      (message "Global Inlay Hints: %s" (if new-state "ON" "OFF"))))
+
   :general
   (:states 'normal
            "gD" 'eglot-find-declaration
@@ -64,7 +75,7 @@
   (custom/leader-keys
     "ca" '(eglot-code-actions :which-key "actions")
     "cr" '(eglot-rename :which-key "rename")
-    "ci" '(eglot-inlay-hints-mode :which-key "inlay hints")))
+    "ci" '(custom/toggle-inlay-hints :which-key "toggle inlay hints")))
 
 (provide 'config-lsp)
 
