@@ -8,6 +8,7 @@
 (use-package treesit
   :ensure nil
   :mode (("\\.tsx\\'" . tsx-ts-mode)
+         ("\\.ts\\'" . typescript-ts-mode)
          ("\\.yml\\'" . yaml-ts-mode)
          ("\\Dockerfile\\'" . dockerfile-ts-mode))
   :preface
@@ -31,7 +32,6 @@
    '((python-mode . python-ts-mode)
      (javascript-mode . js-ts-mode)
      (js-json-mode . json-ts-mode)
-     (typescript-mode . typescript-ts-mode)
      (conf-toml-mode . toml-ts-mode)
      (bash-mode . bash-ts-mode)
      (sh-mode . bash-ts-mode)
