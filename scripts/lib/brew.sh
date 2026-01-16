@@ -23,7 +23,7 @@ install_brew() {
         zoxide \
         eza \
         tealdeer \
-        vim \
+        lazygit \
         mise \
         emacs-plus
 

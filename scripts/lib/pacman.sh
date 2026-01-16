@@ -26,6 +26,7 @@ install_pacman() {
         eza \
         mise \
         tealdeer \
+        lazygit \
         ttc-iosevka \
         ttc-iosevka-aile \
         ttf-nerd-fonts-symbols-mono \
