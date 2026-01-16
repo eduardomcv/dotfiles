@@ -5,6 +5,14 @@
 
 ;;; Code:
 
+(use-package with-editor
+  :config
+  ;; Fix for "Cannot determine a suitable Emacsclient" on MacOS
+  (unless (executable-find "emacsclient")
+    (let ((client-path (expand-file-name "bin/emacsclient" invocation-directory)))
+      (when (file-exists-p client-path)
+        (setq with-editor-emacsclient-executable client-path)))))
+
 (use-package magit
   :commands magit-status
   :custom
