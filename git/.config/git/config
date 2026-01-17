@@ -1,45 +1,45 @@
 [core]
-editor = vim
-autocrlf = input
-longpaths = true
+    editor = vim
+    autocrlf = input
+    longpaths = true
 [fetch]
-prune = true
+    prune = true
 [pull]
-rebase = true
+    rebase = true
 [push]
-autoSetupRemote = true      # Automatically set upstream branch on push
+    autoSetupRemote = true      # Automatically set upstream branch on push
 [color]
-ui = auto
+    ui = auto
 [commit]
-verbose = true              # Include diff comment in commit message template
+    verbose = true              # Include diff comment in commit message template
 [column]
-ui = auto                   # Output in columns when possible
+    ui = auto                   # Output in columns when possible
 [diff]
-algorithm = histogram       # Clearer diffs on moved/edited lines
-colorMoved = plain          # Highlight moved blocks in diffs
-mnemonicPrefix = true       # More intuitive refs in diff output
+    algorithm = histogram       # Clearer diffs on moved/edited lines
+    colorMoved = plain          # Highlight moved blocks in diffs
+    mnemonicPrefix = true       # More intuitive refs in diff output
 [branch]
-sort = -committerdate       # Sort branches by most recent commit first
+    sort = -committerdate       # Sort branches by most recent commit first
 [tag]
-sort = -version:refname     # Sort version numbers as you would expect
+    sort = -version:refname     # Sort version numbers as you would expect
 [rerere]
-enabled = true              # Record and reuse conflict resolutions
-autoupdate = true           # Apply stored conflict resolutions automatically
+    enabled = true              # Record and reuse conflict resolutions
+    autoupdate = true           # Apply stored conflict resolutions automatically
 [alias]
-up = push -u origin HEAD
-co = checkout
-br = branch
-ci = commit
-st = status
-bs = branch -a              # List branches
-rs = remote -v              # List remotes
-# View abbreviated SHA, description, and history graph of the latest 20 commits
-ll = log --pretty=oneline -n 20 --graph --abbrev-commit
-# Clean up deleted branches
-clean-branches = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
-clean = clean-branches
-# View history graph
-graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+    up = push -u origin HEAD
+    co = checkout
+    br = branch
+    ci = commit
+    st = status
+    bs = branch -a              # List branches
+    rs = remote -v              # List remotes
+    # View abbreviated SHA, description, and history graph of the latest 20 commits
+    ll = log --pretty=oneline -n 20 --graph --abbrev-commit
+    # Clean up deleted branches
+    clean-branches = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
+    clean = clean-branches
+    # View history graph
+    graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
 [init]
-defaultBranch = main
+    defaultBranch = main
 [user]
