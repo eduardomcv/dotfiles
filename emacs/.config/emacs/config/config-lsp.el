@@ -58,15 +58,23 @@
                                                                                               :variableTypes (:enabled t)))))
 
   (defun custom/toggle-inlay-hints ()
-    "Toggle Eglot inlay hints for all buffers."
+    "Toggle Eglot inlay hints."
     (interactive)
-    (let ((new-state (not (default-value 'eglot-inlay-hints-mode))))
-      (setq-default eglot-inlay-hints-mode new-state)
-      (dolist (buf (buffer-list))
-        (with-current-buffer buf
-          (when (bound-and-true-p eglot--managed-mode)
-            (eglot-inlay-hints-mode (if new-state 1 -1)))))
-      (message "Global Inlay Hints: %s" (if new-state "ON" "OFF"))))
+    (setq custom/eglot-inlay-hints-enabled (not custom/eglot-inlay-hints-enabled))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and (bound-and-true-p eglot--managed-mode)
+                   (fboundp 'eglot-inlay-hints-mode))
+          (ignore-errors
+            (if custom/eglot-inlay-hints-enabled
+                (progn
+                  (eglot-inlay-hints-mode 1)
+                  (font-lock-flush)
+                  (when (fboundp 'eglot--update-hints)
+                    (eglot--update-hints)))
+              (eglot-inlay-hints-mode -1))))))
+    (message "Global Inlay Hints: %s"
+             (if custom/eglot-inlay-hints-enabled "ON" "OFF")))
 
   :general
   (:states 'normal
