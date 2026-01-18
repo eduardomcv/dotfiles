@@ -166,10 +166,21 @@
   :init
   (minions-mode 1))
 
-(use-package eldoc-box
+(use-package eldoc
+  :ensure nil
   :custom
   (eldoc-echo-area-use-multiline-p nil)
-  (eldoc-documentation-strategy 'eldoc-documentation-compose)
+  (eldoc-documentation-strategy 'eldoc-documentation-enthusiast)
+  :config
+  (defun custom/ensure-flymake-priority ()
+    "Ensure Flymake is the first documentation function."
+    (when (boundp 'flymake-eldoc-function)
+      (remove-hook 'eldoc-documentation-functions #'flymake-eldoc-function t)
+      (add-hook 'eldoc-documentation-functions #'flymake-eldoc-function nil t)))
+
+  (add-hook 'eglot-managed-mode-hook #'custom/ensure-flymake-priority))
+
+(use-package eldoc-box
   :config
   (add-hook 'typescript-ts-mode-hook
             (lambda ()
