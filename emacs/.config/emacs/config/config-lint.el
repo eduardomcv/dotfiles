@@ -5,14 +5,6 @@
 
 ;;; Code:
 
-(use-package add-node-modules-path
-  :ensure t
-  :config
-  (add-hook 'typescript-ts-mode-hook #'add-node-modules-path)
-  (add-hook 'tsx-ts-mode-hook #'add-node-modules-path)
-  (add-hook 'js-ts-mode-hook #'add-node-modules-path)
-  (add-hook 'javascript-mode-hook #'add-node-modules-path))
-
 (use-package flymake
   :ensure nil
   :hook (prog-mode . flymake-mode)
