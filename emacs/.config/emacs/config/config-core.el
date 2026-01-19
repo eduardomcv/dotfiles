@@ -1,9 +1,27 @@
-;;; config-emacs.el --- Base Emacs configuration -*- lexical-binding: t; -*-
+;;; config-core.el --- Core configuration -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;;; Base Emacs configuration.
+;;; Configuration for core functionality, such as package manager, base Emacs configuration,
+;;; garbage collector, shell injection, etc.
 
 ;;; Code:
+
+(require 'package)
+
+(add-to-list 'package-archives
+             '("melpa" . "https://melpa.org/packages/") t)
+
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (unless package-archive-contents
+    (package-refresh-contents))
+  (package-install 'use-package))
+
+(require 'use-package)
+
+(setq use-package-always-ensure t)
+(setq package-native-compile t)
 
 (use-package emacs
   :ensure nil
@@ -59,6 +77,6 @@
   :config
   (exec-path-from-shell-initialize))
 
-(provide 'config-emacs)
+(provide 'config-core)
 
-;;; config-emacs.el ends here
+;;; config-core.el ends here

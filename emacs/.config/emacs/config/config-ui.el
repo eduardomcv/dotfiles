@@ -191,6 +191,21 @@
            :keymaps 'override
            "K" 'eldoc-box-help-at-point))
 
+(use-package xterm-color
+  :ensure t
+  :config
+  (defun custom/magit-process-filter-advice (orig-fn proc string)
+    (funcall orig-fn proc (xterm-color-filter string)))
+
+  (advice-add 'magit-process-filter :around #'custom/magit-process-filter-advice)
+
+  (advice-add 'magit-start-process :around
+              (lambda (orig-fun &rest args)
+                (let ((process-environment
+                       (append process-environment
+                               '("FORCE_COLOR=1" "TERM=xterm-256color"))))
+                  (apply orig-fun args)))))
+
 (provide 'config-ui)
 
 ;;; config-ui.el ends here

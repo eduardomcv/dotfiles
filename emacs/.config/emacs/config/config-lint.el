@@ -5,6 +5,14 @@
 
 ;;; Code:
 
+(use-package add-node-modules-path
+  :ensure t
+  :config
+  (add-hook 'typescript-ts-mode-hook #'add-node-modules-path)
+  (add-hook 'tsx-ts-mode-hook #'add-node-modules-path)
+  (add-hook 'js-ts-mode-hook #'add-node-modules-path)
+  (add-hook 'javascript-mode-hook #'add-node-modules-path))
+
 (use-package flymake
   :ensure nil
   :hook (prog-mode . flymake-mode)
@@ -34,12 +42,6 @@
 
 (use-package flymake-collection
   :hook (after-init . flymake-collection-hook-setup))
-
-(use-package flymake-eslint
-  :hook ((javascript-mode . flymake-eslint-enable)
-         (js-ts-mode . flymake-eslint-enable)
-         (typescript-ts-mode . flymake-eslint-enable)
-         (tsx-ts-mode . flymake-eslint-enable)))
 
 (provide 'config-lint)
 

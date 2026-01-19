@@ -15,8 +15,11 @@
 
 (use-package magit
   :commands magit-status
+  :after xterm-color
   :custom
   (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
+  :config
+  (add-hook 'magit-process-mode-hook #'compilation-minor-mode)
   :general
   (custom/leader-keys
     "gg" '(magit-status :which-key "status")
