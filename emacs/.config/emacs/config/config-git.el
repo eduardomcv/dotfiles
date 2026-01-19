@@ -21,7 +21,7 @@
   :config
   (add-hook 'magit-process-mode-hook #'compilation-minor-mode)
   :general
-  (custom/leader-keys
+  (custom/leader-key
     "gg" '(magit-status :which-key "status")
     "gl" '(magit-log-current :which-key "log")
     "gb" '(magit-blame :which-key "blame")))

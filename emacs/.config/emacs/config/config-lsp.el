@@ -84,7 +84,7 @@
   (:states 'normal
            "gD" 'eglot-find-declaration
            "gI" 'eglot-find-implementation)
-  (custom/leader-keys
+  (custom/leader-key
     "ca" '(eglot-code-actions :which-key "actions")
     "cr" '(eglot-rename :which-key "rename")
     "ci" '(custom/toggle-inlay-hints :which-key "toggle inlay hints")))

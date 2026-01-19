@@ -30,7 +30,7 @@
       (setq-local vterm-buffer-name-string nil)))
 
   :general
-  (custom/leader-keys
+  (custom/leader-key
     "RET" '(custom/spawn-shell :which-key "Spawn a new shell")))
 
 (use-package multi-vterm

@@ -72,7 +72,7 @@
                            empty
                            indentation))
   :general
-  (custom/leader-keys
+  (custom/leader-key
     "cw"  '(whitespace-mode :which-key "toggle whitespace")))
 
 (use-package nerd-icons)

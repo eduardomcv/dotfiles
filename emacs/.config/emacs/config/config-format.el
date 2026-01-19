@@ -17,7 +17,7 @@
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
         '(ruff-isort ruff))
   :general
-  (custom/leader-keys
+  (custom/leader-key
     "cf" '(apheleia-format-buffer :which-key "format buffer")
     "bf" '(apheleia-format-buffer :which-key "format buffer")))
 

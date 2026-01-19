@@ -41,18 +41,24 @@
       (when text
         (consult-ripgrep nil (regexp-quote text)))))
 
+  (defun custom/consult-ripgrep-dwim ()
+    "Run grep on region if visual selection, normal grep otherwise."
+    (interactive)
+    (if (evil-visual-state-p)
+        (custom/consult-ripgrep-region)
+      (call-interactively 'consult-ripgrep)))
+
   :general
-  (custom/leader-keys
-    :states 'normal
-    "sg" '(consult-ripgrep :which-key "grep")
-    "sw" '(custom/consult-ripgrep-at-point :which-key "search word")
-    "sb" '(consult-buffer :which-key "switch buffer")
-    "ss" '(consult-line :which-key "current file")
-    "bl" '(consult-line :which-key "search buffer lines")
-    "sr" '(consult-recent-file :which-key "recent files")
-    "pb" '(consult-project-buffer :which-key "project buffers")
-    :states 'visual
-    "sg" '(custom/consult-ripgrep-region :which-key "grep visual selection")))
+  (custom/leader-key
+   :states '(normal visual)
+   "sg" '(custom/consult-ripgrep-dwim :which-key "grep")
+   :states 'normal
+   "sw" '(custom/consult-ripgrep-at-point :which-key "search word")
+   "sb" '(consult-buffer :which-key "switch buffer")
+   "ss" '(consult-line :which-key "current file")
+   "bl" '(consult-line :which-key "search buffer lines")
+   "sr" '(consult-recent-file :which-key "recent files")
+   "pb" '(consult-project-buffer :which-key "project buffers")))
 
 (use-package orderless
   :custom
@@ -68,9 +74,13 @@
           (?d . "DEPRECATED")
           (?n . "NOTE")))
   :general
-  (custom/leader-keys
-    "st" '(consult-todo-project :which-key "project todos")
-    "bt" '(consult-todo :which-key "search buffer todos")))
+  (custom/leader-key
+   "st" '(consult-todo-project :which-key "project todos")
+   "bt" '(consult-todo :which-key "search buffer todos")))
+
+(use-package wgrep
+  :custom
+  (wgrep-auto-save-buffer t))
 
 (use-package embark
   :init
@@ -90,9 +100,6 @@
   :hook
   (embark-collect-mode . consult-preview-at-point-mode))
 
-(use-package wgrep
-  :custom
-  (wgrep-auto-save-buffer t))
 
 (provide 'config-finder)
 

@@ -2,7 +2,7 @@
 
 ;;; Commentary:
 ;;; Configurations related to editing files.
-;;; E.g. evil mode, undo, which-key, general keybindings, dired.
+;;; E.g. evil mode, undo, which-key, general keybindings, Dired.
 
 ;;; Code:
 
@@ -48,7 +48,7 @@
   :config
   (general-evil-setup)
 
-  (general-create-definer custom/leader-keys
+  (general-create-definer custom/leader-key
     :states '(normal visual insert emacs)
     :keymaps 'override
     :prefix "SPC"
@@ -59,7 +59,7 @@
    "C--" 'text-scale-decrease
    "C-=" 'text-scale-increase)
 
-  (custom/leader-keys
+  (custom/leader-key
     "b" '(:ignore t :which-key "buffer")
     "c" '(:ignore t :which-key "code")
     "g" '(:ignore t :which-key "git")
@@ -115,7 +115,7 @@
    :keymaps 'wdired-mode-map
    "="   'wdired-finish-edit
    "ESC" 'wdired-abort-changes)
-  (custom/leader-keys
+  (custom/leader-key
     "." '(dired-jump :which-key "dired")))
 
 (use-package diredfl
@@ -136,7 +136,7 @@
   :general
   (:states 'normal
            "C-p" 'project-find-file)
-  (custom/leader-keys
+  (custom/leader-key
     "sf" '(project-find-file :which-key "project files")
     "pp" '(project-switch-project :which-key "switch project")))
 
