@@ -5,6 +5,7 @@
 ;;; to provide "fuzzy-finder" utilities.
 
 ;;; Code:
+
 (use-package consult
   :init
   (setq xref-show-xrefs-function #'consult-xref)
@@ -25,14 +26,33 @@
    consult-bookmark consult-recent-file consult-xref
    :preview-key '(:debounce 0.2 any))
 
+  (defun custom/consult-ripgrep-at-point ()
+    "Run consult-ripgrep with the current symbol at point."
+    (interactive)
+    (let ((symbol (thing-at-point 'symbol t)))
+      (consult-ripgrep nil (or symbol ""))))
+
+  (defun custom/consult-ripgrep-region ()
+    "Run consult-ripgrep with the current visual selection."
+    (interactive)
+    (let ((text (when (use-region-p)
+                  (buffer-substring-no-properties (region-beginning) (region-end)))))
+      (deactivate-mark)
+      (when text
+        (consult-ripgrep nil (regexp-quote text)))))
+
   :general
   (custom/leader-keys
+    :states 'normal
     "sg" '(consult-ripgrep :which-key "grep")
+    "sw" '(custom/consult-ripgrep-at-point :which-key "search word")
     "sb" '(consult-buffer :which-key "switch buffer")
     "ss" '(consult-line :which-key "current file")
     "bl" '(consult-line :which-key "search buffer lines")
     "sr" '(consult-recent-file :which-key "recent files")
-    "pb" '(consult-project-buffer :which-key "project buffers")))
+    "pb" '(consult-project-buffer :which-key "project buffers")
+    :states 'visual
+    "sg" '(custom/consult-ripgrep-region :which-key "grep visual selection")))
 
 (use-package orderless
   :custom
