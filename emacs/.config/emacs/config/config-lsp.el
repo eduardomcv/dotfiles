@@ -19,10 +19,33 @@
          (css-ts-mode . eglot-ensure)
          (html-mode . eglot-ensure)
          (html-ts-mode . eglot-ensure))
+  :init
+  (defvar custom/eglot-inlay-hints-enabled nil
+    "Global toggle state for Eglot inlay hints.")
   :custom
   (eglot-autoshutdown t)
   (eglot-sync-connect nil)
   :config
+  (add-hook 'eglot-managed-mode-hook
+            (lambda ()
+              (ignore-errors
+                (if custom/eglot-inlay-hints-enabled
+                    (eglot-inlay-hints-mode 1)
+                  (eglot-inlay-hints-mode -1)))))
+
+  (defun custom/toggle-inlay-hints()
+    "Toggle Eglot inlay hints."
+    (interactive)
+    (setq custom/eglot-inlay-hints-enabled (not custom/eglot-inlay-hints-enabled))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+        (when (and (bound-and-true-p eglot--managed-mode)
+                   (fboundp 'eglot-inlay-hints-mode))
+          (ignore-errors
+            (eglot-inlay-hints-mode (if custom/eglot-inlay-hints-enabled 1 -1))))))
+    (message "Global Inlay Hints: %s"
+             (if custom/eglot-inlay-hints-enabled "ON" "OFF")))
+
   (when (fboundp 'cape-wrap-buster)
     (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
@@ -56,25 +79,6 @@
                                                                  :suggest (:completeFunctionCalls t)
                                                                  :inlayHints (:parameterNames (:enabled "all")
                                                                                               :variableTypes (:enabled t)))))
-
-  (defun custom/toggle-inlay-hints ()
-    "Toggle Eglot inlay hints."
-    (interactive)
-    (setq custom/eglot-inlay-hints-enabled (not custom/eglot-inlay-hints-enabled))
-    (dolist (buf (buffer-list))
-      (with-current-buffer buf
-        (when (and (bound-and-true-p eglot--managed-mode)
-                   (fboundp 'eglot-inlay-hints-mode))
-          (ignore-errors
-            (if custom/eglot-inlay-hints-enabled
-                (progn
-                  (eglot-inlay-hints-mode 1)
-                  (font-lock-flush)
-                  (when (fboundp 'eglot--update-hints)
-                    (eglot--update-hints)))
-              (eglot-inlay-hints-mode -1))))))
-    (message "Global Inlay Hints: %s"
-             (if custom/eglot-inlay-hints-enabled "ON" "OFF")))
 
   :general
   (:states 'normal
