@@ -8,8 +8,8 @@
 (add-to-list 'load-path (expand-file-name "config" user-emacs-directory))
 
 (require 'config-core)
-(require 'config-ui)
 (require 'config-editor)
+(require 'config-ui)
 (require 'config-code)
 (require 'config-lsp)
 (require 'config-format)
