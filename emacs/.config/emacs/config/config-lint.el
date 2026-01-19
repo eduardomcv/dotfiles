@@ -35,6 +35,12 @@
 (use-package flymake-collection
   :hook (after-init . flymake-collection-hook-setup))
 
+(use-package flymake-eslint
+  :hook ((javascript-mode . flymake-eslint-enable)
+         (js-ts-mode . flymake-eslint-enable)
+         (typescript-ts-mode . flymake-eslint-enable)
+         (tsx-ts-mode . flymake-eslint-enable)))
+
 (provide 'config-lint)
 
 ;;; config-lint.el ends here
