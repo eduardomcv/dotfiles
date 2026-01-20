@@ -52,7 +52,7 @@
   (put 'tsx-ts-mode 'eglot-language-id "typescriptreact")
 
   (add-to-list 'eglot-server-programs
-               '((typescript-ts-mode tsx-ts-mode typescript-mode javascript-mode js-jsx-mode) . ("vtsls" "--stdio")))
+               '((typescript-ts-mode typescript-ts-base-mode tsx-ts-mode javascript-mode js-ts-mode js-jsx-mode) . ("vtsls" "--stdio")))
 
   (add-to-list 'eglot-server-programs
                '((python-mode python-ts-mode)
