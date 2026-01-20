@@ -5,6 +5,10 @@
 
 ;;; Code:
 
+(use-package elisp-autofmt
+  :commands (elisp-autofmt-mode elisp-autofmt-buffer)
+  :hook (emacs-lisp-mode . elisp-autofmt-mode))
+
 (use-package apheleia
   :init
   (apheleia-global-mode 1)
@@ -16,6 +20,13 @@
         '(ruff-isort ruff))
   (setf (alist-get 'python-ts-mode apheleia-mode-alist)
         '(ruff-isort ruff))
+
+  (add-to-list 'apheleia-formatters
+               '(elisp-autofmt . ("elisp-autofmt")))
+
+  (add-to-list 'apheleia-mode-alist
+               '(emacs-lisp-mode . elisp-autofmt))
+
   :general
   (custom/leader-key
     "cf" '(apheleia-format-buffer :which-key "format buffer")
