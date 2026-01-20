@@ -5,7 +5,8 @@
 
 ;;; Code:
 
-(add-to-list 'load-path (expand-file-name "config" user-emacs-directory))
+(add-to-list
+ 'load-path (expand-file-name "config" user-emacs-directory))
 
 (require 'config-core)
 (require 'config-editor)
