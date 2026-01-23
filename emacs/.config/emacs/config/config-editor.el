@@ -161,10 +161,20 @@
          (consult-project-buffer "Buffer" ?b)
          (consult-ripgrep "Ripgrep" ?g)
          (magit-project-status "Magit" ?G)))
+
+ (defun project-find-go-module (dir)
+   (when-let ((root (locate-dominating-file dir "go.mod")))
+     (cons 'go-module root)))
+ (cl-defmethod project-root ((project (head go-module)))
+   (cdr project))
+
+ (add-hook 'project-find-functions #'project-find-go-module)
+
  :general (:states 'normal "C-p" 'project-find-file)
  (custom/leader-key
   "sf"
-  '(project-find-file :which-key "project files") "pp"
+  '(project-find-file :which-key "project files")
+  "pp"
   '(project-switch-project :which-key "switch project")))
 
 (provide 'config-editor)

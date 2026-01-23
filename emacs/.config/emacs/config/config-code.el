@@ -63,7 +63,10 @@
  (("\\.tsx\\'" . tsx-ts-mode)
   ("\\.ts\\'" . typescript-ts-mode)
   ("\\.yml\\'" . yaml-ts-mode)
-  ("\\Dockerfile\\'" . dockerfile-ts-mode))
+  ("Dockerfile\\'" . dockerfile-ts-mode)
+  ("\\.rs\\'" . rust-ts-mode)
+  ("\\.go\\'" . go-ts-mode)
+  ("go\\.mod\\'" . go-mod-ts-mode))
  :preface
  (setq
   treesit-language-source-alist
@@ -90,7 +93,10 @@
      "typescript/src")
     (yaml "https://github.com/ikatyang/tree-sitter-yaml")
     (dockerfile
-     "https://github.com/camdencheek/tree-sitter-dockerfile")))
+     "https://github.com/camdencheek/tree-sitter-dockerfile")
+    (go "https://github.com/tree-sitter/tree-sitter-go")
+    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
+    (rust "https://github.com/tree-sitter/tree-sitter-rust")))
  :custom (treesit-font-lock-level 4)
  (major-mode-remap-alist
   '((python-mode . python-ts-mode)

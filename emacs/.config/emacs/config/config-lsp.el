@@ -20,7 +20,8 @@
   (css-mode . eglot-ensure)
   (css-ts-mode . eglot-ensure)
   (html-mode . eglot-ensure)
-  (html-ts-mode . eglot-ensure))
+  (html-ts-mode . eglot-ensure)
+  (go-ts-mode . eglot-ensure))
  :init
  (defvar custom/eglot-inlay-hints-enabled nil
    "Global toggle state for Eglot inlay hints.")
@@ -74,8 +75,22 @@
     .
     ("basedpyright-langserver" "--stdio")))
 
+ (defun eglot-format-buffer-before-save ()
+   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
+
+ (add-hook 'go-mode-hook #'eglot-format-buffer-before-save)
+
+ (add-hook 'before-save-hook
+           (lambda ()
+             (call-interactively 'eglot-code-action-organize-imports))
+           nil t)
+
  (setq-default eglot-workspace-configuration
-               '(:basedpyright
+               '((:gopls
+                  .
+                  ((staticcheck . t) (matcher . "CaseSensitive")))
+
+                 :basedpyright
                  (:analysis
                   (:autoSearchPaths
                    t
