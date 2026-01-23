@@ -27,9 +27,9 @@
  (display-line-numbers-width 3)
  (display-line-numbers-grow-only t)
 
- :config
- (setq-default line-spacing 0.1)
- (add-to-list 'default-frame-alist '(font . "Iosevka-16"))
+ :config (setq-default line-spacing 0.1)
+
+ (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-16"))
  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
  (add-to-list 'default-frame-alist '(ns-appearance . dark))
  (add-to-list 'default-frame-alist '(width . 120))
@@ -38,17 +38,17 @@
 
  (defun custom/set-font-faces ()
    (set-face-attribute 'default nil
-                       :font "Iosevka"
+                       :font "Iosevka Nerd Font"
                        :height 160
                        :weight 'regular)
 
    (set-face-attribute 'variable-pitch nil
-                       :font "Iosevka Aile"
+                       :font "Iosevka Nerd Font Propo"
                        :height 160
                        :weight 'regular)
 
    (set-face-attribute 'fixed-pitch nil
-                       :font "Iosevka Term"
+                       :font "IosevkaTerm Nerd Font Mono"
                        :height 160
                        :weight 'regular)
 
@@ -61,25 +61,10 @@
       (lambda (frame)
         (with-selected-frame frame
           (custom/set-font-faces))))
-   (custom/set-font-faces)))
+   (custom/set-font-faces))
 
-(use-package
- whitespace
- :ensure nil
- :hook (before-save . whitespace-cleanup)
- :config
- (setq whitespace-style
-       '(face
-         tabs
-         spaces
-         trailing
-         space-before-tab
-         newline
-         empty
-         indentation))
- :general
- (custom/leader-key
-  "cw" '(whitespace-mode :which-key "toggle whitespace")))
+ ;; Set nerd icons to 2 characters wide to prevent cut-off
+ (set-char-table-range char-width-table '(#xe000 . #xf8ff) 2))
 
 (use-package nerd-icons)
 
@@ -140,6 +125,24 @@
     "<******>"
     "++"
     "+++")))
+
+(use-package
+ whitespace
+ :ensure nil
+ :hook (before-save . whitespace-cleanup)
+ :config
+ (setq whitespace-style
+       '(face
+         tabs
+         spaces
+         trailing
+         space-before-tab
+         newline
+         empty
+         indentation))
+ :general
+ (custom/leader-key
+  "cw" '(whitespace-mode :which-key "toggle whitespace")))
 
 (use-package
  catppuccin-theme

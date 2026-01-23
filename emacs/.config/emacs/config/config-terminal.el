@@ -7,19 +7,23 @@
 
 (use-package
  vterm
+
  :custom
  (vterm-shell (or (executable-find "zsh") shell-file-name))
  (vterm-max-scrollback 10000)
  (vterm-timer-delay 0.01)
  (vterm-kill-buffer-on-exit t)
 
- :config (define-key vterm-mode-map [return] #'vterm-send-return)
-
- (add-hook
-  'vterm-mode-hook
+ :hook
+ (vterm-mode
+  .
   (lambda ()
+    (buffer-face-set 'fixed-pitch)
+    (setq-local line-spacing 0)
     (display-line-numbers-mode -1)
     (hl-line-mode -1)))
+
+ :config (define-key vterm-mode-map [return] #'vterm-send-return)
 
  (defun custom/spawn-shell (name)
    "Create a new vterm buffer called NAME."
