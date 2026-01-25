@@ -7,6 +7,8 @@
 
 (use-package
  eglot
+ :ensure nil
+
  :hook
  ((python-mode . eglot-ensure)
   (python-ts-mode . eglot-ensure)
@@ -89,9 +91,8 @@
            nil t)
 
  (setq-default eglot-workspace-configuration
-               '((:gopls
-                  .
-                  ((staticcheck . t) (matcher . "CaseSensitive")))
+               '(:gopls
+                 (:staticcheck t :matcher "CaseSensitive")
 
                  :basedpyright
                  (:analysis
