@@ -10,7 +10,7 @@
  :ensure nil
  :custom
  (org-directory "~/Repos/Org")
- (org-agenda-files '("~/Repos/Org/agenda.org"))
+ (org-agenda-files (list org-directory))
  (org-edit-src-content-indentation 0)
  (org-src-tab-acts-natively t)
  (org-src-fontify-natively t)
