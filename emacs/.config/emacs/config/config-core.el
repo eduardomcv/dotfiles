@@ -66,6 +66,8 @@
  (mouse-wheel-progressive-speed nil)
  (mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 6)))
 
+ (inhibit-startup-message t)
+
  :config
  (setq-default indent-tabs-mode nil)
  (setq-default tab-width 4)
