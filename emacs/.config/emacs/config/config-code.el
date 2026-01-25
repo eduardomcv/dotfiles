@@ -76,7 +76,8 @@
   ("\\.rs\\'" . rust-ts-mode)
   ("\\.go\\'" . go-ts-mode)
   ("go\\.mod\\'" . go-mod-ts-mode)
-  ("\\.kt\\'" . kotlin-ts-mode))
+  ("\\.kt\\'" . kotlin-ts-mode)
+  ("\\.kts\\'" . kotlin-ts-mode))
  :preface
  (setq
   treesit-language-source-alist
