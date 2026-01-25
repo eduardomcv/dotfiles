@@ -57,6 +57,15 @@
  :bind ("C-c p" . cape-prefix-map))
 
 (use-package
+ markdown-mode
+ :mode
+ (("README\\.md\\'" . gfm-mode) ("\\.md\\'" . markdown-mode))
+ :init (setq markdown-command "pandoc")
+ :custom (markdown-fontify-code-blocks-natively t))
+
+(use-package kotlin-ts-mode)
+
+(use-package
  treesit
  :ensure nil
  :mode
@@ -66,7 +75,8 @@
   ("Dockerfile\\'" . dockerfile-ts-mode)
   ("\\.rs\\'" . rust-ts-mode)
   ("\\.go\\'" . go-ts-mode)
-  ("go\\.mod\\'" . go-mod-ts-mode))
+  ("go\\.mod\\'" . go-mod-ts-mode)
+  ("\\.kt\\'" . kotlin-ts-mode))
  :preface
  (setq
   treesit-language-source-alist
@@ -96,7 +106,9 @@
      "https://github.com/camdencheek/tree-sitter-dockerfile")
     (go "https://github.com/tree-sitter/tree-sitter-go")
     (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-    (rust "https://github.com/tree-sitter/tree-sitter-rust")))
+    (rust "https://github.com/tree-sitter/tree-sitter-rust")
+    (kotlin "https://github.com/fwcd/tree-sitter-kotlin")
+    (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
  :custom (treesit-font-lock-level 4)
  (major-mode-remap-alist
   '((python-mode . python-ts-mode)
@@ -107,9 +119,10 @@
     (sh-mode . bash-ts-mode)
     (css-mode . css-ts-mode)
     (json-mode . json-ts-mode)
-    (html-mode . html-ts-mode)))
+    (html-mode . html-ts-mode)
+    (ruby-mode . ruby-ts-mode)))
  :config
- (defun custom/install-treesit-grammars ()
+ (defun custom/treesit-install-grammars ()
    "Install all tree-sitter grammars defined in `treesit-language-source-alist`."
    (interactive)
    (dolist (grammar treesit-language-source-alist)
@@ -139,13 +152,6 @@
  :config (yas-reload-all))
 
 (use-package yasnippet-snippets :after yasnippet)
-
-(use-package
- markdown-mode
- :mode
- (("README\\.md\\'" . gfm-mode) ("\\.md\\'" . markdown-mode))
- :init (setq markdown-command "pandoc")
- :custom (markdown-fontify-code-blocks-natively t))
 
 (provide 'config-code)
 
