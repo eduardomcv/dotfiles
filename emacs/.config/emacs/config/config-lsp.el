@@ -21,6 +21,9 @@
   (css-ts-mode . eglot-ensure)
   (html-mode . eglot-ensure)
   (html-ts-mode . eglot-ensure)
+  (ruby-mode . eglot-ensure)
+  (ruby-ts-mode . eglot-ensure)
+  (kotlin-ts-mode . eglot-ensure)
   (go-ts-mode . eglot-ensure))
  :init
  (defvar custom/eglot-inlay-hints-enabled nil
