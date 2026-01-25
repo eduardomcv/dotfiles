@@ -6,6 +6,31 @@
 
 ;;; Code:
 
+(use-package diminish)
+
+(use-package
+ gcmh
+ :diminish gcmh-mode
+ :init (gcmh-mode 1)
+ :custom
+ (gcmh-idle-delay 'auto)
+ (gcmh-auto-idle-delay-factor 10)
+ (gcmh-high-cons-threshold (* 128 1024 1024)))
+
+(use-package
+ no-littering
+ :config
+ (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+ (setq backup-directory-alist
+       `(("." . ,(no-littering-expand-var-file-name "backup/"))))
+ (when (file-exists-p custom-file)
+   (load custom-file 'noerror)))
+
+(use-package
+ exec-path-from-shell
+ :if (or (daemonp) (memq window-system '(mac ns x)))
+ :config (exec-path-from-shell-initialize))
+
 (use-package
  emacs
  :ensure nil
@@ -21,8 +46,6 @@
 
  :custom (read-process-output-max (* 1024 1024))
 
- (gc-cons-threshold 100000000)
-
  (version-control t)
  (delete-old-versions t)
  (kept-new-versions 6)
@@ -32,32 +55,22 @@
 
  (browse-url-browser-function 'browse-url-default-browser)
 
+ (use-short-answers t)
+
+ (visible-bell nil)
+ (ring-bell-function 'ignore)
+
+ (delete-by-moving-to-trash t)
+
+ (scroll-conservatively 101)
+ (mouse-wheel-progressive-speed nil)
+ (mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 6)))
+
  :config
  (setq-default indent-tabs-mode nil)
  (setq-default tab-width 4)
 
  (run-at-time nil 300 'recentf-save-list))
-
-(use-package
- gcmh
- :init (gcmh-mode 1)
- :custom
- (gcmh-idle-delay 0.5)
- (gcmh-high-cons-threshold (* 100 1024 1024)))
-
-(use-package
- no-littering
- :config
- (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
- (setq backup-directory-alist
-       `(("." . ,(no-littering-expand-var-file-name "backup/"))))
- (when (file-exists-p custom-file)
-   (load custom-file 'noerror)))
-
-(use-package
- exec-path-from-shell
- :if (or (daemonp) (memq window-system '(mac ns x)))
- :config (exec-path-from-shell-initialize))
 
 (provide 'config-core)
 
