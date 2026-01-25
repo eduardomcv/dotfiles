@@ -163,7 +163,11 @@
 
 (use-package
  dashboard
- :init (setq initial-buffer-choice nil)
+
+ :init
+ (setq initial-buffer-choice
+       (lambda () (get-buffer-create dashboard-buffer-name)))
+
  :custom
  (dashboard-center-content t)
  (dashboard-vertically-center-content t)
@@ -190,12 +194,7 @@
  (setq dashboard-startup-banner
        (expand-file-name "banner.txt" user-emacs-directory))
 
- (dashboard-setup-startup-hook)
-
- (add-hook
-  'server-after-make-frame-hook
-  (lambda ()
-    (switch-to-buffer (get-buffer-create dashboard-buffer-name)))))
+ (dashboard-setup-startup-hook))
 
 (use-package
  hl-todo
