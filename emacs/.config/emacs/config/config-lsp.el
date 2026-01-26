@@ -30,7 +30,10 @@
  :init
  (defvar custom/eglot-inlay-hints-enabled nil
    "Global toggle state for Eglot inlay hints.")
- :custom (eglot-autoshutdown t) (eglot-sync-connect nil)
+ :custom
+ (eglot-autoshutdown t)
+ (eglot-sync-connect nil)
+ (eglot-code-action-indicator " 󱠀 ")
  :config
  (add-hook
   'eglot-managed-mode-hook
