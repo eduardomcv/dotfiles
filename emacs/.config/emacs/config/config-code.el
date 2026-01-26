@@ -33,7 +33,8 @@
   (ruby-mode . eglot-ensure)
   (ruby-ts-mode . eglot-ensure)
   (kotlin-ts-mode . eglot-ensure)
-  (go-ts-mode . eglot-ensure))
+  (go-ts-mode . eglot-ensure)
+  (dart-mode . eglot-ensure))
  :init
  (defvar custom/eglot-inlay-hints-enabled nil
    "Global toggle state for Eglot inlay hints.")
@@ -164,6 +165,10 @@
   "ci"
   '(custom/toggle-inlay-hints :which-key "toggle inlay hints")))
 
+(use-package dart-mode :mode (("\\.dart\\'" . dart-mode)))
+
+(use-package yaml-mode)
+
 (use-package
  corfu
  :init (global-corfu-mode)
@@ -223,7 +228,6 @@
  :mode
  (("\\.tsx\\'" . tsx-ts-mode)
   ("\\.ts\\'" . typescript-ts-mode)
-  ("\\.yml\\'" . yaml-ts-mode)
   ("Dockerfile\\'" . dockerfile-ts-mode)
   ("\\.rs\\'" . rust-ts-mode)
   ("\\.go\\'" . go-ts-mode)
@@ -273,7 +277,8 @@
     (css-mode . css-ts-mode)
     (json-mode . json-ts-mode)
     (html-mode . html-ts-mode)
-    (ruby-mode . ruby-ts-mode)))
+    (ruby-mode . ruby-ts-mode)
+    (yaml-mode . yaml-ts-mode)))
  :config
  (defun custom/treesit-install-grammars ()
    "Install all tree-sitter grammars defined in `treesit-language-source-alist`."
