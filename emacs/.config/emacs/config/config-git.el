@@ -49,7 +49,7 @@
     (unknown . "│")
     (ignored . "│")))
 
- :config (diff-hl-flydiff-mode) (diff-hl-margin-mode)
+ :config (diff-hl-flydiff-mode)
 
  (set-face-attribute 'diff-hl-insert nil
                      :inherit 'diff-added

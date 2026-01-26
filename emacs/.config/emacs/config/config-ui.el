@@ -27,7 +27,9 @@
  (display-line-numbers-width 3)
  (display-line-numbers-grow-only t)
 
- :config (setq-default line-spacing 0.1)
+ :config
+ (setq-default line-spacing 0.1)
+ (setq-default left-margin-width 3)
 
  (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-16"))
  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
