@@ -14,7 +14,7 @@
 (require 'config-code)
 (require 'config-lsp)
 (require 'config-format)
-(require 'config-lint)
+(require 'config-diagnostics)
 (require 'config-git)
 (require 'config-finder)
 (require 'config-org)
