@@ -12,7 +12,6 @@
 (require 'config-editor)
 (require 'config-ui)
 (require 'config-code)
-(require 'config-lsp)
 (require 'config-format)
 (require 'config-diagnostics)
 (require 'config-git)
