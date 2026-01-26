@@ -16,7 +16,6 @@
  (set-face-attribute 'flymake-warning nil
                      :underline '(:style wave :color "#FAE3B0"))
  (set-face-attribute 'flymake-note nil
-                     :height 0.6
                      :underline '(:style wave :color "#96CDFB"))
 
  :general
