@@ -245,6 +245,7 @@
 
 (use-package
  eldoc-box
+
  :config
  (add-hook
   'typescript-ts-mode-hook
@@ -252,11 +253,29 @@
     (add-hook
      'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors
      0 t)))
- (set-face-attribute
-  'eldoc-box-border nil
-  :background (catppuccin-color 'surface2))
+
+ (set-face-attribute 'eldoc-box-border nil
+                     :background (catppuccin-color 'surface2))
+
+ (defun custom/eldoc-box-scroll-up ()
+   (interactive)
+   (eldoc-box-scroll-up 4))
+
+ (defun custom/eldoc-box-scroll-down ()
+   (interactive)
+   (eldoc-box-scroll-down 4))
+
  :general
- (:states 'normal :keymaps 'override "K" 'eldoc-box-help-at-point))
+ (:states
+  'normal
+  :keymaps
+  'override
+  "K"
+  'eldoc-box-help-at-point
+  "M-j"
+  'custom/eldoc-box-scroll-up
+  "M-k"
+  'custom/eldoc-box-scroll-down))
 
 (use-package
  xterm-color
