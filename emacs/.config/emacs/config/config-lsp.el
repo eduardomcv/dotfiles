@@ -80,6 +80,10 @@
     .
     ("basedpyright-langserver" "--stdio")))
 
+ (add-to-list
+  'eglot-server-programs
+  '((kotlin-mode kotlin-ts-mode) . ("kotlin-lsp" "--stdio")))
+
  (defun eglot-format-buffer-before-save ()
    (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
 
