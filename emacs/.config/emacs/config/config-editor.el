@@ -73,8 +73,6 @@
   '(:ignore t :which-key "project")
   "s"
   '(:ignore t :which-key "search")
-  "."
-  '(find-file :which-key "navigate files")
   "="
   '(indent-region :which-key "indent region")
   "t"
@@ -143,7 +141,7 @@
   'wdired-finish-edit
   "ESC"
   'wdired-abort-changes)
- (custom/leader-key "." '(dired-jump :which-key "dired")))
+ (custom/leader-key "e" '(dired-jump :which-key "dired")))
 
 (use-package diredfl :hook (dired-mode . diredfl-mode))
 

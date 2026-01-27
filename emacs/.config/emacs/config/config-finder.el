@@ -118,7 +118,7 @@
     nil
     (window-parameters (mode-line-format . none))))
  :bind
- (("C-q" . embark-act)
+ (("C-." . embark-act)
   ("C-;" . embark-dwim)
   ("C-h B" . embark-bindings)))
 
