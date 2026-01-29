@@ -230,6 +230,7 @@
  :custom
  (eldoc-echo-area-use-multiline-p nil)
  (eldoc-documentation-strategy 'eldoc-documentation-enthusiast)
+ (eldoc-idle-delay 0.1)
  :config
  (defun custom/ensure-flymake-priority ()
    "Ensure Flymake is the first documentation function."
