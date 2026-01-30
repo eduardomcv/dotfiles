@@ -73,23 +73,18 @@
  (when (fboundp 'cape-wrap-buster)
    (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
 
- (put 'tsx-ts-mode 'eglot-language-id "typescriptreact")
-
  (add-to-list
   'eglot-server-programs
-  '((typescript-ts-mode
-     typescript-ts-base-mode
-     tsx-ts-mode
-     javascript-mode
-     js-ts-mode
-     js-jsx-mode)
-    . ("vtsls" "--stdio")))
-
- (add-to-list
-  'eglot-server-programs
-  '((python-mode python-ts-mode)
+  `(((js-mode :language-id "javascript")
+     (js-ts-mode :language-id "javascript")
+     (tsx-ts-mode :language-id "typescriptreact")
+     (typescript-ts-mode :language-id "typescript")
+     (typescript-mode :language-id "typescript"))
     .
-    ("basedpyright-langserver" "--stdio")))
+    ,(eglot-alternatives
+      '(("rass ts")
+        ("typescript-language-server" "--stdio")
+        ("vtsls" "--stdio")))))
 
  (add-to-list
   'eglot-server-programs
