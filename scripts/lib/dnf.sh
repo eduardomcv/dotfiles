@@ -1,29 +1,42 @@
 #!/bin/bash
 
 check_rpmfusion() {
-    # Check if rpmfusion is enabled
-    dnf repolist | grep -q rpmfusion*
+    echo "Checking if RPM Fusion is enabled..."
+    dnf repolist | grep -q rpmfusion-free
 
     if [[ $? == 1 ]]; then
-        # openh264 needs to be explicitly enabled
         sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
         sudo dnf install -y \
             https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
             https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+    else
+        echo "RPM Fusion is already enabled!"
     fi
 }
 
 enable_copr() {
-    # enable fedora copr repositories
-    # yes, it has do be one command at a time.
-    # considering putting this on a loop and read repo names from a txt file.
-    sudo dnf copr enable -y atim/lazygit
-    sudo dnf copr enable -y alternateved/eza
-    sudo dnf copr enable -y peterwu/iosevka
-    sudo dnf copr enable -y scottames/ghostty
-    sudo dnf copr enable -y sneexy/zen-browser
-    sudo dnf copr enable -y jdxcode/mise
+    local COPR_NAMES=(
+     "atim/lazygit"
+     "alternateved/eza"
+     "sneexy/zen-browser"
+     "jdxcode/mise"
+     "peterwu/iosevka"
+     "che/nerd-fonts"
+    )
+
+    echo "Checking if COPRs are enabled..."
+    dnf copr list | grep -q "$COPR_NAMES[-1]"
+
+
+    if [[ $? == 1 ]]; then
+        for name in "${COPR_NAMES[@]}"
+        do
+            sudo dnf copr enable -y "$name"
+        done
+    else
+        echo "COPRs are already enabled!"
+    fi
 }
 
 install_dnf() {
@@ -48,18 +61,24 @@ install_dnf() {
             gcc-c++ \
             libtool \
             libvterm-devel \
+            wl-clipboard \
+            gnome-tweaks \
+            gnome-extensions-app \
+            gnome-themes-extra \
+            zsh \
             stow \
             fd-find \
             ripgrep \
             bat \
-            eza \
             fzf \
-            zsh \
-            lazygit \
-            mise \
-            iosevka-fonts \
-            iosevka-aile-fonts \
-            ghostty \
+            tldr \
+            zoxide \
             emacs \
-            zen-browser
+            mise \
+            lazygit \
+            eza \
+            zen-browser \
+            iosevka-fonts \
+            iosevka-term-fonts \
+            nerd-fonts
 }
