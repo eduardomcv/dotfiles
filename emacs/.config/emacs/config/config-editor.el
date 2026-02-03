@@ -75,6 +75,14 @@
   '(:ignore t :which-key "search")
   "="
   '(indent-region :which-key "indent region")
+  "h"
+  '(evil-window-left :which-key "move cursor to left window")
+  "j"
+  '(evil-window-down :which-key "move cursor to window below")
+  "k"
+  '(evil-window-up :which-key "move cursor to window above")
+  "l"
+  '(evil-window-right :which-key "move cursor to right window")
   "t"
   '(:ignore t :which-key "tab")
   "tn"
