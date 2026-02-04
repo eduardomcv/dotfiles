@@ -22,14 +22,13 @@ install_brew() {
         fzf \
         zoxide \
         eza \
-        tealdeer \
+        tlrc \
         lazygit \
         mise \
         emacs-plus
 
     brew install --cask \
         font-iosevka \
-        font-iosevka-aile \
         font-symbols-only-nerd-font \
         thunderbird \
         zen
