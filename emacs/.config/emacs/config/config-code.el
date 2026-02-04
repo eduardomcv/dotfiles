@@ -164,6 +164,8 @@
 
 (use-package yaml-mode)
 
+(use-package dotenv-mode :mode (("\\.env\\..*\\'" . dotenv-mode)))
+
 (use-package
  corfu
  :init (global-corfu-mode)
