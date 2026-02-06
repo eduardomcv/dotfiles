@@ -21,13 +21,10 @@ enable_copr() {
      "alternateved/eza"
      "sneexy/zen-browser"
      "jdxcode/mise"
-     "peterwu/iosevka"
-     "che/nerd-fonts"
     )
 
     echo "Checking if COPRs are enabled..."
     dnf copr list | grep -q "$COPR_NAMES[-1]"
-
 
     if [[ $? == 1 ]]; then
         for name in "${COPR_NAMES[@]}"
@@ -63,7 +60,6 @@ install_dnf() {
             libvterm-devel \
             wl-clipboard \
             gnome-tweaks \
-            gnome-extensions-app \
             gnome-themes-extra \
             zsh \
             stow \
@@ -77,8 +73,5 @@ install_dnf() {
             mise \
             lazygit \
             eza \
-            zen-browser \
-            iosevka-fonts \
-            iosevka-term-fonts \
-            nerd-fonts
+            zen-browser
 }
