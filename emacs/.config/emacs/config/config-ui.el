@@ -31,7 +31,7 @@
  (setq-default line-spacing 0.1)
  (setq-default left-margin-width 3)
 
- (add-to-list 'default-frame-alist '(font . "Iosevka-16"))
+ (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-16"))
  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
  (add-to-list 'default-frame-alist '(ns-appearance . dark))
  (add-to-list 'default-frame-alist '(width . 120))
@@ -40,17 +40,17 @@
 
  (defun custom/set-font-faces ()
    (set-face-attribute 'default nil
-                       :font "Iosevka"
+                       :font "Iosevka Nerd Font"
                        :height 160
                        :weight 'regular)
 
    (set-face-attribute 'variable-pitch nil
-                       :font "Iosevka"
+                       :font "Iosevka Nerd Font Propo"
                        :height 160
                        :weight 'regular)
 
    (set-face-attribute 'fixed-pitch nil
-                       :font "Iosevka Term"
+                       :font "IosevkaTerm Nerd Font"
                        :height 160
                        :weight 'regular)
 
