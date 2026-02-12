@@ -87,7 +87,8 @@
  orderless
  :custom (completion-styles '(orderless basic))
  (completion-category-overrides
-  '((file (styles basic partial-completion)))))
+  '((file (styles basic partial-completion))))
+ (orderless-component-separator "[ &]"))
 
 (use-package
  consult-todo

@@ -199,13 +199,29 @@
  (company-selection-wrap-around t)
  (company-backends
   '((company-capf :with company-yasnippet)
-    company-files company-dabbrev))
+    company-files
+    company-dabbrev))
+ :config
+ (defun custom/company-abort-and-exit-insert ()
+   "Abort company completion and return to normal state."
+   (interactive)
+   (company-abort)
+   (evil-normal-state))
+
+ (defun custom/just-one-face (fn &rest args)
+   (let ((orderless-match-faces [completions-common-part]))
+     (apply fn args)))
+
+ (advice-add 'company-capf--candidates :around #'custom/just-one-face)
+
  :general
  (:states 'insert "C-SPC" 'company-manual-begin)
  (:keymaps
   'company-active-map
+  "SPC"
+  'company-insert-separator
   "<escape>"
-  'company-abort
+  'custom/company-abort-and-exit-insert
   "C-SPC"
   'company-abort
   "TAB"
