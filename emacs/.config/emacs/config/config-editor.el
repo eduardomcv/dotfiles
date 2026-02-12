@@ -7,6 +7,13 @@
 ;;; Code:
 
 (use-package
+ emacs
+ :ensure nil
+ :custom
+ (tab-always-indent 'complete)
+ (text-mode-ispell-word-completion nil))
+
+(use-package
  undo-fu
  :custom
  (undo-limit 67108864)
@@ -182,6 +189,35 @@
   '(project-find-file :which-key "project files")
   "pp"
   '(project-switch-project :which-key "switch project")))
+
+(use-package
+ company
+ :init (global-company-mode)
+ :custom
+ (company-minimum-prefix-length 2)
+ (company-tooltip-align-annotations t)
+ (company-selection-wrap-around t)
+ (company-backends
+  '((company-capf :with company-yasnippet)
+    company-files company-dabbrev))
+ :general
+ (:states 'insert "C-SPC" 'company-manual-begin)
+ (:keymaps
+  'company-active-map
+  "<escape>"
+  'company-abort
+  "C-SPC"
+  'company-abort
+  "TAB"
+  'company-complete-selection
+  [tab]
+  'company-complete-selection
+  "C-j"
+  'company-select-next
+  "C-k"
+  'company-select-previous))
+
+(use-package company-box :hook (company-mode . company-box-mode))
 
 (provide 'config-editor)
 

@@ -152,6 +152,11 @@
  :config (load-theme 'catppuccin :no-confirm))
 
 (use-package
+ eldoc
+ :ensure nil
+ :custom (eldoc-echo-area-use-multiline-p nil))
+
+(use-package
  vertico
  :init (vertico-mode)
  :bind

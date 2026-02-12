@@ -13,7 +13,6 @@
 (require 'config-ui)
 (require 'config-code)
 (require 'config-format)
-(require 'config-diagnostics)
 (require 'config-git)
 (require 'config-finder)
 (require 'config-org)
