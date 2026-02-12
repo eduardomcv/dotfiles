@@ -11,13 +11,15 @@
  :ensure nil
  :hook (prog-mode . flymake-mode)
  :config
- (set-face-attribute 'flymake-error nil
-                     :underline '(:style wave :color "#F28FAD"))
- (set-face-attribute 'flymake-warning nil
-                     :underline '(:style wave :color "#FAE3B0"))
- (set-face-attribute 'flymake-note nil
-                     :underline '(:style wave :color "#96CDFB"))
-
+ (set-face-attribute
+  'flymake-error nil
+  :underline '(:style wave :color "#F28FAD"))
+ (set-face-attribute
+  'flymake-warning nil
+  :underline '(:style wave :color "#FAE3B0"))
+ (set-face-attribute
+  'flymake-note nil
+  :underline '(:style wave :color "#96CDFB"))
  :general
  (:states
   'normal
