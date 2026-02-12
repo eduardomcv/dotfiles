@@ -37,4 +37,7 @@
 
 (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
 
+;; Use plists for deserialization (better performance)
+(setenv "LSP_USE_PLISTS" "true")
+
 ;;; early-init.el ends here

@@ -13,157 +13,106 @@
  (text-mode-ispell-word-completion nil))
 
 (use-package
- eglot
- :ensure nil
-
+ lsp-mode
+ :init (setq lsp-keymap-prefix "C-c l")
  :hook
- ((python-mode . eglot-ensure)
-  (python-ts-mode . eglot-ensure)
-  (javascript-mode . eglot-ensure)
-  (js-ts-mode . eglot-ensure)
-  (typescript-ts-mode . eglot-ensure)
-  (tsx-ts-mode . eglot-ensure)
-  (yaml-ts-mode . eglot-ensure)
-  (js-json-mode . eglot-ensure)
-  (json-ts-mode . eglot-ensure)
-  (css-mode . eglot-ensure)
-  (css-ts-mode . eglot-ensure)
-  (html-mode . eglot-ensure)
-  (html-ts-mode . eglot-ensure)
-  (ruby-mode . eglot-ensure)
-  (ruby-ts-mode . eglot-ensure)
-  (kotlin-ts-mode . eglot-ensure)
-  (go-ts-mode . eglot-ensure)
-  (dart-mode . eglot-ensure))
- :init
- (defvar custom/eglot-inlay-hints-enabled nil
-   "Global toggle state for Eglot inlay hints.")
- :custom
- (eglot-autoshutdown t)
- (eglot-sync-connect nil)
- (eglot-code-action-indicator " 󱠀 ")
+ ((javascript-mode . lsp-deferred)
+  (js-ts-mode . lsp-deferred)
+  (typescript-ts-mode . lsp-deferred)
+  (tsx-ts-mode . lsp-deferred)
+  (yaml-ts-mode . lsp-deferred)
+  (js-json-mode . lsp-deferred)
+  (json-ts-mode . lsp-deferred)
+  (css-mode . lsp-deferred)
+  (css-ts-mode . lsp-deferred)
+  (html-mode . lsp-deferred)
+  (html-ts-mode . lsp-deferred)
+  (ruby-mode . lsp-deferred)
+  (ruby-ts-mode . lsp-deferred)
+  (kotlin-ts-mode . lsp-deferred)
+  (go-ts-mode . lsp-deferred)
+  (dart-mode . lsp-deferred)
+  (lsp-mode . lsp-enable-which-key-integration))
+
+ :commands (lsp lsp-deferred)
+
+ :custom (lsp-idle-delay 0.500)
+
+ (lsp-go-gopls-opts '((matcher . "CaseSensitive") (staticcheck . t)))
+
+ (lsp-javascript-update-imports-on-file-move-enabled "always")
+ (lsp-javascript-suggest-complete-function-calls t)
+ (lsp-javascript-implicit-project-config-check-js t)
+
+ (lsp-typescript-update-imports-on-file-move-enabled "always")
+ (lsp-typescript-suggest-complete-function-calls t)
+
  :config
- (add-hook
-  'eglot-managed-mode-hook
-  (lambda ()
-    (ignore-errors
-      (if custom/eglot-inlay-hints-enabled
-          (eglot-inlay-hints-mode 1)
-        (eglot-inlay-hints-mode -1)))))
+ (lsp-register-custom-settings
+  '(("javascript.preferences.quoteStyle" "auto")
+    ("typescript.preferences.quoteStyle" "auto")
+    ("typescript.preferences.includePackageJsonAutoImports" "on")
+    ("typescript.preferences.importModuleSpecifier" "non-relative")))
 
- (defun custom/toggle-inlay-hints ()
-   "Toggle Eglot inlay hints."
-   (interactive)
-   (setq custom/eglot-inlay-hints-enabled
-         (not custom/eglot-inlay-hints-enabled))
-   (dolist (buf (buffer-list))
-     (with-current-buffer buf
-       (when (and (bound-and-true-p eglot--managed-mode)
-                  (fboundp 'eglot-inlay-hints-mode))
-         (ignore-errors
-           (eglot-inlay-hints-mode
-            (if custom/eglot-inlay-hints-enabled
-                1
-              -1))))))
-   (message "Global Inlay Hints: %s"
-            (if custom/eglot-inlay-hints-enabled
-                "ON"
-              "OFF")))
-
- (when (fboundp 'cape-wrap-buster)
-   (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster))
-
- (add-to-list
-  'eglot-server-programs
-  `(((js-mode :language-id "javascript")
-     (js-ts-mode :language-id "javascript")
-     (tsx-ts-mode :language-id "typescriptreact")
-     (typescript-ts-mode :language-id "typescript")
-     (typescript-mode :language-id "typescript"))
-    .
-    ,(eglot-alternatives
-      '(("rass ts")
-        ("typescript-language-server" "--stdio")
-        ("vtsls" "--stdio")))))
-
- (add-to-list
-  'eglot-server-programs
-  `((kotlin-mode kotlin-ts-mode)
-    .
-    ,(eglot-alternatives
-      '(("kotlin-language-server") ("kotlin-lsp" "--stdio")))))
-
- (defun eglot-format-buffer-before-save ()
-   (add-hook 'before-save-hook #'eglot-format-buffer -10 t))
-
- (add-hook 'go-mode-hook #'eglot-format-buffer-before-save)
-
- (add-hook 'before-save-hook
-           (lambda ()
-             (call-interactively 'eglot-code-action-organize-imports))
-           nil t)
-
- (setq-default eglot-workspace-configuration
-               '(:gopls
-                 (:staticcheck t :matcher "CaseSensitive")
-
-                 :basedpyright
-                 (:analysis
-                  (:autoSearchPaths
-                   t
-                   :useLibraryCodeForTypes t
-                   :diagnosticMode "openFilesOnly"))
-
-                 :vtsls
-                 (:autoUseWorkspaceTsdk
-                  t
-                  :enableMoveToFileCodeAction t
-                  :experimental
-                  (:completion (:enableServerSideFuzzyMatch t)))
-
-                 :typescript
-                 (:maxInlayHintLength
-                  30
-                  :updateImportsOnFileMove (:enabled "always")
-                  :suggest (:completeFunctionCalls t)
-                  :preferences
-                  (:includePackageJsonAutoImports
-                   "on"
-                   :importModuleSpecifier "non-relative")
-                  :inlayHints
-                  (:parameterNames
-                   (:enabled "all")
-                   :variableTypes (:enabled t)))
-
-                 :javascript
-                 (:maxInlayHintLength
-                  30
-                  :implicitProjectConfig (:checkJs t)
-                  :updateImportsOnFileMove (:enabled "always")
-                  :suggest (:completeFunctionCalls t)
-                  :inlayHints
-                  (:parameterNames
-                   (:enabled "all")
-                   :variableTypes (:enabled t)))))
  :general
  (:states
   'normal
+  :keymaps
+  'lsp-mode-map
   "gD"
-  'eglot-find-declaration
+  'lsp-find-declaration
+  "gd"
+  'lsp-find-definition
   "gI"
-  'eglot-find-implementation)
+  'lsp-find-implementation
+  "gr"
+  'lsp-find-references)
  (custom/leader-key
+  :states 'normal
+  :keymaps
+  'lsp-mode-map
   "ca"
-  '(eglot-code-actions :which-key "actions")
+  '(lsp-execute-code-action :which-key "actions")
   "cr"
-  '(eglot-rename :which-key "rename")
-  "ci"
-  '(custom/toggle-inlay-hints :which-key "toggle inlay hints")))
+  '(lsp-rename :which-key "rename")))
+
+(use-package
+ lsp-ui
+ :commands lsp-ui-mode
+ :custom
+ (lsp-ui-doc-position 'at-point)
+ (lsp-ui-doc-border (catppuccin-color 'surface2))
+ (lsp-ui-doc-show-with-cursor nil)
+ (lsp-ui-doc-show-with-mouse nil)
+ :config
+ (set-face-attribute 'lsp-ui-doc-background nil
+                     :background (catppuccin-color 'base))
+ :general
+ (:states 'normal :keymaps 'lsp-mode-map "K" 'lsp-ui-doc-glance))
+
+(use-package
+ lsp-pyright
+ :custom
+ (lsp-pyright-langserver-command "basedpyright")
+ (lsp-pyright-auto-search-paths t)
+ (lsp-pyright-use-library-code-for-types t)
+ (lsp-pyright-diagnostic-mode "openFilesOnly")
+ :hook
+ ((python-mode
+   .
+   (lambda ()
+     (require 'lsp-pyright)
+     (lsp-deferred)))
+  (python-ts-mode
+   .
+   (lambda ()
+     (require 'lsp-pyright)
+     (lsp-deferred)))))
+
+(use-package dap-mode)
 
 (use-package dart-mode :mode (("\\.dart\\'" . dart-mode)))
-
 (use-package yaml-mode)
-
 (use-package dotenv-mode :mode (("\\.env\\..*\\'" . dotenv-mode)))
 
 (use-package

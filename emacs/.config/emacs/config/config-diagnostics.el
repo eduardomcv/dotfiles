@@ -26,28 +26,6 @@
   "]d"
   'flymake-goto-next-error))
 
-(use-package
- flymake-eslint
- :custom (flymake-eslint-prefer-json-diagnostics t)
- :config
- (defun custom/use-local-eslint ()
-   (interactive)
-   (let* ((root
-           (locate-dominating-file (buffer-file-name) "node_modules"))
-          (eslint
-           (and root
-                (expand-file-name "node_modules/.bin/eslint" root))))
-     (when (and eslint (file-executable-p eslint))
-       (setq-local flymake-eslint-executable-name eslint)
-       (message (format "Found local ESLINT! Setting: %s" eslint))
-       (flymake-eslint-enable))))
-
- (add-hook 'eglot-managed-mode-hook #'custom/use-local-eslint))
-
-(use-package
- flymake-ruff
- :hook (eglot-managed-mode . flymake-ruff-load))
-
 (provide 'config-diagnostics)
 
 ;;; config-diagnostics.el ends here

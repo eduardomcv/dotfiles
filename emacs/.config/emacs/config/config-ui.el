@@ -225,60 +225,6 @@
 (use-package minions :init (minions-mode 1))
 
 (use-package
- eldoc
- :ensure nil
- :custom
- (eldoc-echo-area-use-multiline-p nil)
- (eldoc-documentation-strategy 'eldoc-documentation-enthusiast)
- (eldoc-idle-delay 0.1)
- :config
- (defun custom/ensure-flymake-priority ()
-   "Ensure Flymake is the first documentation function."
-   (when (boundp 'flymake-eldoc-function)
-     (remove-hook
-      'eldoc-documentation-functions #'flymake-eldoc-function
-      t)
-     (add-hook 'eldoc-documentation-functions #'flymake-eldoc-function
-               nil
-               t)))
-
- (add-hook 'eglot-managed-mode-hook #'custom/ensure-flymake-priority))
-
-(use-package
- eldoc-box
-
- :config
- (add-hook
-  'typescript-ts-mode-hook
-  (lambda ()
-    (add-hook
-     'eldoc-box-buffer-setup-hook #'eldoc-box-prettify-ts-errors
-     0 t)))
-
- (set-face-attribute 'eldoc-box-border nil
-                     :background (catppuccin-color 'surface2))
-
- (defun custom/eldoc-box-scroll-up ()
-   (interactive)
-   (eldoc-box-scroll-up 4))
-
- (defun custom/eldoc-box-scroll-down ()
-   (interactive)
-   (eldoc-box-scroll-down 4))
-
- :general
- (:states
-  'normal
-  :keymaps
-  'override
-  "K"
-  'eldoc-box-help-at-point
-  "M-j"
-  'custom/eldoc-box-scroll-up
-  "M-k"
-  'custom/eldoc-box-scroll-down))
-
-(use-package
  xterm-color
  :ensure t
  :config
