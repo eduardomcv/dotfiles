@@ -14,8 +14,9 @@
 
 (use-package
  lsp-mode
- :init (setq lsp-keymap-prefix "C-c l")
-
+ :init
+ (setq lsp-keymap-prefix "C-c l")
+ (lsp-dired-mode)
  :hook
  ((javascript-mode . lsp-deferred)
   (js-ts-mode . lsp-deferred)
@@ -32,14 +33,12 @@
   (ruby-ts-mode . lsp-deferred)
   (kotlin-ts-mode . lsp-deferred)
   (go-ts-mode . lsp-deferred)
-  (dart-mode . lsp-deferred)
   (lsp-mode . lsp-enable-which-key-integration))
-
  :commands (lsp lsp-deferred)
-
  :custom
  (lsp-diagnostics-provider :flycheck)
  (lsp-idle-delay 0.500)
+ (lsp-modeline-diagnostics-enable nil)
 
  (lsp-go-gopls-opts '((matcher . "CaseSensitive") (staticcheck . t)))
 
@@ -52,14 +51,12 @@
 
  (lsp-eslint-server-command
   '("vscode-eslint-language-server" "--stdio"))
-
  :config
  (lsp-register-custom-settings
   '(("javascript.preferences.quoteStyle" "auto")
     ("typescript.preferences.quoteStyle" "auto")
     ("typescript.preferences.includePackageJsonAutoImports" "on")
     ("typescript.preferences.importModuleSpecifier" "non-relative")))
-
  :general
  (:states
   'normal
@@ -94,7 +91,16 @@
  (set-face-attribute 'lsp-ui-doc-background nil
                      :background (catppuccin-color 'base))
  :general
- (:states 'normal :keymaps 'lsp-mode-map "K" 'lsp-ui-doc-glance))
+ (:states
+  'normal
+  :keymaps
+  'lsp-mode-map
+  "K"
+  'lsp-ui-doc-glance
+  "M-j"
+  'lsp-ui-doc-scroll-up
+  "M-k"
+  'lsp-ui-doc-scroll-down))
 
 (use-package
  lsp-pyright
@@ -115,9 +121,12 @@
      (require 'lsp-pyright)
      (lsp-deferred)))))
 
+
 (use-package dap-mode)
 
 (use-package dart-mode :mode (("\\.dart\\'" . dart-mode)))
+(use-package lsp-dart :hook (dart-mode . lsp-deferred))
+
 (use-package yaml-mode)
 (use-package dotenv-mode :mode (("\\.env\\..*\\'" . dotenv-mode)))
 

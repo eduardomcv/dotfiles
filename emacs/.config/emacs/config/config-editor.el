@@ -231,7 +231,11 @@
   "C-j"
   'company-select-next
   "C-k"
-  'company-select-previous))
+  'company-select-previous
+  "M-j"
+  'company-box-doc-scroll-up
+  "M-k"
+  'company-box-doc-scroll-down))
 
 (use-package company-box :hook (company-mode . company-box-mode))
 

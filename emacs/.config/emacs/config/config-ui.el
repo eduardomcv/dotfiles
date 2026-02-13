@@ -201,6 +201,8 @@
 
  (dashboard-setup-startup-hook))
 
+(use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
+
 (use-package
  hl-todo
  :hook ((prog-mode . hl-todo-mode) (text-mode . hl-todo-mode))
