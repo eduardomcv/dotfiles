@@ -205,6 +205,9 @@
  (company-minimum-prefix-length 2)
  (company-tooltip-align-annotations t)
  (company-selection-wrap-around t)
+ (company-frontends
+  '(company-pseudo-tooltip-unless-just-one-frontend
+    company-preview-if-just-one-frontend))
  (company-backends
   '((company-capf :with company-yasnippet)
     company-files
