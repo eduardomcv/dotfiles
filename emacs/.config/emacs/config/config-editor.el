@@ -246,7 +246,19 @@
   "M-k"
   'company-box-doc-scroll-down))
 
-(use-package company-box :hook (company-mode . company-box-mode))
+(use-package
+ company-box
+ :hook (company-mode . company-box-mode)
+ :config
+ (defun custom/hide-tab-bar-in-company-box (&rest _)
+   "Force the tab bar to be hidden in the company-box frame."
+   (when (and (boundp 'company-box--frame)
+              (frame-live-p company-box--frame))
+     (set-frame-parameter company-box--frame 'tab-bar-lines 0)))
+
+ (advice-add
+  'company-box-show
+  :after #'custom/hide-tab-bar-in-company-box))
 
 (provide 'config-editor)
 
