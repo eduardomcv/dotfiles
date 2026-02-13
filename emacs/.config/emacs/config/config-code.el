@@ -39,6 +39,7 @@
  (lsp-diagnostics-provider :flycheck)
  (lsp-idle-delay 0.500)
  (lsp-modeline-diagnostics-enable nil)
+ (lsp-modeline-code-action-fallback-icon " ")
 
  (lsp-go-gopls-opts '((matcher . "CaseSensitive") (staticcheck . t)))
 
