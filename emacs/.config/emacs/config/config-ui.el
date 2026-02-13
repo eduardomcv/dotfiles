@@ -201,7 +201,31 @@
 
  (dashboard-setup-startup-hook))
 
-(use-package doom-modeline :ensure t :init (doom-modeline-mode 1))
+(use-package
+ doom-modeline
+ :init (doom-modeline-mode 1)
+ :custom (doom-modeline-modal-icon nil)
+ :config
+ (set-face-attribute 'doom-modeline-evil-normal-state nil
+                     :inverse-video t
+                     :weight 'bold)
+ (set-face-attribute 'doom-modeline-evil-insert-state nil
+                     :inverse-video t
+                     :weight 'bold)
+ (set-face-attribute 'doom-modeline-evil-visual-state nil
+                     :inverse-video t
+                     :weight 'bold)
+ (set-face-attribute
+  'doom-modeline-evil-operator-state
+  nil
+  :inverse-video t
+  :weight 'bold)
+ (set-face-attribute 'doom-modeline-evil-replace-state nil
+                     :inverse-video t
+                     :weight 'bold)
+ (set-face-attribute 'doom-modeline-evil-motion-state nil
+                     :inverse-video t
+                     :weight 'bold))
 
 (use-package
  hl-todo

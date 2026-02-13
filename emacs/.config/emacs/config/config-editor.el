@@ -28,8 +28,16 @@
  (setq evil-want-C-u-scroll t)
  (setq evil-undo-system 'undo-fu)
  :config
- (evil-mode 1)
- (define-key evil-motion-state-map (kbd "SPC") nil))
+ (setq evil-echo-state nil)
+ (setq evil-mode-line-format nil)
+ (setq evil-normal-state-tag " NORMAL ")
+ (setq evil-insert-state-tag " INSERT ")
+ (setq evil-visual-state-tag " VISUAL ")
+ (setq evil-operator-state-tag " OPERATOR ")
+ (setq evil-replace-state-tag " REPLACE ")
+ (setq evil-motion-state-tag " MOTION ")
+ (define-key evil-motion-state-map (kbd "SPC") nil)
+ (evil-mode 1))
 
 (use-package
  evil-collection
@@ -217,8 +225,6 @@
  :general
  (:states 'insert "C-SPC" 'company-manual-begin)
  (:keymaps
-  'company-active-map
-  "SPC"
   'company-insert-separator
   "<escape>"
   'custom/company-abort-and-exit-insert
