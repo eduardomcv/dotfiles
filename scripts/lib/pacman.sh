@@ -11,7 +11,6 @@ install_pacman() {
         libffi \
         libyaml \
         openssl \
-        zlib-ng-compat \
         zip \
         unzip \
         git \
@@ -27,9 +26,5 @@ install_pacman() {
         mise \
         tealdeer \
         lazygit \
-        ttc-iosevka \
-        ttc-iosevka-aile \
-        ttf-nerd-fonts-symbols-mono \
-        emacs-wayland \
-        thunderbird
+        emacs-wayland
 }
