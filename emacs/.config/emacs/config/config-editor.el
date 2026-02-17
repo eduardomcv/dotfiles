@@ -260,10 +260,21 @@
   'company-box-show
   :after #'custom/hide-tab-bar-in-company-box))
 
-(use-package jinx
-  :hook (text-mode . jinx-mode)
-  :bind (("M-$" . jinx-correct)
-         ("C-M-$" . jinx-languages)))
+(use-package
+ jinx
+ :hook (text-mode . jinx-mode)
+ :bind (("M-$" . jinx-correct) ("C-M-$" . jinx-languages))
+ :general
+ (:states
+  'normal
+  :keymaps
+  'jinx-mode-map
+  "[s"
+  'jinx-previous
+  "]s"
+  'jinx-next
+  "z="
+  'jinx-correct))
 
 (provide 'config-editor)
 
