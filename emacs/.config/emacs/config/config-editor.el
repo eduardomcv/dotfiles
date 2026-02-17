@@ -260,6 +260,11 @@
   'company-box-show
   :after #'custom/hide-tab-bar-in-company-box))
 
+(use-package jinx
+  :hook (text-mode . jinx-mode)
+  :bind (("M-$" . jinx-correct)
+         ("C-M-$" . jinx-languages)))
+
 (provide 'config-editor)
 
 ;;; config-editor.el ends here
