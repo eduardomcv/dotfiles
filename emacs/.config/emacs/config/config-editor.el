@@ -199,66 +199,32 @@
   '(project-switch-project :which-key "switch project")))
 
 (use-package
- company
- :init (global-company-mode)
+ corfu
  :custom
- (company-minimum-prefix-length 2)
- (company-tooltip-align-annotations t)
- (company-selection-wrap-around t)
- (company-frontends
-  '(company-pseudo-tooltip-unless-just-one-frontend
-    company-preview-if-just-one-frontend))
- (company-backends
-  '((company-capf :with company-yasnippet)
-    company-files
-    company-dabbrev))
- :config
- (defun custom/company-abort-and-exit-insert ()
-   "Abort company completion and return to normal state."
-   (interactive)
-   (company-abort)
-   (evil-normal-state))
-
- (defun custom/just-one-face (fn &rest args)
-   (let ((orderless-match-faces [completions-common-part]))
-     (apply fn args)))
-
- (advice-add 'company-capf--candidates :around #'custom/just-one-face)
-
+ (corfu-auto t)
+ (corfu-auto-prefix 2)
+ (corfu-cycle t)
+ (corfu-preselect 'prompt)
+ (corfu-popupinfo-delay 0.2)
+ (corfu-popupinfo-max-height 20)
+ :init
+ (global-corfu-mode)
+ (corfu-popupinfo-mode)
  :general
- (:states 'insert "C-SPC" 'company-manual-begin)
+ (:states 'insert "C-SPC" 'completion-at-point)
  (:keymaps
-  'company-insert-separator
-  "<escape>"
-  'custom/company-abort-and-exit-insert
-  "C-SPC"
-  'company-abort
-  "TAB"
-  'company-complete-selection
-  [tab]
-  'company-complete-selection
-  "C-j"
-  'company-select-next
-  "C-k"
-  'company-select-previous
+  'corfu-map
   "M-j"
-  'company-box-doc-scroll-up
+  'corfu-popupinfo-scroll-up
   "M-k"
-  'company-box-doc-scroll-down))
+  'corfu-popupinfo-scroll-down))
 
 (use-package
- company-box
- :hook (company-mode . company-box-mode)
+ kind-icon
+ :after corfu
+ :custom (kind-icon-default-face 'corfu-default)
  :config
- (defun custom/hide-tab-bar-in-company-box (&rest _)
-   "Force the tab bar to be hidden in the company-box frame."
-   (when (and (boundp 'company-box--frame)
-              (frame-live-p company-box--frame))
-     (set-frame-parameter company-box--frame 'tab-bar-lines 0)))
-
- (advice-add
-  'company-box-show
-  :after #'custom/hide-tab-bar-in-company-box))
+ (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package
  jinx

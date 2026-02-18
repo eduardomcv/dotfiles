@@ -36,6 +36,7 @@
   (lsp-mode . lsp-enable-which-key-integration))
  :commands (lsp lsp-deferred)
  :custom
+ (lsp-completion-provider :none)
  (lsp-diagnostics-provider :flycheck)
  (lsp-idle-delay 0.500)
  (lsp-modeline-diagnostics-enable nil)
