@@ -207,17 +207,18 @@
  (corfu-preselect 'prompt)
  (corfu-popupinfo-delay 0.2)
  (corfu-popupinfo-max-height 20)
- :init
- (global-corfu-mode)
- (corfu-popupinfo-mode)
+ :init (global-corfu-mode)
+ :config (corfu-popupinfo-mode)
  :general
  (:states 'insert "C-SPC" 'completion-at-point)
  (:keymaps
   'corfu-map
   "M-j"
-  'corfu-popupinfo-scroll-up
+  #'corfu-popupinfo-scroll-up
   "M-k"
-  'corfu-popupinfo-scroll-down))
+  #'corfu-popupinfo-scroll-down
+  "M-d"
+  #'corfu-popupinfo-toggle))
 
 (use-package
  kind-icon

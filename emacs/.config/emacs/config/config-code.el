@@ -10,11 +10,27 @@
  :init (global-flycheck-mode)
  :general
  (:states
-  'normal "[d" 'flycheck-previous-error "]d" 'flycheck-next-error))
+  'normal "[ d" 'flycheck-previous-error "] d" 'flycheck-next-error))
+
+(use-package
+ flycheck-inline
+ :after flycheck
+ :hook (flycheck-mode . flycheck-inline-mode)
+ :general
+ (custom/leader-key
+  :states
+  'normal
+  "ce"
+  '(flycheck-inline-mode :which-key "Toggle inline errors")))
 
 (use-package
  lsp-mode
  :init
+ (defun custom/add-orderless-to-lsp-mode-completion ()
+   (setf (alist-get
+          'styles
+          (alist-get 'lsp-capf completion-category-defaults))
+         '(orderless)))
  (setq lsp-keymap-prefix "C-c l")
  (lsp-dired-mode)
  :hook
@@ -33,7 +49,8 @@
   (ruby-ts-mode . lsp-deferred)
   (kotlin-ts-mode . lsp-deferred)
   (go-ts-mode . lsp-deferred)
-  (lsp-mode . lsp-enable-which-key-integration))
+  (lsp-mode . lsp-enable-which-key-integration)
+  (lsp-mode . custom/add-orderless-to-lsp-mode-completion))
  :commands (lsp lsp-deferred)
  :custom
  (lsp-completion-provider :none)
@@ -89,6 +106,8 @@
  (lsp-ui-doc-border (catppuccin-color 'surface2))
  (lsp-ui-doc-show-with-cursor nil)
  (lsp-ui-doc-show-with-mouse nil)
+ (lsp-ui-sideline-enable nil)
+ (lsp-ui-sideline-show-diagnostics nil)
  :config
  (set-face-attribute 'lsp-ui-doc-background nil
                      :background (catppuccin-color 'base))
@@ -103,6 +122,7 @@
   'lsp-ui-doc-scroll-up
   "M-k"
   'lsp-ui-doc-scroll-down))
+
 
 (use-package
  lsp-pyright
