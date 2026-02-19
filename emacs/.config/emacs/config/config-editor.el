@@ -230,6 +230,7 @@
 (use-package
  jinx
  :hook (text-mode . jinx-mode)
+ :custom (jinx-languages "en_US pt_PT")
  :bind (("M-$" . jinx-correct) ("C-M-$" . jinx-languages))
  :general
  (:states
