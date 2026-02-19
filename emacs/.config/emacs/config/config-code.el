@@ -23,6 +23,72 @@
   "ce"
   '(flycheck-inline-mode :which-key "Toggle inline errors")))
 
+(use-package kotlin-ts-mode)
+
+(use-package
+ treesit
+ :ensure nil
+ :mode
+ (("\\.tsx\\'" . tsx-ts-mode)
+  ("\\.ts\\'" . typescript-ts-mode)
+  ("Dockerfile\\'" . dockerfile-ts-mode)
+  ("\\.rs\\'" . rust-ts-mode)
+  ("\\.go\\'" . go-ts-mode)
+  ("go\\.mod\\'" . go-mod-ts-mode)
+  ("\\.kt\\'" . kotlin-ts-mode)
+  ("\\.kts\\'" . kotlin-ts-mode))
+ :preface
+ (setq
+  treesit-language-source-alist
+  '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+    (css "https://github.com/tree-sitter/tree-sitter-css")
+    (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+    (html "https://github.com/tree-sitter/tree-sitter-html")
+    (javascript
+     "https://github.com/tree-sitter/tree-sitter-javascript")
+    (json "https://github.com/tree-sitter/tree-sitter-json")
+    (markdown
+     "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
+     "split_parser"
+     "tree-sitter-markdown/src")
+    (python "https://github.com/tree-sitter/tree-sitter-python")
+    (toml "https://github.com/tree-sitter/tree-sitter-toml")
+    (tsx
+     "https://github.com/tree-sitter/tree-sitter-typescript"
+     "master"
+     "tsx/src")
+    (typescript
+     "https://github.com/tree-sitter/tree-sitter-typescript"
+     "master"
+     "typescript/src")
+    (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+    (dockerfile
+     "https://github.com/camdencheek/tree-sitter-dockerfile")
+    (go "https://github.com/tree-sitter/tree-sitter-go")
+    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
+    (rust "https://github.com/tree-sitter/tree-sitter-rust")
+    (kotlin "https://github.com/fwcd/tree-sitter-kotlin")
+    (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
+ :custom (treesit-font-lock-level 4)
+ (major-mode-remap-alist
+  '((python-mode . python-ts-mode)
+    (javascript-mode . js-ts-mode)
+    (js-json-mode . json-ts-mode)
+    (conf-toml-mode . toml-ts-mode)
+    (bash-mode . bash-ts-mode)
+    (sh-mode . bash-ts-mode)
+    (css-mode . css-ts-mode)
+    (json-mode . json-ts-mode)
+    (html-mode . html-ts-mode)
+    (ruby-mode . ruby-ts-mode)
+    (yaml-mode . yaml-ts-mode)))
+ :config
+ (defun custom/treesit-install-grammars ()
+   "Install all tree-sitter grammars defined in `treesit-language-source-alist`."
+   (interactive)
+   (dolist (grammar treesit-language-source-alist)
+     (treesit-install-language-grammar (car grammar)))))
+
 (use-package
  lsp-mode
  :init
@@ -34,10 +100,13 @@
  (setq lsp-keymap-prefix "C-c l")
  (lsp-dired-mode)
  :hook
- ((javascript-mode . lsp-deferred)
+ ((lsp-mode . lsp-enable-which-key-integration)
+  (lsp-mode . custom/add-orderless-to-lsp-mode-completion)
+  (javascript-mode . lsp-deferred)
   (js-ts-mode . lsp-deferred)
   (typescript-ts-mode . lsp-deferred)
   (tsx-ts-mode . lsp-deferred)
+  (yaml-mode . lsp-deferred)
   (yaml-ts-mode . lsp-deferred)
   (js-json-mode . lsp-deferred)
   (json-ts-mode . lsp-deferred)
@@ -49,8 +118,7 @@
   (ruby-ts-mode . lsp-deferred)
   (kotlin-ts-mode . lsp-deferred)
   (go-ts-mode . lsp-deferred)
-  (lsp-mode . lsp-enable-which-key-integration)
-  (lsp-mode . custom/add-orderless-to-lsp-mode-completion))
+  (go-mod-ts-mode . lsp-deferred))
  :commands (lsp lsp-deferred)
  :custom
  (lsp-completion-provider :none)
@@ -123,7 +191,6 @@
   "M-k"
   'lsp-ui-doc-scroll-down))
 
-
 (use-package
  lsp-pyright
  :custom
@@ -158,72 +225,6 @@
  (("README\\.md\\'" . gfm-mode) ("\\.md\\'" . markdown-mode))
  :init (setq markdown-command "pandoc")
  :custom (markdown-fontify-code-blocks-natively t))
-
-(use-package kotlin-ts-mode)
-
-(use-package
- treesit
- :ensure nil
- :mode
- (("\\.tsx\\'" . tsx-ts-mode)
-  ("\\.ts\\'" . typescript-ts-mode)
-  ("Dockerfile\\'" . dockerfile-ts-mode)
-  ("\\.rs\\'" . rust-ts-mode)
-  ("\\.go\\'" . go-ts-mode)
-  ("go\\.mod\\'" . go-mod-ts-mode)
-  ("\\.kt\\'" . kotlin-ts-mode)
-  ("\\.kts\\'" . kotlin-ts-mode))
- :preface
- (setq
-  treesit-language-source-alist
-  '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-    (css "https://github.com/tree-sitter/tree-sitter-css")
-    (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-    (html "https://github.com/tree-sitter/tree-sitter-html")
-    (javascript
-     "https://github.com/tree-sitter/tree-sitter-javascript")
-    (json "https://github.com/tree-sitter/tree-sitter-json")
-    (markdown
-     "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
-     "split_parser"
-     "tree-sitter-markdown/src")
-    (python "https://github.com/tree-sitter/tree-sitter-python")
-    (toml "https://github.com/tree-sitter/tree-sitter-toml")
-    (tsx
-     "https://github.com/tree-sitter/tree-sitter-typescript"
-     "master"
-     "tsx/src")
-    (typescript
-     "https://github.com/tree-sitter/tree-sitter-typescript"
-     "master"
-     "typescript/src")
-    (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-    (dockerfile
-     "https://github.com/camdencheek/tree-sitter-dockerfile")
-    (go "https://github.com/tree-sitter/tree-sitter-go")
-    (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
-    (rust "https://github.com/tree-sitter/tree-sitter-rust")
-    (kotlin "https://github.com/fwcd/tree-sitter-kotlin")
-    (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
- :custom (treesit-font-lock-level 4)
- (major-mode-remap-alist
-  '((python-mode . python-ts-mode)
-    (javascript-mode . js-ts-mode)
-    (js-json-mode . json-ts-mode)
-    (conf-toml-mode . toml-ts-mode)
-    (bash-mode . bash-ts-mode)
-    (sh-mode . bash-ts-mode)
-    (css-mode . css-ts-mode)
-    (json-mode . json-ts-mode)
-    (html-mode . html-ts-mode)
-    (ruby-mode . ruby-ts-mode)
-    (yaml-mode . yaml-ts-mode)))
- :config
- (defun custom/treesit-install-grammars ()
-   "Install all tree-sitter grammars defined in `treesit-language-source-alist`."
-   (interactive)
-   (dolist (grammar treesit-language-source-alist)
-     (treesit-install-language-grammar (car grammar)))))
 
 (use-package
  pyvenv
