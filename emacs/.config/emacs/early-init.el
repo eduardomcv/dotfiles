@@ -19,7 +19,6 @@
 
 (require 'package)
 (setq package-native-compile t)
-(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (add-to-list
  'package-archives '("melpa" . "https://melpa.org/packages/")
