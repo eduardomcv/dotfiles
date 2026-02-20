@@ -1,7 +1,7 @@
-;;; config-code.el --- Language configurations and utilities -*- lexical-binding: t; -*-
+;;; config-code.el --- Code configurations -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;;; Language configurations and utilities (LSP, tree-sitter).
+;;; Language configurations, linters, code formatting and other code utilities.
 
 ;;; Code:
 
@@ -22,6 +22,33 @@
   'normal
   "ce"
   '(flycheck-inline-mode :which-key "Toggle inline errors")))
+
+(use-package
+ elisp-autofmt
+ :commands (elisp-autofmt-mode elisp-autofmt-buffer)
+ :hook (emacs-lisp-mode . elisp-autofmt-mode))
+
+(use-package
+ apheleia
+ :init (apheleia-global-mode 1)
+ :custom (apheleia-formatters-respect-indent-level nil)
+ :config
+ ;; Replace default (black) to use ruff for sorting import and formatting.
+ (setf (alist-get 'python-mode apheleia-mode-alist)
+       '(ruff-isort ruff))
+ (setf (alist-get 'python-ts-mode apheleia-mode-alist)
+       '(ruff-isort ruff))
+
+ (add-to-list
+  'apheleia-formatters '(elisp-autofmt . ("elisp-autofmt")))
+
+ (add-to-list 'apheleia-mode-alist '(emacs-lisp-mode . elisp-autofmt))
+
+ :general
+ (custom/leader-key
+  "cf"
+  '(apheleia-format-buffer :which-key "format buffer") "bf"
+  '(apheleia-format-buffer :which-key "format buffer")))
 
 (use-package kotlin-ts-mode)
 
@@ -67,7 +94,7 @@
     (go "https://github.com/tree-sitter/tree-sitter-go")
     (gomod "https://github.com/camdencheek/tree-sitter-go-mod")
     (rust "https://github.com/tree-sitter/tree-sitter-rust")
-    (kotlin "https://github.com/fwcd/tree-sitter-kotlin")
+    (kotlin "https://github.com/fwcd/tree-sitter-kotlin" "0.3.8")
     (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
  :custom (treesit-font-lock-level 4)
  (major-mode-remap-alist

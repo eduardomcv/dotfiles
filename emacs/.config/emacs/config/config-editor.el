@@ -1,8 +1,7 @@
 ;;; config-editor.el --- Editor configuration -*- lexical-binding: t; -*-
 
 ;;; Commentary:
-;;; Configurations related to editing files.
-;;; E.g. evil mode, undo, which-key, general keybindings, Dired.
+;;; Configurations for the editor experience.
 
 ;;; Code:
 
