@@ -137,12 +137,10 @@
   (if (eq system-type 'darwin)
       "-lhA"
     "-lhA --group-directories-first"))
- :config
- (with-eval-after-load 'dired
-   (require 'evil-collection-dired)
-   (evil-collection-dired-setup))
- (general-define-key
-  :states 'normal
+ :general
+ (custom/leader-key "e" '(dired-jump :which-key "dired"))
+ (:states
+  'normal
   :keymaps
   'dired-mode-map
   "TAB"
@@ -154,16 +152,26 @@
   "h"
   'dired-up-directory
   "l"
-  'dired-find-file)
- (general-define-key
-  :states 'normal
+  'dired-find-file))
+
+(use-package
+ wdired
+ :ensure nil
+ :general
+ (:states
+  'normal
   :keymaps
   'wdired-mode-map
   "="
   'wdired-finish-edit
   "ESC"
-  'wdired-abort-changes)
- (custom/leader-key "e" '(dired-jump :which-key "dired")))
+  'wdired-abort-changes))
+
+(use-package
+ evil-collection-dired
+ :ensure nil
+ :after (dired evil-collection)
+ :config (evil-collection-dired-setup))
 
 (use-package diredfl :hook (dired-mode . diredfl-mode))
 
@@ -236,9 +244,9 @@
   'normal
   :keymaps
   'jinx-mode-map
-  "[s"
+  "[ s"
   'jinx-previous
-  "]s"
+  "] s"
   'jinx-next
   "z="
   'jinx-correct))
