@@ -16,11 +16,17 @@ cursor-style = "block"
 cursor-style-blink = false
 
 # Window
-macos-titlebar-style=tabs
 window-decoration = server
 window-height = 40
 window-width = 130
 background-opacity = 0.95
+
+# Slowdown mouse scrolling
+mouse-scroll-multiplier = 0.95
+
+# macOS
+macos-titlebar-style=tabs
+macos-option-as-alt = left
 
 # Keybinds
 keybind = ctrl+a>c=new_tab
@@ -42,6 +48,3 @@ keybind = ctrl+a>h=goto_split:left
 keybind = ctrl+a>j=goto_split:down
 keybind = ctrl+a>k=goto_split:up
 keybind = ctrl+a>l=goto_split:right
-
-# Slowdown mouse scrolling
-mouse-scroll-multiplier = 0.95
