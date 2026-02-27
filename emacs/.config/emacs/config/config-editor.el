@@ -220,6 +220,8 @@
  (:states 'insert "C-SPC" 'completion-at-point)
  (:keymaps
   'corfu-map
+  "SPC"
+  #'corfu-insert-separator
   "M-j"
   #'corfu-popupinfo-scroll-up
   "M-k"
