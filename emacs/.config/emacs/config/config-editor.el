@@ -211,7 +211,7 @@
  (corfu-auto t)
  (corfu-auto-prefix 2)
  (corfu-cycle t)
- (corfu-preselect 'prompt)
+ (corfu-preselect 'first)
  (corfu-popupinfo-delay 0.2)
  (corfu-popupinfo-max-height 20)
  :init (global-corfu-mode)
