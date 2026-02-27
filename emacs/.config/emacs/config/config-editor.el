@@ -235,6 +235,40 @@
  (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
 
 (use-package
+ cape
+ :init
+ (add-to-list 'completion-at-point-functions #'cape-file)
+ (add-to-list 'completion-at-point-functions #'cape-dabbrev)
+ (add-to-list 'completion-at-point-functions #'cape-elisp-block)
+ :config
+ (defun custom/cape-merge-lsp-and-dabbrev ()
+   "Merge LSP completions with buffer words into a single list."
+   (setq-local completion-at-point-functions
+               (list
+                (cape-capf-super
+                 #'lsp-completion-at-point #'cape-dabbrev))))
+
+ (add-hook
+  'lsp-completion-mode-hook #'custom/cape-merge-lsp-and-dabbrev)
+ :general
+ (custom/leader-key
+  :states
+  'normal
+  "c p"
+  '(cape-file :which-key "complete file path")
+  "c b"
+  '(cape-dabbrev :which-key "complete buffer word")
+  "c l"
+  '(cape-line :which-key "complete entire line")
+  "c d"
+  '(cape-dict :which-key "complete dictionary word")))
+
+(use-package
+ dabbrev
+ :ensure nil
+ :custom (dabbrev-check-all-buffers t))
+
+(use-package
  jinx
  :hook (text-mode . jinx-mode)
  :custom (jinx-languages "en_US pt_PT")
