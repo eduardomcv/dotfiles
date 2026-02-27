@@ -10,9 +10,9 @@ alias lg=lazygit
 alias v=vim
 alias vi=vim
 alias ec="emacsclient -c"
-alias et="TERM=xterm-256color emacsclient -t"
+alias et="emacsclient -t"
 alias e=ec
-alias enw="TERM=xterm-256color emacs -nw"
+alias enw="emacs -nw"
 alias ff="fd -H -t f -E .git"
 alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
