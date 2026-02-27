@@ -151,13 +151,31 @@
  :custom (catppuccin-flavor 'mocha)
  :config (load-theme 'catppuccin t)
 
- (defun custom/transparent-background (&optional frame)
-   (unless (display-graphic-p frame)
-     (set-face-background 'default "unspecified-bg" frame)))
+ (defun my/apply-theme-and-transparency (&optional frame)
+   "Handle Terminal-specific logic. Fixes 'Blue Background' in WSL/Terminal."
+   (let ((target-frame (or frame (selected-frame))))
+     (with-selected-frame target-frame
+       ;; UNLESS it is a graphical window (meaning it IS a terminal)
+       (unless (display-graphic-p target-frame)
+         ;; Force the terminal to use 24-bit True Color
+         (set-terminal-parameter
+          (frame-terminal target-frame) 'tty-color-mode 16777216)
+         ;; Reload theme AFTER enabling 24-bit to flush out 256-color 'blue' cache
+         (load-theme 'catppuccin t)
+         ;; Strip background for transparency
+         (set-face-background 'default "unspecified" target-frame)
+         (set-face-background 'line-number "unspecified" target-frame)
+         ;; Refresh Doom Modeline
+         (when (fboundp 'doom-modeline-update-all-faces)
+           (doom-modeline-update-all-faces))))))
 
+ ;; Apply to new frames (ec)
  (add-hook
-  'after-make-frame-functions #'custom/transparent-background)
- (custom/transparent-background))
+  'after-make-frame-functions #'my/apply-theme-and-transparency)
+
+ ;; Apply immediately for non-daemon startups
+ (unless (daemonp)
+   (my/apply-theme-and-transparency)))
 
 (use-package
  eldoc
