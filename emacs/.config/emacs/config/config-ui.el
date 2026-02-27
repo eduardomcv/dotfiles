@@ -149,7 +149,15 @@
 (use-package
  catppuccin-theme
  :custom (catppuccin-flavor 'mocha)
- :config (load-theme 'catppuccin :no-confirm))
+ :config (load-theme 'catppuccin t)
+
+ (defun custom/transparent-background (&optional frame)
+   (unless (display-graphic-p frame)
+     (set-face-background 'default "unspecified-bg" frame)))
+
+ (add-hook
+  'after-make-frame-functions #'custom/transparent-background)
+ (custom/transparent-background))
 
 (use-package
  eldoc
@@ -206,26 +214,14 @@
  :init (doom-modeline-mode 1)
  :custom (doom-modeline-modal-icon nil)
  :config
- (set-face-attribute 'doom-modeline-evil-normal-state nil
-                     :inverse-video t
-                     :weight 'bold)
- (set-face-attribute 'doom-modeline-evil-insert-state nil
-                     :inverse-video t
-                     :weight 'bold)
- (set-face-attribute 'doom-modeline-evil-visual-state nil
-                     :inverse-video t
-                     :weight 'bold)
- (set-face-attribute
-  'doom-modeline-evil-operator-state
-  nil
-  :inverse-video t
-  :weight 'bold)
- (set-face-attribute 'doom-modeline-evil-replace-state nil
-                     :inverse-video t
-                     :weight 'bold)
- (set-face-attribute 'doom-modeline-evil-motion-state nil
-                     :inverse-video t
-                     :weight 'bold))
+ (dolist (face
+          '(doom-modeline-evil-normal-state
+            doom-modeline-evil-insert-state
+            doom-modeline-evil-visual-state
+            doom-modeline-evil-operator-state
+            doom-modeline-evil-replace-state
+            doom-modeline-evil-motion-state))
+   (set-face-attribute face nil :inverse-video t :weight 'bold)))
 
 (use-package
  hl-todo

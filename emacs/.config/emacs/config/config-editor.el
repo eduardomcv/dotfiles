@@ -287,6 +287,12 @@
   "z="
   'jinx-correct))
 
+(use-package
+ xclip
+ :config
+ (unless (display-graphic-p)
+   (xclip-mode 1)))
+
 (provide 'config-editor)
 
 ;;; config-editor.el ends here
