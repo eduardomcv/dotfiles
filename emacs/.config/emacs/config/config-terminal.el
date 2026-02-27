@@ -38,7 +38,7 @@
 
  :general
  (custom/leader-key
-  "RET" '(custom/spawn-shell :which-key "Spawn a new shell")))
+  "RET" '(custom/spawn-shell :which-key "spawn a new shell")))
 
 (use-package multi-vterm :after vterm)
 

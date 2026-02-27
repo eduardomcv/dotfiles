@@ -21,7 +21,7 @@
   :states
   'normal
   "ce"
-  '(flycheck-inline-mode :which-key "Toggle inline errors")))
+  '(flycheck-inline-mode :which-key "toggle inline errors")))
 
 (use-package
  elisp-autofmt
