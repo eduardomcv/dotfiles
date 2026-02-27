@@ -9,12 +9,16 @@ alias cat=bat
 alias lg=lazygit
 alias v=vim
 alias vi=vim
+alias ec="emacsclient -c"
+alias et="TERM=xterm-256color emacsclient -t"
+alias e=ec
+alias enw="TERM=xterm-256color emacs -nw"
 alias ff="fd -H -t f -E .git"
 alias fz="ff | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 # Use fzf to search command history
 fh() {
-    print -z $( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')
+    print -z "$( ([ -n "$ZSH_NAME" ] && fc -l 1 || history) | fzf +s --tac | sed -E 's/ *[0-9]*\*? *//' | sed -E 's/\\/\\\\/g')"
 }
 
 # vterm shell-side configuration
@@ -32,7 +36,8 @@ vterm_printf() {
     fi
 }
 
-# Completion
+### --------- Completion -------- ###
+
 ## ez-compinit must be setup before bootstrapping Antidote
 zstyle ':plugin:ez-compinit' 'compstyle' 'zshzoo'
 # Shift+Tab to select previous suggestion
@@ -48,7 +53,8 @@ fi
 
 source $antidote_dir/antidote.zsh
 antidote load
-### -------------------------------- ###
+
+### ------------------------------ ###
 
 # Enable colors
 autoload -U colors && colors
