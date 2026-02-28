@@ -198,12 +198,12 @@
  :commands lsp-ui-mode
  :custom
  (lsp-ui-doc-position 'at-point)
- (lsp-ui-doc-border (catppuccin-color 'surface2))
  (lsp-ui-doc-show-with-cursor nil)
  (lsp-ui-doc-show-with-mouse nil)
  (lsp-ui-sideline-enable nil)
  (lsp-ui-sideline-show-diagnostics nil)
  :config
+ (setq lsp-ui-doc-border (catppuccin-color 'surface2))
  (set-face-attribute 'lsp-ui-doc-background nil
                      :background (catppuccin-color 'base))
  :general
@@ -212,11 +212,11 @@
   :keymaps
   'lsp-mode-map
   "K"
-  'lsp-ui-doc-glance
+  #'lsp-ui-doc-glance
   "M-j"
-  'lsp-ui-doc-scroll-up
+  #'lsp-ui-doc-scroll-up
   "M-k"
-  'lsp-ui-doc-scroll-down))
+  #'lsp-ui-doc-scroll-down))
 
 (use-package
  lsp-pyright
