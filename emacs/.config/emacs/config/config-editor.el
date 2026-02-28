@@ -10,7 +10,43 @@
  :ensure nil
  :custom
  (tab-always-indent 'complete)
- (text-mode-ispell-word-completion nil))
+ (text-mode-ispell-word-completion nil)
+ :config
+ (unless (display-graphic-p)
+   (xterm-mouse-mode 1))
+
+ ;; Clipboard support when inside WSL.
+ (when (and (eq system-type 'gnu/linux)
+            (string-match-p "microsoft" operating-system-release))
+   ;; Absolute path to the powershell executable
+   (defvar custom/powershell-path
+     "/mnt/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe")
+
+   (setq
+    interprogram-cut-function
+    (lambda (text)
+      (let
+          ((process-connection-type nil)
+           ;; Force UTF-8 so special characters don't get garbled by Windows
+           (coding-system-for-write 'utf-8-dos))
+        (let ((proc
+               (start-process
+                "wsl-copy" nil custom/powershell-path
+                "-NoProfile" "-Command" "$input | Set-Clipboard")))
+          (process-send-string proc text)
+          (process-send-eof proc)))))
+
+   (setq interprogram-paste-function
+         (lambda ()
+           (let ((coding-system-for-read 'utf-8-dos)
+                 (result
+                  (shell-command-to-string
+                   (concat
+                    custom/powershell-path
+                    " -NoProfile -Command Get-Clipboard"))))
+             (unless (string-empty-p result)
+               ;; Strip the carriage returns
+               (replace-regexp-in-string "\r" "" result)))))))
 
 (use-package
  undo-fu
@@ -230,11 +266,17 @@
   #'corfu-popupinfo-toggle))
 
 (use-package
- kind-icon
+ corfu-terminal
  :after corfu
- :custom (kind-icon-default-face 'corfu-default)
  :config
- (add-to-list 'corfu-margin-formatters #'kind-icon-margin-formatter))
+ (unless (display-graphic-p)
+   (corfu-terminal-mode +1)))
+
+(use-package
+ nerd-icons-corfu
+ :after (corfu nerd-icons)
+ :config
+ (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
 (use-package
  cape
@@ -286,12 +328,6 @@
   'jinx-next
   "z="
   'jinx-correct))
-
-(use-package
- xclip
- :config
- (unless (display-graphic-p)
-   (xclip-mode 1)))
 
 (provide 'config-editor)
 
