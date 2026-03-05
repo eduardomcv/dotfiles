@@ -15,9 +15,10 @@
  (tool-bar-mode -1)
  (scroll-bar-mode -1)
  (pixel-scroll-precision-mode 1)
- (global-visual-line-mode 1)
  (global-hl-line-mode 1)
  (global-display-line-numbers-mode 1)
+
+ :hook ((text-mode . visual-line-mode) (org-mode . visual-line-mode))
 
  :custom
  (pixel-scroll-precision-large-scroll-height 40.0)
@@ -131,7 +132,11 @@
 (use-package
  whitespace
  :ensure nil
- :hook (before-save . whitespace-cleanup)
+ :hook
+ ((prog-mode
+   .
+   (lambda ()
+     (add-hook 'before-save-hook #'whitespace-cleanup nil t))))
  :config
  (setq whitespace-style
        '(face

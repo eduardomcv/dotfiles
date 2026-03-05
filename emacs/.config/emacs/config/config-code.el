@@ -129,23 +129,16 @@
  :hook
  ((lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . custom/add-orderless-to-lsp-mode-completion)
-  (javascript-mode . lsp-deferred)
   (js-ts-mode . lsp-deferred)
   (typescript-ts-mode . lsp-deferred)
   (tsx-ts-mode . lsp-deferred)
-  (yaml-mode . lsp-deferred)
   (yaml-ts-mode . lsp-deferred)
-  (js-json-mode . lsp-deferred)
   (json-ts-mode . lsp-deferred)
-  (css-mode . lsp-deferred)
   (css-ts-mode . lsp-deferred)
-  (html-mode . lsp-deferred)
   (html-ts-mode . lsp-deferred)
-  (ruby-mode . lsp-deferred)
   (ruby-ts-mode . lsp-deferred)
   (kotlin-ts-mode . lsp-deferred)
-  (go-ts-mode . lsp-deferred)
-  (go-mod-ts-mode . lsp-deferred))
+  (go-ts-mode . lsp-deferred))
  :commands (lsp lsp-deferred)
  :custom
  (lsp-completion-provider :none)
@@ -227,24 +220,17 @@
  (lsp-pyright-use-library-code-for-types t)
  (lsp-pyright-diagnostic-mode "openFilesOnly")
  :hook
- ((python-mode
-   .
-   (lambda ()
-     (require 'lsp-pyright)
-     (lsp-deferred)))
-  (python-ts-mode
-   .
-   (lambda ()
-     (require 'lsp-pyright)
-     (lsp-deferred)))))
+ (python-ts-mode
+  .
+  (lambda ()
+    (require 'lsp-pyright)
+    (lsp-deferred))))
 
-
-(use-package dap-mode)
+(use-package dap-mode :defer t)
 
 (use-package dart-mode :mode (("\\.dart\\'" . dart-mode)))
 (use-package lsp-dart :hook (dart-mode . lsp-deferred))
 
-(use-package yaml-mode)
 (use-package dotenv-mode :mode (("\\.env\\..*\\'" . dotenv-mode)))
 
 (use-package
@@ -269,7 +255,6 @@
      (when (and venv-path (file-directory-p venv-path))
        (pyvenv-activate venv-path))))
 
- (add-hook 'python-mode-hook #'custom/auto-activate-python-venv)
  (add-hook 'python-ts-mode-hook #'custom/auto-activate-python-venv))
 
 (use-package

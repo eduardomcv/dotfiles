@@ -12,7 +12,7 @@
  (setq xref-show-xrefs-function #'consult-xref)
  (setq xref-show-definitions-function #'consult-xref)
 
- :custom (consult-async-min-input 0)
+ :custom (consult-async-min-input 2)
 
  :config
  (let ((fd-name

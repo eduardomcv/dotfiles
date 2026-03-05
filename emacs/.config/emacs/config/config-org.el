@@ -20,8 +20,7 @@
  (org-fold-catch-invisible-edits 'show-and-error)
  (org-special-ctrl-a/e t)
  (org-hide-emphasis-markers t)
- (org-pretty-entities t)
- (org-ellipsis "…"))
+ (org-pretty-entities t))
 
 (use-package toc-org :hook (org-mode . toc-org-enable))
 

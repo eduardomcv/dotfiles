@@ -34,8 +34,6 @@
 (require 'use-package)
 (setq use-package-always-ensure t)
 
-(global-set-key (kbd "<escape>") 'keyboard-escape-quit)
-
 ;; Use plists for deserialization (better performance)
 (setenv "LSP_USE_PLISTS" "true")
 

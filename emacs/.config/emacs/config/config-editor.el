@@ -72,6 +72,7 @@
  (setq evil-replace-state-tag " REPLACE ")
  (setq evil-motion-state-tag " MOTION ")
  (define-key evil-motion-state-map (kbd "SPC") nil)
+ (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
  (evil-mode 1))
 
 (use-package
@@ -150,15 +151,18 @@
  compile
  :ensure nil
  :config
- ;; Support ESLint "stylish" format in compile buffers
- (defconst custom/eslint-stylish-regexp
-   '(("^\\(/.*\\)$" 1)
-     ("^[ \t]+\\([0-9]+\\):\\([0-9]+\\)[ \t]+" nil 1 2)))
- (add-to-list
-  'compilation-error-regexp-alist 'custom/eslint-stylish-regexp)
+ ;; Support ESLint "stylish" format in compile buffers.
+ ;; Two separate entries are required: one to match the filename line,
+ ;; and one to match the line:col error lines beneath it.
  (add-to-list
   'compilation-error-regexp-alist-alist
-  (cons 'custom/eslint-stylish-regexp custom/eslint-stylish-regexp)))
+  '(eslint-stylish-file "^\\(/.*\\)$" 1))
+ (add-to-list
+  'compilation-error-regexp-alist-alist
+  '(eslint-stylish-line
+    "^[ \t]+\\([0-9]+\\):\\([0-9]+\\)[ \t]+" nil 1 2))
+ (add-to-list 'compilation-error-regexp-alist 'eslint-stylish-file)
+ (add-to-list 'compilation-error-regexp-alist 'eslint-stylish-line))
 
 (use-package
  dired
@@ -202,12 +206,6 @@
   'wdired-finish-edit
   "ESC"
   'wdired-abort-changes))
-
-(use-package
- evil-collection-dired
- :ensure nil
- :after (dired evil-collection)
- :config (evil-collection-dired-setup))
 
 (use-package diredfl :hook (dired-mode . diredfl-mode))
 

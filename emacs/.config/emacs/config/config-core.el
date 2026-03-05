@@ -69,7 +69,7 @@
  (setq-default indent-tabs-mode nil)
  (setq-default tab-width 4)
 
- (run-at-time nil 300 'recentf-save-list)
+ (run-at-time nil 300 #'recentf-save-list)
 
  (when (eq system-type 'darwin)
    (require 'server)
