@@ -16,5 +16,6 @@
 (require 'config-finder)
 (require 'config-org)
 (require 'config-terminal)
+(require 'config-ai)
 
 ;;; init.el ends here
