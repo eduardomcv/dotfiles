@@ -29,7 +29,9 @@
 (use-package
  exec-path-from-shell
  :if (or (daemonp) (memq window-system '(mac ns x)))
- :config (exec-path-from-shell-initialize))
+ :config
+ (add-to-list 'exec-path-from-shell-variables "TERMINFO")
+ (exec-path-from-shell-initialize))
 
 (use-package
  emacs
@@ -44,35 +46,35 @@
 
  :hook (emacs-lisp-mode . (lambda () (setq tab-width 2)))
 
- :custom (read-process-output-max (* 1024 1024))
-
+ :custom
+ (inhibit-startup-message t)
+ (read-process-output-max (* 1024 1024))
  (version-control t)
  (delete-old-versions t)
  (kept-new-versions 6)
  (kept-old-versions 2)
-
+ (backup-by-copying t)
+ (delete-by-moving-to-trash t)
  (global-auto-revert-non-file-buffers t)
-
  (browse-url-browser-function 'browse-url-default-browser)
-
  (use-short-answers t)
-
  (visible-bell nil)
  (ring-bell-function 'ignore)
-
- (delete-by-moving-to-trash t)
-
  (scroll-conservatively 101)
  (mouse-wheel-progressive-speed nil)
  (mouse-wheel-scroll-amount '(1 ((shift) . 3) ((control) . 6)))
 
- (inhibit-startup-message t)
 
  :config
  (setq-default indent-tabs-mode nil)
  (setq-default tab-width 4)
 
- (run-at-time nil 300 'recentf-save-list))
+ (run-at-time nil 300 'recentf-save-list)
+
+ (when (eq system-type 'darwin)
+   (require 'server)
+   (unless (server-running-p)
+     (server-start))))
 
 (provide 'config-core)
 
