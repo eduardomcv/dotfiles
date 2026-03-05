@@ -202,6 +202,7 @@
  (lsp-ui-doc-show-with-mouse nil)
  (lsp-ui-sideline-enable nil)
  (lsp-ui-sideline-show-diagnostics nil)
+ (lsp-headerline-breadcrumb-enable-diagnostics nil)
  :config
  (setq lsp-ui-doc-border (catppuccin-color 'surface2))
  (set-face-attribute 'lsp-ui-doc-background nil
