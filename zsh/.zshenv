@@ -1,6 +1,6 @@
 # Exports
-export EDITOR="emacsclient -c"
-export VISUAL="emacsclient -c"
+export EDITOR="nvim"
+export VISUAL="nvim"
 
 # Add the user's private bin to PATH if it exists
 local_bin_dir="$HOME/.local/bin"
