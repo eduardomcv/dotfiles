@@ -1,3 +1,4 @@
+require("config.env")
 require("config.options")
 require("config.keymaps")
 require("config.diagnostic")
