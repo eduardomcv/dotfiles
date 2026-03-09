@@ -57,6 +57,7 @@ install_dotfiles \
     zsh \
     vim \
     emacs \
+    neovim \
     mise
 
 # Set git name and email
