@@ -58,6 +58,8 @@
  :mode
  (("\\.tsx\\'" . tsx-ts-mode)
   ("\\.ts\\'" . typescript-ts-mode)
+  ("\\.mjs\\'" . js-ts-mode)
+  ("\\.cjs\\'" . js-ts-mode)
   ("Dockerfile\\'" . dockerfile-ts-mode)
   ("\\.rs\\'" . rust-ts-mode)
   ("\\.go\\'" . go-ts-mode)
