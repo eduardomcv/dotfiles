@@ -116,6 +116,8 @@
  (custom/leader-key
   "b"
   '(:ignore t :which-key "buffer")
+  "bb"
+  '(ibuffer :which-key "list buffers")
   "c"
   '(:ignore t :which-key "code")
   "g"
