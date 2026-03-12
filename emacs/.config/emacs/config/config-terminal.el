@@ -26,13 +26,12 @@
  :config (define-key vterm-mode-map [return] #'vterm-send-return)
 
  (defun custom/spawn-shell (name)
-   "Create a new vterm buffer called NAME."
+   "Create a new vterm buffer called *Shell: NAME*"
    (interactive "sName of shell: ")
-   ;; Format buffer name to look like an Emacs buffer (*name*).
-   (let ((buffer-name
-          (if (string-prefix-p "*" name)
-              name
-            (format "*%s*" name))))
+   ;; Format buffer name to be *Shell: NAME*
+   (let ((buffer-name (format "*Shell: %s*" name)))
+     (when (get-buffer buffer-name)
+       (error "Buffer %s already exists" buffer-name))
      (vterm buffer-name)
      (setq-local vterm-buffer-name-string nil)))
 
