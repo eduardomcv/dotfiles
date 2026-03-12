@@ -36,6 +36,13 @@
  :hook (prog-mode . copilot-mode)
  :custom (copilot-idle-delay 0.5)
  :config
+ (with-eval-after-load 'copilot
+   (add-to-list 'copilot-indentation-alist '(prog-mode 4))
+   (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
+   (add-to-list 'copilot-indentation-alist '(js-ts-mode 2))
+   (add-to-list 'copilot-indentation-alist '(typescript-ts-mode 2))
+   (add-to-list 'copilot-indentation-alist '(tsx-ts-mode 2)))
+
  (add-hook 'evil-insert-state-exit-hook 'copilot-clear-overlay)
  :general
  (:states
