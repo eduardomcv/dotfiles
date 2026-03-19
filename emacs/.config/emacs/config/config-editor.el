@@ -275,9 +275,10 @@
 (use-package
  nerd-icons-corfu
  :after (corfu nerd-icons)
- :custom (nerd-icons-corfu-padding 1)
  :config
- (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
+ (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter)
+ (setq nerd-icons-corfu--space
+       (propertize " " 'display '(space :width 0.75))))
 
 (use-package
  cape
