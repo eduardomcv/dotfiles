@@ -178,11 +178,9 @@
 
 (use-package
  dashboard
-
  :init
  (setq initial-buffer-choice
        (lambda () (get-buffer-create dashboard-buffer-name)))
-
  :custom
  (dashboard-center-content t)
  (dashboard-vertically-center-content t)
@@ -250,6 +248,17 @@
   'highlight-indent-guides-stack-character-face "#45475a"))
 
 (use-package minions :init (minions-mode 1))
+
+(use-package
+ colorful-mode
+ :diminish
+ :custom
+ (colorful-use-prefix t)
+ (colorful-only-strings 'only-prog)
+ (css-fontify-colors nil)
+ :config
+ (global-colorful-mode t)
+ (add-to-list 'global-colorful-modes 'helpful-mode))
 
 (use-package
  xterm-color
