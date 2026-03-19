@@ -275,6 +275,7 @@
 (use-package
  nerd-icons-corfu
  :after (corfu nerd-icons)
+ :custom (nerd-icons-corfu-padding 1)
  :config
  (add-to-list 'corfu-margin-formatters #'nerd-icons-corfu-formatter))
 
