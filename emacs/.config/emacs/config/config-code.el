@@ -160,6 +160,8 @@
 
  (lsp-eslint-server-command
   '("vscode-eslint-language-server" "--stdio"))
+ (lsp-eslint-run "onSave")
+ (lsp-eslint-auto-fix-on-save t)
  :config
  (lsp-register-custom-settings
   '(("javascript.preferences.quoteStyle" "auto")
