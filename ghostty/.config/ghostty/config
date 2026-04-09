@@ -3,7 +3,7 @@ shell-integration = zsh
 shell-integration-features = ssh-terminfo,ssh-env
 
 font-family = IosevkaTerm Nerd Font Mono
-font-style = Regular
+font-style = Medium
 font-size = 16
 
 theme = Catppuccin Mocha
