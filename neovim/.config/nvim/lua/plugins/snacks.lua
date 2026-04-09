@@ -43,7 +43,7 @@ require("snacks").setup({
 	git = { enabled = true },
 	gitbrowse = { enabled = true },
 	indent = { enabled = true },
-	lazygit = { enabled = true },
+	lazygit = { enabled = false },
 	notifier = { enabled = true },
 	picker = {
 		enabled = true,
@@ -98,10 +98,6 @@ end, { desc = "Git blame" })
 vim.keymap.set({ "n", "v" }, "<leader>gB", function()
 	Snacks.gitbrowse()
 end, { desc = "Git browse" })
-
-vim.keymap.set("n", "<leader>gg", function()
-	Snacks.lazygit()
-end, { desc = "Open Lazygit" })
 
 vim.keymap.set({ "n", "t" }, "]]", function()
 	Snacks.words.jump(vim.v.count1)
