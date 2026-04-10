@@ -8,7 +8,7 @@ require("codecompanion").setup({
 	ignore_warnings = true,
 	display = {
 		action_palette = {
-			provider = "snacks",
+			provider = "fzf_lua",
 		},
 	},
 	adapters = {

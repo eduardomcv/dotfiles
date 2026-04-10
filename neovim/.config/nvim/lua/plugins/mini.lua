@@ -1,30 +1,46 @@
-vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
+vim.pack.add({
+	-- Icons
+	"https://github.com/nvim-mini/mini.icons",
+	-- Tracking of git data and exposes :Git command
+	"https://github.com/nvim-mini/mini-git",
+	-- Integrates git diffs and hunks
+	"https://github.com/nvim-mini/mini.diff",
+	-- Status line
+	"https://github.com/nvim-mini/mini.statusline",
+	-- Extends forward/back functionality with brackets
+	"https://github.com/nvim-mini/mini.bracketed",
+	-- Add gS keybind to split/join arguments
+	"https://github.com/nvim-mini/mini.splitjoin",
+	-- Auto pairs
+	"https://github.com/nvim-mini/mini.pairs",
+	-- Surround functionality
+	"https://github.com/nvim-mini/mini.surround",
+	-- Extends a/i text objects
+	"https://github.com/nvim-mini/mini.ai",
+	-- Adds operators such as evaluating expressions, exchanging text, etc.
+	"https://github.com/nvim-mini/mini.operators",
+	-- File explorer
+	"https://github.com/nvim-mini/mini.files",
+})
 
--- Icons
 local mini_icons = require("mini.icons")
 mini_icons.setup()
 mini_icons.mock_nvim_web_devicons()
 
--- Tracking of git data and exposes :Git command
 require("mini.git").setup()
 
--- Integrates git diffs and hunks
 require("mini.diff").setup({
 	view = {
 		style = "sign",
 	},
 })
 
--- Status line
 require("mini.statusline").setup()
 
--- Extends forward/back functionality with brackets
 require("mini.bracketed").setup()
 
--- Add gS keybind to split/join arguments
 require("mini.splitjoin").setup()
 
--- Auto pairs
 require("mini.pairs").setup({
 	modes = {
 		insert = true,
@@ -33,16 +49,12 @@ require("mini.pairs").setup({
 	},
 })
 
--- Surround functionality
 require("mini.surround").setup()
 
--- Extends a/i text objects
 require("mini.ai").setup()
 
--- Adds operators such as evaluating expressions, exchanging text, etc
 require("mini.operators").setup()
 
--- File explorer
 require("mini.files").setup({
 	content = {
 		filter = function(entry)

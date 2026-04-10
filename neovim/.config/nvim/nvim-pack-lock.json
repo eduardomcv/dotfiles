@@ -34,6 +34,10 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
+    "fzf-lua": {
+      "rev": "eee072d89ccdc0a4627bf67d0757d2e4981c7292",
+      "src": "https://github.com/ibhagwan/fzf-lua"
+    },
     "git-conflict.nvim": {
       "rev": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4",
       "src": "https://github.com/akinsho/git-conflict.nvim",
@@ -43,9 +47,49 @@
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"
     },
-    "mini.nvim": {
-      "rev": "69b7433355664cf76898eb86a12a019f39bd86d1",
-      "src": "https://github.com/nvim-mini/mini.nvim"
+    "mini-git": {
+      "rev": "a007cc40a4585c4f54787ddcf07295c2689daeb4",
+      "src": "https://github.com/nvim-mini/mini-git"
+    },
+    "mini.ai": {
+      "rev": "43eb2074843950a3a25aae56a5f41362ec043bfa",
+      "src": "https://github.com/nvim-mini/mini.ai"
+    },
+    "mini.bracketed": {
+      "rev": "efb969a6a9583a5d48bfbe36363769351e38f967",
+      "src": "https://github.com/nvim-mini/mini.bracketed"
+    },
+    "mini.diff": {
+      "rev": "ab11575a6c147ecfba894d676d0c93e855021d34",
+      "src": "https://github.com/nvim-mini/mini.diff"
+    },
+    "mini.files": {
+      "rev": "e8db416c9f5dbce70f5501da28263d45c0a4df6b",
+      "src": "https://github.com/nvim-mini/mini.files"
+    },
+    "mini.icons": {
+      "rev": "7fdae2443a0e2910015ca39ad74b50524ee682d3",
+      "src": "https://github.com/nvim-mini/mini.icons"
+    },
+    "mini.operators": {
+      "rev": "fccb5e3ef0cc319b217ed9c7db1a4672dd6b766c",
+      "src": "https://github.com/nvim-mini/mini.operators"
+    },
+    "mini.pairs": {
+      "rev": "42387c7fe68fc0b6e95eaf37f1bb76e7bffaa0d9",
+      "src": "https://github.com/nvim-mini/mini.pairs"
+    },
+    "mini.splitjoin": {
+      "rev": "8bd5a3d581b9f3dd3bc91fe495e210b8b0ee981d",
+      "src": "https://github.com/nvim-mini/mini.splitjoin"
+    },
+    "mini.statusline": {
+      "rev": "b456bfe845e475e9cec065b7a9a1ef657ad2f41b",
+      "src": "https://github.com/nvim-mini/mini.statusline"
+    },
+    "mini.surround": {
+      "rev": "2715e04bea3ec9244f15b421dc5b18c0fe326210",
+      "src": "https://github.com/nvim-mini/mini.surround"
     },
     "neogit": {
       "rev": "e06745228600a585b88726fc9fba44a373c15a47",
