@@ -1,12 +1,8 @@
 vim.pack.add({
-	{
-		src = "https://github.com/catppuccin/nvim",
-		name = "catppuccin",
-	},
+	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
 })
 
 require("catppuccin").setup({
-	transparent_background = true,
 	float = {
 		solid = false,
 		transparent = true,
@@ -15,10 +11,12 @@ require("catppuccin").setup({
 		blink_cmp = {
 			style = "bordered",
 		},
-		mason = true,
+		fzf = true,
 		mini = {
 			enabled = true,
 		},
+		neogit = true,
+		noice = true,
 		native_lsp = {
 			enabled = true,
 			underlines = {
@@ -30,11 +28,12 @@ require("catppuccin").setup({
 		},
 		snacks = {
 			enabled = true,
+			indent_scope_color = "maroon"
 		},
-		treesitter = true,
 		which_key = true,
 	},
+	transparent_background = true,
 })
 
--- Must load theme after calling setup
-vim.cmd.colorscheme("catppuccin-mocha")
+-- setup must be called before loading
+vim.cmd.colorscheme("catppuccin-nvim")
