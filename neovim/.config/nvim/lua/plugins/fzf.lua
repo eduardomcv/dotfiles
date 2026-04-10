@@ -4,6 +4,12 @@ vim.pack.add({
 })
 
 require("fzf-lua").setup({
+	winopts = {
+		backdrop = 100
+	},
+	grep = {
+		hidden = true,
+	},
 	keymap = {
 		fzf = {
 			-- Send results to quickfix list
