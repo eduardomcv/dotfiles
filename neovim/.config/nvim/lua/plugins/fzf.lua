@@ -3,7 +3,13 @@ vim.pack.add({
 	"https://github.com/ibhagwan/fzf-lua",
 })
 
-require("fzf-lua").setup()
+require("fzf-lua").setup({
+	keymap = {
+		fzf = {
+			["ctrl-q"] = "select-all+accept",
+		},
+	},
+})
 
 vim.keymap.set("n", "<C-p>", function()
 	FzfLua.vcs_files()
