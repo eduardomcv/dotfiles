@@ -26,5 +26,7 @@ install_pacman() {
         mise \
         tealdeer \
         lazygit \
+				tree-sitter-cli \
+				neovim \
         emacs-wayland
 }
