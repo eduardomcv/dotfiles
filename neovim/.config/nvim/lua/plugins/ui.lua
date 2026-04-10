@@ -1,5 +1,5 @@
 vim.pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+	{ src = "https://github.com/nvim-lua/plenary.nvim",     version = "master" },
 	-- UI component library
 	"https://github.com/MunifTanjim/nui.nvim",
 	-- Better UI for messages, cmdline and popupmenu
@@ -68,6 +68,10 @@ require("todo-comments").setup({})
 
 require("tabby").setup()
 
+require("nvim-highlight-colors").setup({})
+
+--- Keymaps
+
 local function rename_tab()
 	local tab_name = vim.fn.input({ prompt = "New tab name" })
 	if tab_name ~= "" then
@@ -76,5 +80,3 @@ local function rename_tab()
 end
 
 vim.keymap.set("n", "<leader>tr", rename_tab, { desc = "Rename tab" })
-
-require("nvim-highlight-colors").setup({})
