@@ -51,6 +51,8 @@ require("snacks").setup({
 	words = { enabled = true },
 })
 
+--- Autocmds
+
 -- Create autocmd to integrate file renaming with mini.files
 vim.api.nvim_create_autocmd("User", {
 	pattern = "MiniFilesActionRename",
@@ -73,25 +75,29 @@ vim.api.nvim_create_autocmd("InsertLeave", {
 	end,
 })
 
-vim.keymap.set("n", "<leader>gb", function()
+--- Keymaps
+local kset = vim.keymap.set
+
+kset("n", "<leader>gb", function()
 	Snacks.git.blame_line()
 end, { desc = "Git blame" })
 
-vim.keymap.set({ "n", "v" }, "<leader>gB", function()
+kset({ "n", "v" }, "<leader>gB", function()
 	Snacks.gitbrowse()
 end, { desc = "Git browse" })
 
-vim.keymap.set({ "n", "t" }, "]]", function()
+kset({ "n", "t" }, "]]", function()
 	Snacks.words.jump(vim.v.count1)
 end, { desc = "Next reference" })
 
-vim.keymap.set({ "n", "t" }, "[[", function()
+kset({ "n", "t" }, "[[", function()
 	Snacks.words.jump(-vim.v.count1)
 end, { desc = "Previous reference" })
 
-vim.keymap.set("n", "<leader>nd", function()
+kset("n", "<leader>nd", function()
 	Snacks.notifier.hide()
 end, { desc = "Dismiss all notifications" })
-vim.keymap.set("n", "<leader>nh", function()
+
+kset("n", "<leader>nh", function()
 	Snacks.notifier.show_history()
 end, { desc = "Notification history" })

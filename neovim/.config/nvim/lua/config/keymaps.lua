@@ -1,22 +1,22 @@
-local set = vim.keymap.set
+local kset = vim.keymap.set
 
 -- Delete without yank
-set("n", "x", [["_x]], { desc = "Delete without yanking" })
-set({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
+kset("n", "x", [["_x]], { desc = "Delete without yanking" })
+kset({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
 
 -- Increment/decrement
-set("n", "+", "<C-a>")
-set("n", "-", "<C-x>")
+kset("n", "+", "<C-a>")
+kset("n", "-", "<C-x>")
 
 -- Tab creation
-set("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Create new tab" })
-set("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
+kset("n", "<leader>tn", "<cmd>tabnew<cr>", { desc = "Create new tab" })
+kset("n", "<leader>tc", "<cmd>tabclose<cr>", { desc = "Close tab" })
 
 -- Open command line in lua mode
-set("n", "<leader>:", ":lua ", { desc = "Open command line in lua mode" })
+kset("n", "<leader>:", ":lua ", { desc = "Open command line in lua mode" })
 
 -- Window navigation
-set("n", "<c-h>", "<c-w>h", { desc = "Go to the left window" })
-set("n", "<c-j>", "<c-w>j", { desc = "Go to the down window" })
-set("n", "<c-k>", "<c-w>k", { desc = "Go to the up window" })
-set("n", "<c-l>", "<c-w>l", { desc = "Go to the right window" })
+kset("n", "<c-h>", "<c-w>h", { desc = "Go to the left window" })
+kset("n", "<c-j>", "<c-w>j", { desc = "Go to the down window" })
+kset("n", "<c-k>", "<c-w>k", { desc = "Go to the up window" })
+kset("n", "<c-l>", "<c-w>l", { desc = "Go to the right window" })
