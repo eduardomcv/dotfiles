@@ -1,7 +1,7 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
-	{ src = "https://github.com/olimorris/codecompanion.nvim", version = vim.version.range("^17.33.0") },
+	{ src = "https://github.com/olimorris/codecompanion.nvim" },
 })
 
 require("codecompanion").setup({
