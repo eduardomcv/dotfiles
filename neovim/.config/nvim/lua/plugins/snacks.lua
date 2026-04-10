@@ -43,7 +43,7 @@ require("snacks").setup({
 	git = { enabled = true },
 	gitbrowse = { enabled = true },
 	indent = { enabled = true },
-	lazygit = { enabled = false },
+	input = { enabled = true },
 	notifier = { enabled = true },
 	quickfile = { enabled = true },
 	scroll = { enabled = true },
