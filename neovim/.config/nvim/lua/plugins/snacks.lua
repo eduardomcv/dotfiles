@@ -45,24 +45,6 @@ require("snacks").setup({
 	indent = { enabled = true },
 	lazygit = { enabled = false },
 	notifier = { enabled = true },
-	picker = {
-		enabled = false,
-		layout = {
-			preset = "dropdown",
-			hidden = {
-				"preview",
-			},
-			layout = {
-				backdrop = false,
-				row = 4,
-				height = 0.7,
-			},
-		},
-		sources = {
-			files = { hidden = true },
-			grep = { hidden = true },
-		},
-	},
 	quickfile = { enabled = true },
 	scroll = { enabled = true },
 	rename = { enabled = true },

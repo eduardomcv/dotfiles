@@ -21,6 +21,8 @@ vim.pack.add({
 	"https://github.com/nvim-mini/mini.operators",
 	-- File explorer
 	"https://github.com/nvim-mini/mini.files",
+	-- Picker. Used as a fallback for vim.ui.select.
+	"https://github.com/nvim-mini/mini.pick",
 })
 
 local mini_icons = require("mini.icons")
@@ -80,6 +82,8 @@ require("mini.files").setup({
 		end,
 	},
 })
+
+require("mini.pick").setup()
 
 --- Keymaps
 
