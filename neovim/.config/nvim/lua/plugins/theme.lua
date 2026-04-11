@@ -28,11 +28,10 @@ require("catppuccin").setup({
 		},
 		snacks = {
 			enabled = true,
-			indent_scope_color = "maroon"
+			indent_scope_color = "maroon",
 		},
 		which_key = true,
 	},
-	transparent_background = true,
 })
 
 -- setup must be called before loading
