@@ -1,3 +1,4 @@
+require("plugins.builtin")
 require("plugins.theme")
 require("plugins.lsp")
 require("plugins.linting")
