@@ -79,7 +79,6 @@ require("blink-cmp").setup({
 	},
 	sources = {
 		default = {
-			-- "copilot",
 			"lazydev",
 			"lsp",
 			"path",
@@ -87,12 +86,6 @@ require("blink-cmp").setup({
 			"buffer",
 		},
 		providers = {
-			-- copilot = {
-			-- 	name = "copilot",
-			-- 	module = "blink-copilot",
-			-- 	score_offset = 100,
-			-- 	async = true,
-			-- },
 			lazydev = {
 				name = "LazyDev",
 				module = "lazydev.integrations.blink",
