@@ -3,7 +3,7 @@ local o = vim.opt
 -- Set line numbers
 o.number = true
 o.relativenumber = true
-o.signcolumn = "yes"
+o.signcolumn = "yes:1"
 
 -- Set tab size to 2 spaces
 o.tabstop = 2
