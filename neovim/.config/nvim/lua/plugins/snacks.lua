@@ -22,6 +22,7 @@ require("snacks").setup({
 				{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
 				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 			},
+			-- stylua: ignore start
 			header = [[
 |\---/|
 | ,_, |
@@ -36,6 +37,7 @@ require("snacks").setup({
 /_/ |_/\___/\____/|___/_/_/ /_/ /_/ 
 ]],
 		},
+		-- stylua: ignore end
 		formats = {
 			key = function(item)
 				return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
