@@ -6,22 +6,31 @@ vim.pack.add({
 local treesitter = require("nvim-treesitter")
 
 treesitter.install({
-	"bash",
 	"lua",
-	"regex",
 	"vim",
+	"vimdoc",
+	"bash",
+	"zsh",
+	"regex",
+	"json",
 	"yaml",
 	"toml",
-	"json",
+	"make",
+	"dockerfile",
+	"robots_txt",
+	"gitcommit",
+	"gitignore",
 	"markdown",
 	"markdown_inline",
+	"xml",
 	"html",
 	"css",
+	"scss",
 	"javascript",
 	"typescript",
 	"tsx",
-	"make",
 	"python",
+	"dart",
 })
 
 require("nvim-ts-autotag").setup({})
