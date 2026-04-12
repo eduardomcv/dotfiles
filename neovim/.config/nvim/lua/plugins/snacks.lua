@@ -60,7 +60,7 @@ require("snacks").setup({
 			layout = {
 				backdrop = false,
 				row = 4,
-				height = 0.7,
+				max_height = math.floor(vim.o.lines * 0.7),
 			},
 		},
 		sources = {
