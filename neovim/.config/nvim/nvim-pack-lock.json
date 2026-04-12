@@ -34,10 +34,6 @@
       "rev": "6cd7280adead7f586db6fccbd15d2cac7e2188b9",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
-    "fzf-lua": {
-      "rev": "eee072d89ccdc0a4627bf67d0757d2e4981c7292",
-      "src": "https://github.com/ibhagwan/fzf-lua"
-    },
     "git-conflict.nvim": {
       "rev": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4",
       "src": "https://github.com/akinsho/git-conflict.nvim",
@@ -62,6 +58,10 @@
     "mini.diff": {
       "rev": "ab11575a6c147ecfba894d676d0c93e855021d34",
       "src": "https://github.com/nvim-mini/mini.diff"
+    },
+    "mini.extra": {
+      "rev": "bc4e872500fd6d2ce252604e0ffa100f64f02280",
+      "src": "https://github.com/nvim-mini/mini.extra"
     },
     "mini.files": {
       "rev": "e8db416c9f5dbce70f5501da28263d45c0a4df6b",
