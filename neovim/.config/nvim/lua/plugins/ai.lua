@@ -5,7 +5,11 @@ vim.pack.add({
 })
 
 require("codecompanion").setup({
-	ignore_warnings = true,
+	display = {
+		action_palette = {
+			provider = "snacks",
+		},
+	},
 	adapters = {
 		acp = {
 			gemini_cli = function()
