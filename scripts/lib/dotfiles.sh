@@ -1,8 +1,6 @@
-#!/bin/bash
-
 DOTFILES_STOW_TARGET="$HOME"
 
-check_can_install_dotfiles() {
+function check_can_install_dotfiles() {
 	if ! command -v stow >/dev/null 2>&1; then
 		echo "Error: stow is required for managing dotfiles" >&2
 
@@ -17,7 +15,7 @@ check_can_install_dotfiles() {
 	fi
 }
 
-install_dotfiles() {
+function install_dotfiles() {
 	check_can_install_dotfiles
 
 	if [[ "$?" != 0 ]]; then
@@ -51,10 +49,10 @@ install_dotfiles() {
 	# Revert to original directory
 	cd "$original_dir" || return 1
 
-	echo "Installed dotfiles for $@!"
+	echo "Installed dotfiles for: $@"
 }
 
-uninstall_dotfiles() {
+function uninstall_dotfiles() {
 	check_can_install_dotfiles
 
 	# The stow directory is the same as the repository root

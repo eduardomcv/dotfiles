@@ -1,13 +1,13 @@
-#!/bin/bash
+function set_user_git_info() {
+	local git_username=""
+	local git_email=""
 
-set_user_git_info() {
-	# Prompt the user for the git username and email
-	echo -n "Enter full name (for git): "
-	IFS="\n" read -r GIT_USERNAME
+	echo -n "(git config) Enter full name: "
+	IFS="\n" read -r git_username
 
-	echo -n "Enter email (for git): "
-	IFS="\n" read -r GIT_EMAIL
+	echo -n "(git config) Enter email: "
+	IFS="\n" read -r git_email
 
-	git config --global user.name "$GIT_USERNAME"
-	git config --global user.email "$GIT_EMAIL"
+	git config --global user.name "$git_username"
+	git config --global user.email "$git_email"
 }
