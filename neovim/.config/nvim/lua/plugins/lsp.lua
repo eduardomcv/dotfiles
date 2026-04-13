@@ -4,14 +4,15 @@ vim.pack.add({
 })
 
 vim.lsp.enable({
-	"basedpyright",
-	"vtsls",
+	"bashls",
 	"lua_ls",
-	"cssls",
-	"html",
 	"jsonls",
 	"yamlls",
+	"vtsls",
 	"eslint",
+	"cssls",
+	"html",
+	"basedpyright",
 	"ruff",
 	"copilot",
 })
