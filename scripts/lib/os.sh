@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function require_root() {
 	if [[ "$(id -u)" != 0 ]]; then
 		echo "Please run as root." >&2

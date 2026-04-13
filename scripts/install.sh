@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Generic install script. Attempts to find the available package manager,
 # install dependencies, and stow dotfiles to the user's home directory.
 # This script should be called inside the dotfiles git repository,

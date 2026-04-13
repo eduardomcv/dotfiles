@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function check_brew() {
 	# Install homebrew if brew command does not exist
 	if ! command -v brew >/dev/null 2>&1; then
@@ -7,12 +9,9 @@ function check_brew() {
 }
 
 function install_brew() {
-	# homebrew tap for emacs
-	brew tap d12frosted/emacs-plus
-
 	brew install \
+		make \
 		cmake \
-		libvterm \
 		stow \
 		ripgrep \
 		fd \
@@ -24,12 +23,11 @@ function install_brew() {
 		lazygit \
 		mise \
 		tree-sitter-cli \
-		neovim \
-		emacs-plus
+		neovim
 
 	brew install --cask \
-		font-iosevka \
-		font-symbols-only-nerd-font \
+		font-iosevka-nerd-font \
+		font-iosevka-term-nerd-font \
 		thunderbird \
 		zen
 }
@@ -42,8 +40,8 @@ function check_rpmfusion() {
 		sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
 		sudo dnf install -y \
-			https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm \
-			https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm
+			"https://mirrors.rpmfusion.org/free/fedora/rpmfusion-free-release-$(rpm -E %fedora).noarch.rpm" \
+			"https://mirrors.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-$(rpm -E %fedora).noarch.rpm"
 	else
 		echo "RPM Fusion is already enabled!"
 	fi
@@ -58,7 +56,7 @@ function enable_copr() {
 	)
 
 	echo "Checking if COPRs are enabled..."
-	dnf copr list | grep -q "$COPR_NAMES[-1]"
+	dnf copr list | grep -q "${COPR_NAMES[-1]}"
 
 	if [[ $? == 1 ]]; then
 		for name in "${COPR_NAMES[@]}"; do
@@ -128,8 +126,9 @@ function install_apt() {
 		thunderbird
 
 	# Lazygit
-	local LAZYGIT_VERSION=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${LAZYGIT_VERSION}/lazygit_${LAZYGIT_VERSION}_Linux_x86_64.tar.gz"
+	local lazygit_version
+	lazygit_version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
+	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_version}/lazygit_${lazygit_version}_Linux_x86_64.tar.gz"
 	tar xf lazygit.tar.gz lazygit
 	sudo install lazygit -D -t /usr/local/bin/
 
@@ -174,10 +173,13 @@ function install_pacman() {
 }
 
 function install_packages() {
-	local dotfiles_dir="$(git rev-parse --show-toplevel)"
+	local dotfiles_dir
+	local package_manager
+
+	dotfiles_dir="$(git rev-parse --show-toplevel)"
 	source "$dotfiles_dir/scripts/lib/os.sh"
 
-	local package_manager="$(get_os_package_manager)"
+	package_manager="$(get_os_package_manager)"
 
 	case $package_manager in
 	apt)

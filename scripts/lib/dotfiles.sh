@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 DOTFILES_STOW_TARGET="$HOME"
 
 function check_can_install_dotfiles() {
@@ -16,17 +18,19 @@ function check_can_install_dotfiles() {
 }
 
 function install_dotfiles() {
-	check_can_install_dotfiles
+	local stow_dir
+	local original_dir
 
-	if [[ "$?" != 0 ]]; then
+	if ! check_can_install_dotfiles; then
 		return 1
 	fi
 
-	# The stow directory is the same as the repository root
-	local stow_dir="$(git rev-parse --show-toplevel)"
+	check_can_install_dotfiles
 
+	# The stow directory is the same as the repository root
+	stow_dir="$(git rev-parse --show-toplevel)"
 	# Store the original directory where we invoked the script
-	local original_dir="$(pwd)"
+	original_dir="$(pwd)"
 
 	# Change to stow directory
 	cd "$stow_dir" || return 1
@@ -49,7 +53,7 @@ function install_dotfiles() {
 	# Revert to original directory
 	cd "$original_dir" || return 1
 
-	echo "Installed dotfiles for: $@"
+	echo "Installed dotfiles for: $*"
 }
 
 function uninstall_dotfiles() {

@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 function set_user_git_info() {
 	local git_username=""
 	local git_email=""
