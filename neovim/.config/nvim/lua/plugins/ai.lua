@@ -5,11 +5,6 @@ vim.pack.add({
 })
 
 require("codecompanion").setup({
-	display = {
-		action_palette = {
-			provider = "snacks",
-		},
-	},
 	adapters = {
 		acp = {
 			gemini_cli = function()
@@ -19,6 +14,24 @@ require("codecompanion").setup({
 					},
 				})
 			end,
+		},
+	},
+	display = {
+		action_palette = {
+			provider = "snacks",
+		},
+		chat = {
+			window = {
+				position = "right",
+				width = 0.3,
+			},
+		},
+	},
+	interactions = {
+		chat = {
+			opts = {
+				completion_provider = "blink",
+			},
 		},
 	},
 })
