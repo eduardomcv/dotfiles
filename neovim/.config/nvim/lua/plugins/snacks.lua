@@ -53,14 +53,14 @@ require("snacks").setup({
 	picker = {
 		enabled = true,
 		layout = {
-			preset = "dropdown",
 			hidden = {
 				"preview",
 			},
+			preset = "dropdown",
 			layout = {
-				backdrop = false,
 				row = 4,
-				max_height = math.floor(vim.o.lines * 0.7),
+				max_height = math.floor(vim.o.lines * 0.8),
+				width = math.floor(vim.o.columns * 0.5),
 			},
 		},
 		sources = {
@@ -142,7 +142,7 @@ kset("n", "<leader>sB", function()
 end, { desc = "Grep Open Buffers" })
 
 kset("n", "<leader>sg", function()
-	Snacks.picker.grep()
+	Snacks.picker.grep({ layout = { hidden = {} } })
 end, { desc = "Grep" })
 
 kset("n", "<leader>s:", function()
