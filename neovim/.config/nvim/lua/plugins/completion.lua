@@ -48,8 +48,12 @@ require("blink-cmp").setup({
 		},
 		menu = {
 			draw = {
+				columns = {
+					{ "kind_icon" },
+					{ "label", "label_description", gap = 1 },
+					{ "kind" },
+				},
 				components = {
-					-- customize the drawing of kind icons
 					kind_icon = {
 						text = function(ctx)
 							-- default kind icon
