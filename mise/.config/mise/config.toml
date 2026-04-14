@@ -4,6 +4,7 @@ python = "3.13.12"
 ruby = "3.4.9"
 flutter = "3.38.9-stable"
 uv = "latest"
+ty = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "python"]

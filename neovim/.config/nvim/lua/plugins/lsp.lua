@@ -12,7 +12,7 @@ vim.lsp.enable({
 	"eslint",
 	"cssls",
 	"html",
-	"basedpyright",
+	"ty",
 	"ruff",
 	"copilot",
 })
