@@ -5,13 +5,10 @@ DOTFILES_STOW_TARGET="$HOME"
 function check_can_install_dotfiles() {
 	if ! command -v stow >/dev/null 2>&1; then
 		echo "Error: stow is required for managing dotfiles" >&2
-
 		return 1
 	fi
 
-	git rev-parse --show-toplevel >/dev/null 2>&1
-
-	if [ $? -ne 0 ]; then
+	if ! git rev-parse --show-toplevel >/dev/null 2>&1; then
 		echo "Error: not inside a git repository" >&2
 		return 1
 	fi
@@ -37,9 +34,7 @@ function install_dotfiles() {
 
 	# Simulate stowing from args
 	for config in "$@"; do
-		stow -nt "$DOTFILES_STOW_TARGET" "$config" 2>/dev/null
-
-		if [[ "$?" != 0 ]]; then
+		if ! stow -nt "$DOTFILES_STOW_TARGET" "$config" 2>/dev/null; then
 			echo "Error: the stow directory $stow_dir does not contain a config for $config"
 			return 1
 		fi
@@ -70,9 +65,7 @@ function uninstall_dotfiles() {
 
 	# Simulate un-stowing from args
 	for config in "$@"; do
-		stow -nDt "$DOTFILES_STOW_TARGET" "$config" 2>/dev/null
-
-		if [[ "$?" != 0 ]]; then
+		if ! stow -nDt "$DOTFILES_STOW_TARGET" "$config" 2>/dev/null; then
 			echo "Error: the stow directory $stow_dir does not contain a config for $config"
 			return 1
 		fi
