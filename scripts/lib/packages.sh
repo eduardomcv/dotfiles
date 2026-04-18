@@ -23,9 +23,11 @@ function install_brew() {
 		lazygit \
 		mise \
 		tree-sitter-cli \
+		shfmt \
+		shellcheck \
+		bash-language-server \
 		lua-language-server \
 		stylua \
-		bash-language-server \
 		neovim
 
 	brew install --cask \
