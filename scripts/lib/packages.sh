@@ -172,9 +172,13 @@ function install_pacman() {
 		mise \
 		tealdeer \
 		lazygit \
+		shfmt \
+		shellcheck \
+		bash-language-server \
+		lua-language-server \
+		stylua \
 		tree-sitter-cli \
-		neovim \
-		emacs-wayland
+		neovim
 }
 
 function install_packages() {

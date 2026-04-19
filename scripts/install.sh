@@ -20,10 +20,10 @@ source "$DOTFILES_DIR/scripts/lib/dotfiles.sh"
 install_dotfiles \
 	git \
 	zsh \
+	mise \
 	vim \
-	emacs \
 	neovim \
-	mise
+	ghostty
 
 source "$DOTFILES_DIR/scripts/lib/git.sh"
 set_user_git_info
