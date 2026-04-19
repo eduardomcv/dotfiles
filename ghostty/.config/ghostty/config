@@ -2,7 +2,7 @@ command = /bin/zsh
 shell-integration = zsh
 shell-integration-features = ssh-terminfo,ssh-env
 
-font-family = IosevkaTerm Nerd Font Mono
+font-family = Iosevka Term
 font-style = Medium
 font-size = 16
 
