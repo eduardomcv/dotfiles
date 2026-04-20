@@ -31,8 +31,7 @@ function install_brew() {
 		neovim
 
 	brew install --cask \
-		font-iosevka-nerd-font \
-		font-iosevka-term-nerd-font \
+		font-iosevka \
 		thunderbird \
 		zen
 }
