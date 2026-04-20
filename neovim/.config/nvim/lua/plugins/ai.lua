@@ -1,6 +1,7 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
 	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+	{ src = "https://github.com/ravitemer/codecompanion-history.nvim" },
 	{ src = "https://github.com/olimorris/codecompanion.nvim" },
 })
 
@@ -24,6 +25,14 @@ require("codecompanion").setup({
 			window = {
 				position = "right",
 				width = 0.3,
+			},
+		},
+	},
+	extensions = {
+		history = {
+			enabled = true,
+			opts = {
+				dir_to_save = vim.fn.stdpath("data") .. "/codecompanion_chats.json",
 			},
 		},
 	},

@@ -18,6 +18,10 @@
       "rev": "426dbebe06b5c69fd846ceb17b42e12f890aedf1",
       "src": "https://github.com/catppuccin/nvim"
     },
+    "codecompanion-history.nvim": {
+      "rev": "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a",
+      "src": "https://github.com/ravitemer/codecompanion-history.nvim"
+    },
     "codecompanion.nvim": {
       "rev": "e003fac48f8af4fc2d4ece3ee2f6f1897f71b912",
       "src": "https://github.com/olimorris/codecompanion.nvim"
