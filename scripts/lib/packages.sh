@@ -32,6 +32,7 @@ function install_brew() {
 
 	brew install --cask \
 		font-iosevka \
+		ghostty \
 		thunderbird \
 		zen
 }
