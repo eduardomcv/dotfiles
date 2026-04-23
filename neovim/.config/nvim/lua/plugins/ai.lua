@@ -32,6 +32,10 @@ require("codecompanion").setup({
 		history = {
 			opts = {
 				picker = "snacks",
+				title_generation_opts = {
+					adapter = "copilot",
+					model = "gpt-4o",
+				},
 			},
 		},
 	},
