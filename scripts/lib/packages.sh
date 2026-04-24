@@ -11,6 +11,11 @@ function check_brew() {
 function install_brew() {
 	brew install \
 		make \
+		openssl@3 \
+		readline \
+		libyaml \
+		gmp \
+		autoconf \
 		cmake \
 		stow \
 		ripgrep \
