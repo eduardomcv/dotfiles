@@ -25,6 +25,7 @@ function install_brew() {
 		zoxide \
 		eza \
 		tlrc \
+		pngpaste \
 		lazygit \
 		mise \
 		tree-sitter-cli \
