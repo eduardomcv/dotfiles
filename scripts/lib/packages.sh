@@ -27,6 +27,7 @@ function install_brew() {
 		tlrc \
 		pngpaste \
 		lazygit \
+		usage \
 		mise \
 		tree-sitter-cli \
 		shfmt \
@@ -175,6 +176,7 @@ function install_pacman() {
 		zoxide \
 		bat \
 		eza \
+		usage \
 		mise \
 		tealdeer \
 		lazygit \
