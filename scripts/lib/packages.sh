@@ -112,7 +112,6 @@ function install_dnf() {
 			fzf \
 			tldr \
 			zoxide \
-			emacs \
 			mise \
 			lazygit \
 			eza \
