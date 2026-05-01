@@ -1,5 +1,5 @@
 [core]
-  editor = "emacsclient -c"
+  editor = "nvim"
   autocrlf = input
   longpaths = true
 [fetch]
@@ -14,7 +14,10 @@
   verbose = true              # Include diff comment in commit message template
 [column]
   ui = auto                   # Output in columns when possible
+[difftool "nvim_difftool"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
 [diff]
+  tool = nvim_difftool
   algorithm = histogram       # Clearer diffs on moved/edited lines
   colorMoved = plain          # Highlight moved blocks in diffs
   mnemonicPrefix = true       # More intuitive refs in diff output
