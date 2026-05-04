@@ -67,6 +67,7 @@ function enable_copr() {
 		"peterwu/iosevka"
 		"agriffis/neovim-nightly"
 		"yorickpeterse/stylua"
+		"lilay/topgrade"
 	)
 
 	echo "Checking if COPRs are enabled..."
@@ -120,7 +121,8 @@ function install_dnf() {
 			neovim \
 			shellcheck \
 			nodejs-bash-language-server \
-			stylua
+			stylua \
+			topgrade
 }
 
 function install_apt() {
