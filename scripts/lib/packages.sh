@@ -46,9 +46,8 @@ function install_brew() {
 
 function check_rpmfusion() {
 	echo "Checking if RPM Fusion is enabled..."
-	dnf repolist | grep -q rpmfusion-free
 
-	if [[ $? == 1 ]]; then
+	if ! dnf repolist | grep -q rpmfusion-nonfree; then
 		sudo dnf config-manager setopt fedora-cisco-openh264.enabled=1
 
 		sudo dnf install -y \
@@ -63,8 +62,11 @@ function enable_copr() {
 	local COPR_NAMES=(
 		"atim/lazygit"
 		"alternateved/eza"
-		"sneexy/zen-browser"
 		"jdxcode/mise"
+		"scottames/ghostty"
+		"peterwu/iosevka"
+		"agriffis/neovim-nightly"
+		"yorickpeterse/stylua"
 	)
 
 	echo "Checking if COPRs are enabled..."
@@ -102,8 +104,6 @@ function install_dnf() {
 			libtool \
 			libvterm-devel \
 			wl-clipboard \
-			gnome-tweaks \
-			gnome-themes-extra \
 			zsh \
 			stow \
 			fd-find \
@@ -115,7 +115,12 @@ function install_dnf() {
 			mise \
 			lazygit \
 			eza \
-			zen-browser
+			ghostty \
+			iosevka-term-fonts \
+			neovim \
+			shellcheck \
+			nodejs-bash-language-server \
+			stylua
 }
 
 function install_apt() {
