@@ -5,6 +5,7 @@ ruby = "latest"
 uv = "latest"
 ty = "latest"
 flutter = "latest"
+lua-language-server = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "python"]
