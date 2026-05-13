@@ -134,31 +134,8 @@ function install_apt() {
 		git \
 		stow \
 		zsh \
-		fd-find \
-		ripgrep \
-		fzf \
-		bat \
-		eza \
-		tmux \
 		firefox \
 		thunderbird
-
-	# Lazygit
-	local lazygit_version
-	lazygit_version=$(curl -s "https://api.github.com/repos/jesseduffield/lazygit/releases/latest" | \grep -Po '"tag_name": *"v\K[^"]*')
-	curl -Lo lazygit.tar.gz "https://github.com/jesseduffield/lazygit/releases/download/v${lazygit_version}/lazygit_${lazygit_version}_Linux_x86_64.tar.gz"
-	tar xf lazygit.tar.gz lazygit
-	sudo install lazygit -D -t /usr/local/bin/
-
-	# nvim PPA
-	sudo add-apt-repository -y ppa:neovim-ppa/unstable
-
-	# Spotify repository
-	curl -sS https://download.spotify.com/debian/pubkey_C85668DF69375001.gpg | sudo gpg --dearmor --yes -o /etc/apt/trusted.gpg.d/spotify.gpg
-	echo "deb https://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
-
-	sudo apt update
-	sudo apt install -y neovim spotify-client
 }
 
 function install_pacman() {
