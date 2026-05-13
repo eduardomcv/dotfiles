@@ -2,7 +2,7 @@ command = /bin/zsh
 shell-integration = zsh
 shell-integration-features = ssh-terminfo,ssh-env
 
-font-family = Iosevka Term
+font-family = Iosevka
 font-style = Medium
 font-size = 16
 
