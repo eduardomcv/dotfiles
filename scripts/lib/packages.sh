@@ -67,7 +67,6 @@ function enable_copr() {
 		"peterwu/iosevka"
 		"agriffis/neovim-nightly"
 		"yorickpeterse/stylua"
-		"lilay/topgrade"
 	)
 
 	echo "Checking if COPRs are enabled..."
@@ -117,12 +116,11 @@ function install_dnf() {
 			lazygit \
 			eza \
 			ghostty \
-			iosevka-term-fonts \
+			iosevka-fonts \
 			neovim \
 			shellcheck \
 			nodejs-bash-language-server \
-			stylua \
-			topgrade
+			stylua
 }
 
 function install_apt() {
