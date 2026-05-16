@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-function source_brew() {
+function brew_source() {
 	if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
 		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 	elif [[ -x /opt/homebrew/bin/brew ]]; then
@@ -9,28 +9,20 @@ function source_brew() {
 
 }
 
-function check_brew() {
+function brew_check() {
 	# Try to source brew
-	source_brew
+	brew_source
 
 	# Install homebrew if brew command could not be found
 	if ! command -v brew >/dev/null 2>&1; then
 		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 		# Source after install
-		source_brew
+		brew_source
 	fi
 }
 
-function install_macos() {
+function brew_install_common() {
 	brew install \
-		make \
-		openssl@3 \
-		readline \
-		libyaml \
-		gmp \
-		autoconf \
-		cmake \
-		stow \
 		ripgrep \
 		fd \
 		bat \
@@ -38,7 +30,6 @@ function install_macos() {
 		zoxide \
 		eza \
 		tlrc \
-		pngpaste \
 		lazygit \
 		usage \
 		mise \
@@ -49,12 +40,29 @@ function install_macos() {
 		lua-language-server \
 		stylua \
 		neovim
+}
+
+function install_macos() {
+	brew_check
+
+	brew install \
+		make \
+		openssl@3 \
+		readline \
+		libyaml \
+		gmp \
+		autoconf \
+		cmake \
+		stow \
+		pngpaste
 
 	brew install --cask \
 		font-iosevka \
 		ghostty \
 		thunderbird \
 		zen
+
+	brew_install_common
 }
 
 function check_rpmfusion() {
@@ -119,26 +127,8 @@ function install_dnf() {
 			ghostty \
 			iosevka-fonts
 
-	check_brew
-
-	brew install \
-		ripgrep \
-		fd \
-		bat \
-		fzf \
-		zoxide \
-		eza \
-		tlrc \
-		lazygit \
-		usage \
-		mise \
-		tree-sitter-cli \
-		shfmt \
-		shellcheck \
-		bash-language-server \
-		lua-language-server \
-		stylua \
-		neovim
+	brew_check
+	brew_install_common
 }
 
 function install_apt() {
@@ -150,8 +140,10 @@ function install_apt() {
 		git \
 		stow \
 		zsh \
-		firefox \
 		thunderbird
+
+	brew_check
+	brew_install_common
 }
 
 function install_pacman() {
@@ -190,33 +182,28 @@ function install_pacman() {
 
 function install_packages() {
 	local dotfiles_dir
-	local package_manager
+	local os_base
 
 	dotfiles_dir="$(git rev-parse --show-toplevel)"
 	source "$dotfiles_dir/scripts/lib/os.sh"
 
-	package_manager="$(get_os_package_manager)"
+	os_base="$(get_os_base)"
 
-	case $package_manager in
-	apt)
-		install_apt
-		;;
-
-	pacman)
+	case $os_base in
+	arch)
 		install_pacman
 		;;
-
-	brew)
-		check_brew
-		install_macos
+	debian)
+		install_apt
 		;;
-
-	dnf)
+	fedora)
 		install_dnf
 		;;
-
+	macos)
+		install_macos
+		;;
 	*)
-		echo "No install script exists for $package_manager" >&2
+		echo "No install script exists for $os_base" >&2
 		exit 1
 		;;
 	esac
