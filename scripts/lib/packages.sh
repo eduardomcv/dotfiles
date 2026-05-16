@@ -1,14 +1,27 @@
 #!/usr/bin/env bash
 
+function source_brew() {
+	if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
+		eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+	elif [[ -x /opt/homebrew/bin/brew ]]; then
+		eval "$(/opt/homebrew/bin/brew shellenv)"
+	fi
+
+}
+
 function check_brew() {
-	# Install homebrew if brew command does not exist
+	# Try to source brew
+	source_brew
+
+	# Install homebrew if brew command could not be found
 	if ! command -v brew >/dev/null 2>&1; then
-		/bin/bash -c \
-			"$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+		/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+		# Source after install
+		source_brew
 	fi
 }
 
-function install_brew() {
+function install_macos() {
 	brew install \
 		make \
 		openssl@3 \
@@ -60,25 +73,22 @@ function check_rpmfusion() {
 
 function enable_copr() {
 	local COPR_NAMES=(
-		"atim/lazygit"
-		"alternateved/eza"
-		"jdxcode/mise"
 		"scottames/ghostty"
 		"peterwu/iosevka"
-		"agriffis/neovim-nightly"
-		"yorickpeterse/stylua"
 	)
 
 	echo "Checking if COPRs are enabled..."
-	dnf copr list | grep -q "${COPR_NAMES[-1]}"
+	local enabled_coprs
+	enabled_coprs=$(dnf copr list 2>/dev/null)
 
-	if [[ $? == 1 ]]; then
-		for name in "${COPR_NAMES[@]}"; do
+	for name in "${COPR_NAMES[@]}"; do
+		if ! echo "$enabled_coprs" | grep -q "${name}"; then
+			echo "Enabling COPR: $name"
 			sudo dnf copr enable -y "$name"
-		done
-	else
-		echo "COPRs are already enabled!"
-	fi
+		else
+			echo "COPR already enabled: $name"
+		fi
+	done
 }
 
 function install_dnf() {
@@ -106,21 +116,29 @@ function install_dnf() {
 			wl-clipboard \
 			zsh \
 			stow \
-			fd-find \
-			ripgrep \
-			bat \
-			fzf \
-			tldr \
-			zoxide \
-			mise \
-			lazygit \
-			eza \
 			ghostty \
-			iosevka-fonts \
-			neovim \
-			shellcheck \
-			nodejs-bash-language-server \
-			stylua
+			iosevka-fonts
+
+	check_brew
+
+	brew install \
+		ripgrep \
+		fd \
+		bat \
+		fzf \
+		zoxide \
+		eza \
+		tlrc \
+		lazygit \
+		usage \
+		mise \
+		tree-sitter-cli \
+		shfmt \
+		shellcheck \
+		bash-language-server \
+		lua-language-server \
+		stylua \
+		neovim
 }
 
 function install_apt() {
@@ -190,7 +208,7 @@ function install_packages() {
 
 	brew)
 		check_brew
-		install_brew
+		install_macos
 		;;
 
 	dnf)
