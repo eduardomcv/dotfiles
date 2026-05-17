@@ -134,7 +134,8 @@ function install_dnf() {
 		shellcheck \
 		lua-language-server \
 		neovim \
-		ghostty
+		ghostty \
+		helium-browser-bin
 
 	brew_check
 
