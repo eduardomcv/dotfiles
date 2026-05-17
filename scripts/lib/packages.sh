@@ -21,27 +21,6 @@ function brew_check() {
 	fi
 }
 
-function brew_install_common() {
-	brew install \
-		ripgrep \
-		fd \
-		bat \
-		fzf \
-		zoxide \
-		eza \
-		tlrc \
-		lazygit \
-		usage \
-		mise \
-		tree-sitter-cli \
-		shfmt \
-		shellcheck \
-		bash-language-server \
-		lua-language-server \
-		stylua \
-		neovim
-}
-
 function install_macos() {
 	brew_check
 
@@ -54,15 +33,30 @@ function install_macos() {
 		autoconf \
 		cmake \
 		stow \
-		pngpaste
+		ripgrep \
+		fd \
+		bat \
+		fzf \
+		zoxide \
+		eza \
+		tlrc \
+		lazygit \
+		pngpaste \
+		usage \
+		mise \
+		tree-sitter-cli \
+		shfmt \
+		shellcheck \
+		bash-language-server \
+		lua-language-server \
+		stylua \
+		neovim
 
 	brew install --cask \
 		font-iosevka \
 		ghostty \
 		thunderbird \
 		zen
-
-	brew_install_common
 }
 
 function check_rpmfusion() {
@@ -81,7 +75,6 @@ function check_rpmfusion() {
 
 function enable_copr() {
 	local COPR_NAMES=(
-		"scottames/ghostty"
 		"peterwu/iosevka"
 	)
 
@@ -101,34 +94,55 @@ function enable_copr() {
 
 function install_dnf() {
 	# update system
-	sudo dnf update -y &&
-		check_rpmfusion &&
-		enable_copr &&
-		sudo dnf install -y \
-			@development-tools \
-			autoconf \
-			make \
-			bzip2 \
-			openssl-devel \
-			libyaml-devel \
-			libffi-devel \
-			readline-devel \
-			gdbm-devel \
-			ncurses-devel \
-			perl-FindBin \
-			zlib-ng-compat-devel \
-			cmake \
-			gcc-c++ \
-			libtool \
-			libvterm-devel \
-			wl-clipboard \
-			zsh \
-			stow \
-			ghostty \
-			iosevka-fonts
+	sudo dnf update -y
+
+	check_rpmfusion
+	enable_copr
+
+	# Enable Terra repositories
+	sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
+
+	sudo dnf install -y \
+		@development-tools \
+		autoconf \
+		make \
+		bzip2 \
+		openssl-devel \
+		libyaml-devel \
+		libffi-devel \
+		readline-devel \
+		gdbm-devel \
+		ncurses-devel \
+		perl-FindBin \
+		zlib-ng-compat-devel \
+		cmake \
+		gcc-c++ \
+		libtool \
+		libvterm-devel \
+		wl-clipboard \
+		zsh \
+		stow \
+		ripgrep \
+		fd \
+		bat \
+		eza \
+		fzf \
+		zoxide \
+		mise \
+		iosevka-fonts \
+		shfmt \
+		shellcheck \
+		lua-language-server \
+		neovim \
+		ghostty
 
 	brew_check
-	brew_install_common
+
+	brew install \
+		tlrc \
+		lazygit \
+		bash-language-server \
+		stylua
 }
 
 function install_apt() {
@@ -143,7 +157,25 @@ function install_apt() {
 		thunderbird
 
 	brew_check
-	brew_install_common
+
+	brew install \
+		ripgrep \
+		fd \
+		bat \
+		fzf \
+		zoxide \
+		eza \
+		tlrc \
+		lazygit \
+		usage \
+		mise \
+		shfmt \
+		shellcheck \
+		bash-language-server \
+		lua-language-server \
+		stylua \
+		tree-sitter-cli \
+		neovim
 }
 
 function install_pacman() {
