@@ -1,8 +1,8 @@
 # Check and enable Homebrew
 if [[ -x /home/linuxbrew/.linuxbrew/bin/brew ]]; then
-	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv zsh)"
+	eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
 elif [[ -x /opt/homebrew/bin/brew ]]; then
-	eval "$(/opt/homebrew/bin/brew shellenv zsh)"
+	eval "$(/opt/homebrew/bin/brew shellenv)"
 fi
 
 # Add Homebrew's completions
