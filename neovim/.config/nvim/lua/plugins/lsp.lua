@@ -15,6 +15,7 @@ vim.lsp.enable({
 	"ty",
 	"ruff",
 	"copilot",
+	"dartls",
 })
 
 --- LSP server configurations
