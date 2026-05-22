@@ -4,7 +4,7 @@ shell-integration-features = ssh-terminfo,ssh-env
 
 font-family = Iosevka
 font-style = Medium
-font-size = 15
+font-size = 16
 
 theme = Catppuccin Mocha
 
