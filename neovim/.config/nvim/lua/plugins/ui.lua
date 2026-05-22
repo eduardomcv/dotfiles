@@ -14,6 +14,8 @@ vim.pack.add({
 	"https://github.com/folke/todo-comments.nvim",
 	-- Highlight colors
 	"https://github.com/brenoprata10/nvim-highlight-colors",
+	-- Integrate with kitty terminal
+	"https://github.com/knubie/vim-kitty-navigator",
 })
 
 require("noice").setup({

@@ -109,6 +109,10 @@
       "rev": "31e3c38ce9b29781e4422fc0322eb0a21f4e8668",
       "src": "https://github.com/folke/todo-comments.nvim"
     },
+    "vim-kitty-navigator": {
+      "rev": "504032c138261b10b281a1d83b2d47078e4566df",
+      "src": "https://github.com/knubie/vim-kitty-navigator"
+    },
     "which-key.nvim": {
       "rev": "3aab2147e74890957785941f0c1ad87d0a44c15a",
       "src": "https://github.com/folke/which-key.nvim"
