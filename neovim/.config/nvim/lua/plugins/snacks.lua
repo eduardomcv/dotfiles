@@ -168,7 +168,7 @@ end, { desc = "Search recent files" })
 
 kset({ "n", "x" }, "<leader>sw", function()
 	Snacks.picker.grep_word()
-end, { desc = "Visual selection or word" })
+end, { desc = "Search visual selection or word" })
 
 kset("n", '<leader>s"', function()
 	Snacks.picker.registers()
