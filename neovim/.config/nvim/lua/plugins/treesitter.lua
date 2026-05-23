@@ -30,11 +30,10 @@ treesitter.install({
 
 require("nvim-ts-autotag").setup({})
 
--- Autocmds
+--- Autocmds
 
--- Automatically run :TSUpdate when nvim-treesitter is updated via vim.pack.update()
 vim.api.nvim_create_autocmd("PackChanged", {
-	desc = "Handle nvim-treesitter updates",
+	desc = "Automatically run :TSUpdate when the nvim-treesitter plugin is updated",
 	group = vim.api.nvim_create_augroup("nvim-treesitter-pack-changed-update-handler", { clear = true }),
 	callback = function(event)
 		if event.data.kind == "update" and event.data.spec.name == "nvim-treesitter" then
@@ -47,5 +46,23 @@ vim.api.nvim_create_autocmd("PackChanged", {
 				vim.notify("TSUpdate command not available yet, skipping", vim.log.levels.WARN)
 			end
 		end
+	end,
+})
+
+vim.api.nvim_create_autocmd("FileType", {
+	desc = "Enable treesitter, except for huge files to save memory",
+	callback = function(args)
+		local buf = args.buf
+		local max_filesize = 100 * 1024 -- 100 KB
+
+		local ok, stats = pcall(vim.uv.fs_stat, vim.api.nvim_buf_get_name(buf))
+
+		if ok and stats and stats.size > max_filesize then
+			-- Fallback to regex syntax highlighting, skip building the AST
+			vim.bo[buf].syntax = "on"
+			return
+		end
+
+		pcall(vim.treesitter.start, buf)
 	end,
 })

@@ -98,6 +98,14 @@ require("blink-cmp").setup({
 				module = "lazydev.integrations.blink",
 				score_offset = 100,
 			},
+			buffer = {
+				-- Only index the current buffer.
+				opts = {
+					get_bufnrs = function()
+						return { vim.api.nvim_get_current_buf() }
+					end,
+				},
+			},
 		},
 	},
 })

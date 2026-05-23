@@ -26,6 +26,7 @@ vim.lsp.config("vtsls", {
 		vtsls = {
 			enableMoveToFileCodeAction = true,
 			autoUseWorkspaceTsdk = true,
+			maxTsServerMemory = true,
 			experimental = {
 				completion = {
 					enableServerSideFuzzyMatch = true,
@@ -33,12 +34,13 @@ vim.lsp.config("vtsls", {
 			},
 		},
 		typescript = {
-			updateImportsOnFileMove = { enabled = "always" },
+			updateImportsOnFileMove = { enabled = "prompt" },
 			suggest = {
 				completeFunctionCalls = true,
 			},
 			preferences = {
-				includePackageJsonAutoImports = "on",
+				-- Enable this only when needed. This is a memory hog.
+				-- includePackageJsonAutoImports = "on",
 			},
 		},
 		javascript = {
