@@ -37,7 +37,6 @@ require("snacks").setup({
 /_/ |_/\___/\____/|___/_/_/ /_/ /_/ 
 ]],
 		},
-		-- stylua: ignore end
 		formats = {
 			key = function(item)
 				return { { "[", hl = "special" }, { item.key, hl = "key" }, { "]", hl = "special" } }
