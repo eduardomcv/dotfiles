@@ -23,7 +23,7 @@ install_dotfiles \
 	mise \
 	vim \
 	neovim \
-	ghostty \
+	kitty \
 	zed
 
 source "$DOTFILES_DIR/scripts/lib/git.sh"

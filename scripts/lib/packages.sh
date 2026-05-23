@@ -54,7 +54,7 @@ function install_macos() {
 
 	brew install --cask \
 		font-iosevka \
-		ghostty \
+		kitty \
 		thunderbird \
 		zen
 }
@@ -134,7 +134,7 @@ function install_dnf() {
 		shellcheck \
 		lua-language-server \
 		neovim \
-		ghostty \
+		kitty \
 		helium-browser-bin
 
 	brew_check
