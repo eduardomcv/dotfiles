@@ -51,7 +51,7 @@ require("codecompanion").setup({
 		chat = {
 			adapter = {
 				name = "opencode",
-				model = "github-copilot/claude-sonnet-4.6",
+				model = "github-copilot/gpt-5.3-codex",
 			},
 			opts = {
 				completion_provider = "blink",
