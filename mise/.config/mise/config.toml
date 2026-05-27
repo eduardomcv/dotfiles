@@ -5,6 +5,7 @@ ruby = "latest"
 uv = "latest"
 ty = "latest"
 flutter = "latest"
+"npm:@olrtg/emmet-language-server" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = ["node", "python"]

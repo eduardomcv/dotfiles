@@ -12,6 +12,7 @@ vim.lsp.enable({
 	"eslint",
 	"cssls",
 	"html",
+	"emmet_language_server",
 	"ty",
 	"ruff",
 	"copilot",
