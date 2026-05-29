@@ -6,9 +6,17 @@ uv = "latest"
 ty = "latest"
 flutter = "latest"
 "npm:@olrtg/emmet-language-server" = "latest"
+rust = {
+	version = "latest",
+	profile = "default",
+	components = "rust-analyzer",
+}
 
 [settings]
-idiomatic_version_file_enable_tools = ["node", "python"]
+idiomatic_version_file_enable_tools = [
+	"node",
+	"python",
+]
 
 [settings.python]
 uv_venv_auto = true
