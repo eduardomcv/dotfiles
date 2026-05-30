@@ -37,3 +37,6 @@ o.swapfile = false
 
 -- Enable 24-bit RGB color
 o.termguicolors = true
+
+-- Add 120 character limit indicator
+o.colorcolumn = "120"
