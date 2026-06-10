@@ -111,5 +111,19 @@
         "github-copilot-cli": {
             "type": "registry"
         }
+    },
+    "auto_install_extensions": {
+        "html": true,
+        "git-firefly": true,
+        "catppuccin": true,
+        "catppuccin-icons": true,
+        "dart": true,
+        "emmet": true,
+        "toml": true,
+        "dockerfile": true,
+        "docker-compose": true,
+        "python-snippets": true,
+        "react-typescript-snippets": true,
+        "flutter-snippets": true
     }
 }
