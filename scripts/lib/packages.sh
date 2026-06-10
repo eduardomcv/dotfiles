@@ -6,7 +6,6 @@ function brew_source() {
 	elif [[ -x /opt/homebrew/bin/brew ]]; then
 		eval "$(/opt/homebrew/bin/brew shellenv)"
 	fi
-
 }
 
 function brew_check() {
