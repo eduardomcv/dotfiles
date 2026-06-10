@@ -6,6 +6,8 @@
     "cursor_shape": "block",
     "cursor_blink": false,
     "relative_line_numbers": "enabled",
+    "show_wrap_guides": true,
+    "wrap_guides": [120],
     "theme": {
         "mode": "system",
         "light": "Catppuccin Latte",
