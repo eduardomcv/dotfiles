@@ -6,6 +6,8 @@
     "cursor_shape": "block",
     "cursor_blink": false,
     "relative_line_numbers": "enabled",
+    "preferred_line_length": 120,
+    "soft_wrap": "prefer_line",
     "show_wrap_guides": true,
     "wrap_guides": [120],
     "theme": {
@@ -73,43 +75,22 @@
     },
     "languages": {
         "Python": {
-            "language_servers": [
-                "ty",
-                "ruff",
-                "!basedpyright",
-                "!pyright",
-                "!pylsp"
-            ]
+            "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"]
         },
         "JavaScript": {
-            "language_servers": [
-                "vtsls",
-                "eslint",
-                "!typescript-language-server",
-                "!tailwindcss-language-server"
-            ],
+            "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwindcss-language-server"],
             "code_actions_on_format": {
                 "source.fixAll.eslint": true
             }
         },
         "TypeScript": {
-            "language_servers": [
-                "vtsls",
-                "eslint",
-                "!typescript-language-server",
-                "!tailwind-language-server"
-            ],
+            "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwind-language-server"],
             "code_actions_on_format": {
                 "source.fixAll.eslint": true
             }
         },
         "TSX": {
-            "language_servers": [
-                "vtsls",
-                "eslint",
-                "!typescript-language-server",
-                "!tailwind-language-server"
-            ],
+            "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwind-language-server"],
             "code_actions_on_format": {
                 "source.fixAll.eslint": true
             }
