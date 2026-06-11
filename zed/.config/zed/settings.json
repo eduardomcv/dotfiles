@@ -74,11 +74,17 @@
     "edit_predictions": {
         "provider": "copilot"
     },
-    "format_on_save": "on",
-    "formatter": "auto",
     "languages": {
         "Python": {
-            "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"]
+            "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"],
+            "code_actions_on_format": {
+                "source.organizeImports.ruff": true
+            },
+            "formatter": {
+                "language_server": {
+                    "name": "ruff"
+                }
+            }
         },
         "JavaScript": {
             "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwindcss-language-server"],
@@ -99,6 +105,52 @@
             }
         }
     },
+    "lsp": {
+        "ruff": {
+            "initialization_options": {
+                "settings": {
+                    "configurationPreference": "filesystemFirst"
+                }
+            }
+        },
+        "vtsls": {
+            "settings": {
+                "complete_function_calls": true,
+                "vtsls": {
+                    "enableMoveToFileCodeAction": true,
+                    "autoUseWorkspaceTsdk": true,
+                    "maxTsServerMemory": true,
+                    "experimental": {
+                        "completion": {
+                            "enableServerSideFuzzyMatch": true
+                        }
+                    }
+                },
+                "typescript": {
+                    "updateImportsOnFileMove": {
+                        "enabled": "prompt"
+                    },
+                    "suggest": {
+                        "completeFunctionCalls": true
+                    },
+                    "preferences": {
+                        // Enable this only when needed. This is a memory hog.
+                        // "includePackageJsonAutoImports": "on"
+                    }
+                },
+                "javascript": {
+                    "updateImportsOnFileMove": {
+                        "enabled": "always"
+                    },
+                    "suggest": {
+                        "completeFunctionCalls": true
+                    }
+                }
+            }
+        }
+    },
+    "format_on_save": "on",
+    "formatter": "auto",
     "agent_servers": {
         "opencode": {
             "default_config_options": {
