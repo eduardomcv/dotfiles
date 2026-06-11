@@ -10,6 +10,7 @@
     "soft_wrap": "prefer_line",
     "show_wrap_guides": true,
     "wrap_guides": [120],
+    "vertical_scroll_margin": 8,
     "theme": {
         "mode": "system",
         "light": "Catppuccin Latte",
@@ -73,6 +74,8 @@
     "edit_predictions": {
         "provider": "copilot"
     },
+    "format_on_save": "on",
+    "formatter": "auto",
     "languages": {
         "Python": {
             "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"]
@@ -118,6 +121,7 @@
         "catppuccin": true,
         "catppuccin-icons": true,
         "dart": true,
+        "lua": true,
         "emmet": true,
         "toml": true,
         "dockerfile": true,
