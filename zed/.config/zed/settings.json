@@ -11,6 +11,7 @@
     "show_wrap_guides": true,
     "wrap_guides": [120],
     "vertical_scroll_margin": 8,
+    "restore_on_startup": "launchpad",
     "theme": {
         "mode": "system",
         "light": "Catppuccin Latte",
