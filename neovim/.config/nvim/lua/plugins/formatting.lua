@@ -34,23 +34,16 @@ require("conform").setup({
 	end,
 })
 
-vim.api.nvim_create_user_command("FormatDisable", function(args)
+vim.api.nvim_create_user_command("FormatOnSaveToggle", function(args)
 	if args.bang then
-		-- FormatDisable! will disable format-on-save just for the current buffer
-		vim.b.disable_format_on_save = true
+		-- FormatOnSaveToggle! will toggle format-on-save just for the current buffer
+		vim.b.disable_format_on_save = not vim.b.disable_format_on_save
 	else
-		vim.g.disable_format_on_save = true
+		vim.g.disable_format_on_save = not vim.g.disable_format_on_save
 	end
 end, {
-	desc = "Disable format-on-save",
+	desc = "Toggle format-on-save",
 	bang = true,
-})
-
-vim.api.nvim_create_user_command("FormatEnable", function()
-	vim.b.disable_format_on_save = false
-	vim.g.disable_format_on_save = false
-end, {
-	desc = "Enable format-on-save",
 })
 
 vim.keymap.set("n", "<leader>cf", function()
@@ -61,10 +54,10 @@ vim.keymap.set("n", "<leader>fb", function()
 	require("conform").format({ async = true })
 end, { desc = "Format buffer" })
 
-vim.keymap.set("n", "<leader>fd", ":FormatDisable<cr>", {
-	desc = "Disable format-on-save",
+vim.keymap.set("n", "<leader>ff", ":FormatToggle<CR>", {
+	desc = "Toggle format-on-save (global)",
 })
 
-vim.keymap.set("n", "<leader>fe", ":FormatEnable<cr>", {
-	desc = "Enable format-on-save",
+vim.keymap.set("n", "<leader>ff", ":FormatToggle!<CR>", {
+	desc = "Toggle format-on-save (buffer-local)",
 })
