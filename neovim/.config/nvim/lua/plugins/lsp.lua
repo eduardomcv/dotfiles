@@ -16,7 +16,6 @@ vim.lsp.enable({
 	"ty",
 	"ruff",
 	"copilot",
-	"dartls",
 	"rust_analyzer",
 })
 
