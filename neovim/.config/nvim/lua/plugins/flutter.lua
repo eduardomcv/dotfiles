@@ -26,7 +26,7 @@ require("flutter-tools").setup({
 	lsp = {
 		settings = {
 			showTodos = false,
-			enableSnippets = false,
+			enableSnippets = true,
 			completeFunctionCalls = true,
 			renameFilesWithClasses = "prompt",
 		},
