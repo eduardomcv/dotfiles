@@ -11,6 +11,7 @@ rust = {
 	profile = "default",
 	components = "rust-analyzer",
 }
+lua = "5.1"
 
 [settings]
 idiomatic_version_file_enable_tools = [
