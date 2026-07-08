@@ -29,7 +29,7 @@ require("codecompanion").setup({
 		chat = {
 			window = {
 				position = "right",
-				width = 0.3,
+				width = 0.33,
 			},
 		},
 	},
@@ -54,6 +54,17 @@ require("codecompanion").setup({
 				completion_provider = "blink",
 			},
 		},
+		cli = {
+			agent = "opencode",
+			agents = {
+				opencode = {
+					cmd = "opencode",
+					args = {},
+					description = "Opencode",
+					provider = "terminal",
+				},
+			},
+		},
 	},
 })
 
@@ -61,4 +72,5 @@ require("codecompanion").setup({
 vim.keymap.set({ "n" }, "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image from clipboard" })
 vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Show CodeCompanion actions" })
 vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion chat" })
+vim.keymap.set({ "n", "v" }, "<leader>ao", "<cmd>CodeCompanionCLI<cr>", { desc = "Open Opencode CLI" })
 vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add selection to CodeCompanion chat" })
