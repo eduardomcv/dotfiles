@@ -23,7 +23,6 @@ require("snacks").setup({
 				{ icon = " ", key = "u", desc = "Update", action = ":lua vim.pack.update()" },
 				{ icon = " ", key = "q", desc = "Quit", action = ":qa" },
 			},
-			-- stylua: ignore start
 			header = [[
 |\---/|
 | ,_, |

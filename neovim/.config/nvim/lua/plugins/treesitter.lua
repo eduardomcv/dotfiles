@@ -3,9 +3,7 @@ vim.pack.add({
 	"https://github.com/windwp/nvim-ts-autotag",
 })
 
-local treesitter = require("nvim-treesitter")
-
-treesitter.install({
+require("nvim-treesitter").install({
 	"lua",
 	"vim",
 	"vimdoc",
