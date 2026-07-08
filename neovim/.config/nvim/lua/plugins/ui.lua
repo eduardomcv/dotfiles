@@ -1,9 +1,5 @@
 vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	-- UI component library
-	"https://github.com/MunifTanjim/nui.nvim",
-	-- Better UI for messages, cmdline and popupmenu
-	"https://github.com/folke/noice.nvim",
 	-- Show pop-up with available keybindings
 	"https://github.com/folke/which-key.nvim",
 	-- Git conflicts visualizer
@@ -16,40 +12,6 @@ vim.pack.add({
 	"https://github.com/brenoprata10/nvim-highlight-colors",
 	-- Integrate with kitty terminal
 	"https://github.com/knubie/vim-kitty-navigator",
-})
-
-require("noice").setup({
-	presets = {
-		command_palette = true,
-		long_message_to_split = true,
-		lsp_doc_border = true,
-	},
-	lsp = {
-		override = {
-			["vim.lsp.util.convert_input_to_markdown_lines"] = true,
-			["vim.lsp.util.stylize_markdown"] = true,
-			["cmp.entry.get_documentation"] = true,
-		},
-		progress = {
-			enabled = false,
-		},
-	},
-	views = {
-		cmdline_popup = {
-			position = {
-				row = "20%",
-			},
-		},
-		notify = {
-			enabled = false,
-		},
-	},
-	routes = {
-		{
-			view = "notify",
-			filter = { event = "msg_showmode" },
-		},
-	},
 })
 
 require("which-key").setup({
