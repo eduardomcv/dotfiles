@@ -22,17 +22,6 @@ require("render-markdown").setup({
 })
 
 require("codecompanion").setup({
-	adapters = {
-		acp = {
-			gemini_cli = function()
-				return require("codecompanion.adapters").extend("gemini_cli", {
-					defaults = {
-						auth_method = "oauth-personal",
-					},
-				})
-			end,
-		},
-	},
 	display = {
 		action_palette = {
 			provider = "snacks",
