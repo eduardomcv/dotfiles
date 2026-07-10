@@ -54,10 +54,10 @@ vim.keymap.set("n", "<leader>fb", function()
 	require("conform").format({ async = true })
 end, { desc = "Format buffer" })
 
-vim.keymap.set("n", "<leader>ff", ":FormatToggle<CR>", {
+vim.keymap.set("n", "<leader>ff", ":FormatOnSaveToggle<CR>", {
 	desc = "Toggle format-on-save (global)",
 })
 
-vim.keymap.set("n", "<leader>ff", ":FormatToggle!<CR>", {
+vim.keymap.set("n", "<leader>ff", ":FormatOnSaveToggle!<CR>", {
 	desc = "Toggle format-on-save (buffer-local)",
 })
