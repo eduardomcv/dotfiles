@@ -16,4 +16,7 @@ require("opencode").setup({
 	quick_chat = {
 		default_model = "gpt-4o",
 	},
+	ui = {
+		window_width = 0.33,
+	},
 })
