@@ -1,186 +1,183 @@
 {
-    "ui_font_family": ".ZedSans",
-    "ui_font_size": 16,
-    "buffer_font_family": "Iosevka",
-    "buffer_font_size": 15.0,
-    "cursor_shape": "block",
-    "cursor_blink": false,
-    "relative_line_numbers": "enabled",
-    "preferred_line_length": 120,
-    "soft_wrap": "prefer_line",
-    "show_wrap_guides": true,
-    "wrap_guides": [120],
-    "vertical_scroll_margin": 8,
-    "restore_on_startup": "launchpad",
-    "theme": {
-        "mode": "system",
-        "light": "Catppuccin Latte",
-        "dark": "Catppuccin Mocha"
+  "ui_font_family": ".ZedSans",
+  "ui_font_size": 16,
+  "buffer_font_family": "Iosevka",
+  "buffer_font_size": 15.0,
+  "cursor_shape": "block",
+  "cursor_blink": false,
+  "relative_line_numbers": "enabled",
+  "preferred_line_length": 120,
+  "soft_wrap": "prefer_line",
+  "show_wrap_guides": true,
+  "wrap_guides": [120],
+  "vertical_scroll_margin": 8,
+  "restore_on_startup": "launchpad",
+  "theme": {
+    "mode": "system",
+    "light": "Catppuccin Latte",
+    "dark": "Catppuccin Mocha",
+  },
+  "icon_theme": "Catppuccin Mocha",
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": false,
+  },
+  "vim_mode": true,
+  "vim": {
+    "use_smartcase_find": true,
+    "toggle_relative_line_numbers": true,
+  },
+  "outline_panel": {
+    "dock": "right",
+  },
+  "collaboration_panel": {
+    "dock": "left",
+  },
+  "git_panel": {
+    "tree_view": true,
+    "status_style": "icon",
+    "dock": "left",
+  },
+  "terminal": {
+    "shell": {
+      "program": "zsh",
     },
-    "icon_theme": "Catppuccin Mocha",
-    "telemetry": {
-        "diagnostics": true,
-        "metrics": false
-    },
-    "vim_mode": true,
-    "vim": {
-        "use_smartcase_find": true,
-        "toggle_relative_line_numbers": true
-    },
-    "outline_panel": {
-        "dock": "right"
-    },
-    "collaboration_panel": {
-        "dock": "left"
-    },
-    "git_panel": {
-        "tree_view": true,
-        "status_style": "icon",
-        "dock": "left"
-    },
-    "terminal": {
-        "shell": {
-            "program": "zsh"
+    "dock": "bottom",
+  },
+  "agent": {
+    "flexible": false,
+    "button": true,
+    "dock": "right",
+    "favorite_models": [],
+    "model_parameters": [],
+  },
+  "tabs": {
+    "show_close_button": "hover",
+    "file_icons": true,
+    "git_status": false,
+  },
+  "tab_bar": {
+    "show": true,
+  },
+  "title_bar": {
+    "show_user_menu": true,
+    "show_sign_in": false,
+    "show_branch_status_icon": true,
+  },
+  "status_bar": {
+    "active_language_button": true,
+    "active_encoding_button": "non_utf8",
+  },
+  "project_panel": {
+    "dock": "left",
+    "button": true,
+  },
+  "edit_predictions": {
+    "provider": "copilot",
+  },
+  "languages": {
+    "Python": {
+      "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"],
+      "code_actions_on_format": {
+        "source.organizeImports.ruff": true,
+      },
+      "formatter": {
+        "language_server": {
+          "name": "ruff",
         },
-        "dock": "bottom"
+      },
     },
-    "agent": {
-        "flexible": false,
-        "button": true,
-        "dock": "right",
-        "favorite_models": [],
-        "model_parameters": []
+    "JavaScript": {
+      "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwindcss-language-server"],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
     },
-    "tabs": {
-        "show_close_button": "hover",
-        "file_icons": true,
-        "git_status": false
+    "TypeScript": {
+      "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwind-language-server"],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
     },
-    "tab_bar": {
-        "show": true
+    "TSX": {
+      "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwind-language-server"],
+      "code_actions_on_format": {
+        "source.fixAll.eslint": true,
+      },
     },
-    "title_bar": {
-        "show_user_menu": true,
-        "show_sign_in": false,
-        "show_branch_status_icon": true
-    },
-    "status_bar": {
-        "active_language_button": true,
-        "active_encoding_button": "non_utf8"
-    },
-    "project_panel": {
-        "dock": "left",
-        "button": true
-    },
-    "edit_predictions": {
-        "provider": "copilot"
-    },
-    "languages": {
-        "Python": {
-            "language_servers": ["ty", "ruff", "!basedpyright", "!pyright", "!pylsp"],
-            "code_actions_on_format": {
-                "source.organizeImports.ruff": true
-            },
-            "formatter": {
-                "language_server": {
-                    "name": "ruff"
-                }
-            }
+  },
+  "lsp": {
+    "ruff": {
+      "initialization_options": {
+        "settings": {
+          "configurationPreference": "filesystemFirst",
         },
-        "JavaScript": {
-            "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwindcss-language-server"],
-            "code_actions_on_format": {
-                "source.fixAll.eslint": true
-            }
-        },
-        "TypeScript": {
-            "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwind-language-server"],
-            "code_actions_on_format": {
-                "source.fixAll.eslint": true
-            }
-        },
-        "TSX": {
-            "language_servers": ["vtsls", "eslint", "!typescript-language-server", "!tailwind-language-server"],
-            "code_actions_on_format": {
-                "source.fixAll.eslint": true
-            }
-        }
+      },
     },
-    "lsp": {
-        "ruff": {
-            "initialization_options": {
-                "settings": {
-                    "configurationPreference": "filesystemFirst"
-                }
-            }
-        },
+    "vtsls": {
+      "settings": {
+        "complete_function_calls": true,
         "vtsls": {
-            "settings": {
-                "complete_function_calls": true,
-                "vtsls": {
-                    "enableMoveToFileCodeAction": true,
-                    "autoUseWorkspaceTsdk": true,
-                    "maxTsServerMemory": true,
-                    "experimental": {
-                        "completion": {
-                            "enableServerSideFuzzyMatch": true
-                        }
-                    }
-                },
-                "typescript": {
-                    "updateImportsOnFileMove": {
-                        "enabled": "prompt"
-                    },
-                    "suggest": {
-                        "completeFunctionCalls": true
-                    },
-                    "preferences": {
-                        // Enable this only when needed. This is a memory hog.
-                        // "includePackageJsonAutoImports": "on"
-                    }
-                },
-                "javascript": {
-                    "updateImportsOnFileMove": {
-                        "enabled": "always"
-                    },
-                    "suggest": {
-                        "completeFunctionCalls": true
-                    }
-                }
-            }
-        }
-    },
-    "format_on_save": "on",
-    "formatter": "auto",
-    "agent_servers": {
-        "opencode": {
-            "default_config_options": {
-                "mode": "build",
-                "effort": "high",
-                "model": "github-copilot/claude-sonnet-4.6"
+          "enableMoveToFileCodeAction": true,
+          "autoUseWorkspaceTsdk": true,
+          "maxTsServerMemory": true,
+          "experimental": {
+            "completion": {
+              "enableServerSideFuzzyMatch": true,
             },
-            "favorite_config_option_values": {
-                "model": ["github-copilot/claude-sonnet-4.6"]
-            },
-            "type": "registry"
+          },
         },
-        "github-copilot-cli": {
-            "type": "registry"
-        }
+        "typescript": {
+          "updateImportsOnFileMove": {
+            "enabled": "prompt",
+          },
+          "suggest": {
+            "completeFunctionCalls": true,
+          },
+          "preferences": {
+            // Enable this only when needed. This is a memory hog.
+            // "includePackageJsonAutoImports": "on"
+          },
+        },
+        "javascript": {
+          "updateImportsOnFileMove": {
+            "enabled": "always",
+          },
+          "suggest": {
+            "completeFunctionCalls": true,
+          },
+        },
+      },
     },
-    "auto_install_extensions": {
-        "html": true,
-        "git-firefly": true,
-        "catppuccin": true,
-        "catppuccin-icons": true,
-        "dart": true,
-        "lua": true,
-        "emmet": true,
-        "toml": true,
-        "dockerfile": true,
-        "docker-compose": true,
-        "python-snippets": true,
-        "react-typescript-snippets": true,
-        "flutter-snippets": true
-    }
+  },
+  "format_on_save": "on",
+  "formatter": "auto",
+  "agent_servers": {
+    "opencode": {
+      "default_config_options": {
+        "mode": "build",
+        "effort": "high",
+        "model": "github-copilot/claude-sonnet-4.6",
+      },
+      "favorite_config_option_values": {
+        "model": ["github-copilot/claude-sonnet-4.6"],
+      },
+      "type": "registry",
+    },
+  },
+  "auto_install_extensions": {
+    "html": true,
+    "git-firefly": true,
+    "catppuccin": true,
+    "catppuccin-icons": true,
+    "dart": true,
+    "lua": true,
+    "emmet": true,
+    "toml": true,
+    "dockerfile": true,
+    "docker-compose": true,
+    "python-snippets": true,
+    "react-typescript-snippets": true,
+    "flutter-snippets": true,
+  },
 }
