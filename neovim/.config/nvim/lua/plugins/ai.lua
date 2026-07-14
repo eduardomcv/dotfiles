@@ -1,76 +1,20 @@
 vim.pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	{ src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
-	{ src = "https://github.com/hakonharnes/img-clip.nvim" },
-	{ src = "https://github.com/MeanderingProgrammer/render-markdown.nvim" },
-	{ src = "https://github.com/ravitemer/codecompanion-history.nvim" },
-	{ src = "https://github.com/olimorris/codecompanion.nvim" },
-})
-
-require("img-clip").setup({
-	default = {
-		embed_image_as_base64 = false,
-		prompt_for_file_name = false,
-		drag_and_drop = {
-			insert_mode = true,
-		},
-	},
+	-- { src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+	-- { src = "https://github.com/nvim-treesitter/nvim-treesitter", version = "master" },
+	-- { src = "https://github.com/hakonharnes/img-clip.nvim" },
+	-- { src = "https://github.com/ravitemer/codecompanion-history.nvim" },
+	-- { src = "https://github.com/olimorris/codecompanion.nvim" },
+	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
+	"https://github.com/sudo-tee/opencode.nvim",
 })
 
 require("render-markdown").setup({
-	preset = "lazy",
+	anti_conceal = { enabled = false },
+	file_types = { "markdown", "opencode_output" },
 })
 
-require("codecompanion").setup({
-	display = {
-		action_palette = {
-			provider = "snacks",
-		},
-		chat = {
-			window = {
-				position = "right",
-				width = 0.33,
-			},
-		},
-	},
-	extensions = {
-		history = {
-			opts = {
-				picker = "snacks",
-				title_generation_opts = {
-					adapter = "copilot",
-					model = "gpt-4o",
-				},
-			},
-		},
-	},
-	interactions = {
-		chat = {
-			adapter = {
-				name = "opencode",
-				model = "github-copilot/claude-sonnet-4.6",
-			},
-			opts = {
-				completion_provider = "blink",
-			},
-		},
-		cli = {
-			agent = "opencode",
-			agents = {
-				opencode = {
-					cmd = "opencode",
-					args = {},
-					description = "Opencode",
-					provider = "terminal",
-				},
-			},
-		},
-	},
+require("opencode").setup({
+	preferred_picker = "snacks",
+	preferred_completion = "blink",
+	default_mode = "plan",
 })
-
---- Keymaps
-vim.keymap.set({ "n" }, "<leader>p", "<cmd>PasteImage<cr>", { desc = "Paste image from clipboard" })
-vim.keymap.set({ "n", "v" }, "<leader>aa", "<cmd>CodeCompanionActions<cr>", { desc = "Show CodeCompanion actions" })
-vim.keymap.set({ "n", "v" }, "<leader>ac", "<cmd>CodeCompanionChat Toggle<cr>", { desc = "Toggle CodeCompanion chat" })
-vim.keymap.set({ "n", "v" }, "<leader>ao", "<cmd>CodeCompanionCLI<cr>", { desc = "Open Opencode CLI" })
-vim.keymap.set("v", "ga", "<cmd>CodeCompanionChat Add<cr>", { desc = "Add selection to CodeCompanion chat" })

@@ -18,14 +18,6 @@
       "rev": "05e8787020dcfdb937bf2ff23855ea2415b4e072",
       "src": "https://github.com/catppuccin/nvim"
     },
-    "codecompanion-history.nvim": {
-      "rev": "bc1b4fe06eaaf0aa2399be742e843c22f7f1652a",
-      "src": "https://github.com/ravitemer/codecompanion-history.nvim"
-    },
-    "codecompanion.nvim": {
-      "rev": "b0680d12ae1a7fc1b20ab8c78b8c44b34e72e245",
-      "src": "https://github.com/olimorris/codecompanion.nvim"
-    },
     "codediff.nvim": {
       "rev": "7608f3b436ce1f84a4888f75e53079caa981a2e9",
       "src": "https://github.com/esmuellert/codediff.nvim"
@@ -46,10 +38,6 @@
       "rev": "4bbfdd92d547d2862a75b4e80afaf30e73f7bbb4",
       "src": "https://github.com/akinsho/git-conflict.nvim",
       "version": ">=0.0.0"
-    },
-    "img-clip.nvim": {
-      "rev": "b6ddfb97b5600d99afe3452d707444afda658aca",
-      "src": "https://github.com/hakonharnes/img-clip.nvim"
     },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
@@ -81,12 +69,15 @@
     },
     "nvim-treesitter": {
       "rev": "4916d6592ede8c07973490d9322f187e07dfefac",
-      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
-      "version": "'master'"
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-ts-autotag": {
       "rev": "88c1453db4ba7dd24131086fe51fdf74e587d275",
       "src": "https://github.com/windwp/nvim-ts-autotag"
+    },
+    "opencode.nvim": {
+      "rev": "4e9321ba7e039db7cd51c2bbb49651566ff1f7b0",
+      "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",

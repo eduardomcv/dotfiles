@@ -20,6 +20,7 @@ require("which-key").setup({
 		{ "<leader>g", group = "+git" },
 		{ "<leader>n", group = "+notification" },
 		{ "<leader>s", group = "+search" },
+		{ "<leader>o", group = "+opencode" },
 	},
 })
 
