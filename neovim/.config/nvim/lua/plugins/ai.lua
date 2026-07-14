@@ -5,6 +5,7 @@ vim.pack.add({
 
 require("render-markdown").setup({
 	anti_conceal = { enabled = false },
+	preset = "lazy",
 	file_types = { "markdown", "opencode_output" },
 })
 
@@ -12,4 +13,7 @@ require("opencode").setup({
 	preferred_picker = "snacks",
 	preferred_completion = "blink",
 	default_mode = "plan",
+	quick_chat = {
+		default_model = "gpt-4o",
+	},
 })
