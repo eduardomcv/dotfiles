@@ -2,8 +2,6 @@ vim.pack.add({
 	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
 	-- Show pop-up with available keybindings
 	"https://github.com/folke/which-key.nvim",
-	-- Git conflicts visualizer
-	{ src = "https://github.com/akinsho/git-conflict.nvim", version = vim.version.range("*") },
 	-- Improve tab integration
 	"https://github.com/nanozuki/tabby.nvim",
 	-- Highlight TODO comments
@@ -24,9 +22,6 @@ require("which-key").setup({
 		{ "<leader>s", group = "+search" },
 	},
 })
-
----@diagnostic disable-next-line: missing-fields
-require("git-conflict").setup({})
 
 require("todo-comments").setup({})
 
