@@ -44,11 +44,11 @@
       "src": "https://github.com/folke/lazydev.nvim"
     },
     "mini.nvim": {
-      "rev": "fc5c7167adc51d5f39219e86739d5c193b777f44",
+      "rev": "05a80b0340a92136a93ab04346cf97de3f165948",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "a0847c4bea5a5f92a36e3f3bf7da99d7d685d3ac",
+      "rev": "95295edaa26e8e8db5a9bc4119256e602311c6bc",
       "src": "https://github.com/neogitorg/neogit"
     },
     "nvim-dap": {
