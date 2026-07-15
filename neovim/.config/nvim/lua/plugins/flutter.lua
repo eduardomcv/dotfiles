@@ -15,7 +15,7 @@ require("flutter-tools").setup({
 	},
 	dev_log = {
 		enabled = true,
-		open_cmd = "tabnew",
+		focus_on_open = false,
 	},
 	debugger = {
 		enabled = true,
@@ -47,6 +47,55 @@ require("flutter-tools").setup({
 			buf_set_keymap("n", "<leader>fD", ":FlutterDevTools<CR>", "Open Flutter DevTools")
 		end,
 	},
+})
+
+local flutter_dev_log_buf_name = "__FLUTTER_DEV_LOG__"
+local flutter_log_user_opened = false
+
+local function toggle_flutter_dev_log()
+	local log_buf = nil
+	for _, buf in ipairs(vim.api.nvim_list_bufs()) do
+		local name = vim.api.nvim_buf_get_name(buf)
+		if name:match(flutter_dev_log_buf_name) then
+			log_buf = buf
+			break
+		end
+	end
+
+	if not log_buf then
+		vim.notify("Flutter dev log buffer not available!", vim.log.levels.INFO)
+		return
+	end
+
+	local wins = vim.fn.win_findbuf(log_buf)
+	if #wins > 0 then
+		flutter_log_user_opened = false
+		for _, win in ipairs(wins) do
+			vim.api.nvim_win_close(win, false)
+		end
+	else
+		flutter_log_user_opened = true
+		vim.cmd("botright vsplit")
+		vim.api.nvim_win_set_buf(0, log_buf)
+	end
+end
+
+vim.keymap.set("n", "<leader>fl", toggle_flutter_dev_log, { desc = "Toggle Flutter dev log" })
+
+vim.api.nvim_create_autocmd("BufWinEnter", {
+	pattern = "*" .. flutter_dev_log_buf_name .. "*",
+	callback = function(ev)
+		if flutter_log_user_opened then
+			return
+		end
+		vim.defer_fn(function()
+			local wins = vim.fn.win_findbuf(ev.buf)
+			for _, win in ipairs(wins) do
+				pcall(vim.api.nvim_win_close, win, false)
+			end
+		end, 1)
+	end,
+	desc = "Close flutter log buffer when opening a new window",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
