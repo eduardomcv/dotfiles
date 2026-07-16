@@ -1,64 +1,78 @@
 [
-    {
-        "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
-        "bindings": {
-            "x": ["workspace::SendKeystrokes", "\" _ x"],
-            "+": ["workspace::SendKeystrokes", "ctrl-a"],
-            "-": ["workspace::SendKeystrokes", "ctrl-x"],
-            "space d": ["workspace::SendKeystrokes", "\" _ d"],
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "x": ["workspace::SendKeystrokes", "\" _ x"],
+      "+": ["workspace::SendKeystrokes", "ctrl-a"],
+      "-": ["workspace::SendKeystrokes", "ctrl-x"],
+      "space d": ["workspace::SendKeystrokes", "\" _ d"],
 
-            "space t n": "workspace::NewFile",
-            "space t c": "pane::CloseActiveItem",
-            "space e": "project_panel::ToggleFocus",
-            "space r": "workspace::ToggleLeftDock",
-            "space c a": "editor::ToggleCodeActions",
-            "space c r": "editor::Rename",
+      "space t n": "workspace::NewFile",
+      "space t c": "pane::CloseActiveItem",
+      "space e": "project_panel::ToggleFocus",
+      "space r": "workspace::ToggleLeftDock",
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
 
-            "g d": "editor::GoToDefinition",
-            "g D": "editor::GoToTypeDefinition",
-            "g r": "editor::FindAllReferences",
-            "g I": "editor::GoToImplementation",
-            "g y": "editor::GoToTypeDefinition",
+      "g d": "editor::GoToDefinition",
+      "g D": "editor::GoToTypeDefinition",
+      "g r": "editor::FindAllReferences",
+      "g I": "editor::GoToImplementation",
+      "g y": "editor::GoToTypeDefinition",
 
-            "space c f": "editor::Format",
-            "space f b": "editor::Format",
-            "space s f": "file_finder::Toggle",
-            "space s g": "workspace::NewSearch",
-            "space s b": "tab_switcher::Toggle",
-            "space s d": "diagnostics::Deploy",
-            "space s r": "projects::OpenRecent",
-            "space s :": "command_palette::Toggle",
-            "space s t": "outline::Toggle",
-            "space g b": "editor::ToggleGitBlame",
-            "space a c": "assistant::ToggleFocus",
+      "space c f": "editor::Format",
+      "space f b": "editor::Format",
+      "space s f": "file_finder::Toggle",
+      "space s g": "workspace::NewSearch",
+      "space s b": "tab_switcher::Toggle",
+      "space s d": "diagnostics::Deploy",
+      "space s r": "projects::OpenRecent",
+      "space s :": "command_palette::Toggle",
+      "space s t": "outline::Toggle",
+      "space g b": "git::Blame",
+      "space a c": "agent::ToggleFocus",
 
-            "ctrl-h": "workspace::ActivatePaneLeft",
-            "ctrl-l": "workspace::ActivatePaneRight",
-            "ctrl-j": "workspace::ActivatePaneDown",
-            "ctrl-k": "workspace::ActivatePaneUp",
-            "ctrl-w v": "pane::SplitRight",
-            "ctrl-w s": "pane::SplitDown",
-            "ctrl-w q": "pane::CloseActiveItem"
-        }
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-l": "workspace::ActivatePaneRight",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-w v": "pane::SplitRight",
+      "ctrl-w s": "pane::SplitDown",
+      "ctrl-w q": "pane::CloseActiveItem",
     },
-    {
-        "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
-        "bindings": {
-            "x": ["workspace::SendKeystrokes", "\" _ x"],
-            "space d": ["workspace::SendKeystrokes", "\" _ d"]
-        }
+  },
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "x": ["workspace::SendKeystrokes", "\" _ x"],
+      "space d": ["workspace::SendKeystrokes", "\" _ d"],
     },
-    {
-        "context": "Editor && menu",
-        "bindings": {
-            "ctrl-j": "menu::SelectNext",
-            "ctrl-k": "menu::SelectPrevious"
-        }
+  },
+  {
+    "context": "Editor && menu",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
     },
-    {
-        "context": "Editor",
-        "bindings": {
-            "ctrl-l": "editor::AcceptEditPrediction"
-        }
-    }
+  },
+  {
+    "context": "Editor",
+    "bindings": {
+      "ctrl-l": "editor::AcceptEditPrediction",
+    },
+  },
+  {
+    "context": "Picker > Editor",
+    "bindings": {
+      "ctrl-j": "menu::SelectNext",
+      "ctrl-k": "menu::SelectPrevious",
+    },
+  },
+  {
+    "context": "Editor && (showing_completions || showing_code_actions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
+  },
 ]
