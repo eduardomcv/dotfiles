@@ -61,18 +61,4 @@
       "ctrl-l": "editor::AcceptEditPrediction",
     },
   },
-  {
-    "context": "Picker > Editor",
-    "bindings": {
-      "ctrl-j": "menu::SelectNext",
-      "ctrl-k": "menu::SelectPrevious",
-    },
-  },
-  {
-    "context": "Editor && (showing_completions || showing_code_actions)",
-    "bindings": {
-      "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuPrevious",
-    },
-  },
 ]
