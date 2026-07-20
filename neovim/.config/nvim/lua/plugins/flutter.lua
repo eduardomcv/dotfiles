@@ -83,6 +83,7 @@ end
 vim.keymap.set("n", "<leader>fl", toggle_flutter_dev_log, { desc = "Toggle Flutter dev log" })
 
 vim.api.nvim_create_autocmd("BufWinEnter", {
+	desc = "Close flutter log buffer when opening a new window",
 	pattern = "*" .. flutter_dev_log_buf_name .. "*",
 	callback = function(ev)
 		if flutter_log_user_opened then
@@ -95,32 +96,43 @@ vim.api.nvim_create_autocmd("BufWinEnter", {
 			end
 		end, 1)
 	end,
-	desc = "Close flutter log buffer when opening a new window",
 })
 
 vim.api.nvim_create_autocmd("FileType", {
+	desc = "Defer attaching dartls to after flutter-tools is done",
 	pattern = "dart",
 	callback = function(args)
 		local bufnr = args.buf
 
-		-- Defer slightly to ensure flutter-tools finishes its own logic first
 		vim.defer_fn(function()
 			if not vim.api.nvim_buf_is_valid(bufnr) then
 				return
 			end
 
-			-- Check if dartls is attached
 			local attached = vim.lsp.get_clients({ bufnr = bufnr, name = "dartls" })
 
 			if #attached == 0 then
-				-- Find the orphaned dartls instance running in the background
 				local running = vim.lsp.get_clients({ name = "dartls" })
 				if #running > 0 then
-					-- Force the attachment
 					vim.lsp.buf_attach_client(bufnr, running[1].id)
 				end
 			end
 		end, 250)
 	end,
-	desc = "Bridge flutter-tools to Neovim 0.12 LSP auto-attach",
+})
+
+vim.api.nvim_create_autocmd("LspAttach", {
+	desc = "Detach dartls from mini.files buffers",
+	group = vim.api.nvim_create_augroup("DetachMiniFilesDartLS", { clear = true }),
+	callback = function(args)
+		local client = vim.lsp.get_client_by_id(args.data.client_id)
+
+		if client and client.name == "dartls" then
+			local bufname = vim.api.nvim_buf_get_name(args.buf)
+
+			if vim.startswith(bufname, "minifiles://") then
+				vim.lsp.buf_detach_client(args.buf, client.id)
+			end
+		end
+	end,
 })
