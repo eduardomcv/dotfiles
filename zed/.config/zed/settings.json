@@ -34,11 +34,13 @@
   "vim": {
     "use_smartcase_find": true,
     "toggle_relative_line_numbers": true,
+    "use_system_clipboard": "always",
   },
   "outline_panel": {
     "dock": "right",
   },
   "collaboration_panel": {
+    "button": false,
     "dock": "left",
   },
   "git_panel": {
