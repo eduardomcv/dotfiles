@@ -7,25 +7,17 @@ require("catppuccin").setup({
 		solid = false,
 		transparent = true,
 	},
+	lsp_styles = {
+		underlines = {
+			errors = { "undercurl" },
+			hints = { "undercurl" },
+			warnings = { "undercurl" },
+			information = { "undercurl" },
+			okay = { "undercurl" },
+		},
+	},
+	auto_integrations = true,
 	integrations = {
-		blink_cmp = {
-			style = "bordered",
-		},
-		fzf = true,
-		mini = {
-			enabled = true,
-		},
-		neogit = true,
-		noice = true,
-		native_lsp = {
-			enabled = true,
-			underlines = {
-				errors = { "undercurl" },
-				hints = { "undercurl" },
-				warnings = { "undercurl" },
-				information = { "undercurl" },
-			},
-		},
 		snacks = {
 			enabled = true,
 			indent_scope_color = "maroon",
