@@ -6,5 +6,8 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 ----------------------------------
 
-require("config")
-require("plugins")
+require("core")
+
+if not vim.g.vscode then
+	require("plugins")
+end
