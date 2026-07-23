@@ -8,6 +8,8 @@ vim.g.maplocalleader = "\\"
 
 require("core")
 
-if not vim.g.vscode then
+if vim.g.vscode then
+	require("vscode_neovim")
+else
 	require("plugins")
 end
