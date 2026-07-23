@@ -6,10 +6,9 @@ vim.g.mapleader = " "
 vim.g.maplocalleader = "\\"
 ----------------------------------
 
-require("core")
-
 if vim.g.vscode then
 	require("vscode_neovim")
 else
+	require("core")
 	require("plugins")
 end
