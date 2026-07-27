@@ -4,5 +4,8 @@
 		"/Users/eduardo/.config/agents/AGENTS.md"
 	],
 	"model": "github-copilot/claude-sonnet-4.6",
-	"default_agent": "plan"
+	"default_agent": "plan",
+	"plugin": [
+		"superpowers@git+https://github.com/obra/superpowers.git"
+	]
 }
