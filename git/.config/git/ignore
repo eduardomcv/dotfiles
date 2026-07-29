@@ -3,9 +3,6 @@
 __pycache__/**
 .venv/**
 
-# vscode files
-.vscode/**
-
 # mac files
 .DS_store
 
