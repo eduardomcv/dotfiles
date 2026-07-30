@@ -19,6 +19,9 @@ require("flutter-tools").setup({
 	},
 	debugger = {
 		enabled = true,
+		exception_breakpoints = {
+			"unhandled",
+		},
 	},
 	widget_guides = {
 		enabled = false,
@@ -45,6 +48,8 @@ require("flutter-tools").setup({
 			buf_set_keymap("n", "<leader>fpu", ":FlutterPubUpgrade<CR>", "Upgrade Flutter dependencies")
 			buf_set_keymap("n", "<leader>fo", ":FlutterOutlineToggle<CR>", "Toggle Flutter outline")
 			buf_set_keymap("n", "<leader>fD", ":FlutterDevTools<CR>", "Open Flutter DevTools")
+			buf_set_keymap("n", "<leader>fo", ":FlutterOutlineToggle<CR>", "Toggle Flutter outline")
+			buf_set_keymap("n", "<leader>fi", ":FlutterInspectWidget<CR>", "Toggle Flutter widget inspector")
 		end,
 	},
 })
