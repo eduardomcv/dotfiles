@@ -217,6 +217,11 @@
   #'lsp-ui-doc-scroll-down))
 
 (use-package
+ lsp-treemacs
+ :after (lsp-mode treemacs)
+ :custom (lsp-treemacs-sync-mode 1))
+
+(use-package
  lsp-pyright
  :custom
  (lsp-pyright-langserver-command "basedpyright")

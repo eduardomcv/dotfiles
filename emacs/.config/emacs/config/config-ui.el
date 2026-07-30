@@ -7,9 +7,7 @@
 
 (use-package
  emacs
-
  :ensure nil
-
  :init
  (menu-bar-mode -1)
  (tool-bar-mode -1)
@@ -17,9 +15,7 @@
  (pixel-scroll-precision-mode 1)
  (global-hl-line-mode 1)
  (global-display-line-numbers-mode 1)
-
  :hook ((text-mode . visual-line-mode) (org-mode . visual-line-mode))
-
  :custom
  (pixel-scroll-precision-large-scroll-height 40.0)
  (pixel-scroll-precision-interpolation-factor 1.0)
@@ -27,12 +23,10 @@
  (display-line-numbers-type 'relative)
  (display-line-numbers-width 3)
  (display-line-numbers-grow-only t)
-
  :config
  (setq-default line-spacing 0.1)
  (setq-default left-margin-width 3)
-
- (add-to-list 'default-frame-alist '(font . "Iosevka Nerd Font-16"))
+ (add-to-list 'default-frame-alist '(font . "Iosevka-16"))
  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
  (add-to-list 'default-frame-alist '(ns-appearance . dark))
  (add-to-list 'default-frame-alist '(width . 120))
@@ -41,20 +35,17 @@
 
  (defun custom/set-font-faces ()
    (set-face-attribute 'default nil
-                       :font "Iosevka Nerd Font"
+                       :font "Iosevka"
                        :height 160
                        :weight 'regular)
-
    (set-face-attribute 'variable-pitch nil
-                       :font "Iosevka Nerd Font Propo"
+                       :font "Iosevka"
                        :height 160
                        :weight 'regular)
-
    (set-face-attribute 'fixed-pitch nil
-                       :font "IosevkaTerm Nerd Font"
+                       :font "Iosevka"
                        :height 160
                        :weight 'regular)
-
    (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
    (set-face-attribute 'font-lock-keyword-face nil :slant 'italic))
 
@@ -220,6 +211,22 @@
             doom-modeline-evil-replace-state
             doom-modeline-evil-motion-state))
    (set-face-attribute face nil :inverse-video t :weight 'bold)))
+
+(use-package
+ treemacs
+ :defer t
+ :init
+ (with-eval-after-load 'winum
+   (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
+
+(use-package treemacs-evil :after (treemacs evil))
+
+(use-package treemacs-magit :after (treemacs magit))
+
+(use-package
+ treemacs-tab-bar
+ :after (treemacs)
+ :config (treemacs-set-scope-type 'Tabs))
 
 (use-package
  hl-todo

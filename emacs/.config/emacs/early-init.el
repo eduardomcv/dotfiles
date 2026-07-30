@@ -8,7 +8,7 @@
 
 (if noninteractive
     (setq
-     gc-cons-threshold 134217728 ; 128mb
+     gc-cons-threshold (* 128 1024 1024)
      gc-cons-percentage 1.0)
   ;; Later, this value is reset by gcmh
   (setq gc-cons-threshold most-positive-fixnum))
