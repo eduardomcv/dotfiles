@@ -13,6 +13,7 @@ require("opencode").setup({
 	preferred_picker = "snacks",
 	preferred_completion = "blink",
 	default_mode = "plan",
+	keymap_prefix = "<leader>a",
 	quick_chat = {
 		default_model = "gpt-4o",
 	},

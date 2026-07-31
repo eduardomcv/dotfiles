@@ -1,4 +1,4 @@
 vim.cmd("packadd nvim.undotree")
 vim.cmd("packadd nvim.difftool")
 
-vim.keymap.set("n", "<leader>u", ":Undotree<CR>", { desc = "Toggle undotree" })
+vim.keymap.set("n", "<leader>cu", ":Undotree<CR>", { desc = "Toggle undotree" })

@@ -22,24 +22,24 @@ neotest.setup({
 	},
 })
 
-vim.keymap.set("n", "<leader>tt", function()
+vim.keymap.set("n", "<leader>ut", function()
 	neotest.run.run()
 end, { desc = "Test: Run nearest" })
 
-vim.keymap.set("n", "<leader>td", function()
+vim.keymap.set("n", "<leader>ud", function()
 	neotest.run.run({ strategy = "dap" })
 end, { desc = "Test: Debug nearest" })
 
-vim.keymap.set("n", "<leader>tf", function()
+vim.keymap.set("n", "<leader>uf", function()
 	neotest.run.run(vim.fn.expand("%"))
 end, { desc = "Test: Run file" })
 
-vim.keymap.set("n", "<leader>ts", neotest.run.stop, { desc = "Test: Stop" })
+vim.keymap.set("n", "<leader>us", neotest.run.stop, { desc = "Test: Stop" })
 
-vim.keymap.set("n", "<leader>tw", function()
+vim.keymap.set("n", "<leader>uw", function()
 	neotest.watch.toggle()
 end, { desc = "Test: Toggle watch" })
 
-vim.keymap.set("n", "<leader>to", neotest.output_panel.toggle, { desc = "Test: Toggle output panel" })
+vim.keymap.set("n", "<leader>uo", neotest.output_panel.toggle, { desc = "Test: Toggle output panel" })
 
-vim.keymap.set("n", "<leader>tS", neotest.summary.toggle, { desc = "Test: Toggle summary" })
+vim.keymap.set("n", "<leader>uS", neotest.summary.toggle, { desc = "Test: Toggle summary" })

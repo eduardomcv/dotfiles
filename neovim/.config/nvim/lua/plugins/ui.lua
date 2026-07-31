@@ -14,16 +14,16 @@ vim.pack.add({
 
 require("which-key").setup({
 	spec = {
-		{ "<leader>a", group = "+agent" },
+		{ "<leader>a", group = "+agents" },
 		{ "<leader>c", group = "+code" },
 		{ "<leader>f", group = "+format" },
 		{ "<leader>g", group = "+git" },
 		{ "<leader>n", group = "+notification" },
 		{ "<leader>s", group = "+search" },
-		{ "<leader>o", group = "+opencode" },
 		{ "<leader>d", group = "+debug" },
-		{ "<leader>t", group = "+test" },
-		{ "<leader>u", group = "+ui" },
+		{ "<leader>t", group = "+tabs" },
+		{ "<leader>x", group = "+context" },
+		{ "<leader>u", group = "+test" },
 	},
 })
 
