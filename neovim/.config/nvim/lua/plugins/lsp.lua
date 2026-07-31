@@ -89,6 +89,18 @@ vim.lsp.config("lua_ls", {
 
 local ruff_base_on_attach = vim.lsp.config.ruff.on_attach
 vim.lsp.config("ruff", {
+	cmd = function(dispatchers, config)
+		local ruff_bin = "ruff"
+		local root = config.root_dir or vim.fn.getcwd()
+		local venv = vim.fs.root(root, ".venv")
+		local venv_ruff = venv and (venv .. "/bin/ruff") or nil
+
+		if venv_ruff ~= nil and vim.fn.executable(venv_ruff) == 1 then
+			ruff_bin = venv_ruff
+		end
+
+		return vim.lsp.rpc.start({ ruff_bin, "server" }, dispatchers, { cwd = config.cmd_cwd })
+	end,
 	init_options = {
 		settings = {
 			-- Prioritize project config over editor config
@@ -103,19 +115,6 @@ vim.lsp.config("ruff", {
 		-- Disable hover in favor of pyright
 		client.server_capabilities.hoverProvider = false
 	end,
-})
-
-vim.lsp.config("basedpyright", {
-	settings = {
-		basedpyright = {
-			-- Using Ruff's import organizer
-			disableOrganizeImports = true,
-			analysis = {
-				-- Ignore all files for analysis to exclusively use Ruff for linting
-				ignore = { "*" },
-			},
-		},
-	},
 })
 
 local eslint_base_on_attach = vim.lsp.config.eslint.on_attach
