@@ -156,7 +156,7 @@ vim.api.nvim_create_autocmd("LspAttach", {
 
 			vim.keymap.set(
 				"i",
-				"<c-l>",
+				"<tab>",
 				vim.lsp.inline_completion.get,
 				{ desc = "LSP: accept inline completion", buffer = bufnr }
 			)

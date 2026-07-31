@@ -21,6 +21,9 @@ require("which-key").setup({
 		{ "<leader>n", group = "+notification" },
 		{ "<leader>s", group = "+search" },
 		{ "<leader>o", group = "+opencode" },
+		{ "<leader>d", group = "+debug" },
+		{ "<leader>t", group = "+test" },
+		{ "<leader>u", group = "+ui" },
 	},
 })
 

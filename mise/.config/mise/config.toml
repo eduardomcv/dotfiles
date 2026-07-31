@@ -5,7 +5,6 @@ ruby = "latest"
 uv = "latest"
 ty = "latest"
 flutter = "latest"
-"npm:@olrtg/emmet-language-server" = "latest"
 rust = {
 	version = "latest",
 	profile = "default",
