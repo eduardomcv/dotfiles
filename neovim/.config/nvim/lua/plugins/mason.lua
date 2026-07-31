@@ -7,17 +7,21 @@ local registry = require("mason-registry")
 
 local packages_to_install = {
 	"lua-language-server",
+	"luacheck",
+	"stylua",
 	"bash-language-server",
-	"json-lsp",
-	"yaml-language-server",
+	"shfmt",
 	"vtsls",
 	"eslint-lsp",
 	"css-lsp",
 	"html-lsp",
 	"emmet-language-server",
+	"ty",
+	"debugpy",
+	"json-lsp",
+	"yaml-language-server",
 	"copilot-language-server",
 	"js-debug-adapter",
-	"debugpy",
 }
 
 registry.refresh(function()
