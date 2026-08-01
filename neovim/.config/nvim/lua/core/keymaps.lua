@@ -2,7 +2,7 @@ local kset = vim.keymap.set
 
 -- Delete without yank
 kset("n", "x", [["_x]], { desc = "Delete without yanking" })
-kset({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
+kset("v", "x", [["_d]], { desc = "Delete without yanking" })
 
 -- Increment/decrement
 kset("n", "+", "<C-a>")

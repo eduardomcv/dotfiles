@@ -129,7 +129,7 @@ kset("n", "]t", action("todo-tree.goToNext"), { desc = "Next TODO comment" })
 kset("n", "[t", action("todo-tree.goToPrevious"), { desc = "Previous TODO comment" })
 
 kset("n", "x", [["_x]], { desc = "Delete without yanking" })
-kset({ "n", "v" }, "<leader>d", [["_d]], { desc = "Delete without yanking" })
+kset("v", "x", [["_d]], { desc = "Delete without yanking" })
 
 kset("n", "+", "<C-a>", { desc = "Increment number" })
 kset("n", "-", "<C-x>", { desc = "Decrement number" })
