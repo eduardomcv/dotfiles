@@ -8,9 +8,14 @@ vim.pack.add({
 	"https://github.com/folke/todo-comments.nvim",
 	-- Highlight colors
 	"https://github.com/brenoprata10/nvim-highlight-colors",
-	-- Integrate with kitty terminal
-	"https://github.com/knubie/vim-kitty-navigator",
 })
+
+local is_using_kitty = os.getenv("TERM") == "xterm-kitty" or os.getenv("KITTY_PID") ~= nil
+
+if is_using_kitty then
+	-- Integrate with kitty terminal
+	vim.pack.add({ "https://github.com/knubie/vim-kitty-navigator" })
+end
 
 require("which-key").setup({
 	spec = {
