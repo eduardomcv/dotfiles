@@ -36,7 +36,7 @@ require("nvim-highlight-colors").setup({})
 --- Keymaps
 
 local function rename_tab()
-	local tab_name = vim.fn.input({ prompt = "New tab name" })
+	local tab_name = vim.fn.input({ prompt = "New tab name: " })
 	if tab_name ~= "" then
 		require("tabby").tab_rename(tab_name)
 	end
