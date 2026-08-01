@@ -44,11 +44,6 @@ function install_macos() {
 		usage \
 		mise \
 		tree-sitter-cli \
-		shfmt \
-		shellcheck \
-		bash-language-server \
-		lua-language-server \
-		stylua \
 		neovim
 
 	brew install --cask \
@@ -129,20 +124,14 @@ function install_dnf() {
 		zoxide \
 		mise \
 		iosevka-fonts \
-		shfmt \
-		shellcheck \
-		lua-language-server \
 		neovim \
-		kitty \
-		helium-browser-bin
+		kitty
 
 	brew_check
 
 	brew install \
 		tlrc \
-		lazygit \
-		bash-language-server \
-		stylua
+		lazygit
 }
 
 function install_apt() {
@@ -169,11 +158,6 @@ function install_apt() {
 		lazygit \
 		usage \
 		mise \
-		shfmt \
-		shellcheck \
-		bash-language-server \
-		lua-language-server \
-		stylua \
 		tree-sitter-cli \
 		neovim
 }
@@ -201,13 +185,8 @@ function install_pacman() {
 		eza \
 		usage \
 		mise \
-		tealdeer \
+		tlrc \
 		lazygit \
-		shfmt \
-		shellcheck \
-		bash-language-server \
-		lua-language-server \
-		stylua \
 		tree-sitter-cli \
 		neovim
 }
