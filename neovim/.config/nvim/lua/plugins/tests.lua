@@ -9,6 +9,7 @@ vim.pack.add({
 
 local neotest = require("neotest")
 
+---@diagnostic disable-next-line: missing-fields
 neotest.setup({
 	adapters = {
 		require("neotest-vitest"),
@@ -27,6 +28,7 @@ vim.keymap.set("n", "<leader>ut", function()
 end, { desc = "Test: Run nearest" })
 
 vim.keymap.set("n", "<leader>ud", function()
+	---@diagnostic disable-next-line: missing-fields
 	neotest.run.run({ strategy = "dap" })
 end, { desc = "Test: Debug nearest" })
 
