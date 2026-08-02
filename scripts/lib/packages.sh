@@ -140,6 +140,8 @@ function install_apt() {
 	sudo apt install -y \
 		build-essential \
 		software-properties-common \
+		pkg-config \
+		libreadline-dev \
 		git \
 		stow \
 		zsh \
