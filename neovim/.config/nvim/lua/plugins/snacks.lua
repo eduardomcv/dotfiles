@@ -23,6 +23,7 @@ require("snacks").setup({
 				{ icon = " ", key = "c", desc = "Config", action = "<leader>sc" },
 				{ icon = "󰟾 ", key = "m", desc = "Mason", action = ":Mason" },
 				{ icon = " ", key = "u", desc = "Update", action = ":lua vim.pack.update()" },
+				{ icon = " ", key = "h", desc = "Check health", action = ":checkhealth" },
 				{ icon = " ", key = "q", desc = "Quit", action = ":qa!" },
 			},
 			header = [[
