@@ -4,9 +4,10 @@ vim.pack.add({
 })
 
 require("render-markdown").setup({
-	anti_conceal = { enabled = false },
 	preset = "lazy",
 	file_types = { "markdown", "opencode_output" },
+	latex = { enabled = false },
+	anti_conceal = { enabled = false },
 })
 
 require("opencode").setup({
