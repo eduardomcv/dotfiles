@@ -1,0 +1,24 @@
+[tools]
+node = "24"
+python = "3.13"
+ruby = "latest"
+uv = "latest"
+flutter = "latest"
+rust = {
+	version = "latest",
+	profile = "default",
+	components = "rust-analyzer",
+}
+lua = "5.1"
+
+[settings]
+idiomatic_version_file_enable_tools = [
+	"node",
+	"python",
+]
+
+[settings.python]
+uv_venv_auto = true
+
+[settings.ruby]
+compile = false

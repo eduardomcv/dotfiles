@@ -1,0 +1,30 @@
+# Package downloads
+elpa/
+
+# Emacs files
+var/
+etc/
+*~
+\#*\#
+.#*
+eln-cache/
+transient/
+bookmarks
+projects
+.org-id-locations
+ac-comphist.dat
+history
+server/
+auto-save-list/
+tree-sitter/
+places
+recentf
+
+# Machine-specific settings
+custom.el
+
+# Compiled elisp
+*.elc
+
+# LSP extensions
+.extension

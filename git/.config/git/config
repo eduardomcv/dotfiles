@@ -1,0 +1,43 @@
+[core]
+  editor = "nvim"
+  autocrlf = input
+  longpaths = true
+[fetch]
+  prune = true
+[pull]
+	ff = only
+[push]
+	autoSetupRemote = true
+[color]
+  ui = auto
+[commit]
+  verbose = true
+[column]
+  ui = auto
+[difftool "nvim_difftool"]
+  cmd = nvim -d \"$LOCAL\" \"$REMOTE\"
+[diff]
+  tool = nvim_difftool
+  algorithm = histogram
+  colorMoved = plain
+  mnemonicPrefix = true
+[branch]
+  sort = -committerdate
+[tag]
+  sort = -version:refname
+[rerere]
+  autoupdate = true
+[alias]
+  up = push -u origin HEAD
+  co = checkout
+  br = branch
+  ct = commit
+  st = status
+  bs = branch -a
+  rs = remote -v
+  ll = log --pretty=oneline -n 20 --graph --abbrev-commit
+  clean-branches = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
+  clean = clean-branches
+  graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
+[init]
+  defaultBranch = main

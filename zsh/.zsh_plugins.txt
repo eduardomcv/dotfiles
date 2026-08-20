@@ -1,0 +1,16 @@
+# Fish-like suggestions
+zsh-users/zsh-autosuggestions
+
+# Syntax highlighting
+zdharma-continuum/fast-syntax-highlighting kind:defer
+
+# Completion
+mattmc3/ez-compinit
+zsh-users/zsh-completions
+
+# Better vi emulation
+jeffreytse/zsh-vi-mode
+
+# Prompt
+sindresorhus/pure
+mafredri/zsh-async
