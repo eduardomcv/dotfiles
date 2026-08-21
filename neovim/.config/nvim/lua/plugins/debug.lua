@@ -8,8 +8,6 @@ vim.pack.add({
 local dap = require("dap")
 local dapui = require("dapui")
 
-require("nvim-dap-virtual-text").setup({})
-
 ---@diagnostic disable: missing-fields
 dapui.setup({
 	controls = {
@@ -39,6 +37,19 @@ dapui.setup({
 })
 ---@diagnostic enable: missing-fields
 
+require("nvim-dap-virtual-text").setup({})
+
+local sign = vim.fn.sign_define
+
+sign("DapBreakpoint", { text = " ", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" })
+sign(
+	"DapBreakpointCondition",
+	{ text = " ", texthl = "DapBreakpointCondition", linehl = "", numhl = "DapBreakpointCondition" }
+)
+sign("DapBreakpointRejected", { text = " ", texthl = "DapBreakpoint", linehl = "", numhl = "DapBreakpoint" })
+sign("DapLogPoint", { text = " ", texthl = "DapLogPoint", linehl = "", numhl = "DapLogPoint" })
+sign("DapStopped", { text = " ", texthl = "DapLogPoint", linehl = "Visual", numhl = "DapLogPoint" })
+
 dap.listeners.before.attach.dapui_config = function()
 	dapui.open()
 end
@@ -55,7 +66,7 @@ dap.listeners.before.event_exited.dapui_config = function()
 	dapui.close()
 end
 
--- This needs to be installed
+-- This needs to be installed via Mason
 local js_debug_server = vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
 
 dap.adapters["pwa-node"] = {
