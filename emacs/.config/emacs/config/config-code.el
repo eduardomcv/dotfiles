@@ -8,20 +8,13 @@
 (use-package
  flycheck
  :init (global-flycheck-mode)
- :general
- (:states
-  'normal "[ d" 'flycheck-previous-error "] d" 'flycheck-next-error))
+ :general (:states 'normal "[ d" 'flycheck-previous-error "] d" 'flycheck-next-error))
 
 (use-package
  flycheck-inline
  :after flycheck
  :hook (flycheck-mode . flycheck-inline-mode)
- :general
- (custom/leader-key
-  :states
-  'normal
-  "ce"
-  '(flycheck-inline-mode :which-key "toggle inline errors")))
+ :general (custom/leader-key :states 'normal "ce" '(flycheck-inline-mode :which-key "toggle inline errors")))
 
 (use-package
  elisp-autofmt
@@ -33,50 +26,41 @@
  :init (apheleia-global-mode 1)
  :custom (apheleia-formatters-respect-indent-level nil)
  :config
- ;; Replace the default (black) with ruff. emacs-lisp-mode is absent:
- ;; `elisp-autofmt-mode' above already formats it on save.
- (setf (alist-get 'python-mode apheleia-mode-alist)
-       '(ruff-isort ruff))
- (setf (alist-get 'python-ts-mode apheleia-mode-alist)
-       '(ruff-isort ruff))
+ ;; apheleia's default alist maps emacs-lisp-mode to `lisp-indent', which
+ ;; fights `elisp-autofmt-mode': apheleia's post-format silent save re-runs
+ ;; `before-save-hook', so each .el save formats twice in two styles, the
+ ;; second time inside apheleia's sentinel, where the blocking python call
+ ;; can wedge Emacs against a pending save prompt.
+ (setf (alist-get 'emacs-lisp-mode apheleia-mode-alist) nil)
 
- :general
- (custom/leader-key
-  "cf" '(apheleia-format-buffer :which-key "format buffer")))
+ ;; Replace the default (black) with ruff.
+ (setf (alist-get 'python-mode apheleia-mode-alist) '(ruff-isort ruff))
+ (setf (alist-get 'python-ts-mode apheleia-mode-alist) '(ruff-isort ruff))
+
+ :general (custom/leader-key "cf" '(apheleia-format-buffer :which-key "format buffer")))
 
 (use-package
  treesit
  :ensure nil
  :preface
- (setq
-  treesit-language-source-alist
-  '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-    (css "https://github.com/tree-sitter/tree-sitter-css")
-    (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-    (html "https://github.com/tree-sitter/tree-sitter-html")
-    (javascript
-     "https://github.com/tree-sitter/tree-sitter-javascript")
-    (json "https://github.com/tree-sitter/tree-sitter-json")
-    (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
-    (markdown
-     "https://github.com/tree-sitter-grammars/tree-sitter-markdown"
-     "split_parser"
-     "tree-sitter-markdown/src")
-    (python "https://github.com/tree-sitter/tree-sitter-python")
-    (toml "https://github.com/tree-sitter/tree-sitter-toml")
-    (tsx
-     "https://github.com/tree-sitter/tree-sitter-typescript"
-     "master"
-     "tsx/src")
-    (typescript
-     "https://github.com/tree-sitter/tree-sitter-typescript"
-     "master"
-     "typescript/src")
-    (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-    (dockerfile
-     "https://github.com/camdencheek/tree-sitter-dockerfile")
-    (rust "https://github.com/tree-sitter/tree-sitter-rust")
-    (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
+ (setq treesit-language-source-alist
+       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
+         (css "https://github.com/tree-sitter/tree-sitter-css")
+         (elisp "https://github.com/Wilfred/tree-sitter-elisp")
+         (html "https://github.com/tree-sitter/tree-sitter-html")
+         (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
+         (json "https://github.com/tree-sitter/tree-sitter-json")
+         (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
+         (markdown
+          "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src")
+         (python "https://github.com/tree-sitter/tree-sitter-python")
+         (toml "https://github.com/tree-sitter/tree-sitter-toml")
+         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
+         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
+         (yaml "https://github.com/ikatyang/tree-sitter-yaml")
+         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
+         (rust "https://github.com/tree-sitter/tree-sitter-rust")
+         (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
  :custom (treesit-font-lock-level 4)
  ;; `html-mode'/`yaml-mode' absent: they get an explicit `auto-mode-alist'
  ;; entry below instead, since `.html'/`.yaml' don't map to them anyway.
@@ -96,16 +80,15 @@
    "Map filenames to a `-ts-mode' once its grammar is installed.
 Safe to call repeatedly; `config-bootstrap.el' re-runs this once a
 missing grammar finishes compiling."
-   (dolist
-       (entry
-        '(("\\.tsx\\'" tsx . tsx-ts-mode)
-          ("\\.ts\\'" typescript . typescript-ts-mode)
-          ("\\.mjs\\'" javascript . js-ts-mode)
-          ("\\.cjs\\'" javascript . js-ts-mode)
-          ("Dockerfile\\'" dockerfile . dockerfile-ts-mode)
-          ("\\.rs\\'" rust . rust-ts-mode)
-          ("\\.lua\\'" lua . lua-ts-mode)
-          ("\\.ya?ml\\'" yaml . yaml-ts-mode)))
+   (dolist (entry
+            '(("\\.tsx\\'" tsx . tsx-ts-mode)
+              ("\\.ts\\'" typescript . typescript-ts-mode)
+              ("\\.mjs\\'" javascript . js-ts-mode)
+              ("\\.cjs\\'" javascript . js-ts-mode)
+              ("Dockerfile\\'" dockerfile . dockerfile-ts-mode)
+              ("\\.rs\\'" rust . rust-ts-mode)
+              ("\\.lua\\'" lua . lua-ts-mode)
+              ("\\.ya?ml\\'" yaml . yaml-ts-mode)))
      (when (treesit-language-available-p (cadr entry))
        (add-to-list 'auto-mode-alist (cons (car entry) (cddr entry)))))
 
@@ -119,10 +102,7 @@ missing grammar finishes compiling."
  lsp-mode
  :init
  (defun custom/add-orderless-to-lsp-mode-completion ()
-   (setf (alist-get
-          'styles
-          (alist-get 'lsp-capf completion-category-defaults))
-         '(orderless)))
+   (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults)) '(orderless)))
  (setq lsp-keymap-prefix "C-c l")
  :hook
  ((lsp-mode . lsp-enable-which-key-integration)
@@ -145,6 +125,14 @@ missing grammar finishes compiling."
  (lsp-completion-provider :none)
  (lsp-diagnostics-provider :flycheck)
  (lsp-idle-delay 0.500)
+ (lsp-auto-guess-root t)
+ (lsp-file-watch-threshold 500)
+ ;; This config's own repo root holds elpa/eln-cache/var/mason, tens of
+ ;; thousands of files the default ignore list doesn't cover.
+ (lsp-file-watch-ignored-directories
+  (append
+   '("[/\\\\]elpa\\'" "[/\\\\]eln-cache\\'" "[/\\\\]mason\\'")
+   lsp-file-watch-ignored-directories))
  (lsp-modeline-diagnostics-enable nil)
  (lsp-modeline-code-action-fallback-icon " ")
 
@@ -159,8 +147,7 @@ missing grammar finishes compiling."
  (lsp-typescript-update-imports-on-file-move-enabled "always")
  (lsp-typescript-suggest-complete-function-calls t)
 
- (lsp-eslint-server-command
-  '("vscode-eslint-language-server" "--stdio"))
+ (lsp-eslint-server-command '("vscode-eslint-language-server" "--stdio"))
  (lsp-eslint-run "onSave")
  (lsp-eslint-auto-fix-on-save t)
  :config
@@ -203,24 +190,13 @@ missing grammar finishes compiling."
  (lsp-headerline-breadcrumb-enable-diagnostics nil)
  :config
  (setq lsp-ui-doc-border (catppuccin-color 'surface2))
- (set-face-attribute 'lsp-ui-doc-background nil
-                     :background (catppuccin-color 'base))
+ (set-face-attribute 'lsp-ui-doc-background nil :background (catppuccin-color 'base))
  :general
  (:states
   'normal
-  :keymaps
-  'lsp-mode-map
-  "K"
-  #'lsp-ui-doc-glance
-  "M-j"
-  #'lsp-ui-doc-scroll-up
-  "M-k"
-  #'lsp-ui-doc-scroll-down))
+  :keymaps 'lsp-mode-map "K" #'lsp-ui-doc-glance "M-j" #'lsp-ui-doc-scroll-up "M-k" #'lsp-ui-doc-scroll-down))
 
-(use-package
- mason
- :ensure nil
- :general (custom/leader-key "cm" '(mason-manager :which-key "mason")))
+(use-package mason :ensure nil :general (custom/leader-key "cm" '(mason-manager :which-key "mason")))
 
 (use-package
  dap-mode
@@ -229,18 +205,13 @@ missing grammar finishes compiling."
  :config
  ;; `dap-js' (not the older `dap-node') registers the "pwa-node" adapter.
  ;; Point both it and dap-python at mason.el's own installs.
- (let ((mason-python
-        (expand-file-name "packages/debugpy/bin/python" mason-dir))
-       (mason-js-debug
-        (expand-file-name
-         "packages/js-debug-adapter/js-debug/src/dapDebugServer.js"
-         mason-dir)))
+ (let ((mason-python (expand-file-name "packages/debugpy/bin/python" mason-dir))
+       (mason-js-debug (expand-file-name "packages/js-debug-adapter/js-debug/src/dapDebugServer.js" mason-dir)))
    (when (file-exists-p mason-python)
      (setq dap-python-executable mason-python))
    (when (file-exists-p mason-js-debug)
      (setq dap-js-debug-program (list "node" mason-js-debug))))
- (require 'dap-js)
- (require 'dap-python)
+ (require 'dap-js) (require 'dap-python)
  :general
  (custom/leader-key
   "d"
@@ -293,10 +264,8 @@ missing grammar finishes compiling."
 
 (use-package
  jest-test-mode
- :hook
- ((js-ts-mode typescript-ts-mode tsx-ts-mode) . jest-test-mode)
- :general
- (custom/leader-key "u" '(:ignore t :which-key "test"))
+ :hook ((js-ts-mode typescript-ts-mode tsx-ts-mode) . jest-test-mode)
+ :general (custom/leader-key "u" '(:ignore t :which-key "test"))
  (custom/leader-key
   :keymaps
   'jest-test-mode-map
@@ -309,8 +278,7 @@ missing grammar finishes compiling."
 
 (use-package
  markdown-mode
- :mode
- (("README\\.md\\'" . gfm-mode) ("\\.md\\'" . markdown-mode))
+ :mode (("README\\.md\\'" . gfm-mode) ("\\.md\\'" . markdown-mode))
  ;; pandoc isn't in the Mason registry; fall back to the built-in renderer.
  :init
  (when (executable-find "pandoc")
@@ -327,8 +295,7 @@ missing grammar finishes compiling."
 
  (defun custom/python-venv-p (dir)
    "Return non-nil if DIR is an actual virtualenv, not just a same-named dir."
-   (or (file-exists-p (expand-file-name "pyvenv.cfg" dir))
-       (file-executable-p (expand-file-name "bin/python" dir))))
+   (or (file-exists-p (expand-file-name "pyvenv.cfg" dir)) (file-executable-p (expand-file-name "bin/python" dir))))
 
  ;; Captured once at startup, before `pyvenv-activate' can set this same
  ;; variable itself and be mistaken for an external one on a later read.
@@ -372,10 +339,7 @@ branch a previous project's venv stays stuck active."
   "uf"
   '(python-pytest-file-dwim :which-key "test file")))
 
-(use-package
- yasnippet
- :init (yas-global-mode 1)
- :config (yas-reload-all))
+(use-package yasnippet :init (yas-global-mode 1) :config (yas-reload-all))
 
 (use-package yasnippet-snippets :after yasnippet)
 
