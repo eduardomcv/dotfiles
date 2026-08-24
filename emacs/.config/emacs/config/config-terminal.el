@@ -6,9 +6,8 @@
 ;;; Code:
 
 (defun custom/spawn-shell (name)
-  "Create a new vterm buffer called *Shell: NAME*"
+  "Create a new vterm buffer called *Shell: NAME*."
   (interactive "sName of shell: ")
-  ;; Format buffer name to be *Shell: NAME*
   (let ((buffer-name (format "*Shell: %s*" name)))
     (when (get-buffer buffer-name)
       (error "Buffer %s already exists" buffer-name))
@@ -39,9 +38,7 @@
 
  :config (define-key vterm-mode-map [return] #'vterm-send-return)
 
- :general
- (custom/leader-key
-  "RET" '(custom/spawn-shell :which-key "spawn a new shell")))
+ :general (custom/leader-key "RET" '(custom/spawn-shell :which-key "spawn a new shell")))
 
 (use-package multi-vterm :after vterm)
 
