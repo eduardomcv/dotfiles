@@ -2,8 +2,8 @@
 
 ;;; Commentary:
 ;;; Installs whatever is missing on first launch: the Nerd Font,
-;;; tree-sitter grammars, and mason.el packages. Runs in detached child
-;;; processes so it doesn't block the UI.
+;;; tree-sitter grammars, and mason.el packages.
+;;; Runs in detached child processes so it doesn't block the UI.
 
 ;;; Code:
 
