@@ -31,30 +31,28 @@
   "a m"
   '(gptel-menu :which-key "gptel menu")))
 
+;; `lsp-copilot'/`lsp-inline-completion' are separate files from core
+;; lsp-mode and must be required explicitly before their variables exist.
 (use-package
- copilot
- :hook (prog-mode . copilot-mode)
- :custom (copilot-idle-delay 0.5)
+ lsp-mode
+ :ensure nil
+ :hook (lsp-mode . lsp-inline-completion-mode)
  :config
- (with-eval-after-load 'copilot
-   (add-to-list 'copilot-indentation-alist '(prog-mode 4))
-   (add-to-list 'copilot-indentation-alist '(emacs-lisp-mode 2))
-   (add-to-list 'copilot-indentation-alist '(js-ts-mode 2))
-   (add-to-list 'copilot-indentation-alist '(typescript-ts-mode 2))
-   (add-to-list 'copilot-indentation-alist '(tsx-ts-mode 2)))
-
- (add-hook 'evil-insert-state-exit-hook 'copilot-clear-overlay)
+ (require 'lsp-copilot)
+ (require 'lsp-inline-completion)
+ (setq lsp-copilot-enabled t)
+ (setq lsp-inline-completion-idle-delay 0.5)
+ ;; Accept with the same key `copilot.el' used to use.
+ (define-key
+  lsp-inline-completion-active-map (kbd "C-<tab>")
+  #'lsp-inline-completion-accept)
  :general
  (:states
   'insert
   :keymaps
-  'copilot-mode-map
+  'lsp-mode-map
   "C-<tab>"
-  #'copilot-accept-completion
-  "C-M-<tab>"
-  #'copilot-accept-completion-by-word
-  "C-M-<right>"
-  #'copilot-accept-completion-by-word))
+  #'lsp-inline-completion-display))
 
 (provide 'config-ai)
 

@@ -14,9 +14,16 @@
   (setq gc-cons-threshold most-positive-fixnum))
 
 (setq native-comp-async-report-warnings-errors 'silent)
-(setq byte-compile-warnings
-      '(not free-vars unresolved noruntime lexical make-local))
 
+;; Set before the frame is drawn to avoid a flash and implied resize.
+(push '(menu-bar-lines . 0) default-frame-alist)
+(push '(tool-bar-lines . 0) default-frame-alist)
+(push '(vertical-scroll-bars . nil) default-frame-alist)
+(setq frame-inhibit-implied-resize t)
+(setq inhibit-splash-screen t)
+
+;; Avoids activating every package twice; `package-initialize' below does it.
+(setq package-enable-at-startup nil)
 (require 'package)
 (setq package-native-compile t)
 
@@ -25,11 +32,6 @@
  t)
 
 (package-initialize)
-
-(unless (package-installed-p 'use-package)
-  (unless package-archive-contents
-    (package-refresh-contents))
-  (package-install 'use-package))
 
 (require 'use-package)
 (setq use-package-always-ensure t)

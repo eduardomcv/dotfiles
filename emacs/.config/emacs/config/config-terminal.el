@@ -5,8 +5,22 @@
 
 ;;; Code:
 
+(defun custom/spawn-shell (name)
+  "Create a new vterm buffer called *Shell: NAME*"
+  (interactive "sName of shell: ")
+  ;; Format buffer name to be *Shell: NAME*
+  (let ((buffer-name (format "*Shell: %s*" name)))
+    (when (get-buffer buffer-name)
+      (error "Buffer %s already exists" buffer-name))
+    (vterm buffer-name)
+    (setq-local vterm-buffer-name-string nil)))
+
 (use-package
  vterm
+
+ ;; Must run before vterm.el loads, which decides at load time whether
+ ;; to prompt before compiling the native module.
+ :init (setq vterm-always-compile-module t)
 
  :custom
  (vterm-shell (or (executable-find "zsh") shell-file-name))
@@ -24,16 +38,6 @@
     (hl-line-mode -1)))
 
  :config (define-key vterm-mode-map [return] #'vterm-send-return)
-
- (defun custom/spawn-shell (name)
-   "Create a new vterm buffer called *Shell: NAME*"
-   (interactive "sName of shell: ")
-   ;; Format buffer name to be *Shell: NAME*
-   (let ((buffer-name (format "*Shell: %s*" name)))
-     (when (get-buffer buffer-name)
-       (error "Buffer %s already exists" buffer-name))
-     (vterm buffer-name)
-     (setq-local vterm-buffer-name-string nil)))
 
  :general
  (custom/leader-key

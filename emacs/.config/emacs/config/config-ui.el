@@ -9,9 +9,6 @@
  emacs
  :ensure nil
  :init
- (menu-bar-mode -1)
- (tool-bar-mode -1)
- (scroll-bar-mode -1)
  (pixel-scroll-precision-mode 1)
  (global-hl-line-mode 1)
  (global-display-line-numbers-mode 1)
@@ -25,29 +22,23 @@
  (display-line-numbers-grow-only t)
  :config
  (setq-default line-spacing 0.1)
- (setq-default left-margin-width 3)
  (add-to-list 'default-frame-alist '(font . "Iosevka-16"))
  (add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
  (add-to-list 'default-frame-alist '(ns-appearance . dark))
  (add-to-list 'default-frame-alist '(width . 120))
  (add-to-list 'default-frame-alist '(height . 45))
- (add-to-list 'default-frame-alist '(alpha-background . 95))
 
  (defun custom/set-font-faces ()
-   (set-face-attribute 'default nil
-                       :font "Iosevka"
-                       :height 160
-                       :weight 'regular)
-   (set-face-attribute 'variable-pitch nil
-                       :font "Iosevka"
-                       :height 160
-                       :weight 'regular)
-   (set-face-attribute 'fixed-pitch nil
-                       :font "Iosevka"
-                       :height 160
-                       :weight 'regular)
-   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
-   (set-face-attribute 'font-lock-keyword-face nil :slant 'italic))
+   ;; Guarded: a machine without Iosevka yet would abort this :config block.
+   (when (find-font (font-spec :family "Iosevka"))
+     (set-face-attribute
+      'default nil
+      :font "Iosevka"
+      :height 160
+      :weight 'regular))
+   ;; Emacs counterpart of kitty's `symbol_map', for glyphs with no :family.
+   (when (and (display-graphic-p) (require 'nerd-icons nil t))
+     (nerd-icons-set-font)))
 
  (if (daemonp)
      (add-hook
@@ -57,8 +48,16 @@
           (custom/set-font-faces))))
    (custom/set-font-faces))
 
- ;; Set nerd icons to 2 characters wide to prevent cut-off
- (set-char-table-range char-width-table '(#xe000 . #xf8ff) 2))
+ ;; `load-theme' resets all faces, so re-apply these on every switch.
+ (defun custom/set-font-lock-italics (&rest _)
+   (set-face-attribute 'font-lock-comment-face nil :slant 'italic)
+   (set-face-attribute 'font-lock-keyword-face nil :slant 'italic))
+ (add-hook 'enable-theme-functions #'custom/set-font-lock-italics)
+
+ ;; TTY only: Symbols Nerd Font Mono is single-width, so this would
+ ;; misalign icons in a GUI frame.
+ (unless (display-graphic-p)
+   (set-char-table-range char-width-table '(#xe000 . #xf8ff) 2)))
 
 (use-package nerd-icons)
 
@@ -66,7 +65,6 @@
  ligature
  :init (global-ligature-mode t)
  :config
- ;; Specific ligature configuration for the Iosevka font
  (ligature-set-ligatures
   '(prog-mode text-mode)
   '("<---"
@@ -123,11 +121,12 @@
 (use-package
  whitespace
  :ensure nil
+ ;; Trailing whitespace only; reindentation is left to apheleia.
  :hook
  ((prog-mode
    .
    (lambda ()
-     (add-hook 'before-save-hook #'whitespace-cleanup nil t))))
+     (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
  :config
  (setq whitespace-style
        '(face
@@ -182,15 +181,11 @@
 
  (dashboard-items
   '((recents . 5)
-    (bookmarks . 5) (projects . 5)
-    ;; (agenda . 5)
-    (registers . 5)))
+    (bookmarks . 5) (projects . 5)))
 
  (dashboard-item-shortcuts
   '((recents . "r")
-    (bookmarks . "m") (projects . "p")
-    ;; (agenda . "a")
-    (registers . "e")))
+    (bookmarks . "m") (projects . "p")))
  :config
  (set-face-attribute 'dashboard-text-banner nil :slant 'normal)
  (setq dashboard-startup-banner
@@ -213,22 +208,6 @@
    (set-face-attribute face nil :inverse-video t :weight 'bold)))
 
 (use-package
- treemacs
- :defer t
- :init
- (with-eval-after-load 'winum
-   (define-key winum-keymap (kbd "M-0") #'treemacs-select-window)))
-
-(use-package treemacs-evil :after (treemacs evil))
-
-(use-package treemacs-magit :after (treemacs magit))
-
-(use-package
- treemacs-tab-bar
- :after (treemacs)
- :config (treemacs-set-scope-type 'Tabs))
-
-(use-package
  hl-todo
  :hook ((prog-mode . hl-todo-mode) (text-mode . hl-todo-mode))
  :custom (hl-todo-highlight-punctuation ":")
@@ -240,25 +219,15 @@
     ("NOTE" . "#ABE9B3"))))
 
 (use-package
- highlight-indent-guides
- :hook (prog-mode . highlight-indent-guides-mode)
+ indent-bars
+ :hook (prog-mode . indent-bars-mode)
  :custom
- (highlight-indent-guides-method 'character)
- (highlight-indent-guides-responsive 'top)
- (highlight-indent-guides-auto-enabled nil)
- :config
- (set-face-foreground
-  'highlight-indent-guides-character-face "#45475a")
- (set-face-foreground
-  'highlight-indent-guides-top-character-face "#cba6f7")
- (set-face-foreground
-  'highlight-indent-guides-stack-character-face "#45475a"))
-
-(use-package minions :init (minions-mode 1))
+ (indent-bars-treesit-support t)
+ (indent-bars-color '(highlight :face-bg t :blend 0.15))
+ (indent-bars-highlight-current-depth '(:blend 0.4)))
 
 (use-package
  colorful-mode
- :diminish
  :custom
  (colorful-use-prefix t)
  (colorful-only-strings 'only-prog)
@@ -266,27 +235,6 @@
  :config
  (global-colorful-mode t)
  (add-to-list 'global-colorful-modes 'helpful-mode))
-
-(use-package
- xterm-color
- :ensure t
- :config
- (defun custom/magit-process-filter-advice (orig-fn proc string)
-   (funcall orig-fn proc (xterm-color-filter string)))
-
- (advice-add
-  'magit-process-filter
-  :around #'custom/magit-process-filter-advice)
-
- (advice-add
-  'magit-start-process
-  :around
-  (lambda (orig-fun &rest args)
-    (let ((process-environment
-           (append
-            process-environment
-            '("FORCE_COLOR=1" "TERM=xterm-256color"))))
-      (apply orig-fun args)))))
 
 (provide 'config-ui)
 

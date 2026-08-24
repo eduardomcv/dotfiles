@@ -11,6 +11,8 @@
  :custom
  (tab-always-indent 'complete)
  (text-mode-ispell-word-completion nil)
+ (fill-column 120)
+ :hook (prog-mode . display-fill-column-indicator-mode)
  :config
  (unless (display-graphic-p)
    (xterm-mouse-mode 1))
@@ -73,7 +75,17 @@
  (setq evil-motion-state-tag " MOTION ")
  (define-key evil-motion-state-map (kbd "SPC") nil)
  (global-set-key (kbd "<escape>") 'keyboard-escape-quit)
- (evil-mode 1))
+ (evil-mode 1)
+
+ (defun custom/evil-delete-char-blackhole ()
+   "Delete the character under point without touching any register."
+   (interactive)
+   (evil-delete-char (point) (1+ (point)) 'exclusive ?_))
+
+ (defun custom/evil-delete-blackhole ()
+   "Delete the active region without touching any register."
+   (interactive)
+   (evil-delete (region-beginning) (region-end) 'exclusive ?_)))
 
 (use-package
  evil-collection
@@ -111,7 +123,11 @@
   "C--"
   'text-scale-decrease
   "C-="
-  'text-scale-increase)
+  'text-scale-increase
+  "x"
+  'custom/evil-delete-char-blackhole)
+
+ (general-define-key :states 'visual "x" 'custom/evil-delete-blackhole)
 
  (custom/leader-key
   "b"
@@ -148,6 +164,17 @@
   '(tab-switch :which-key "switch tab by name")
   "tu"
   '(tab-undo :which-key "undo closing tab")))
+
+(use-package
+ evil-numbers
+ :after evil
+ :general
+ (:states
+  '(normal visual)
+  "+"
+  'evil-numbers/inc-at-pt
+  "-"
+  'evil-numbers/dec-at-pt))
 
 (use-package
  compile
@@ -226,14 +253,6 @@
          (consult-ripgrep "Ripgrep" ?g)
          (magit-project-status "Magit" ?G)))
 
- (defun project-find-go-module (dir)
-   (when-let ((root (locate-dominating-file dir "go.mod")))
-     (cons 'go-module root)))
- (cl-defmethod project-root ((project (head go-module)))
-   (cdr project))
-
- (add-hook 'project-find-functions #'project-find-go-module)
-
  :general (:states 'normal "C-p" 'project-find-file)
  (custom/leader-key
   "sf"
@@ -256,7 +275,7 @@
  (:states 'insert "C-SPC" 'completion-at-point)
  (:keymaps
   'corfu-map
-  "SPC"
+  "M-SPC"
   #'corfu-insert-separator
   "M-j"
   #'corfu-popupinfo-scroll-up
@@ -315,21 +334,14 @@
  :custom (dabbrev-check-all-buffers t))
 
 (use-package
- jinx
- :hook (text-mode . jinx-mode)
- :custom (jinx-languages "en_US pt_PT")
- :bind (("M-$" . jinx-correct) ("C-M-$" . jinx-languages))
+ vundo
+ :custom (vundo-glyph-alist vundo-unicode-symbols)
  :general
- (:states
-  'normal
-  :keymaps
-  'jinx-mode-map
-  "[ s"
-  'jinx-previous
-  "] s"
-  'jinx-next
-  "z="
-  'jinx-correct))
+ (custom/leader-key
+  "cu"
+  '(vundo :which-key "undo tree")
+  "su"
+  '(vundo :which-key "undo tree")))
 
 (provide 'config-editor)
 

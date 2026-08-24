@@ -74,12 +74,26 @@
   '(custom/consult-ripgrep-at-point :which-key "search word")
   "sb"
   '(consult-buffer :which-key "switch buffer")
+  "sB"
+  '(consult-line-multi :which-key "grep open buffers")
   "ss"
   '(consult-line :which-key "current file")
-  "bl"
-  '(consult-line :which-key "search buffer lines")
   "sr"
   '(consult-recent-file :which-key "recent files")
+  "s:"
+  '(consult-complex-command :which-key "command history")
+  "s\""
+  '(consult-register :which-key "registers")
+  "sh"
+  '(consult-info :which-key "info manuals")
+  "sk"
+  '(embark-bindings :which-key "keymaps")
+  "sm"
+  '(consult-mark :which-key "marks")
+  "sM"
+  '(consult-man :which-key "man pages")
+  "sq"
+  '(consult-compile-error :which-key "compile errors")
   "pb"
   '(consult-project-buffer :which-key "project buffers")))
 
@@ -104,10 +118,33 @@
  :general
  (custom/leader-key
   "st"
-  '(consult-todo-project :which-key "project todos") "bt"
-  '(consult-todo :which-key "search buffer todos")))
+  '(consult-todo-project :which-key "project todos")
+  "bt"
+  '(consult-todo :which-key "buffer todos")))
 
-(use-package wgrep :custom (wgrep-auto-save-buffer t))
+(use-package
+ wgrep
+ :commands (wgrep-change-to-wgrep-mode wgrep-setup)
+ :custom (wgrep-auto-save-buffer t))
+
+(use-package
+ consult-flycheck
+ :after (consult flycheck)
+ :general
+ (custom/leader-key
+  "sD" '(consult-flycheck :which-key "buffer diagnostics")))
+
+(use-package
+ consult-lsp
+ :after (consult lsp-mode)
+ :general
+ (custom/leader-key
+  "sd"
+  '(consult-lsp-diagnostics :which-key "diagnostics")
+  "sS"
+  '(consult-lsp-symbols :which-key "workspace symbols")
+  "si"
+  '(consult-lsp-file-symbols :which-key "buffer symbols")))
 
 (use-package
  embark

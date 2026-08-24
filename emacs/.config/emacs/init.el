@@ -17,5 +17,8 @@
 (require 'config-org)
 (require 'config-terminal)
 (require 'config-ai)
+;; Must load last: installs whatever the files above declared but didn't
+;; find on this machine (mason.el packages, tree-sitter grammars, fonts).
+(require 'config-bootstrap)
 
 ;;; init.el ends here
