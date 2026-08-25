@@ -44,7 +44,8 @@ function install_macos() {
 		usage \
 		mise \
 		tree-sitter-cli \
-		neovim
+		neovim \
+		pandoc
 
 	brew install --cask \
 		font-iosevka \
@@ -122,7 +123,8 @@ function install_dnf() {
 		zoxide \
 		mise \
 		iosevka-fonts \
-		kitty
+		kitty \
+		pandoc
 
 	brew_check
 
@@ -161,7 +163,8 @@ function install_apt() {
 		usage \
 		mise \
 		tree-sitter-cli \
-		neovim
+		neovim \
+		pandoc
 }
 
 function install_pacman() {
@@ -190,7 +193,8 @@ function install_pacman() {
 		tlrc \
 		lazygit \
 		tree-sitter-cli \
-		neovim
+		neovim \
+		pandoc-cli
 }
 
 function install_packages() {

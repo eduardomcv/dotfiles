@@ -221,14 +221,7 @@
 
 (use-package dotenv-mode :mode (("\\.env\\..*\\'" . dotenv-mode)))
 
-(use-package
- markdown-mode
- :mode (("README\\.md\\'" . gfm-mode) ("\\.md\\'" . markdown-mode))
- ;; pandoc isn't in the Mason registry; fall back to the built-in renderer.
- :init
- (when (executable-find "pandoc")
-   (setq markdown-command "pandoc"))
- :custom (markdown-fontify-code-blocks-natively t))
+(use-package markdown-mode :mode ("README\\.md\\'" . gfm-mode) :custom (markdown-fontify-code-blocks-natively t))
 
 (use-package
  pyvenv
