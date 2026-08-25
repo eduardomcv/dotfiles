@@ -70,6 +70,8 @@ function check_rpmfusion() {
 function enable_copr() {
 	local COPR_NAMES=(
 		"peterwu/iosevka"
+		"imput/helium"
+		"jdxcode/mise"
 	)
 
 	echo "Checking if COPRs are enabled..."
@@ -93,9 +95,6 @@ function install_dnf() {
 	check_rpmfusion
 	enable_copr
 
-	# Enable Terra repositories
-	sudo dnf install -y --nogpgcheck --repofrompath 'terra,https://repos.fyralabs.com/terra$releasever' terra-release
-
 	sudo dnf install -y \
 		@development-tools \
 		autoconf \
@@ -116,7 +115,6 @@ function install_dnf() {
 		wl-clipboard \
 		zsh \
 		stow \
-		ripgrep \
 		fd \
 		bat \
 		eza \
@@ -124,14 +122,16 @@ function install_dnf() {
 		zoxide \
 		mise \
 		iosevka-fonts \
-		neovim \
 		kitty
 
 	brew_check
 
 	brew install \
 		tlrc \
-		lazygit
+		lazygit \
+		ripgrep \
+		opencode \
+		neovim
 }
 
 function install_apt() {
