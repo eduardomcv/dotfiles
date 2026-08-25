@@ -14,9 +14,6 @@
  (fill-column 120)
  :hook (prog-mode . display-fill-column-indicator-mode)
  :config
- (unless (display-graphic-p)
-   (xterm-mouse-mode 1))
-
  ;; Clipboard support when inside WSL.
  (when (and (eq system-type 'gnu/linux)
             (string-match-p "microsoft" operating-system-release))
@@ -283,13 +280,6 @@
   #'corfu-popupinfo-scroll-down
   "M-d"
   #'corfu-popupinfo-toggle))
-
-(use-package
- corfu-terminal
- :after corfu
- :config
- (unless (display-graphic-p)
-   (corfu-terminal-mode +1)))
 
 (use-package
  nerd-icons-corfu

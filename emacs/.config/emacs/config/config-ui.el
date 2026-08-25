@@ -31,12 +31,7 @@
  (defun custom/set-font-faces ()
    ;; Guarded: a machine without Iosevka yet would abort this :config block.
    (when (find-font (font-spec :family "Iosevka"))
-     (set-face-attribute
-      'default nil
-      :font "Iosevka"
-      :height 160
-      :weight 'regular))
-   ;; Emacs counterpart of kitty's `symbol_map', for glyphs with no :family.
+     (set-face-attribute 'default nil :font "Iosevka" :height 160 :weight 'regular))
    (when (and (display-graphic-p) (require 'nerd-icons nil t))
      (nerd-icons-set-font)))
 
@@ -121,25 +116,10 @@
 (use-package
  whitespace
  :ensure nil
- ;; Trailing whitespace only; reindentation is left to apheleia.
- :hook
- ((prog-mode
-   .
-   (lambda ()
-     (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
- :config
- (setq whitespace-style
-       '(face
-         tabs
-         spaces
-         trailing
-         space-before-tab
-         newline
-         empty
-         indentation))
- :general
- (custom/leader-key
-  "cw" '(whitespace-mode :which-key "toggle whitespace")))
+ :hook (prog-mode . delete-trailing-whitespace-mode)
+ :custom
+ (whitespace-style '(face tabs spaces trailing space-before-tab newline empty indentation missing-newline-at-eof))
+ :general (custom/leader-key "cw" '(whitespace-mode :which-key "toggle whitespace")))
 
 (use-package
  catppuccin-theme
@@ -149,16 +129,12 @@
    (set-face-background 'default "unspecified")
    (set-face-background 'line-number "unspecified")))
 
-(use-package
- eldoc
- :ensure nil
- :custom (eldoc-echo-area-use-multiline-p nil))
+(use-package eldoc :ensure nil :custom (eldoc-echo-area-use-multiline-p nil))
 
 (use-package
  vertico
  :init (vertico-mode)
- :bind
- (:map vertico-map ("C-j" . vertico-next) ("C-k" . vertico-previous))
+ :bind (:map vertico-map ("C-j" . vertico-next) ("C-k" . vertico-previous))
  :custom
  (vertico-resize t)
  (vertico-count 15)
@@ -168,9 +144,7 @@
 
 (use-package
  dashboard
- :init
- (setq initial-buffer-choice
-       (lambda () (get-buffer-create dashboard-buffer-name)))
+ :init (setq initial-buffer-choice (lambda () (get-buffer-create dashboard-buffer-name)))
  :custom
  (dashboard-center-content t)
  (dashboard-vertically-center-content t)
@@ -179,17 +153,12 @@
  (dashboard-set-heading-icons t)
  (dashboard-set-file-icons t)
 
- (dashboard-items
-  '((recents . 5)
-    (bookmarks . 5) (projects . 5)))
+ (dashboard-items '((recents . 5) (bookmarks . 5) (projects . 5)))
 
- (dashboard-item-shortcuts
-  '((recents . "r")
-    (bookmarks . "m") (projects . "p")))
+ (dashboard-item-shortcuts '((recents . "r") (bookmarks . "m") (projects . "p")))
  :config
  (set-face-attribute 'dashboard-text-banner nil :slant 'normal)
- (setq dashboard-startup-banner
-       (expand-file-name "banner.txt" user-emacs-directory))
+ (setq dashboard-startup-banner (expand-file-name "banner.txt" user-emacs-directory))
 
  (dashboard-setup-startup-hook))
 
@@ -212,11 +181,7 @@
  :hook ((prog-mode . hl-todo-mode) (text-mode . hl-todo-mode))
  :custom (hl-todo-highlight-punctuation ":")
  (hl-todo-keyword-faces
-  '(("TODO" . "#96CDFB")
-    ("FIXME" . "#F28FAD")
-    ("HACK" . "#FAE3B0")
-    ("DEPRECATED" . "#E8A2AF")
-    ("NOTE" . "#ABE9B3"))))
+  '(("TODO" . "#96CDFB") ("FIXME" . "#F28FAD") ("HACK" . "#FAE3B0") ("DEPRECATED" . "#E8A2AF") ("NOTE" . "#ABE9B3"))))
 
 (use-package
  indent-bars
@@ -232,6 +197,7 @@
  (colorful-use-prefix t)
  (colorful-only-strings 'only-prog)
  (css-fontify-colors nil)
+ (mhtml-ts-mode-css-fontify-colors nil)
  :config
  (global-colorful-mode t)
  (add-to-list 'global-colorful-modes 'helpful-mode))

@@ -71,8 +71,8 @@ CALLBACK, if given, is called once with an alist of
  custom/bootstrap-run-in-child (name form &key sentinel (load-init t) child-load-path)
  "Run elisp FORM in a detached child Emacs process, reporting as NAME.
 Unless LOAD-INIT is nil, the child loads this same init.el first, so
-FORM can use config-defined variables. CHILD-LOAD-PATH adds a -L
-directory for a child that only needs one package. SENTINEL is
+FORM can use config-defined variables.  CHILD-LOAD-PATH adds a -L
+directory for a child that only needs one package.  SENTINEL is
 called with a success boolean once the child exits."
  (let* ((init-files (custom/bootstrap--init-files))
         (command
@@ -123,27 +123,47 @@ Checked by file path so this works the same in GUI, TTY, or batch."
              (with-selected-frame frame
                (custom/set-font-faces)))))))))
 
+(defconst custom/treesit-grammar-libraries
+  '((python python)
+    (js javascript jsdoc)
+    (typescript-ts-mode typescript tsx)
+    (css-mode css)
+    (html-ts-mode html)
+    (json-ts-mode json)
+    (yaml-ts-mode yaml)
+    (toml-ts-mode toml)
+    (sh-script bash)
+    (ruby-ts-mode ruby)
+    (lua-ts-mode lua)
+    (rust-ts-mode rust)
+    (dockerfile-ts-mode dockerfile))
+  "Grammars compiled ahead of time, keyed by the builtin library that declares their recipe in `treesit-language-source-alist'.
+Emacs 31 ships a pinned recipe for each of these inside its own `*-ts-mode' file, but only registers it once that library is loaded.")
+
 (defun custom/bootstrap-install-treesit-grammars ()
   "Compile any tree-sitter grammar not already available.
 Runs in a child process since compilation blocks the caller."
-  (when (seq-some (lambda (entry) (not (treesit-language-available-p (car entry)))) treesit-language-source-alist)
+  (dolist (entry custom/treesit-grammar-libraries)
+    (require (car entry)))
+  (when (seq-some
+         (lambda (lang) (not (treesit-language-available-p lang)))
+         (mapcan (lambda (entry) (copy-sequence (cdr entry))) custom/treesit-grammar-libraries))
     (custom/bootstrap-run-in-child
      "tree-sitter grammars"
-     "(let (failures)
-        (dolist (entry treesit-language-source-alist)
-          (let ((lang (car entry)))
-            (unless (treesit-language-available-p lang)
-              (condition-case err
-                  (treesit-install-language-grammar lang)
-                (error (push (cons lang (error-message-string err)) failures))))))
-        (dolist (f failures) (message \"treesit: failed %s: %s\" (car f) (cdr f)))
+     (format "(let (failures)
+        (dolist (lib '%S) (require lib))
+        (dolist (lang '%S)
+          (unless (treesit-language-available-p lang)
+            (condition-case err
+                (treesit-install-language-grammar lang)
+              (error (push (cons lang (error-message-string err)) failures)))))
+        (dolist (f failures) (message \"treesit: failed %%s: %%s\" (car f) (cdr f)))
         (kill-emacs (if failures 1 0)))"
-     :sentinel
-     (lambda (success)
-       (when (and success (fboundp 'custom/treesit-register-auto-modes))
-         (custom/treesit-register-auto-modes))))))
+             (mapcar #'car custom/treesit-grammar-libraries)
+             (mapcan (lambda (entry) (copy-sequence (cdr entry))) custom/treesit-grammar-libraries)))))
 
 (defun custom/bootstrap-run-all ()
+  "Run all dependency bootsrappers."
   (custom/bootstrap-install-nerd-font)
   (custom/bootstrap-install-treesit-grammars)
   (mason-setup (custom/mason-install-missing)))

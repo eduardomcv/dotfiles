@@ -42,61 +42,12 @@
 (use-package
  treesit
  :ensure nil
- :preface
- (setq treesit-language-source-alist
-       '((bash "https://github.com/tree-sitter/tree-sitter-bash")
-         (css "https://github.com/tree-sitter/tree-sitter-css")
-         (elisp "https://github.com/Wilfred/tree-sitter-elisp")
-         (html "https://github.com/tree-sitter/tree-sitter-html")
-         (javascript "https://github.com/tree-sitter/tree-sitter-javascript")
-         (json "https://github.com/tree-sitter/tree-sitter-json")
-         (lua "https://github.com/tree-sitter-grammars/tree-sitter-lua")
-         (markdown
-          "https://github.com/tree-sitter-grammars/tree-sitter-markdown" "split_parser" "tree-sitter-markdown/src")
-         (python "https://github.com/tree-sitter/tree-sitter-python")
-         (toml "https://github.com/tree-sitter/tree-sitter-toml")
-         (tsx "https://github.com/tree-sitter/tree-sitter-typescript" "master" "tsx/src")
-         (typescript "https://github.com/tree-sitter/tree-sitter-typescript" "master" "typescript/src")
-         (yaml "https://github.com/ikatyang/tree-sitter-yaml")
-         (dockerfile "https://github.com/camdencheek/tree-sitter-dockerfile")
-         (rust "https://github.com/tree-sitter/tree-sitter-rust")
-         (ruby "https://github.com/tree-sitter/tree-sitter-ruby")))
- :custom (treesit-font-lock-level 4)
- ;; `html-mode'/`yaml-mode' absent: they get an explicit `auto-mode-alist'
- ;; entry below instead, since `.html'/`.yaml' don't map to them anyway.
- (major-mode-remap-alist
-  '((python-mode . python-ts-mode)
-    (javascript-mode . js-ts-mode)
-    (js-json-mode . json-ts-mode)
-    (conf-toml-mode . toml-ts-mode)
-    (bash-mode . bash-ts-mode)
-    (sh-mode . bash-ts-mode)
-    (css-mode . css-ts-mode)
-    (json-mode . json-ts-mode)
-    (ruby-mode . ruby-ts-mode)
-    (lua-mode . lua-ts-mode)))
+ :custom (treesit-font-lock-level 4) (treesit-enabled-modes t) (treesit-auto-install-grammar 'always)
  :config
- (defun custom/treesit-register-auto-modes ()
-   "Map filenames to a `-ts-mode' once its grammar is installed.
-Safe to call repeatedly; `config-bootstrap.el' re-runs this once a
-missing grammar finishes compiling."
-   (dolist (entry
-            '(("\\.tsx\\'" tsx . tsx-ts-mode)
-              ("\\.ts\\'" typescript . typescript-ts-mode)
-              ("\\.mjs\\'" javascript . js-ts-mode)
-              ("\\.cjs\\'" javascript . js-ts-mode)
-              ("Dockerfile\\'" dockerfile . dockerfile-ts-mode)
-              ("\\.rs\\'" rust . rust-ts-mode)
-              ("\\.lua\\'" lua . lua-ts-mode)
-              ("\\.ya?ml\\'" yaml . yaml-ts-mode)))
-     (when (treesit-language-available-p (cadr entry))
-       (add-to-list 'auto-mode-alist (cons (car entry) (cddr entry)))))
-
-   ;; Flutter/Dart localization files are plain JSON.
-   (when (treesit-language-available-p 'json)
-     (add-to-list 'auto-mode-alist '("\\.arb\\'" . json-ts-mode))))
-
- (custom/treesit-register-auto-modes))
+ ;; Missing these two patterns.
+ (add-to-list 'auto-mode-alist '("\\.[cm]js\\'" . js-ts-mode))
+ ;; Flutter/Dart localization files are plain JSON.
+ (add-to-list 'auto-mode-alist '("\\.arb\\'" . json-ts-mode)))
 
 (use-package
  lsp-mode
@@ -113,8 +64,7 @@ missing grammar finishes compiling."
   (yaml-ts-mode . lsp-deferred)
   (json-ts-mode . lsp-deferred)
   (css-ts-mode . lsp-deferred)
-  ;; `.html' resolves to `mhtml-mode', not `html-ts-mode'; see above.
-  (mhtml-mode . lsp-deferred)
+  (mhtml-ts-mode . lsp-deferred)
   (ruby-ts-mode . lsp-deferred)
   (lua-ts-mode . lsp-deferred)
   (bash-ts-mode . lsp-deferred)
@@ -127,16 +77,12 @@ missing grammar finishes compiling."
  (lsp-idle-delay 0.500)
  (lsp-auto-guess-root t)
  (lsp-file-watch-threshold 500)
- ;; This config's own repo root holds elpa/eln-cache/var/mason, tens of
- ;; thousands of files the default ignore list doesn't cover.
+ ;; Ignore elpa/eln-cache/var/mason directories for LSP
  (lsp-file-watch-ignored-directories
-  (append
-   '("[/\\\\]elpa\\'" "[/\\\\]eln-cache\\'" "[/\\\\]mason\\'")
-   lsp-file-watch-ignored-directories))
+  (append '("[/\\\\]elpa\\'" "[/\\\\]eln-cache\\'" "[/\\\\]mason\\'") lsp-file-watch-ignored-directories))
  (lsp-modeline-diagnostics-enable nil)
  (lsp-modeline-code-action-fallback-icon " ")
 
- ;; Both attach to the same buffer; lsp-mode (unlike eglot) allows it.
  (lsp-ruff-server-command '("ruff" "server"))
  (lsp-python-ty-clients-server-command '("ty" "server"))
 
@@ -203,8 +149,7 @@ missing grammar finishes compiling."
  :defer t
  :custom (dap-python-debugger 'debugpy)
  :config
- ;; `dap-js' (not the older `dap-node') registers the "pwa-node" adapter.
- ;; Point both it and dap-python at mason.el's own installs.
+ ;; Point dap-js and dap-python at mason.el's installs.
  (let ((mason-python (expand-file-name "packages/debugpy/bin/python" mason-dir))
        (mason-js-debug (expand-file-name "packages/js-debug-adapter/js-debug/src/dapDebugServer.js" mason-dir)))
    (when (file-exists-p mason-python)
@@ -311,7 +256,7 @@ missing grammar finishes compiling."
          (and file
               (seq-some
                (lambda (name)
-                 (when-let ((root (locate-dominating-file file name)))
+                 (when-let* ((root (locate-dominating-file file name)))
                    (let ((candidate (expand-file-name name root)))
                      (and (custom/python-venv-p candidate) candidate))))
                custom/python-venv-names)))))
@@ -320,7 +265,7 @@ missing grammar finishes compiling."
    "Activate this buffer's virtualenv, or deactivate if it has none.
 `pyvenv-activate' mutates PATH globally, so without the deactivate
 branch a previous project's venv stays stuck active."
-   (if-let ((venv (custom/python-venv-root)))
+   (if-let* ((venv (custom/python-venv-root)))
        (unless (equal (file-name-as-directory venv) pyvenv-virtual-env)
          (pyvenv-activate venv))
      (when pyvenv-virtual-env
