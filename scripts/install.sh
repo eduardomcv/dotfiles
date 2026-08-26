@@ -21,11 +21,9 @@ install_dotfiles \
 	git \
 	zsh \
 	mise \
-	vim \
+	opencode \
 	neovim \
-	kitty \
-	zed \
-	opencode
+	kitty
 
 source "$DOTFILES_DIR/scripts/lib/git.sh"
 set_user_git_info

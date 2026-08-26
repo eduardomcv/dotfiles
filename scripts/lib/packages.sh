@@ -189,12 +189,11 @@ function install_pacman() {
 		bat \
 		eza \
 		usage \
-		mise \
-		tlrc \
+		mise-bin \
+		tldr \
 		lazygit \
 		tree-sitter-cli \
-		neovim \
-		pandoc-cli
+		neovim
 }
 
 function install_packages() {

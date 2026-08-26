@@ -5,6 +5,7 @@
 [fetch]
   prune = true
 [pull]
+	rebase = true
 	ff = only
 [push]
 	autoSetupRemote = true
@@ -26,12 +27,15 @@
 [tag]
   sort = -version:refname
 [rerere]
+	enabled = true
   autoupdate = true
+[init]
+  defaultBranch = main
 [alias]
   up = push -u origin HEAD
   co = checkout
   br = branch
-  ct = commit
+	ci = commit
   st = status
   bs = branch -a
   rs = remote -v
@@ -39,5 +43,3 @@
   clean-branches = "!f() { git remote prune origin; git branch -vv | grep 'origin/.*: gone]' | awk '{print $1}' | xargs git branch -d; }; f"
   clean = clean-branches
   graph = log --graph --abbrev-commit --decorate --date=relative --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all
-[init]
-  defaultBranch = main

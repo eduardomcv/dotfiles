@@ -10,6 +10,7 @@ rust = {
 	components = "rust-analyzer",
 }
 lua = "5.1"
+opencode = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = [
