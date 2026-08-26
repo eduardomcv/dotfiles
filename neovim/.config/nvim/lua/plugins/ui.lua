@@ -38,9 +38,11 @@ require("which-key").setup({
 	},
 })
 
-require("todo-comments").setup({})
+local todo_comments = require("todo-comments")
+todo_comments.setup({})
 
-require("tabby").setup()
+local tabby = require("tabby")
+tabby.setup()
 
 require("nvim-highlight-colors").setup({})
 
@@ -49,8 +51,16 @@ require("nvim-highlight-colors").setup({})
 local function rename_tab()
 	local tab_name = vim.fn.input({ prompt = "New tab name: " })
 	if tab_name ~= "" then
-		require("tabby").tab_rename(tab_name)
+		tabby.tab_rename(tab_name)
 	end
 end
 
 vim.keymap.set("n", "<leader>tr", rename_tab, { desc = "Rename tab" })
+
+vim.keymap.set("n", "]t", function()
+	todo_comments.jump_next()
+end, { desc = "Next TODO comment" })
+
+vim.keymap.set("n", "[t", function()
+	todo_comments.jump_prev()
+end, { desc = "Previous TODO comment" })

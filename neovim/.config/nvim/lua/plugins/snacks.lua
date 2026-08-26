@@ -75,8 +75,11 @@ require("snacks").setup({
 
 --- Autocmds
 
+local snacks_augroup = vim.api.nvim_create_augroup("snacks-nvim", { clear = true })
+
 -- Create autocmd to integrate file renaming with mini.files
 vim.api.nvim_create_autocmd("User", {
+	group = snacks_augroup,
 	pattern = "MiniFilesActionRename",
 	callback = function(event)
 		Snacks.rename.on_rename_file(event.data.from, event.data.to)
@@ -85,6 +88,7 @@ vim.api.nvim_create_autocmd("User", {
 
 -- Disable scroll when entering insert mode
 vim.api.nvim_create_autocmd("InsertEnter", {
+	group = snacks_augroup,
 	callback = function()
 		vim.g.snacks_scroll = false
 	end,
@@ -92,6 +96,7 @@ vim.api.nvim_create_autocmd("InsertEnter", {
 
 -- Enable scroll when leaving insert mode
 vim.api.nvim_create_autocmd("InsertLeave", {
+	group = snacks_augroup,
 	callback = function()
 		vim.g.snacks_scroll = true
 	end,
@@ -216,6 +221,10 @@ kset("n", "<leader>su", function()
 	Snacks.picker.undo()
 end, { desc = "Search undo history" })
 
+kset("n", "<leader>so", function()
+	Snacks.picker.todo_comments()
+end, { desc = "Search TODO comments" })
+
 kset("n", "<leader>st", function()
 	Snacks.picker.lsp_workspace_symbols()
 end, { desc = "Search LSP Workspace Symbols (tags)" })
@@ -232,17 +241,18 @@ kset("n", "gD", function()
 	Snacks.picker.lsp_declarations()
 end, { desc = "Goto Declaration" })
 
-kset("n", "gr", function()
+kset("n", "grr", function()
 	Snacks.picker.lsp_references()
-end, {
-	nowait = true,
-	desc = "References",
-})
+end, { desc = "References" })
 
-kset("n", "gI", function()
+kset("n", "gri", function()
 	Snacks.picker.lsp_implementations()
 end, { desc = "Goto Implementation" })
 
-kset("n", "gy", function()
+kset("n", "grt", function()
 	Snacks.picker.lsp_type_definitions()
-end, { desc = "Goto T[y]pe Definition" })
+end, { desc = "Goto Type Definition" })
+
+kset("n", "gO", function()
+	Snacks.picker.lsp_symbols()
+end, { desc = "Document Symbols" })

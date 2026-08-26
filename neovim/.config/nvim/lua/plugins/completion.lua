@@ -8,11 +8,6 @@ vim.pack.add({
 		src = "https://github.com/saghen/blink.cmp",
 		version = vim.version.range("1.*"),
 	},
-	{
-		-- Compatibility layer for using nvim-cmp sources
-		src = "https://github.com/saghen/blink.compat",
-		version = vim.version.range("*"),
-	},
 })
 
 require("lazydev").setup({
@@ -22,8 +17,6 @@ require("lazydev").setup({
 		{ path = "snacks.nvim", words = { "Snacks" } },
 	},
 })
-
-require("blink-compat").setup({})
 
 require("blink-cmp").setup({
 	appearance = {

@@ -8,7 +8,7 @@ require("conform").setup({
 		typescriptreact = { "prettier" },
 		css = { "prettier" },
 		scss = { "prettier" },
-		md = { "prettier" },
+		markdown = { "prettier" },
 		astro = { "prettier" },
 		json = { "prettier" },
 		yaml = { "prettier" },
@@ -46,15 +46,14 @@ end, {
 	bang = true,
 })
 
-vim.keymap.set("n", "<leader>cf", function()
+local function format_buffer()
 	require("conform").format({ async = true })
-end, { desc = "Format buffer" })
+end
 
-vim.keymap.set("n", "<leader>fb", function()
-	require("conform").format({ async = true })
-end, { desc = "Format buffer" })
+vim.keymap.set("n", "<leader>fb", format_buffer, { desc = "Format buffer" })
+vim.keymap.set("n", "<leader>cf", format_buffer, { desc = "Format buffer" })
 
-vim.keymap.set("n", "<leader>ff", ":FormatOnSaveToggle<CR>", {
+vim.keymap.set("n", "<leader>fF", ":FormatOnSaveToggle<CR>", {
 	desc = "Toggle format-on-save (global)",
 })
 

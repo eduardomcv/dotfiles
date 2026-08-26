@@ -27,7 +27,7 @@ vim.lsp.config("vtsls", {
 		vtsls = {
 			enableMoveToFileCodeAction = true,
 			autoUseWorkspaceTsdk = true,
-			maxTsServerMemory = true,
+			maxTsServerMemory = 8192,
 			experimental = {
 				completion = {
 					enableServerSideFuzzyMatch = true,
@@ -112,7 +112,7 @@ vim.lsp.config("ruff", {
 			ruff_base_on_attach(client, bufnr)
 		end
 
-		-- Disable hover in favor of pyright
+		-- Disable hover in favor of ty
 		client.server_capabilities.hoverProvider = false
 	end,
 })
@@ -128,6 +128,7 @@ vim.lsp.config("eslint", {
 		eslint_base_on_attach(client, bufnr)
 
 		vim.api.nvim_create_autocmd("BufWritePre", {
+			group = vim.api.nvim_create_augroup("eslint-fix-all-" .. bufnr, { clear = true }),
 			buffer = bufnr,
 			command = "LspEslintFixAll",
 		})
@@ -146,6 +147,7 @@ vim.lsp.config("copilot", {
 
 -- Enable lsp-inline-completion if supported (such as for the copilot language server)
 vim.api.nvim_create_autocmd("LspAttach", {
+	group = vim.api.nvim_create_augroup("lsp-inline-completion", { clear = true }),
 	callback = function(args)
 		local bufnr = args.buf
 		local client = assert(vim.lsp.get_client_by_id(args.data.client_id))
@@ -160,12 +162,12 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			end, {
 				expr = true,
 				desc = "LSP: accept inline completion",
-				buf = bufnr,
+				buffer = bufnr,
 			})
 
 			vim.keymap.set("i", "<c-tab>", vim.lsp.inline_completion.select, {
 				desc = "LSP: switch inline completion",
-				buf = bufnr,
+				buffer = bufnr,
 			})
 		end
 	end,
