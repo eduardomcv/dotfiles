@@ -52,11 +52,11 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "e58ad4b0c9e9376096b9704f98fc00d4c9448870",
+      "rev": "0caecdd7408bc0a77697a83b931c742fcc5b0349",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "e43a7e83158fc98cd41b732dcb5e1721abb9f164",
+      "rev": "5adc81b26232954cd7a90f158aa7844c18fc3165",
       "src": "https://github.com/neogitorg/neogit"
     },
     "neotest": {
@@ -92,11 +92,11 @@
       "src": "https://github.com/brenoprata10/nvim-highlight-colors"
     },
     "nvim-lint": {
-      "rev": "0370fe965697aa8f04252a1562441bdc13723cd1",
+      "rev": "3d55c8f67c6ae5c15e1042571e107c7a3d5c5f4e",
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "bff1bd61cb1455040533201ca1edf1e84efa578f",
+      "rev": "af9adce488c75ca0a81017945c2b7fa7b461bc23",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -104,7 +104,7 @@
       "src": "https://github.com/nvim-neotest/nvim-nio"
     },
     "nvim-treesitter": {
-      "rev": "074aa4422bf029908338e855d0c0f71470a971bb",
+      "rev": "8b98b4470eb326f1c7b50dae79f8c963568e5720",
       "src": "https://github.com/nvim-treesitter/nvim-treesitter"
     },
     "nvim-ts-autotag": {
@@ -112,7 +112,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "opencode.nvim": {
-      "rev": "bafc8e779eca5c87de8cf284ef0d4e5bd6c0d109",
+      "rev": "e708ba355effd4b7e75eb1441c30dd47c1671c32",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "plenary.nvim": {
