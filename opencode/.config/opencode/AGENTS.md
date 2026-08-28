@@ -65,7 +65,7 @@ When presented with a task, follow this exact sequence:
    necessary context.
 2. **Plan:** Briefly outline the steps required to complete the task.
 3. **Propose:** Show the code changes you intend to make.
-4. **Pause:** Ask the user: *"Shall I apply these changes?"*
+4. **Pause:** Ask the user: _"Shall I apply these changes?"_
 5. **Execute:** Only upon receiving a positive confirmation, use the
    appropriate file-editing tools to apply the exact code you just proposed.
 
