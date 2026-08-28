@@ -58,6 +58,11 @@
  :hook
  ((lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . custom/add-orderless-to-lsp-mode-completion)
+
+  ;; Without this every `lsp-mode-map' evil binding (K, gd, SPC c a, insert
+  ;; C-<tab>) stays dead until an unrelated state change re-normalizes.
+  (lsp-mode . evil-normalize-keymaps)
+
   (js-ts-mode . lsp-deferred)
   (typescript-ts-mode . lsp-deferred)
   (tsx-ts-mode . lsp-deferred)
@@ -77,9 +82,6 @@
  (lsp-idle-delay 0.500)
  (lsp-auto-guess-root t)
  (lsp-file-watch-threshold 500)
- ;; Ignore elpa/eln-cache/var/mason directories for LSP
- (lsp-file-watch-ignored-directories
-  (append '("[/\\\\]elpa\\'" "[/\\\\]eln-cache\\'" "[/\\\\]mason\\'") lsp-file-watch-ignored-directories))
  (lsp-modeline-diagnostics-enable nil)
  (lsp-modeline-code-action-fallback-icon " ")
 
@@ -97,6 +99,17 @@
  (lsp-eslint-run "onSave")
  (lsp-eslint-auto-fix-on-save t)
  :config
+ (dolist (dir
+          '("[/\\\\]elpa\\'"
+            "[/\\\\]eln-cache\\'"
+            "[/\\\\]mason\\'"
+            "[/\\\\]build\\'"
+            "[/\\\\]\\.dart_tool\\'"
+            "[/\\\\]\\.symlinks\\'"
+            "[/\\\\]ephemeral\\'"
+            "[/\\\\]\\.gradle\\'"
+            "[/\\\\]Pods\\'"))
+   (add-to-list 'lsp-file-watch-ignored-directories dir))
  (lsp-register-custom-settings
   '(("javascript.preferences.quoteStyle" "auto")
     ("typescript.preferences.quoteStyle" "auto")
@@ -198,6 +211,18 @@
 (use-package
  lsp-dart
  :hook (dart-mode . lsp-deferred)
+ :config
+ ;; Ask mise for the root of the flutter sdk.
+ (unless lsp-dart-flutter-sdk-dir
+   (when-let* ((mise (executable-find "mise"))
+               (root
+                (with-temp-buffer
+                  (when (eq 0 (call-process mise nil t nil "where" "flutter"))
+                    (string-trim (buffer-string)))))
+               ((file-directory-p root)))
+     (setq lsp-dart-flutter-sdk-dir root)
+     (unless lsp-dart-sdk-dir
+       (setq lsp-dart-sdk-dir (expand-file-name "bin/cache/dart-sdk/" root)))))
  :general
  (custom/leader-key
   :keymaps

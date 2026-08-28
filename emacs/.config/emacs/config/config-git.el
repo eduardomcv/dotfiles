@@ -10,17 +10,14 @@
  :config
  ;; Fix for "Cannot determine a suitable Emacsclient" on MacOS
  (unless (executable-find "emacsclient")
-   (let ((client-path
-          (expand-file-name "bin/emacsclient" invocation-directory)))
+   (let ((client-path (expand-file-name "bin/emacsclient" invocation-directory)))
      (when (file-exists-p client-path)
        (setq with-editor-emacsclient-executable client-path)))))
 
 (use-package
  magit
  :commands magit-status
- :custom
- (magit-display-buffer-function
-  #'magit-display-buffer-same-window-except-diff-v1)
+ :custom (magit-display-buffer-function #'magit-display-buffer-same-window-except-diff-v1)
  :config (add-hook 'magit-process-mode-hook #'compilation-minor-mode)
  :general
  (custom/leader-key
@@ -38,18 +35,13 @@
  (defun custom/magit-process-filter-advice (orig-fn proc string)
    (funcall orig-fn proc (xterm-color-filter string)))
 
- (advice-add
-  'magit-process-filter
-  :around #'custom/magit-process-filter-advice)
+ (advice-add 'magit-process-filter :around #'custom/magit-process-filter-advice)
 
  (advice-add
   'magit-start-process
   :around
   (lambda (orig-fun &rest args)
-    (let ((process-environment
-           (append
-            process-environment
-            '("FORCE_COLOR=1" "TERM=xterm-256color"))))
+    (let ((process-environment (append process-environment '("FORCE_COLOR=1" "TERM=xterm-256color"))))
       (apply orig-fun args)))))
 
 (use-package
@@ -61,42 +53,23 @@
 
  :init (global-diff-hl-mode)
 
- :custom
- (diff-hl-margin-symbols-alist
-  '((insert . "│")
-    (delete . "│")
-    (change . "│")
-    (unknown . "│")
-    (ignored . "│")))
+ :custom (diff-hl-margin-symbols-alist '((insert . "│") (delete . "│") (change . "│") (unknown . "│") (ignored . "│")))
 
  :config (diff-hl-flydiff-mode)
 
- (set-face-attribute 'diff-hl-insert nil
-                     :inherit 'diff-added
-                     :background 'unspecified)
- (set-face-attribute 'diff-hl-delete nil
-                     :inherit 'diff-removed
-                     :background 'unspecified)
- (set-face-attribute 'diff-hl-change nil
-                     :inherit 'diff-changed
-                     :background 'unspecified)
+ (set-face-attribute 'diff-hl-insert nil :inherit 'diff-added :background 'unspecified)
+ (set-face-attribute 'diff-hl-delete nil :inherit 'diff-removed :background 'unspecified)
+ (set-face-attribute 'diff-hl-change nil :inherit 'diff-changed :background 'unspecified)
 
  :general
- (:states
-  'normal
-  "] h"
-  'diff-hl-next-hunk
-  "[ h"
-  'diff-hl-previous-hunk)
+ (:states 'normal "] h" 'diff-hl-next-hunk "[ h" 'diff-hl-previous-hunk)
  (custom/leader-key
-  "gh"
-  '(diff-hl-show-hunk :which-key "show hunk")
-  "gH"
-  '(diff-hl-revert-hunk :which-key "revert hunk")))
+  "gh" '(diff-hl-show-hunk :which-key "show hunk") "gH" '(diff-hl-revert-hunk :which-key "revert hunk")))
 
 (use-package
  smerge-mode
  :ensure nil
+ :demand t
  :config
  (defun custom/smerge-auto-enable ()
    "Turn on `smerge-mode' if the buffer contains conflict markers."
@@ -104,14 +77,13 @@
      (goto-char (point-min))
      (when (re-search-forward "^<<<<<<< " nil t)
        (smerge-mode 1))))
+
  (add-hook 'find-file-hook #'custom/smerge-auto-enable)
- :general
- (:states
-  'normal
-  "] x"
-  'smerge-next
-  "[ x"
-  'smerge-prev)
+ ;; Enabled from `find-file-hook', after evil has already published its
+ ;; auxiliary keymaps, so `smerge-mode-map' bindings need a re-normalize.
+ (add-hook 'smerge-mode-hook #'evil-normalize-keymaps)
+
+ :general (:states 'normal "] x" 'smerge-next "[ x" 'smerge-prev)
  (custom/leader-key
   :keymaps
   'smerge-mode-map
