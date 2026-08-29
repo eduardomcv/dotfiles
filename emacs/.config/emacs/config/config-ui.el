@@ -121,13 +121,17 @@
  (whitespace-style '(face tabs spaces trailing space-before-tab newline empty indentation missing-newline-at-eof))
  :general (custom/leader-key "cw" '(whitespace-mode :which-key "toggle whitespace")))
 
-(use-package
+ (use-package
  catppuccin-theme
  :custom (catppuccin-flavor 'mocha)
  :config (load-theme 'catppuccin t)
- (unless (display-graphic-p)
-   (set-face-background 'default "unspecified")
-   (set-face-background 'line-number "unspecified")))
+ (defun custom/terminal-transparency (&optional frame)
+   "Clear backgrounds on FRAME so the terminal shows through."
+   (unless (display-graphic-p frame)
+     (set-face-background 'default "unspecified-bg" frame)
+     (set-face-background 'line-number "unspecified-bg" frame)))
+ (add-hook 'after-make-frame-functions #'custom/terminal-transparency)
+ (custom/terminal-transparency))
 
 (use-package eldoc :ensure nil :custom (eldoc-echo-area-use-multiline-p nil))
 
