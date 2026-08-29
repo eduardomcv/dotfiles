@@ -13,6 +13,7 @@ lua = "5.1"
 opencode = "latest"
 claude = "latest"
 rtk = "latest"
+gh = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = [
