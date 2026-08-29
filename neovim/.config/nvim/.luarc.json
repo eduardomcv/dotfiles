@@ -6,11 +6,10 @@
     "pathStrict": true
   },
   "workspace": {
-    "library": ["/usr/share/nvim/runtime/lua", "/usr/share/hypr/stubs"],
-    "ignoreDir": ["emacs"],
+    "library": ["/usr/share/nvim/runtime/lua"],
     "checkThirdParty": false
   },
   "diagnostics": {
-    "globals": ["vim", "Snacks", "hl", "o"]
+    "globals": ["vim", "Snacks"]
   }
 }
