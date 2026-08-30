@@ -41,17 +41,12 @@ function install_macos() {
 		eza \
 		tlrc \
 		lazygit \
-		usage \
-		mise \
 		tree-sitter-cli \
-		neovim \
-		pandoc
+		neovim
 
 	brew install --cask \
 		font-iosevka \
-		kitty \
-		thunderbird \
-		zen
+		kitty
 }
 
 function check_rpmfusion() {
@@ -123,8 +118,7 @@ function install_dnf() {
 		zoxide \
 		mise \
 		iosevka-fonts \
-		kitty \
-		pandoc
+		kitty
 
 	brew_check
 
@@ -146,8 +140,7 @@ function install_apt() {
 		libreadline-dev \
 		git \
 		stow \
-		zsh \
-		thunderbird
+		zsh
 
 	brew_check
 
@@ -160,11 +153,8 @@ function install_apt() {
 		eza \
 		tlrc \
 		lazygit \
-		usage \
-		mise \
 		tree-sitter-cli \
-		neovim \
-		pandoc
+		neovim
 }
 
 function install_pacman() {
@@ -188,8 +178,6 @@ function install_pacman() {
 		zoxide \
 		bat \
 		eza \
-		usage \
-		mise-bin \
 		tldr \
 		lazygit \
 		tree-sitter-cli \
