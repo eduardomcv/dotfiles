@@ -12,7 +12,7 @@
   "mcp": {
     "zennotes": {
       "type": "local",
-      "command": ["/home/emcv/.local/bin/zn", "mcp"],
+      "command": ["zn", "mcp"],
       "enabled": true
     }
   }
