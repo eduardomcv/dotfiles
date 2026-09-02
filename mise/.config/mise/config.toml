@@ -15,6 +15,7 @@ claude = "latest"
 rtk = "latest"
 gh = "latest"
 codex = "latest"
+"pipx:graphifyy" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = [
