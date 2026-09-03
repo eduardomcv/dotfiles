@@ -1,5 +1,5 @@
 [tools]
-node = "26"
+node = "latest"
 python = "3.14"
 ruby = "latest"
 uv = "latest"
