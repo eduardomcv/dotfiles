@@ -52,7 +52,7 @@
       "src": "https://github.com/mason-org/mason.nvim"
     },
     "mini.nvim": {
-      "rev": "a311ed247d527db9592bb434356badc705363746",
+      "rev": "9d01f392b33fb2ba36fbc87fc0bf4453e63ffb0a",
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
@@ -96,7 +96,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "16286347bdba1333c7d124d9de9fe6630731b2b2",
+      "rev": "ee1e369181a9e64904cdd7b739e98c70778cfc71",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
@@ -112,7 +112,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "opencode.nvim": {
-      "rev": "71b33974edb5fba3877c61ce7f00d1dc29477866",
+      "rev": "9fd9094434840dec227df0fb25649a4000be44b7",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "plenary.nvim": {
