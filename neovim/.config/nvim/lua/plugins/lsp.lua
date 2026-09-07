@@ -16,7 +16,6 @@ vim.lsp.enable({
 	"ty",
 	"ruff",
 	"copilot",
-	"rust_analyzer",
 })
 
 --- LSP server configurations

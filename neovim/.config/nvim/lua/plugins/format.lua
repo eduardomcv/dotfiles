@@ -15,7 +15,6 @@ require("conform").setup({
 		sh = { "shfmt" },
 		zsh = { "shfmt" },
 		bash = { "shfmt" },
-		rust = { "rustfmt" },
 		python = {
 			"ruff_fix",
 			"ruff_format",

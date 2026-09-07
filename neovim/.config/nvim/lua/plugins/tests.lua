@@ -5,6 +5,10 @@ vim.pack.add({
 	"https://github.com/marilari88/neotest-vitest",
 	"https://github.com/sidlatau/neotest-dart",
 	"https://github.com/nvim-neotest/neotest-python",
+	{
+		src = "https://github.com/mrcjkb/rustaceanvim",
+		version = vim.version.range("^9"),
+	},
 })
 
 local neotest = require("neotest")
@@ -20,6 +24,7 @@ neotest.setup({
 			command = "flutter",
 			use_lsp = true,
 		}),
+		require("rustaceanvim.neotest"),
 	},
 })
 
