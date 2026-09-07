@@ -75,6 +75,10 @@
       "rev": "c3c69715da4b158069fd4262083e7219a5c14cfb",
       "src": "https://github.com/marilari88/neotest-vitest"
     },
+    "nui.nvim": {
+      "rev": "10fc361835c856ba4233ef5ea135b919bf3dce97",
+      "src": "https://github.com/MunifTanjim/nui.nvim"
+    },
     "nvim-dap": {
       "rev": "c9a0738e45f1bd41d792a126941348dce661cf9b",
       "src": "https://github.com/mfussenegger/nvim-dap"
@@ -114,6 +118,10 @@
     "opencode.nvim": {
       "rev": "9fd9094434840dec227df0fb25649a4000be44b7",
       "src": "https://github.com/sudo-tee/opencode.nvim"
+    },
+    "package-info.nvim": {
+      "rev": "b86cf49efc3855dd94afb33304b278f6f122bf1a",
+      "src": "https://github.com/vuki656/package-info.nvim"
     },
     "plenary.nvim": {
       "rev": "74b06c6c75e4eeb3108ec01852001636d85a932b",
