@@ -1,4 +1,8 @@
-vim.pack.add({ "https://github.com/nvim-flutter/flutter-tools.nvim" })
+vim.pack.add({
+	"https://github.com/nvim-flutter/flutter-tools.nvim",
+	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+	"https://github.com/nvim-flutter/pubspec-assist.nvim",
+})
 
 require("flutter-tools").setup({
 	flutter_lookup_cmd = "mise where flutter",
@@ -50,3 +54,5 @@ require("flutter-tools").setup({
 		end,
 	},
 })
+
+require("pubspec-assist").setup()
