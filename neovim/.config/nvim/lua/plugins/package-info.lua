@@ -4,12 +4,12 @@ vim.pack.add({
 	"https://github.com/vuki656/package-info.nvim",
 })
 
-require("package-info").setup()
-
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
-	group = vim.api.nvim_create_augroup("PackageInfoKeymaps", { clear = true }),
+	group = vim.api.nvim_create_augroup("PackageInfoSetup", { clear = true }),
 	pattern = "package.json",
 	callback = function(event)
+		require("package-info").setup()
+
 		require("which-key").add({
 			{
 				"<leader>p",
