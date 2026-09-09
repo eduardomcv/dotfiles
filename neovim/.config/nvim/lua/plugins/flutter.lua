@@ -55,4 +55,30 @@ require("flutter-tools").setup({
 	},
 })
 
-require("pubspec-assist").setup()
+vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
+	group = vim.api.nvim_create_augroup("PubspecAssistSetup", { clear = true }),
+	pattern = "pubspec.yaml",
+	callback = function(event)
+		require("pubspec-assist").setup()
+
+		require("which-key").add({
+			{
+				"<leader>p",
+				group = "+package",
+				buffer = event.buf,
+			},
+		})
+
+		local function set(mode, lhs, rhs, desc)
+			vim.keymap.set(mode, lhs, rhs, {
+				buffer = event.buf,
+				silent = true,
+				desc = desc,
+			})
+		end
+
+		set("n", "<leader>pa", "<cmd>PubspecAssistAddPackage<cr>", "Install package")
+		set("n", "<leader>pd", "<cmd>PubspecAssistAddDevPackage<cr>", "Install package as dev dependency")
+		set("n", "<leader>pp", "<cmd>PubspecAssistPickVersion<cr>", "Pick package version")
+	end,
+})
