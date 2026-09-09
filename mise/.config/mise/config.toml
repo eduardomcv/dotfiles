@@ -17,6 +17,7 @@ gh = "latest"
 codex = "latest"
 "pipx:graphifyy" = "latest"
 worktrunk = "latest"
+"npm:@nestjs/cli" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = [
