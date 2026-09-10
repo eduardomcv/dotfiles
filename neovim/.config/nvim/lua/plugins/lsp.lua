@@ -10,6 +10,7 @@ vim.lsp.enable({
 	"yamlls",
 	"vtsls",
 	"eslint",
+	"oxlint",
 	"cssls",
 	"html",
 	"emmet_language_server",

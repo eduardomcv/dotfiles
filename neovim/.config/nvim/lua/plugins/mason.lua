@@ -13,6 +13,7 @@ local packages_to_install = {
 	"shellcheck",
 	"vtsls",
 	"eslint-lsp",
+	"oxlint",
 	"css-lsp",
 	"html-lsp",
 	"emmet-language-server",
