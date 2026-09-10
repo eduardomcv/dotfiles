@@ -179,6 +179,7 @@ function install_pacman() {
 		bat \
 		eza \
 		tldr \
+		mise \
 		lazygit \
 		tree-sitter-cli \
 		neovim
