@@ -15,8 +15,7 @@
     },
     "blink.compat": {
       "rev": "2ed6d9a28b07fa6f3bface818470605f8896408c",
-      "src": "https://github.com/saghen/blink.compat",
-      "version": ">=0.0.0"
+      "src": "https://github.com/saghen/blink.compat"
     },
     "catppuccin": {
       "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
