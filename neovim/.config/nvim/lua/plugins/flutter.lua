@@ -65,7 +65,7 @@ vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {
 	group = vim.api.nvim_create_augroup("PubspecAssistSetup", { clear = true }),
 	pattern = "pubspec.yaml",
 	callback = function(event)
-		require("pubspec-assist").setup()
+		require("pubspec-assist").setup({})
 
 		require("which-key").add({
 			{
