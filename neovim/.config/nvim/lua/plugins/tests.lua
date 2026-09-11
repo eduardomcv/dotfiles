@@ -6,14 +6,15 @@ use({
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", version = "master" },
 			"antoinemadec/FixCursorHold.nvim",
+			-- Adapters
+			"marilari88/neotest-vitest",
+			"sidlatau/neotest-dart",
+			"nvim-neotest/neotest-python",
+			{
+				"mrcjkb/rustaceanvim",
+				version = vim.version.range("^9"),
+			},
 		},
-	},
-	"marilari88/neotest-vitest",
-	"sidlatau/neotest-dart",
-	"nvim-neotest/neotest-python",
-	{
-		"mrcjkb/rustaceanvim",
-		version = vim.version.range("^9"),
 	},
 })
 

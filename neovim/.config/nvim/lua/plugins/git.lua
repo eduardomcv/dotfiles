@@ -10,8 +10,11 @@ use({
 			"m00qek/baleia.nvim",
 		},
 	},
-	-- Git conflicts visualizer
-	{ "akinsho/git-conflict.nvim", version = vim.version.range("*") },
+	{
+		-- Git conflicts visualizer
+		"akinsho/git-conflict.nvim",
+		version = vim.version.range("*"),
+	},
 })
 
 ---@diagnostic disable-next-line: missing-fields

@@ -5,8 +5,8 @@ use({
 	"folke/which-key.nvim",
 	-- Improve tab integration
 	"nanozuki/tabby.nvim",
-	-- Highlight TODO comments
 	{
+		-- Highlight TODO comments
 		"folke/todo-comments.nvim",
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", version = "master" },

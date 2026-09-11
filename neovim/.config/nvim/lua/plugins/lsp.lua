@@ -3,8 +3,13 @@ local use = require("core.use")
 use({
 	-- Collection of LSP server configurations (good defaults)
 	"neovim/nvim-lspconfig",
-	"mason-org/mason.nvim",
-	"mason-org/mason-lspconfig.nvim",
+	{
+		"mason-org/mason-lspconfig.nvim",
+		dependencies = {
+			"mason-org/mason.nvim",
+			"neovim/nvim-lspconfig",
+		},
+	},
 })
 
 require("mason-lspconfig").setup()
