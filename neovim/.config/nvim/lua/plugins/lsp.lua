@@ -1,26 +1,13 @@
 vim.pack.add({
 	-- Collection of LSP server configurations (good defaults)
 	"https://github.com/neovim/nvim-lspconfig",
+	"https://github.com/mason-org/mason.nvim",
+	"https://github.com/mason-org/mason-lspconfig.nvim",
 })
 
-vim.lsp.enable({
-	"bashls",
-	"lua_ls",
-	"jsonls",
-	"yamlls",
-	"vtsls",
-	"eslint",
-	"oxlint",
-	"cssls",
-	"html",
-	"emmet_language_server",
-	"ty",
-	"ruff",
-	"copilot",
-})
+require("mason-lspconfig").setup()
 
 --- LSP server configurations
-
 vim.lsp.config("vtsls", {
 	settings = {
 		complete_function_calls = true,
