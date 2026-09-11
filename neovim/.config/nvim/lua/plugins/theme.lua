@@ -1,5 +1,7 @@
-vim.pack.add({
-	{ src = "https://github.com/catppuccin/nvim", name = "catppuccin" },
+local use = require("core.use")
+
+use({
+	{ "catppuccin/nvim", name = "catppuccin" },
 })
 
 require("catppuccin").setup({

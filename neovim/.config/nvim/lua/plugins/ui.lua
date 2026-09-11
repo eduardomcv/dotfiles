@@ -1,20 +1,26 @@
-vim.pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
+local use = require("core.use")
+
+use({
 	-- Show pop-up with available keybindings
-	"https://github.com/folke/which-key.nvim",
+	"folke/which-key.nvim",
 	-- Improve tab integration
-	"https://github.com/nanozuki/tabby.nvim",
+	"nanozuki/tabby.nvim",
 	-- Highlight TODO comments
-	"https://github.com/folke/todo-comments.nvim",
+	{
+		"folke/todo-comments.nvim",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", version = "master" },
+		},
+	},
 	-- Highlight colors
-	"https://github.com/brenoprata10/nvim-highlight-colors",
+	"brenoprata10/nvim-highlight-colors",
 })
 
 local is_using_kitty = os.getenv("TERM") == "xterm-kitty" or os.getenv("KITTY_PID") ~= nil
 
 if is_using_kitty then
 	-- Integrate navigation with kitty terminal
-	vim.pack.add({ "https://github.com/knubie/vim-kitty-navigator" })
+	use({ "knubie/vim-kitty-navigator" })
 else
 	-- Add C-h, C-j, C-k, C-l keymaps for window navigation
 	vim.keymap.set("n", "<C-h>", "<C-w>h", { desc = "Go to the left window" })

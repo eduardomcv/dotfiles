@@ -1,12 +1,18 @@
-vim.pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	"https://github.com/antoinemadec/FixCursorHold.nvim",
-	"https://github.com/nvim-neotest/neotest",
-	"https://github.com/marilari88/neotest-vitest",
-	"https://github.com/sidlatau/neotest-dart",
-	"https://github.com/nvim-neotest/neotest-python",
+local use = require("core.use")
+
+use({
 	{
-		src = "https://github.com/mrcjkb/rustaceanvim",
+		"nvim-neotest/neotest",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", version = "master" },
+			"antoinemadec/FixCursorHold.nvim",
+		},
+	},
+	"marilari88/neotest-vitest",
+	"sidlatau/neotest-dart",
+	"nvim-neotest/neotest-python",
+	{
+		"mrcjkb/rustaceanvim",
 		version = vim.version.range("^9"),
 	},
 })

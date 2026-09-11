@@ -1,4 +1,6 @@
-vim.pack.add({ "https://github.com/mfussenegger/nvim-lint" })
+local use = require("core.use")
+
+use({ "mfussenegger/nvim-lint" })
 
 local linter_name = "bloc"
 local pattern = "(%w+)%[([%w_]+)%]:%s*(.-)\n%s*%-%->%s*.-:(%d+)\n%s*|\n%s*|.-\n%s*| (%s*)(%^+)"

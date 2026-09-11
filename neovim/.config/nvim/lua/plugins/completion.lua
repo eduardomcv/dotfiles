@@ -1,12 +1,16 @@
-vim.pack.add({
-	-- Support snippets in completion menu
-	"https://github.com/rafamadriz/friendly-snippets",
+local use = require("core.use")
+
+use({
 	-- Better support for neovim lua
-	"https://github.com/folke/lazydev.nvim",
+	"folke/lazydev.nvim",
 	{
 		-- Completion engine
-		src = "https://github.com/saghen/blink.cmp",
+		"saghen/blink.cmp",
 		version = vim.version.range("1.*"),
+		dependencies = {
+			-- Support snippets in completion menu
+			"rafamadriz/friendly-snippets",
+		},
 	},
 })
 

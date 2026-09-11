@@ -1,7 +1,13 @@
-vim.pack.add({
-	"https://github.com/MunifTanjim/nui.nvim",
-	"https://github.com/folke/which-key.nvim",
-	"https://github.com/vuki656/package-info.nvim",
+local use = require("core.use")
+
+use({
+	"folke/which-key.nvim",
+	{
+		"vuki656/package-info.nvim",
+		dependencies = {
+			"MunifTanjim/nui.nvim",
+		},
+	},
 })
 
 vim.api.nvim_create_autocmd({ "BufReadPost", "BufNewFile" }, {

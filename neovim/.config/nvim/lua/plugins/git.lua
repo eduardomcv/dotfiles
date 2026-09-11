@@ -1,11 +1,17 @@
-vim.pack.add({
-	{ src = "https://github.com/nvim-lua/plenary.nvim", version = "master" },
-	"https://github.com/esmuellert/codediff.nvim",
-	"https://github.com/m00qek/baleia.nvim",
-	-- Magit for neovim
-	"https://github.com/neogitorg/neogit",
+local use = require("core.use")
+
+use({
+	"esmuellert/codediff.nvim",
+	{
+		-- Magit for neovim
+		"neogitorg/neogit",
+		dependencies = {
+			{ "nvim-lua/plenary.nvim", version = "master" },
+			"m00qek/baleia.nvim",
+		},
+	},
 	-- Git conflicts visualizer
-	{ src = "https://github.com/akinsho/git-conflict.nvim", version = vim.version.range("*") },
+	{ "akinsho/git-conflict.nvim", version = vim.version.range("*") },
 })
 
 ---@diagnostic disable-next-line: missing-fields

@@ -1,8 +1,10 @@
-vim.pack.add({
+local use = require("core.use")
+
+use({
 	-- Collection of LSP server configurations (good defaults)
-	"https://github.com/neovim/nvim-lspconfig",
-	"https://github.com/mason-org/mason.nvim",
-	"https://github.com/mason-org/mason-lspconfig.nvim",
+	"neovim/nvim-lspconfig",
+	"mason-org/mason.nvim",
+	"mason-org/mason-lspconfig.nvim",
 })
 
 require("mason-lspconfig").setup()

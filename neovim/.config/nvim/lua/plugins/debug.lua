@@ -1,8 +1,14 @@
-vim.pack.add({
-	"https://github.com/mfussenegger/nvim-dap",
-	"https://github.com/nvim-neotest/nvim-nio",
-	"https://github.com/rcarriga/nvim-dap-ui",
-	"https://github.com/theHamsta/nvim-dap-virtual-text",
+local use = require("core.use")
+
+use({
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = {
+			"mfussenegger/nvim-dap",
+			"nvim-neotest/nvim-nio",
+		},
+	},
+	"theHamsta/nvim-dap-virtual-text",
 })
 
 local dap = require("dap")

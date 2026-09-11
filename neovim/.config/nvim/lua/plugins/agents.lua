@@ -1,6 +1,8 @@
-vim.pack.add({
-	"https://github.com/MeanderingProgrammer/render-markdown.nvim",
-	"https://github.com/sudo-tee/opencode.nvim",
+local use = require("core.use")
+
+use({
+	"MeanderingProgrammer/render-markdown.nvim",
+	"sudo-tee/opencode.nvim",
 })
 
 require("render-markdown").setup({

@@ -1,4 +1,6 @@
-vim.pack.add({ "https://github.com/nvim-mini/mini.nvim" })
+local use = require("core.use")
+
+use({ "nvim-mini/mini.nvim" })
 
 local mini_icons = require("mini.icons")
 mini_icons.setup()

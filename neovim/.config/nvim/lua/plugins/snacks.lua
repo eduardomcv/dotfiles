@@ -1,4 +1,6 @@
-vim.pack.add({ "https://github.com/folke/snacks.nvim" })
+local use = require("core.use")
+
+use({ "folke/snacks.nvim" })
 
 require("snacks").setup({
 	bigfile = { enabled = true },

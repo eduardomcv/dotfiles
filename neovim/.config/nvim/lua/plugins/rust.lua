@@ -1,6 +1,8 @@
-vim.pack.add({
+local use = require("core.use")
+
+use({
 	{
-		src = "https://github.com/mrcjkb/rustaceanvim",
+		"mrcjkb/rustaceanvim",
 		version = vim.version.range("^9"),
 	},
 })
