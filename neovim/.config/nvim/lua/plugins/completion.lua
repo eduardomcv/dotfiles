@@ -15,6 +15,11 @@ use({
 })
 
 require("lazydev").setup({
+	enabled = function(root_dir)
+		local config_dir = vim.uv.fs_realpath(vim.fn.stdpath("config"))
+		local workspace_dir = vim.uv.fs_realpath(root_dir)
+		return config_dir ~= nil and workspace_dir == config_dir
+	end,
 	library = {
 		-- Load luvit types when the `vim.uv` word is found
 		{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
