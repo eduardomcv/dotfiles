@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({ "mason-org/mason.nvim" })
 
 require("mason").setup()

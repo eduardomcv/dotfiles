@@ -1,3 +1,6 @@
+-- Setup lack before other plugins
+require("plugins.lack")
+
 require("plugins.builtin")
 require("plugins.theme")
 require("plugins.mason")

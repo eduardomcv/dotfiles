@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({
 	-- Show pop-up with available keybindings
 	"folke/which-key.nvim",

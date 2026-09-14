@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({
 	"nvim-treesitter/nvim-treesitter",
 	"windwp/nvim-ts-autotag",

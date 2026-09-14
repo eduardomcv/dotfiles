@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({ "folke/snacks.nvim" })
 
 require("snacks").setup({

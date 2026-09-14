@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({ "stevearc/conform.nvim" })
 
 require("conform").setup({

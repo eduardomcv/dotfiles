@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({
 	"MeanderingProgrammer/render-markdown.nvim",
 	"sudo-tee/opencode.nvim",

@@ -42,6 +42,10 @@
       "src": "https://github.com/akinsho/git-conflict.nvim",
       "version": ">=0.0.0"
     },
+    "lack.nvim": {
+      "rev": "b75862c3e7ab8128b44e530af3014be63ae58076",
+      "src": "https://github.com/eduardomcv/lack.nvim"
+    },
     "lazydev.nvim": {
       "rev": "ff2cbcba459b637ec3fd165a2be59b7bbaeedf0d",
       "src": "https://github.com/folke/lazydev.nvim"

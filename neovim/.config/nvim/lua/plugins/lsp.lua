@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({
 	-- Collection of LSP server configurations (good defaults)
 	"neovim/nvim-lspconfig",

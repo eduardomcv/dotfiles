@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({ "mfussenegger/nvim-lint" })
 
 local linter_name = "bloc"

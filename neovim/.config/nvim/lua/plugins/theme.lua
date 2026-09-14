@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({
 	{ "catppuccin/nvim", name = "catppuccin" },
 })

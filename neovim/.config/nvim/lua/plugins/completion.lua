@@ -1,5 +1,3 @@
-local use = require("core.use")
-
 use({
 	-- Better support for neovim lua
 	"folke/lazydev.nvim",
