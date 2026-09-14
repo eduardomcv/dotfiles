@@ -7,8 +7,7 @@
   "plugin": [
     "opencode-claude-auth@latest",
     "superpowers@git+https://github.com/obra/superpowers.git",
-    "@tarquinen/opencode-dcp@latest",
-    ".opencode/plugins/graphify.js"
+    "@tarquinen/opencode-dcp@latest"
   ],
   "mcp": {
     "zennotes": {
