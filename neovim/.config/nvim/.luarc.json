@@ -9,6 +9,6 @@
     "checkThirdParty": false
   },
   "diagnostics": {
-    "globals": ["vim", "Snacks"]
+    "globals": ["vim", "Snacks", "use"]
   }
 }
