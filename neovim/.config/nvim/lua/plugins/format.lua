@@ -1,17 +1,37 @@
 use({ "stevearc/conform.nvim" })
 
+local function has_local_node_modules_exe(cmd)
+	return function(self, ctx)
+		local resolve = require("conform.util").from_node_modules(cmd)
+		---@diagnostic disable-next-line: redundant-parameter
+		return resolve(self, ctx) ~= cmd
+	end
+end
+
+local js_formatters = {
+	"oxfmt",
+	"prettier",
+	stop_after_first = true,
+}
+
 require("conform").setup({
+	formatters = {
+		oxfmt = {
+			condition = has_local_node_modules_exe("oxfmt"),
+		},
+	},
 	formatters_by_ft = {
 		lua = { "stylua" },
-		javascript = { "prettier" },
-		typescript = { "prettier" },
-		typescriptreact = { "prettier" },
-		css = { "prettier" },
-		scss = { "prettier" },
-		markdown = { "prettier" },
+		javascript = js_formatters,
+		javascriptreact = js_formatters,
+		typescript = js_formatters,
+		typescriptreact = js_formatters,
+		css = js_formatters,
+		scss = js_formatters,
+		markdown = js_formatters,
+		json = js_formatters,
+		yaml = js_formatters,
 		astro = { "prettier" },
-		json = { "prettier" },
-		yaml = { "prettier" },
 		sh = { "shfmt" },
 		zsh = { "shfmt" },
 		bash = { "shfmt" },
