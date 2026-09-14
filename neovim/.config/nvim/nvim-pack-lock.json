@@ -13,10 +13,6 @@
       "src": "https://github.com/saghen/blink.cmp",
       "version": "1.0.0 - 2.0.0"
     },
-    "blink.compat": {
-      "rev": "1454f14a8d855a578ceeba77c62538fa1459a67c",
-      "src": "https://github.com/saghen/blink.compat"
-    },
     "catppuccin": {
       "rev": "edefef779ab08ce1a4a404713e3012b0d202bd35",
       "src": "https://github.com/catppuccin/nvim"
@@ -43,7 +39,7 @@
       "version": ">=0.0.0"
     },
     "lack.nvim": {
-      "rev": "b75862c3e7ab8128b44e530af3014be63ae58076",
+      "rev": "adab0fd84d1c65b4d5972d1e329b184abf72e4fb",
       "src": "https://github.com/eduardomcv/lack.nvim"
     },
     "lazydev.nvim": {
@@ -123,7 +119,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "opencode.nvim": {
-      "rev": "636a26425227bb35c622653a65ccab5690927539",
+      "rev": "b629972c9589d89a426bff281376104b1d15204f",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "package-info.nvim": {
