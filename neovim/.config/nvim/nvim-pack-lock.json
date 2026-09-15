@@ -39,7 +39,7 @@
       "version": ">=0.0.0"
     },
     "lack.nvim": {
-      "rev": "636a96d4f9ce104854bd789b437a62df70cbb102",
+      "rev": "624f53d8531872a685f796a171cc820557067ba4",
       "src": "https://github.com/eduardomcv/lack.nvim"
     },
     "lazydev.nvim": {
