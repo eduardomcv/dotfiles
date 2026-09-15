@@ -18,7 +18,7 @@
       "src": "https://github.com/catppuccin/nvim"
     },
     "codediff.nvim": {
-      "rev": "4b3ad7eb99dd0f02e64bbaf562ca1e87e8c07cc9",
+      "rev": "09d9ebef2cc5a5c04db7a349cd6c61bdf84ecc8e",
       "src": "https://github.com/esmuellert/codediff.nvim"
     },
     "conform.nvim": {
@@ -39,7 +39,7 @@
       "version": ">=0.0.0"
     },
     "lack.nvim": {
-      "rev": "adab0fd84d1c65b4d5972d1e329b184abf72e4fb",
+      "rev": "636a96d4f9ce104854bd789b437a62df70cbb102",
       "src": "https://github.com/eduardomcv/lack.nvim"
     },
     "lazydev.nvim": {
