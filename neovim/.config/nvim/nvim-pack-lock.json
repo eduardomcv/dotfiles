@@ -119,7 +119,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "opencode.nvim": {
-      "rev": "b629972c9589d89a426bff281376104b1d15204f",
+      "rev": "6071fe7607a3a40182a0604558f98fe3e19505e5",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "package-info.nvim": {
