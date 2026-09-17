@@ -91,3 +91,26 @@ calls; pass the path explicitly instead.
 
 5.5 **Do not add worktree directories to `.gitignore`.** Worktrees live outside
 the repository by default.
+
+## 6. Branch Integration
+
+6.1 **PR-first workflow:** Changes should be integrated through pull requests.
+When finishing a development branch, do not offer a local merge into `main`,
+`master`, or another base branch by default. Offer only:
+
+- Push the feature branch and create a pull request.
+- Keep the feature branch as-is.
+
+Only offer or perform direct integration when the user specifically requests it.
+This overrides any branch-finishing skill that offers a direct or local merge
+by default.
+
+6.2 **Never push directly to a protected branch:** Do not run or recommend
+`git push origin main`, `git push origin master`, or an equivalent push to the
+base or protected branch.
+
+6.3 **Exceptional override:** If the user explicitly requests a direct update
+to a protected branch, warn that it violates the normal workflow, identify the
+exact branch and commits involved, and require a second explicit confirmation
+immediately before executing it. Earlier or general approval does not count as
+this confirmation.
