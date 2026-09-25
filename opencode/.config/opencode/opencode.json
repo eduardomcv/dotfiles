@@ -6,7 +6,6 @@
   "lsp": true,
   "formatter": true,
   "plugin": [
-    "opencode-claude-auth@latest",
     "superpowers@git+https://github.com/obra/superpowers.git",
     "@tarquinen/opencode-dcp@latest",
     "openslimedit@latest"

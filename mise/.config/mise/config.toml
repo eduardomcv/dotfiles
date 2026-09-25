@@ -11,7 +11,6 @@ rust = {
 }
 lua = "5.1"
 opencode = "latest"
-claude = "latest"
 rtk = "latest"
 gh = "latest"
 "pipx:graphifyy" = "latest"
