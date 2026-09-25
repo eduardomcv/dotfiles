@@ -3,3 +3,6 @@
 graphify-out/
 .opencode/
 node_modules/
+opencode/.config/opencode/plugins/rtk.ts
+opencode/.config/opencode/plugins/worktrunk.ts
+opencode/.config/opencode/skills/graphify/
