@@ -32,7 +32,8 @@
 		"superpowers@git+https://github.com/obra/superpowers.git",
 		"@tarquinen/opencode-dcp@latest",
 		"openslimedit@latest",
-		"@slkiser/opencode-quota@4"
+		"@slkiser/opencode-quota@4",
+		"envsitter-guard@latest"
 	],
 	"mcp": {
 		"zennotes": {
