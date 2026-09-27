@@ -55,6 +55,8 @@ require("flutter-tools").setup({
 			buf_set_keymap("n", "<leader>xo", ":FlutterOutlineToggle<CR>", "Toggle Flutter outline")
 			buf_set_keymap("n", "<leader>xD", ":FlutterDevTools<CR>", "Open Flutter DevTools")
 			buf_set_keymap("n", "<leader>xi", ":FlutterInspectWidget<CR>", "Toggle Flutter widget inspector")
+			buf_set_keymap("n", "<leader>xwp", ":FlutterWidgetPreview<CR>", "Start Flutter widget previewer")
+			buf_set_keymap("n", "<leader>xws", ":FlutterWidgetPreviewStop<CR>", "Stop Flutter widget previewer")
 		end,
 	},
 })
