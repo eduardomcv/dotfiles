@@ -39,9 +39,27 @@ require("flutter-tools").setup({
 			updateImportsOnRename = true,
 			renameFilesWithClasses = "prompt",
 		},
-		on_attach = function(_, bufnr)
+		on_attach = function(_, buffer)
+			require("which-key").add({
+				{
+					"<leader>x",
+					group = "+flutter",
+					buffer = buffer,
+				},
+				{
+					"<leader>xw",
+					group = "+widget",
+					buffer = buffer,
+				},
+				{
+					"<leader>xp",
+					group = "+pubspec",
+					buffer = buffer,
+				},
+			})
+
 			local function buf_set_keymap(mode, lhs, rhs, desc)
-				vim.keymap.set(mode, lhs, rhs, { buffer = bufnr, silent = true, desc = desc })
+				vim.keymap.set(mode, lhs, rhs, { buffer = buffer, silent = true, desc = desc })
 			end
 
 			buf_set_keymap("n", "<leader>xx", ":FlutterRun<CR>", "Run Flutter app")
