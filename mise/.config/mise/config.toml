@@ -17,6 +17,7 @@ gh = "latest"
 worktrunk = "latest"
 "npm:@nestjs/cli" = "latest"
 usage = "latest"
+"npm:ctx7" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = [
