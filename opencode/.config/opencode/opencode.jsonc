@@ -33,7 +33,8 @@
 		"@tarquinen/opencode-dcp@latest",
 		"openslimedit@latest",
 		"@slkiser/opencode-quota@4",
-		"envsitter-guard@latest"
+		"envsitter-guard@latest",
+		"@pantheon-ai/opencode-warcraft-notifications"
 	],
 	"mcp": {
 		"zennotes": {
