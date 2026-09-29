@@ -26,7 +26,7 @@
       "src": "https://github.com/stevearc/conform.nvim"
     },
     "flutter-tools.nvim": {
-      "rev": "8e21469ca0250e67cbdc7a75a303294edc0eda98",
+      "rev": "8d1107444321eb7d2d67757b3266bbaf68103878",
       "src": "https://github.com/nvim-flutter/flutter-tools.nvim"
     },
     "friendly-snippets": {
@@ -59,7 +59,7 @@
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "5adc81b26232954cd7a90f158aa7844c18fc3165",
+      "rev": "c51a1dc7e0e0f40c4c396a2b1ceaa44b44e96032",
       "src": "https://github.com/neogitorg/neogit"
     },
     "neotest": {
@@ -119,7 +119,7 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "opencode.nvim": {
-      "rev": "f25840a6b51fadc1ae8b9745d9c1b4d29091719f",
+      "rev": "b5be7267e9b081f9fe61caeea0737eef85deb17a",
       "src": "https://github.com/sudo-tee/opencode.nvim"
     },
     "package-info.nvim": {
