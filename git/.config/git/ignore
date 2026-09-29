@@ -1,3 +1,6 @@
+# Worktrees
+.worktrees/
+
 # python
 .mypy_cache/**
 __pycache__/**
