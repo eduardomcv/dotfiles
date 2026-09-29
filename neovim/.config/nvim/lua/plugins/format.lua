@@ -26,6 +26,7 @@ require("conform").setup({
 		javascriptreact = js_formatters,
 		typescript = js_formatters,
 		typescriptreact = js_formatters,
+		handlebars = { "prettier" },
 		css = js_formatters,
 		scss = js_formatters,
 		markdown = js_formatters,
