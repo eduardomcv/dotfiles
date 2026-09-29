@@ -19,6 +19,13 @@ require("conform").setup({
 		oxfmt = {
 			condition = has_local_node_modules_exe("oxfmt"),
 		},
+		prettier = {
+			options = {
+				ft_parsers = {
+					handlebars = "handlebars",
+				},
+			},
+		},
 	},
 	formatters_by_ft = {
 		lua = { "stylua" },
