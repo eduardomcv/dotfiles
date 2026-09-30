@@ -1,18 +1,13 @@
 {
 	"$schema": "https://opencode.ai/config.json",
-	"default_agent": "plan",
+	"shell": "/bin/zsh",
 	"model": "opencode/big-pickle",
-	"shell": "zsh",
-	"lsp": true,
+	"default_agent": "plan",
+	"update": "disable",
 	"formatter": true,
 	"permissions": [
 		{
 			"action": "edit",
-			"resource": "*",
-			"effect": "ask"
-		},
-		{
-			"action": "shell",
 			"resource": "*",
 			"effect": "ask"
 		},
@@ -104,16 +99,12 @@
 	},
 	"plugins": [
 		"superpowers@git+https://github.com/obra/superpowers.git",
-		"@tarquinen/opencode-dcp@latest",
-		"openslimedit@latest",
-		"@slkiser/opencode-quota@4",
-		"envsitter-guard@latest",
-		"@pantheon-ai/opencode-warcraft-notifications"
+		"@slkiser/opencode-quota@latest",
+		"envsitter-guard@latest"
 	],
 	"mcp": {
 		"servers": {
 			"zennotes": {
-				"disabled": false,
 				"type": "local",
 				"command": [
 					"zn",
@@ -126,9 +117,7 @@
 		}
 	},
 	"providers": {
-		// Detected copilot authentication; opencode-quota added this global provider declaration.
 		"copilot": {},
-		// Detected openai authentication; opencode-quota added this global provider declaration.
 		"openai": {}
 	}
 }
