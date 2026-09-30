@@ -2,33 +2,107 @@
 	"$schema": "https://opencode.ai/config.json",
 	"default_agent": "plan",
 	"model": "opencode/big-pickle",
-	"small_model": "opencode/mimo-v2.6-flash-free",
 	"shell": "zsh",
 	"lsp": true,
 	"formatter": true,
-	"permission": {
-		"edit": "ask",
-		"bash": {
-			"*": "ask",
-			"git status*": "allow",
-			"git diff*": "allow",
-			"git log*": "allow",
-			"ls*": "allow",
-			"rg*": "allow",
-			"grep*": "allow",
-			"cat*": "allow",
-			"find*": "allow",
-			"rtk git status*": "allow",
-			"rtk git diff*": "allow",
-			"rtk git log*": "allow",
-			"rtk ls*": "allow",
-			"rtk rg*": "allow",
-			"rtk grep*": "allow",
-			"rtk read*": "allow",
-			"rtk find*": "allow"
+	"permissions": [
+		{
+			"action": "edit",
+			"resource": "*",
+			"effect": "ask"
+		},
+		{
+			"action": "shell",
+			"resource": "*",
+			"effect": "ask"
+		},
+		{
+			"action": "shell",
+			"resource": "git status*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "git diff*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "git log*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "ls*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rg*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "grep*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "cat*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "find*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk git status*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk git diff*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk git log*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk ls*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk rg*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk grep*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk read*",
+			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "rtk find*",
+			"effect": "allow"
+		}
+	],
+	"agents": {
+		"title": {
+			"model": "opencode/mimo-v2.6-flash-free"
 		}
 	},
-	"plugin": [
+	"plugins": [
 		"superpowers@git+https://github.com/obra/superpowers.git",
 		"@tarquinen/opencode-dcp@latest",
 		"openslimedit@latest",
@@ -37,19 +111,21 @@
 		"@pantheon-ai/opencode-warcraft-notifications"
 	],
 	"mcp": {
-		"zennotes": {
-			"enabled": true,
-			"type": "local",
-			"command": [
-				"zn",
-				"mcp"
-			],
-			"environment": {
-				"PATH": "{env:HOME}/.local/bin:{env:PATH}"
-			},
+		"servers": {
+			"zennotes": {
+				"disabled": false,
+				"type": "local",
+				"command": [
+					"zn",
+					"mcp"
+				],
+				"environment": {
+					"PATH": "{env:HOME}/.local/bin:{env:PATH}"
+				},
+			}
 		}
 	},
-	"provider": {
+	"providers": {
 		// Detected copilot authentication; opencode-quota added this global provider declaration.
 		"copilot": {},
 		// Detected openai authentication; opencode-quota added this global provider declaration.
