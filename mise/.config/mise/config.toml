@@ -10,7 +10,6 @@ rust = {
 	components = "rust-analyzer",
 }
 lua = "5.1"
-opencode = "latest"
 rtk = "latest"
 gh = "latest"
 "pipx:graphifyy" = "latest"
