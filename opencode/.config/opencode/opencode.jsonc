@@ -48,11 +48,11 @@
 				"PATH": "{env:HOME}/.local/bin:{env:PATH}"
 			},
 		}
-  },
-  "provider": {
-    // Detected copilot authentication; opencode-quota added this global provider declaration.
-    "copilot": {},
-    // Detected openai authentication; opencode-quota added this global provider declaration.
-    "openai": {}
-  }
+	},
+	"provider": {
+		// Detected copilot authentication; opencode-quota added this global provider declaration.
+		"copilot": {},
+		// Detected openai authentication; opencode-quota added this global provider declaration.
+		"openai": {}
+	}
 }
