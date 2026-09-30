@@ -29,7 +29,7 @@ end
 
 require("which-key").setup({
 	spec = {
-		{ "<leader>a", group = "+agents" },
+		{ "<leader>o", group = "+opencode" },
 		{ "<leader>c", group = "+code" },
 		{ "<leader>f", group = "+format" },
 		{ "<leader>g", group = "+git" },
