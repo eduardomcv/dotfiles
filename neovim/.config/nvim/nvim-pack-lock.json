@@ -119,8 +119,8 @@
       "src": "https://github.com/windwp/nvim-ts-autotag"
     },
     "opencode.nvim": {
-      "rev": "71f66dcdfe0df29297cb20048f3be5d7983afe07",
-      "src": "https://github.com/sudo-tee/opencode.nvim"
+      "rev": "06770e2e3618b82703e3e7af1f2d5dc67bde0002",
+      "src": "https://github.com/nickjvandyke/opencode.nvim"
     },
     "package-info.nvim": {
       "rev": "b86cf49efc3855dd94afb33304b278f6f122bf1a",
@@ -134,10 +134,6 @@
     "pubspec-assist.nvim": {
       "rev": "c79dbf94967d69dbabc1f7ad35662eb79a007b4b",
       "src": "https://github.com/nvim-flutter/pubspec-assist.nvim"
-    },
-    "render-markdown.nvim": {
-      "rev": "640a3ec6d538bad17c328be373c7cad0293d9589",
-      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim"
     },
     "rustaceanvim": {
       "rev": "9cb125de42c0256ed1bc1f9ded8d8f0381317a17",

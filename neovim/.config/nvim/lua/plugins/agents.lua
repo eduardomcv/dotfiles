@@ -1,24 +1,19 @@
-use({
-	"MeanderingProgrammer/render-markdown.nvim",
-	"sudo-tee/opencode.nvim",
-})
+use({ "nickjvandyke/opencode.nvim" })
 
-require("render-markdown").setup({
-	preset = "lazy",
-	file_types = { "markdown", "opencode_output" },
-	latex = { enabled = false },
-	anti_conceal = { enabled = false },
-})
+local set = vim.keymap.set
 
-require("opencode").setup({
-	preferred_picker = "snacks",
-	preferred_completion = "blink",
-	default_mode = "plan",
-	keymap_prefix = "<leader>a",
-	quick_chat = {
-		default_model = "gpt-4o",
-	},
-	ui = {
-		window_width = 0.25,
-	},
-})
+set({ "n", "x" }, "<leader>oa", function()
+	require("opencode").ask("@this: ")
+end, { desc = "Ask OpenCode…" })
+
+set({ "n", "x" }, "<leader>oo", function()
+	require("opencode").select()
+end, { desc = "Select OpenCode…" })
+
+set("x", "go", function()
+	return require("opencode").operator("@this")
+end, { desc = "Send range to OpenCode", expr = true })
+
+set("n", "goo", function()
+	return require("opencode").operator("@this") .. "_"
+end, { desc = "Send line to OpenCode", expr = true })
