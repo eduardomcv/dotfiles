@@ -9,8 +9,15 @@
   },
   "session": {
     "sidebar": "auto",
-    "scrollbar": false,
     "thinking": "hide"
   },
-  "animations": true
+  "tabs": {
+    "mode": "auto",
+    "layout": "vertical",
+    "scope": "cwd"
+  },
+  "keybinds": {
+    "agent.cycle": "tab",
+    "agent.cycle.reverse": "shift+tab"
+  }
 }
