@@ -99,8 +99,7 @@
 	},
 	"plugins": [
 		"superpowers@git+https://github.com/obra/superpowers.git",
-		"@slkiser/opencode-quota@latest",
-		"envsitter-guard@latest"
+		"@slkiser/opencode-quota@latest"
 	],
 	"mcp": {
 		"servers": {
