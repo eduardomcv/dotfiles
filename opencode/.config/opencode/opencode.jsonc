@@ -116,7 +116,6 @@
 		}
 	},
 	"providers": {
-		"copilot": {},
-		"openai": {}
+		"copilot": {}
 	}
 }
