@@ -1,1 +1,0 @@
-/Users/eduardo/.agents/AGENTS.md
