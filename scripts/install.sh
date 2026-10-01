@@ -21,7 +21,9 @@ install_dotfiles \
 	git \
 	zsh \
 	mise \
+	agents \
 	opencode \
+	worktrunk \
 	neovim \
 	kitty
 
