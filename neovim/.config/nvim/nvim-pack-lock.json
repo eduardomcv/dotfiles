@@ -75,7 +75,7 @@
       "src": "https://github.com/nvim-neotest/neotest-python"
     },
     "neotest-vitest": {
-      "rev": "c3c69715da4b158069fd4262083e7219a5c14cfb",
+      "rev": "b0c265743c877058068dbc40d104ea5d40e6b257",
       "src": "https://github.com/marilari88/neotest-vitest"
     },
     "nui.nvim": {
