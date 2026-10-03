@@ -13,6 +13,7 @@ FILES_TO_SKIP=(
 	"zsh/.zshrc"
 	"git/.config/git/config"
 	"zsh/.zshenv"
+	"claude/.claude/CLAUDE.md"
 )
 
 if [[ "$#" -gt 0 ]]; then
