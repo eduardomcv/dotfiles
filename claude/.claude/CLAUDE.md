@@ -15,10 +15,3 @@ session's working directory, so a worktree-relative link does not open. Write
 the working directory.
 
 ## 3. Other directives
-
-@RTK.md
-
-### graphify
-
-- **graphify** (`~/.claude/skills/graphify/SKILL.md`) - any input to knowledge graph. Trigger: `/graphify`
-  When the user types `/graphify`, use the installed graphify skill or instructions before doing anything else.
