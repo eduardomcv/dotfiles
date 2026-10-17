@@ -14,6 +14,7 @@ FILES_TO_SKIP=(
 	"git/.config/git/config"
 	"zsh/.zshenv"
 	"claude/.claude/CLAUDE.md"
+	"opencode/.config/opencode/AGENTS.md"
 )
 
 if [[ "$#" -gt 0 ]]; then
