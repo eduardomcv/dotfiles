@@ -90,6 +90,11 @@
 			"action": "shell",
 			"resource": "rtk find*",
 			"effect": "allow"
+		},
+		{
+			"action": "shell",
+			"resource": "ctx7*",
+			"effect": "allow"
 		}
 	],
 	"agents": {

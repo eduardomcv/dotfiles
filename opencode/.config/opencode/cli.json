@@ -4,12 +4,14 @@
     "name": "catppuccin",
     "mode": "system"
   },
+  "cursor": {
+    "blinking": false
+  },
   "diffs": {
     "wrap": "word"
   },
   "session": {
-    "sidebar": "auto",
-    "thinking": "hide"
+    "sidebar": "auto"
   },
   "tabs": {
     "mode": "auto",
