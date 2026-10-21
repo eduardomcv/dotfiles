@@ -117,7 +117,7 @@
 				],
 				"environment": {
 					"PATH": "{env:HOME}/.local/bin:{env:PATH}"
-				},
+				}
 			}
 		}
 	},

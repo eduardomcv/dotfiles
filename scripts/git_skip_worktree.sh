@@ -15,7 +15,7 @@ FILES_TO_SKIP=(
 	"zsh/.zshenv"
 	"claude/.claude/CLAUDE.md"
 	"opencode/.config/opencode/AGENTS.md"
-	"opencode/.config/opencode/opencode.jsonc"
+	"opencode/.config/opencode/opencode.json"
 	"mise/.config/mise/config.toml"
 )
 
