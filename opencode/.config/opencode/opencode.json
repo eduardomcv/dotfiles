@@ -1,127 +1,114 @@
 {
-	"$schema": "https://opencode.ai/config.json",
-	"shell": "/bin/zsh",
-	"model": "opencode/big-pickle",
-	"default_agent": "plan",
-	"update": "disable",
-	"formatter": true,
-	"permissions": [
-		{
-			"action": "edit",
-			"resource": "*",
-			"effect": "ask"
-		},
-		{
-			"action": "shell",
-			"resource": "git status*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "git diff*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "git log*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "ls*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rg*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "grep*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "cat*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "find*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk git status*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk git diff*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk git log*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk ls*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk rg*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk grep*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk read*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "rtk find*",
-			"effect": "allow"
-		},
-		{
-			"action": "shell",
-			"resource": "ctx7*",
-			"effect": "allow"
-		}
-	],
-	"agents": {
-		"title": {
-			"model": "opencode/mimo-v2.6-flash-free"
-		}
-	},
-	"plugins": [
-		"superpowers@git+https://github.com/obra/superpowers.git",
-		"@slkiser/opencode-quota@latest",
-		"opencode-claude-auth@latest"
-	],
-	"mcp": {
-		"servers": {
-			"zennotes": {
-				"type": "local",
-				"command": [
-					"zn",
-					"mcp"
-				],
-				"environment": {
-					"PATH": "{env:HOME}/.local/bin:{env:PATH}"
-				}
-			}
-		}
-	},
-	"providers": {
-		"copilot": {}
-	}
+  "$schema": "https://opencode.ai/config.json",
+  "shell": "/bin/zsh",
+  "model": "opencode/big-pickle",
+  "default_agent": "plan",
+  "update": "disable",
+  "formatter": true,
+  "permissions": [
+    {
+      "action": "edit",
+      "resource": "*",
+      "effect": "ask"
+    },
+    {
+      "action": "shell",
+      "resource": "git status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git diff*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "git log*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "ls*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rg*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "grep*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "cat*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "find*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk git status*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk git diff*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk git log*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk ls*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk rg*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk grep*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk read*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "rtk find*",
+      "effect": "allow"
+    },
+    {
+      "action": "shell",
+      "resource": "ctx7*",
+      "effect": "allow"
+    }
+  ],
+  "agents": {
+    "title": {
+      "model": "opencode/mimo-v2.6-flash-free"
+    }
+  },
+  "plugins": [
+    "superpowers@git+https://github.com/obra/superpowers.git",
+    "@slkiser/opencode-quota@latest",
+    "opencode-sleep-inhibitor",
+    "opencode-claude-auth@latest"
+  ],
+  "providers": {
+    "copilot": {}
+  }
 }
