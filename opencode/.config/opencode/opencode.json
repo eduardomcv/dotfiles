@@ -107,7 +107,8 @@
     "@tarquinen/opencode-dcp@latest",
     "@slkiser/opencode-quota@latest",
     "opencode-sleep-inhibitor",
-    "opencode-claude-auth@latest"
+    "opencode-claude-auth@latest",
+    "opencode-mem@latest"
   ],
   "providers": {
     "copilot": {}
