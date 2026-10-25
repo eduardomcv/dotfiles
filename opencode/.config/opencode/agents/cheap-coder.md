@@ -4,6 +4,11 @@ mode: subagent
 model: opencode-go/deepseek-v4.1-flash#low
 ---
 
+<!--
+Anthropic alternative: use
+  model: anthropic/claude-haiku-5-5#medium
+-->
+
 You make focused, minimal edits and nothing more.
 
 - Match the existing style and patterns of the surrounding code.

@@ -1,0 +1,148 @@
+{
+	"$schema": "https://opencode.ai/config.json",
+	"shell": "/bin/zsh",
+	// Escalate manually to expensive models on hard sessions (core architecture, deep debugging).
+	"model": "opencode-go/mimo-v2.6-flash",
+	// "model": "anthropic/claude-haiku-5-5",
+	"default_agent": "plan",
+	"update": "disable",
+	"formatter": true,
+	"permissions": [
+		{
+			"action": "edit",
+			"resource": "*",
+			"effect": "ask",
+		},
+		{
+			"action": "shell",
+			"resource": "git status*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "git diff*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "git log*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "ls*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rg*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "grep*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "cat*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "find*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk git status*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk git diff*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk git log*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk ls*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk rg*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk grep*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk read*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "rtk find*",
+			"effect": "allow",
+		},
+		{
+			"action": "shell",
+			"resource": "ctx7*",
+			"effect": "allow",
+		},
+	],
+	// cheap-coder and reviewer live in agents/cheap-coder.md and agents/reviewer.md
+	"agents": {
+		"title": {
+			"model": "opencode/mimo-v2.6-flash-free",
+			// "model": "anthropic/claude-haiku-5-5#low",
+		},
+		"explore": {
+			"description": "Fast codebase search and reading. Free tier.",
+			"mode": "subagent",
+			"model": "opencode/mimo-v2.6-flash-free",
+			// "model": "anthropic/claude-haiku-5-5#low",
+		},
+		"general": {
+			"description": "Mechanical multi-step work. Cheap tier with light reasoning.",
+			"mode": "subagent",
+			"model": "opencode-go/mimo-v2.6-flash#low",
+			// "model": "anthropic/claude-haiku-5-5#low",
+		},
+	},
+	"compaction": {
+		"auto": true,
+		"keep": {
+			"tokens": 15000,
+		},
+		"buffer": 20000,
+	},
+	"tool_output": {
+		"max_lines": 2000,
+		"max_bytes": 51200,
+	},
+	"experimental": {
+		"background_compaction": true,
+	},
+	"plugins": [
+		"superpowers@git+https://github.com/obra/superpowers.git",
+		"@tarquinen/opencode-dcp@latest",
+		"@slkiser/opencode-quota@latest",
+		"opencode-sleep-inhibitor",
+		"opencode-claude-auth@latest",
+		"opencode-mem@latest",
+	],
+	"providers": {
+		"copilot": {},
+		"opencode-go": {},
+		"opencode": {},
+	},
+}

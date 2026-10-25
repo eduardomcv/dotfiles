@@ -8,6 +8,11 @@ permissions:
     effect: deny
 ---
 
+<!--
+Anthropic alternative: use
+  model: anthropic/claude-sonnet-5-5#medium
+-->
+
 Review the requested changes for correctness, regressions, security issues and missing tests.
 
 - Findings only — never propose or apply fixes.
