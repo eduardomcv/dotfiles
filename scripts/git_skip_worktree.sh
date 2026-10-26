@@ -11,12 +11,14 @@ UPDATE_INDEX_ARG="--skip-worktree"
 
 FILES_TO_SKIP=(
 	"zsh/.zshrc"
-	"git/.config/git/config"
 	"zsh/.zshenv"
+	"git/.config/git/config"
+	"mise/.config/mise/config.toml"
 	"claude/.claude/CLAUDE.md"
 	"opencode/.config/opencode/AGENTS.md"
 	"opencode/.config/opencode/opencode.jsonc"
-	"mise/.config/mise/config.toml"
+	"opencode/.config/opencode/agents/cheap-coder.md"
+	"opencode/.config/opencode/agents/reviewer.md"
 )
 
 if [[ "$#" -gt 0 ]]; then
