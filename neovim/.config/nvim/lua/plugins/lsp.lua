@@ -93,6 +93,25 @@ vim.lsp.config("eslint", {
 	end,
 })
 
+local oxlint_base_cmd = vim.lsp.config.oxlint.cmd
+vim.lsp.config("oxlint", {
+	cmd = function(dispatchers, config)
+		local root = config.root_dir or vim.fn.getcwd()
+		local vp = vim.fs.joinpath(root, "node_modules/.bin/vp")
+
+		if vim.fn.executable(vp) == 1 then
+			return vim.lsp.rpc.start({ vp, "lint", "--lsp" }, dispatchers, { cwd = config.cmd_cwd })
+		end
+
+		return oxlint_base_cmd(dispatchers, config)
+	end,
+	settings = {
+		run = "onType",
+		typeAware = true,
+		unusedDisableDirectives = "deny",
+	},
+})
+
 vim.lsp.config("copilot", {
 	settings = {
 		telemetry = {
