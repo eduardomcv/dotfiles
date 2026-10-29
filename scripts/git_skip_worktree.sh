@@ -19,6 +19,7 @@ FILES_TO_SKIP=(
 	"opencode/.config/opencode/opencode.jsonc"
 	"opencode/.config/opencode/agents/cheap-coder.md"
 	"opencode/.config/opencode/agents/reviewer.md"
+	"worktrunk/.config/worktrunk/config.toml"
 )
 
 if [[ "$#" -gt 0 ]]; then
