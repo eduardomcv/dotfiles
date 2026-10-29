@@ -13,7 +13,7 @@ lua = "5.1"
 rtk = "latest"
 gh = "latest"
 "pipx:graphifyy" = "latest"
-worktrunk = "latest"
+worktrunk = { version = "latest", workflow = "release.yaml" }
 usage = "latest"
 
 [settings]
