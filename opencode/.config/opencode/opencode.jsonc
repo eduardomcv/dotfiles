@@ -95,7 +95,7 @@
 		},
 		{
 			"action": "shell",
-			"resource": "ctx7*",
+			"resource": "npx ctx7*",
 			"effect": "allow",
 		},
 	],
@@ -114,7 +114,7 @@
 		"general": {
 			"description": "Mechanical multi-step work. Cheap tier with light reasoning.",
 			"mode": "subagent",
-			"model": "opencode-go/mimo-v2.6-flash#low",
+			"model": "opencode-go/deepseek-v4.1-flash#low",
 			// "model": "anthropic/claude-haiku-5-5#low",
 		},
 	},

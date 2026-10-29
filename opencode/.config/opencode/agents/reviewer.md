@@ -6,6 +6,15 @@ permissions:
   - action: edit
     resource: "*"
     effect: deny
+  - action: shell
+    resource: "*"
+    effect: ask
+  - action: shell
+    resource: "git diff*"
+    effect: allow
+  - action: shell
+    resource: "git status*"
+    effect: allow
 ---
 
 <!--
@@ -21,4 +30,6 @@ Review the requested changes for correctness, regressions, security issues and m
 - Check for: broken behavior, missing tests, security regressions, API misuse,
   error paths, and anything the diff touched indirectly.
 - If you find no defects, say so explicitly. Do not invent findings to look thorough.
-- Do not edit files and do not run mutating shell commands.
+- Do not edit files. Shell is gated: only `git status*` / `git diff*` run
+  without approval; every other shell command asks the user. Prefer the
+  read/grep/glob tools over shell.
