@@ -134,7 +134,6 @@
 	},
 	"plugins": [
 		"superpowers@git+https://github.com/obra/superpowers.git",
-		"@tarquinen/opencode-dcp@latest",
 		"@slkiser/opencode-quota@latest",
 		"opencode-sleep-inhibitor",
 		"opencode-claude-auth@latest",
