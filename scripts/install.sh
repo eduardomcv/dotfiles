@@ -22,6 +22,7 @@ install_dotfiles \
 	zsh \
 	mise \
 	agents \
+	claude \
 	opencode \
 	worktrunk \
 	neovim \
