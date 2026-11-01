@@ -35,7 +35,17 @@
   },
   "enabledPlugins": {
     "superpowers@superpowers-marketplace": true,
-    "worktrunk@worktrunk": true
+    "worktrunk@worktrunk": true,
+    "context7@claude-plugins-official": true,
+    "skill-creator@claude-plugins-official": true,
+    "superpowers@claude-plugins-official": true,
+    "claude-md-management@anthropic-plugin-directory": true,
+    "feature-dev@anthropic-plugin-directory": true,
+    "frontend-design@anthropic-plugin-directory": true,
+    "code-simplifier@anthropic-plugin-directory": true,
+    "code-review-anthropics@anthropic-plugin-directory": true,
+    "security-guidance@anthropic-plugin-directory": true,
+    "playwright@anthropic-plugin-directory": true
   },
   "extraKnownMarketplaces": {
     "superpowers-marketplace": {
