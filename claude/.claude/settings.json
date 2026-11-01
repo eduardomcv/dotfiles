@@ -36,34 +36,5 @@
         ]
       }
     ]
-  },
-  "autoMode": {
-    "environment": [
-      "### Org-wide",
-      "**Organization**: None configured",
-      "**Cloud provider(s)**: None configured",
-      "**Repository visibility**: assume private — origin is ssh://codeberg.org/eduardomcv/dotfiles.git (not GitHub, so gh visibility check was not queryable); no public indicator found",
-      "**Internal sharing / snippet hosting**: None configured — treat public paste/gist services as outside the trust boundary",
-      "**Secrets management**: None configured",
-      "**Default / protected branches**: default branch is main (from repo facts); protection/ruleset status not queryable (non-GitHub remote)",
-      "**CI/CD deploy targets**: None configured",
-      "**Network posture**: None configured",
-      "**Host containment**: None configured — assume Claude Code runs on an ordinary developer machine with open internet",
-      "**Source control**: the trusted repo (ssh://codeberg.org/eduardomcv/dotfiles.git) and its remote only — no additional orgs configured",
-      "**Trusted internal domains**: None configured",
-      "**Trusted cloud buckets**: None configured",
-      "**Key internal services**: None configured",
-      "**Internal package registry**: None configured",
-      "**Sensitive data locations & audiences**: any file or store holding personal data, confidential business data, credentials, regulated data, or similarly sensitive material; preserve exact handles when known and share only with audiences cleared at the [named+specifics] bar",
-      "**Data retention / declassification**: None configured",
-      "**Sensitive remote targets**: any namespace, host, or container whose name carries prod or production as a whole word or name segment",
-      "**Protected deployment namespaces / environments**: None configured — fall back to the Sensitive remote targets heuristic",
-      "**Protected IaC scopes**: IAM, RBAC, networking, quota, and node-pool resources; anything whose name or tag carries prod or production as a whole word or name segment",
-      "### User-specific",
-      "**Primary use of Claude Code**: software development (dotfiles/config management, this repo)",
-      "**Trusted repo**: /home/emcv/Projects/dotfiles and its remote ssh://codeberg.org/eduardomcv/dotfiles.git — assumed private",
-      "**Org-specific CLIs**: None configured",
-      "routine actions scoped to eduardomcv/dotfiles and local dotfiles worktrees only — other repos under ~/Projects belong to different, unrelated orgs/owners and are not adopted as trusted context"
-    ]
   }
 }
