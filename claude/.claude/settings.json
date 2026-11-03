@@ -1,13 +1,9 @@
 {
   "$schema": "https://json.schemastore.org/claude-code-settings.json",
-  "model": "opusplan",
   "env": {
     "DISABLE_AUTOUPDATER": "1"
   },
-  "theme": "auto",
-  "bashOutputMaxChars": 51200,
   "permissions": {
-    "defaultMode": "plan",
     "allow": [
       "Bash(rg *)",
       "Bash(rtk git status *)",
@@ -19,11 +15,10 @@
       "Bash(rtk read *)",
       "Bash(npx ctx7 *)",
       "Bash(npx ctx7@latest *)"
-    ]
+    ],
+    "defaultMode": "plan"
   },
-  "enabledPlugins": {
-    "superpowers@claude-plugins-official": true
-  },
+  "model": "opusplan",
   "hooks": {
     "PreToolUse": [
       {
@@ -36,5 +31,13 @@
         ]
       }
     ]
+  },
+  "bashOutputMaxChars": 51200,
+  "enabledPlugins": {
+    "superpowers@claude-plugins-official": true
+  },
+  "theme": "auto",
+  "attribution": {
+    "commit": ""
   }
 }
