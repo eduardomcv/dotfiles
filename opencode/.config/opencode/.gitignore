@@ -1,5 +1,6 @@
 plugins/rtk.ts
 plugins/worktrunk.ts
+plugins/graphify.js
 skills/graphify/
 service.json
 
