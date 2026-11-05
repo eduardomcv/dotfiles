@@ -36,6 +36,9 @@
   "enabledPlugins": {
     "superpowers@claude-plugins-official": true
   },
+  "skillOverrides": {
+    "find-docs": "off"
+  },
   "theme": "auto",
   "attribution": {
     "commit": ""
