@@ -10,11 +10,10 @@ rust = {
 	components = "rust-analyzer",
 }
 lua = "5.1"
-rtk = "latest"
-gh = "latest"
 "pipx:graphifyy" = "latest"
-worktrunk = { version = "latest", workflow = "release.yaml" }
 usage = "latest"
+vp = "latest"
+"npm:@nestjs/cli" = "latest"
 
 [settings]
 idiomatic_version_file_enable_tools = [
