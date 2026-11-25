@@ -59,7 +59,7 @@
       "src": "https://github.com/nvim-mini/mini.nvim"
     },
     "neogit": {
-      "rev": "17929b7b0b9c05fe3dfc788fbba9881eb9c1cbec",
+      "rev": "0468adaa4af22ede35c0df6bdd81e93a9c217733",
       "src": "https://github.com/neogitorg/neogit"
     },
     "neotest": {
@@ -103,7 +103,7 @@
       "src": "https://github.com/mfussenegger/nvim-lint"
     },
     "nvim-lspconfig": {
-      "rev": "4648fd8ba5c678d7e2db75ae44ffac269bb589d8",
+      "rev": "76f4cafc49677a34dc8ad8142b773d78ab4a041e",
       "src": "https://github.com/neovim/nvim-lspconfig"
     },
     "nvim-nio": {
