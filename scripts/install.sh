@@ -21,10 +21,6 @@ install_dotfiles \
 	git \
 	zsh \
 	mise \
-	agents \
-	claude \
-	opencode \
-	worktrunk \
 	neovim \
 	kitty
 
