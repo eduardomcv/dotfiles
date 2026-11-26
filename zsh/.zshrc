@@ -25,6 +25,9 @@ if command -v wt >/dev/null 2>&1; then
 	eval "$(command wt config shell init zsh)"
 fi
 
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
+
 # Load aliases
 source "$HOME/.zsh_aliases"
 
