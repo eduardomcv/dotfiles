@@ -24,14 +24,6 @@ function install_macos() {
 	brew_check
 
 	brew install \
-		make \
-		openssl@3 \
-		readline \
-		libyaml \
-		autoconf \
-		cmake \
-		gs \
-		imagemagick \
 		stow \
 		ripgrep \
 		fd \
@@ -41,6 +33,7 @@ function install_macos() {
 		eza \
 		tlrc \
 		lazygit \
+		mise \
 		tree-sitter-cli \
 		neovim
 
